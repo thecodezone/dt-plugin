@@ -1,0 +1,66 @@
+<?php
+
+namespace CodeZone\Bible;
+
+use CodeZone\Bible\Illuminate\Container\Container;
+use CodeZone\Bible\Providers\PluginServiceProvider;
+
+/**
+ * This is the entry-object for the plugin.
+ * Handle any setup and bootstrapping here.
+ */
+class Plugin {
+	/**
+	 * The route for the plugin's home page
+	 * @var string
+	 */
+	const HOME_ROUTE = 'codezone/bible';
+
+	/**
+	 * The instance of the plugin
+	 * @var Plugin
+	 */
+	public static Plugin $instance;
+
+	/**
+	 * The container
+	 * @see https://laravel.com/docs/10.x/container
+	 * @var Container
+	 */
+	public Container $container;
+
+	/**
+	 * The service provider
+	 * @see https://laravel.com/docs/10.x/providers
+	 * @var PluginServiceProvider
+	 */
+	public PluginServiceProvider $provider;
+
+	/**
+	 * Plugin constructor.
+	 *
+	 * @param Container $container
+	 */
+	public function __construct( Container $container ) {
+		$this->container = $container;
+		$this->provider  = $container->make( PluginServiceProvider::class );
+	}
+
+	/**
+	 * Get the instance of the plugin
+	 * @return void
+	 */
+	public function init() {
+		static::$instance = $this;
+		$this->provider->register();
+		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 20 );
+	}
+
+	/**
+	 * Runs after_theme_setup
+	 * @return void
+	 */
+	public function after_setup_theme(): void {
+		$this->provider->boot();
+	}
+}

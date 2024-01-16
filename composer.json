@@ -1,0 +1,53 @@
+{
+  "name": "codezone/bible",
+  "description": "A bible plugin for WordPress.",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "CodeZone\\Bible\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Craig Wann",
+      "email": "craig@codezone.io"
+    }
+  ],
+  "require": {
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "wpify/scoper": "^3.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "yoast/phpunit-polyfills": "^2.0",
+    "wp-coding-standards/wpcs": "^3.0",
+    "phpunit/phpunit": "^9"
+  },
+  "extra": {
+    "wpify-scoper": {
+      "prefix": "CodeZone\\Bible",
+      "folder": "vendor-scoped",
+      "globals": [
+        "wordpress"
+      ],
+      "composerjson": "composer.scoped.json",
+      "composerlock": "composer.scoped.lock",
+      "autorun": true
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "bamarni/composer-bin-plugin": true,
+      "wpify/scoper": true
+    }
+  }
+}

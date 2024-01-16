@@ -1,0 +1,16 @@
+{
+  "name": "bible-reader",
+  "version": "1.0.0",
+  "description": "A bible plugin for WordPress.",
+  "main": "vite.config.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "",
+  "devDependencies": {
+    "@kucrut/vite-for-wp": "^0.8.0"
+  }
+}
