@@ -53,14 +53,8 @@ class Plugin {
 	public function init() {
 		static::$instance = $this;
 		$this->provider->register();
-		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 20 );
-	}
-
-	/**
-	 * Runs after_theme_setup
-	 * @return void
-	 */
-	public function after_setup_theme(): void {
-		$this->provider->boot();
+		add_action( 'init', function () {
+			$this->provider->boot();
+		}, 20 );
 	}
 }
