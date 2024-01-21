@@ -1,0 +1,44 @@
+.br-cloak {
+    display: none;
+}
+
+.bible-reader {
+    h2 {
+        margin-bottom: .75rem;
+    }
+
+    fieldset {
+        margin: 1rem 0;
+    }
+
+    sp-field-group + sp-field-group,
+    sp-field-group + sp-button-group {
+        display: block;
+    }
+
+    sp-field-group + sp-field-group {
+        margin-top: .5rem;
+    }
+
+    sp-field-group + sp-button-group {
+        margin-top: 1.5rem;
+    }
+
+    sp-toast:not([open]) {
+        display: none;
+    }
+
+    sp-toast[float] {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    form > sp-banner {
+        margin-top: 1rem;
+    }
+
+    br-alert-banner {
+        max-width: 400px;
+    }
+}

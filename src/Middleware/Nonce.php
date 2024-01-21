@@ -14,7 +14,7 @@ class Nonce implements Middleware {
 	}
 
 	public function handle( Request $request, Response $response, $next ) {
-		$nonce = $request->header( 'X-WP-Nonce' ) || $request->input( '_wpnonce' );
+		$nonce = $request->header( 'X-WP-Nonce' ) ?? $request->input( '_wpnonce' );
 
 		if ( empty( $nonce ) ) {
 			$response->setContent( __( 'Could not verify request.', 'bible_plugin' ) );
@@ -28,5 +28,4 @@ class Nonce implements Middleware {
 
 		return $next( $request, $response );
 	}
-
 }

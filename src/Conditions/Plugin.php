@@ -31,6 +31,6 @@ class Plugin implements Condition {
 	 * @return bool Returns true if the current request path starts with the home route, false otherwise.
 	 */
 	public function test(): bool {
-		return Str::startsWith( $this->request->path(), Main::HOME_ROUTE );
+		return Str::startsWith( $this->request->path(), Main::$home_route );
 	}
 }

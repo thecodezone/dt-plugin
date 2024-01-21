@@ -1,0 +1,57 @@
+sp-theme {
+
+    --spectrum-blue-100-rgb: 230, 241, 243;
+    --spectrum-blue-200-rgb: 179, 223, 230;
+    --spectrum-blue-300-rgb: 136, 204, 217;
+    --spectrum-blue-400-rgb: 86, 184, 204;
+    --spectrum-blue-500-rgb: 51, 167, 192;
+    --spectrum-blue-600-rgb: 31, 149, 179;
+    --spectrum-blue-700-rgb: 7, 132, 167;
+    --spectrum-blue-800-rgb: 0, 114, 154;
+    --spectrum-blue-900-rgb: 0, 121, 158; /* #00799E */
+    --spectrum-blue-1000-rgb: 0, 98, 130;
+    --spectrum-blue-1100-rgb: 0, 79, 104;
+    --spectrum-blue-1200-rgb: 0, 63, 83;
+    --spectrum-blue-1300-rgb: 0, 47, 62;
+    --spectrum-blue-1400-rgb: 0, 31, 41;
+    --spectrum-seafoam-100-rgb: 169, 245, 239;
+    --spectrum-seafoam-200-rgb: 145, 235, 229;
+    --spectrum-seafoam-300-rgb: 121, 225, 219;
+    --spectrum-seafoam-400-rgb: 47, 188, 172; /* #2FBCAC */
+    --spectrum-seafoam-500-rgb: 41, 172, 157;
+    --spectrum-seafoam-600-rgb: 36, 156, 142;
+    --spectrum-seafoam-700-rgb: 31, 140, 128;
+    --spectrum-seafoam-800-rgb: 26, 125, 113;
+    --spectrum-seafoam-900-rgb: 21, 109, 98;
+    --spectrum-seafoam-1000-rgb: 16, 94, 84;
+    --spectrum-seafoam-1100-rgb: 11, 79, 69;
+    --spectrum-seafoam-1200-rgb: 6, 63, 55;
+    --spectrum-seafoam-1300-rgb: 1, 48, 40;
+    --spectrum-seafoam-1400-rgb: 0, 33, 25;
+    --spectrum-seafoam-1500-rgb: 0, 18, 11;
+    --spectrum-chartreuse-100-rgb: 226, 230, 153;
+    --spectrum-chartreuse-200-rgb: 215, 219, 134;
+    --spectrum-chartreuse-300-rgb: 204, 208, 114;
+    --spectrum-chartreuse-400-rgb: 194, 198, 95;
+    --spectrum-chartreuse-500-rgb: 183, 187, 75;
+    --spectrum-chartreuse-600-rgb: 172, 177, 56;
+    --spectrum-chartreuse-700-rgb: 211, 216, 68; /* #D3D844 */
+    --spectrum-chartreuse-800-rgb: 145, 150, 39;
+    --spectrum-chartreuse-900-rgb: 129, 134, 20;
+    --spectrum-chartreuse-1000-rgb: 114, 118, 0;
+    --spectrum-chartreuse-1100-rgb: 99, 103, 0;
+    --spectrum-chartreuse-1200-rgb: 84, 87, 0;
+    --spectrum-chartreuse-1300-rgb: 68, 72, 0;
+    --spectrum-chartreuse-1400-rgb: 53, 56, 0;
+    --spectrum-brown-100-rgb: 211, 180, 165;
+    --spectrum-brown-200-rgb: 192, 161, 146;
+    --spectrum-brown-300-rgb: 174, 142, 127;
+    --spectrum-brown-400-rgb: 155, 123, 108;
+    --spectrum-brown-500-rgb: 137, 104, 89;
+    --spectrum-brown-600-rgb: 118, 85, 70;
+    --spectrum-brown-700-rgb: 105, 72, 52; /* #694834 */
+    --spectrum-brown-800-rgb: 97, 64, 46;
+    --spectrum-brown-900-rgb: 80, 54, 39;
+    --spectrum-brown-1000-rgb: 64, 44, 33;
+    --spectrum-seafoam-background-color-default: var(--spectrum-seafoam-500);
+}

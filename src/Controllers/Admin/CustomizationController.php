@@ -7,16 +7,14 @@ use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
 use function CodeZone\Bible\view;
 
-class GeneralSettingsController {
+class CustomizationController {
 	/**
 	 * Show the general settings admin tab
 	 */
 	public function show( Request $request, Response $response ) {
-		$tab        = "general";
-		$link       = 'admin.php?page=bible-reader&tab=';
-		$page_title = "Bible Reader Settings";
+		$tab = "customization";
 
-		return view( "settings/general", compact( 'tab', 'link', 'page_title' ) );
+		return view( "settings/customization", compact( 'tab' ) );
 	}
 
 	/**

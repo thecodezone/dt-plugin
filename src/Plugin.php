@@ -14,7 +14,7 @@ class Plugin {
 	 * The route for the plugin's home page
 	 * @var string
 	 */
-	const HOME_ROUTE = 'codezone/bible';
+	public static $home_route = 'bible';
 
 	/**
 	 * The instance of the plugin
@@ -42,8 +42,9 @@ class Plugin {
 	 * @param Container $container
 	 */
 	public function __construct( Container $container ) {
-		$this->container = $container;
-		$this->provider  = $container->make( PluginServiceProvider::class );
+		$this->container  = $container;
+		self::$home_route = apply_filters( 'bible_reader_route', self::$home_route );
+		$this->provider   = $container->make( PluginServiceProvider::class );
 	}
 
 	/**
