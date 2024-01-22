@@ -29,7 +29,8 @@ $this->layout( 'layouts/settings', compact( 'tab' ) )
                                       placeholder="<?php esc_attr_e( 'Enter key...', 'bible-reader' ); ?>"
                                       required
                         ></sp-textfield>
-                        <sp-button variant="accent" quiet label="<?php esc_attr_e( 'Validate', 'bible-reader' ); ?>"
+                        <sp-button variant="secondary"
+                                   label="<?php esc_attr_e( 'Validate', 'bible-reader' ); ?>"
                                    size="m">
 							<?php esc_html_e( 'Validate', 'bible-reader' ); ?>
                             <sp-icon-key slot="icon"></sp-icon-key>
