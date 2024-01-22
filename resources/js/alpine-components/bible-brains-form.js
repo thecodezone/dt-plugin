@@ -14,11 +14,11 @@ window.br_bible_brains_form = (props) => {
         language_options: {},
         version_options: {},
         media_options: {},
-        bible_reader_language: "",
-        bible_reader_version: "",
-        bible_reader_media: "",
-        bible_reader_languages: "",
-        bible_reader_versions: "",
+        bible_plugin_language: "",
+        bible_plugin_version: "",
+        bible_plugin_media: "",
+        bible_plugin_languages: "",
+        bible_plugin_versions: "",
         submission_key: "",
         ...props,
 
@@ -30,10 +30,10 @@ window.br_bible_brains_form = (props) => {
          * @returns {void}
          */
         init() {
-            this.$watch('bible_reader_languages', () => this.refresh_version_options.bind(this))
-            this.$watch('bible_reader_languages', this.reset_languages_dependencies.bind(this))
-            this.$watch('bible_reader_versions', this.refresh_media_options.bind(this))
-            this.$watch('bible_reader_versions', this.reset_versions_dependencies.bind(this))
+            this.$watch('bible_plugin_languages', () => this.refresh_version_options.bind(this))
+            this.$watch('bible_plugin_languages', this.reset_languages_dependencies.bind(this))
+            this.$watch('bible_plugin_versions', this.refresh_media_options.bind(this))
+            this.$watch('bible_plugin_versions', this.reset_versions_dependencies.bind(this))
         },
 
         /**
@@ -42,7 +42,7 @@ window.br_bible_brains_form = (props) => {
          */
         get selected_language_options() {
             const entries = Object.entries(this.language_options)
-            const filtered = entries.filter(([key, value]) => this.$as_array('bible_reader_languages').includes(key))
+            const filtered = entries.filter(([key, value]) => this.$as_array('bible_plugin_languages').includes(key))
             return Object.fromEntries(filtered)
         },
 
@@ -53,22 +53,22 @@ window.br_bible_brains_form = (props) => {
          */
         get selected_version_options() {
             const entries = Object.entries(this.version_options)
-            const filtered = entries.filter(([key, value]) => this.$as_array('bible_reader_versions').includes(key))
+            const filtered = entries.filter(([key, value]) => this.$as_array('bible_plugin_versions').includes(key))
             return Object.fromEntries(filtered)
         },
 
         /**
-         * Resets the dependencies related to languages in the Bible Reader.
+         * Resets the dependencies related to languages in the The Bible Plugin.
          *
          * @since 1.0.0
          *
          * @return {void}
          */
         reset_languages_dependencies() {
-            this.bible_reader_language = ""
-            this.bible_reader_versions = ""
-            this.bible_reader_version = ""
-            this.bible_reader_media = ""
+            this.bible_plugin_language = ""
+            this.bible_plugin_versions = ""
+            this.bible_plugin_version = ""
+            this.bible_plugin_media = ""
         },
 
         /**
@@ -77,8 +77,8 @@ window.br_bible_brains_form = (props) => {
          * @return {void}
          */
         reset_versions_dependencies() {
-            this.bible_reader_version = ""
-            this.bible_reader_media = ""
+            this.bible_plugin_version = ""
+            this.bible_plugin_media = ""
         },
 
         /**
@@ -87,7 +87,7 @@ window.br_bible_brains_form = (props) => {
          * @returns {Promise<void>} - A promise that resolves when the version options have been refreshed.
          */
         async refresh_version_options() {
-            let response = await fetch(`/bible/api/versions?languages=${this.bible_reader_languages}`)
+            let response = await fetch(`/bible/api/versions?languages=${this.bible_plugin_languages}`)
             let data = await response.json()
 
             this.version_options = data.reduce((acc, {bible_id, bible_name}) => {
@@ -107,7 +107,7 @@ window.br_bible_brains_form = (props) => {
          * @returns {Promise<void>} - A promise that resolves when the media options have been refreshed.
          */
         async refresh_media_options() {
-            let response = await fetch(`/bible/api/media?versions=${this.bible_reader_versions}`)
+            let response = await fetch(`/bible/api/media?versions=${this.bible_plugin_versions}`)
             let data = await response.json()
 
             this.media_options = data.reduce((acc, {key, label}) => {
@@ -142,11 +142,11 @@ window.br_bible_brains_form = (props) => {
                         'X-WP-Nonce': this.nonce
                     },
                     body: JSON.stringify({
-                        bible_reader_languages: this.bible_reader_languages,
-                        bible_reader_language: this.bible_reader_language,
-                        bible_reader_versions: this.bible_reader_versions,
-                        bible_reader_version: this.bible_reader_version,
-                        bible_reader_media: this.bible_reader_media,
+                        bible_plugin_languages: this.bible_plugin_languages,
+                        bible_plugin_language: this.bible_plugin_language,
+                        bible_plugin_versions: this.bible_plugin_versions,
+                        bible_plugin_version: this.bible_plugin_version,
+                        bible_plugin_media: this.bible_plugin_media,
                     })
                 })
 

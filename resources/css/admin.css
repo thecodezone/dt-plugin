@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(233, 244, 231);
+    background-color: white;
 }
 
 
@@ -7,7 +7,7 @@ body {
     display: none;
 }
 
-.bible-reader {
+.bible-plugin {
     h2 {
         margin-bottom: .75rem;
     }
@@ -45,5 +45,9 @@ body {
 
     br-alert-banner {
         max-width: 400px;
+    }
+
+    sp-divider[brown] {
+        --spectrum-divider-background-color-large: var(-spectrum-brown-600);
     }
 }

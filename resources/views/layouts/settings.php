@@ -8,18 +8,35 @@
  *
  * @var array $nav
  */
-$nav = apply_filters( 'bible_reader_settings_tabs', [] );
+
+use function CodeZone\Bible\plugin_url;
+
+$nav = apply_filters( 'bible_plugin_settings_tabs', [] );
 
 /**
  * Is there a Bible Brain API Key?
  *
  * @var bool $has_api_key
  */
-$has_api_key = ! ! get_option( 'bible_reader_bible_brains_key', false );
+$has_api_key = ! ! get_option( 'bible_plugin_bible_brains_key', false );
 ?>
 <sp-theme scale="medium" color="lightest" theme="spectrum">
-    <div class="bible-reader br-cloak wrap">
-        <h2><?php esc_html_e( 'Bible Reader', 'bible-reader' ) ?></h2>
+    <div class="bible-plugin br-cloak wrap">
+
+        <header>
+            <div class="bible-plugin__header">
+                <div class="bible-plugin__header__logo">
+                    <img src="<?php echo esc_url( plugin_url( 'resources/img/icon.png', __FILE__ ) ) ?>"
+                         alt="<?php esc_attr_e( 'The Bible Plugin', 'bible-plugin' ) ?>"
+                         width="125"
+                         height="125"
+                    >
+                </div>
+                <div class="bible-plugin__header__title hidden">
+                    <h1><?php esc_html_e( 'The Bible Plugin', 'bible-plugin' ) ?></h1>
+                </div>
+            </div>
+        </header>
 
 		<?php if ( ! $has_api_key ): ?>
             <sp-toast variant="negative" size="s" float open>
@@ -32,20 +49,20 @@ $has_api_key = ! ! get_option( 'bible_reader_bible_brains_key', false );
                             treatment="outline"
                             size="s"
                     >
-						<?php esc_html_e( "More Info", 'bible-reader' ); ?>
+						<?php esc_html_e( "More Info", 'bible-plugin' ); ?>
                     </sp-button>
                 </a>
             </sp-toast>
 		<?php endif; ?>
 
-        <sp-divider size="l"></sp-divider>
+        <sp-divider size="l" brown></sp-divider>
 
         <sp-tabs size="l" emphasized selected="<?php echo esc_attr( $tab ) ?>">
 			<?php foreach ( $nav as $index => $item ): ?>
                 <sp-tab label="<?php echo esc_html( $item['label'] ) ?>"
-                        href="<?php echo esc_url( admin_url( 'admin.php?page=bible-reader&tab=' . $item['tab'] ) ) ?>"
+                        href="<?php echo esc_url( admin_url( 'admin.php?page=bible-plugin&tab=' . $item['tab'] ) ) ?>"
                         value="<?php echo esc_attr( $item['tab'] ) ?>"
-                        onclick="window.location.href = '<?php echo esc_url( admin_url( 'admin.php?page=bible-reader&tab=' . $item['tab'] ) ) ?>'"
+                        onclick="window.location.href = '<?php echo esc_url( admin_url( 'admin.php?page=bible-plugin&tab=' . $item['tab'] ) ) ?>'"
                 ></sp-tab>
 			<?php endforeach; ?>
         </sp-tabs>

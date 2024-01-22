@@ -47,13 +47,13 @@ export default {
      * @return {void}
      */
     $set_stringable_checkbox_value(field, el) {
-        let values = this.$as_array('bible_reader_media');
+        let values = this.$as_array('bible_plugin_media');
         if (el.checked) {
             values.push(el.value);
-            this.$as_array('bible_reader_media', values);
+            this.$as_array('bible_plugin_media', values);
         } else {
             const newValues = values.filter((value) => value !== el.value)
-            this.$as_array('bible_reader_media', newValues);
+            this.$as_array('bible_plugin_media', newValues);
         }
     }
 }

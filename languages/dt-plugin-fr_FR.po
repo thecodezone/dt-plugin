@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Reaching Asia - Bible Reader\n"
+"Project-Id-Version: Reaching Asia - The Bible Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bible-plugin"
 "plugin-starter-template\n"
 "POT-Creation-Date: 2022-10-27T10:12:56+00:00\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Weblate 4.14.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: bible-reader.php\n"
+"X-Poedit-WPHeader: bible-plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -189,7 +189,7 @@ msgid "All"
 msgstr ""
 
 #: tile/custom-tile.php:32
-msgid "Bible Reader"
+msgid "The Bible Plugin"
 msgstr ""
 
 #: tile/custom-tile.php:33

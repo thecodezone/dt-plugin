@@ -35,7 +35,7 @@ class MiddlewareServiceProvider extends ServiceProvider {
 		'can'   => UserHasCap::class, // can:manage_dt
 		'guest' => LoggedOut::class,
 		'magic' => MagicLink::class,
-		'nonce' => Nonce::class,  // nonce:bible_reader_nonce
+		'nonce' => Nonce::class,  // nonce:bible_plugin_nonce
 	];
 
 	/**

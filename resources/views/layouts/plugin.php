@@ -1,5 +1,5 @@
 <header>
-    <h1><?php esc_html_e( 'Plugin', 'bible-reader' ); ?></h1>
+    <h1><?php esc_html_e( 'Plugin', 'bible-plugin' ); ?></h1>
 </header>
 
 <div>
@@ -8,7 +8,7 @@
 
 <footer>
     <p>
-		<?php esc_html_e( 'Copyright ', 'bible-reader' ); ?>
+		<?php esc_html_e( 'Copyright ', 'bible-plugin' ); ?>
 
 		<?php echo $this->e( gmdate( 'Y' ) ); ?>
     </p>

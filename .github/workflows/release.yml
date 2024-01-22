@@ -20,9 +20,9 @@ jobs:
           npm install
           npm run build
           composer install --no-interaction --no-dev
-          mkdir bible-reader
-          cp -r bible-reader.php dist languages resources routes src vendor vendor-scoped composer.json composer.lock composer.scoped.json composer.scoped.lock package.json package-lock.json version-control.json SECURITY.md bible-reader/
-          zip -r bible-reader.zip bible-reader
+          mkdir bible-plugin
+          cp -r bible-plugin.php dist languages resources routes src vendor vendor-scoped composer.json composer.lock composer.scoped.json composer.scoped.lock package.json package-lock.json version-control.json SECURITY.md bible-plugin/
+          zip -r bible-plugin.zip bible-plugin
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -40,6 +40,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./bible-reader.zip
-          asset_name: bible-reader.zip
+          asset_path: ./bible-plugin.zip
+          asset_name: bible-plugin.zip
           asset_content_type: application/zip

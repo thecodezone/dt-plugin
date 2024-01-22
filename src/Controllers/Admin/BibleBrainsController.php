@@ -4,6 +4,9 @@ namespace CodeZone\Bible\Controllers\Admin;
 
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
+use function CodeZone\Bible\set_option;
+use function CodeZone\Bible\transaction;
+use function CodeZone\Bible\validate;
 use function CodeZone\Bible\view;
 
 
@@ -40,16 +43,16 @@ class BibleBrainsController {
 			'text'  => 'Text',
 		];
 		$old              = [
-			'bible_reader_bible_brains_key' => get_option( 'bible_reader_bible_brains_key', 'fake' ),
-			'bible_reader_languages'        => get_option( 'bible_reader_languages', 'eng' ),
-			'bible_reader_language'         => get_option( 'bible_reader_language', array_key_first( $language_options ) ),
-			'bible_reader_versions'         => get_option( 'bible_reader_versions', array_key_first( $version_options ) ),
-			'bible_reader_version'          => get_option( 'bible_reader_version', array_key_first( $version_options ) ),
-			'bible_reader_media'            => get_option( 'bible_reader_media', implode( ',', array_keys( $media_options ) ) ),
+			'bible_plugin_bible_brains_key' => get_option( 'bible_plugin_bible_brains_key', 'fake' ),
+			'bible_plugin_languages'        => get_option( 'bible_plugin_languages', 'eng' ),
+			'bible_plugin_language'         => get_option( 'bible_plugin_language', array_key_first( $language_options ) ),
+			'bible_plugin_versions'         => get_option( 'bible_plugin_versions', array_key_first( $version_options ) ),
+			'bible_plugin_version'          => get_option( 'bible_plugin_version', array_key_first( $version_options ) ),
+			'bible_plugin_media'            => get_option( 'bible_plugin_media', implode( ',', array_keys( $media_options ) ) ),
 		];
-		$error            = __( 'An error has occurred.', 'bible-reader' );
-		$success          = __( 'Saved.', 'bible-reader' );
-		$nonce            = wp_create_nonce( 'bible_reader' );
+		$error            = __( 'An error has occurred.', 'bible-plugin' );
+		$success          = __( 'Saved.', 'bible-plugin' );
+		$nonce            = wp_create_nonce( 'bible_plugin' );
 
 		return view( "settings/bible-brains", [
 			'tab'              => $tab,
@@ -75,7 +78,7 @@ class BibleBrainsController {
 		return random_int( 0, 1 ) ? [
 			'success' => $request->get( 'key' ),
 		] : $response->setStatusCode( 400 )->setContent( [
-			'error' => __( 'Invalid API key', 'bible-reader' )
+			'error' => __( 'Invalid API key', 'bible-plugin' )
 		] );
 	}
 
@@ -86,8 +89,41 @@ class BibleBrainsController {
 	 * @param Response $response The response object.
 	 *
 	 * @return mixed Returns success with the key if random number is 1, otherwise returns error message.
+	 * @throws \Exception
 	 */
 	public function submit( Request $request, Response $response ) {
+		global $wpdb;
+
+		$errors = validate( $request->post(), [
+			'bible_plugin_languages' => 'required',
+			'bible_plugin_language'  => 'required',
+			'bible_plugin_versions'  => 'required',
+			'bible_plugin_version'   => 'required',
+			'bible_plugin_media'     => 'required',
+		] );
+
+
+		if ( $errors ) {
+			return $response->setStatusCode( 400 )->setContent( [
+				'error'  => __( 'Please complete the required fields.', 'bible-plugin' ),
+				'errors' => $errors,
+			] );
+		}
+
+		$result = transaction( function () use ( $request ) {
+			set_option( 'bible_plugin_languages', $request->post( 'bible_plugin_languages' ) );
+			set_option( 'bible_plugin_language', $request->post( 'bible_plugin_language' ) );
+			set_option( 'bible_plugin_versions', $request->post( 'bible_plugin_versions' ) );
+			set_option( 'bible_plugin_version', $request->post( 'bible_plugin_version' ) );
+			set_option( 'bible_plugin_media', $request->post( 'bible_plugin_media' ) );
+		} );
+
+		if ( ! $result === true ) {
+			return $response->setStatusCode( 400 )->setContent( [
+				'error' => __( 'Form could not be submitted.', 'bible-plugin' ),
+			] );
+		}
+
 		return [
 			'success' => true,
 		];

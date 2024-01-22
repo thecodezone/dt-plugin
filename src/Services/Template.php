@@ -35,7 +35,7 @@ class Template {
 			plugin_path( '/dist' ),
 			'resources/js/plugin.js',
 			[
-				'handle'    => 'bible-reader',
+				'handle'    => 'bible-plugin',
 				'css-media' => 'all', // Optional.
 				'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
 				'in-footer' => false, // Optional. Defaults to false.

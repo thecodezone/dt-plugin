@@ -1,11 +1,11 @@
-![Build Status](https://github.com/thecodezone/bible-reader/actions/workflows/ci.yml/badge.svg?branch=master)
+![Build Status](https://github.com/thecodezone/bible-plugin/actions/workflows/ci.yml/badge.svg?branch=master)
 
-# Bible Reader Plugin
+# The Bible Plugin
 
 This plugin is a modern opinionated extension starter template inspired by Laravel.
 
 > **Tip:** You can safely delete this README.md file and replace it with your own. You can always view this readme
-> at [github.com/thecodezone/bible-reader](https://github.com/thecodezone/bible-reader).
+> at [github.com/thecodezone/bible-plugin](https://github.com/thecodezone/bible-plugin).
 
 ## Included
 
@@ -24,7 +24,8 @@ This plugin is a modern opinionated extension starter template inspired by Larav
 1. Inversion of control container
    using [Laravel's Service Container](https://laravel.com/docs/master/container#main-content). ```/src/Container.php```
 1. Routing system using [FastRoute](https://github.com/nikic/FastRoute). ```/routes/web.php```
-1. Conditional routes, route groups, and request middleware provided by [CodeZone Router](https://github.com/thecodezone/wp-router).
+1. Conditional routes, route groups, and request middleware provided
+   by [CodeZone Router](https://github.com/thecodezone/wp-router).
 1. View layouts, partials, and escaping provided by the plain PHP templating engine, [Plates](https://platesphp.com/).
 
 ### Getting Started
@@ -60,7 +61,7 @@ are used to provide multilingual support.
 Hard-coded strings should be wrapped in the `__()` function. For example:
 
 ```php
-__( 'Hello World!', 'bible-reader' );
+__( 'Hello World!', 'bible-plugin' );
 ```
 
 #### Service Providers
@@ -216,11 +217,11 @@ vendor/bin/phpunit
 ## Contribution
 
 Contributions welcome. You can report issues and bugs in the
-[Issues](https://github.com/thecodezone/bible-reader/issues) section of the repo. You can
+[Issues](https://github.com/thecodezone/bible-plugin/issues) section of the repo. You can
 present ideas
-in the [Discussions](https://github.com/thecodezone/bible-reader/discussions) section of the
+in the [Discussions](https://github.com/thecodezone/bible-plugin/discussions) section of the
 repo. And
 code contributions are welcome using
-the [Pull Request](https://github.com/thecodezone/bible-reader/pulls)
+the [Pull Request](https://github.com/thecodezone/bible-plugin/pulls)
 system for git. For a more details on contribution see the
-[contribution guidelines](https://github.com/thecodezone/bible-reader/blob/master/CONTRIBUTING.md).
+[contribution guidelines](https://github.com/thecodezone/bible-plugin/blob/master/CONTRIBUTING.md).

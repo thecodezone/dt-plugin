@@ -24,6 +24,6 @@ class SupportController {
 
 		// Add the settings update code here
 
-		return new RedirectResponse( 302, admin_url( 'admin.php?page=bible-reader&tab=general&updated=true' ) );
+		return new RedirectResponse( 302, admin_url( 'admin.php?page=bible-plugin&tab=general&updated=true' ) );
 	}
 }

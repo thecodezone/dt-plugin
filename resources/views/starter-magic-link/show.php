@@ -9,5 +9,5 @@ $this->layout( 'layouts/plugin' );
 </div>
 
 <a href="<?php echo esc_url( $subpage_url ); ?>">
-	<?php $this->esc_html_e( 'Visit subpage', 'bible-reader' ); ?>
+	<?php $this->esc_html_e( 'Visit subpage', 'bible-plugin' ); ?>
 </a>

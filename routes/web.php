@@ -29,7 +29,7 @@ $r->condition( 'plugin', function ( $r ) {
 		$r->get( '/versions', [ VersionController::class, 'index' ] );
 		$r->get( '/media', [ MediaController::class, 'index' ] );
 
-		$r->middleware( [ 'can:manage_options', 'nonce:bible_reader' ], function ( Routes $r ) {
+		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin' ], function ( Routes $r ) {
 			$r->post( '/bible-brains/authorize', [ BibleBrainsController::class, 'authorize' ] );
 			$r->post( '/bible-brains', [ BibleBrainsController::class, 'submit' ] );
 		} );
@@ -39,10 +39,10 @@ $r->condition( 'plugin', function ( $r ) {
 $r->condition( 'backend', function ( Routes $r ) {
 	$r->middleware( 'can:manage_options', function ( Routes $r ) {
 		$r->group( 'wp-admin/admin.php', function ( Routes $r ) {
-			$r->get( '?page=bible-reader', [ BibleBrainsController::class, 'show' ] );
-			$r->get( '?page=bible-reader&tab=bible', [ BibleBrainsController::class, 'show' ] );
-			$r->get( '?page=bible-reader&tab=customization', [ CustomizationController::class, 'show' ] );
-			$r->get( '?page=bible-reader&tab=support', [ SupportController::class, 'show' ] );
+			$r->get( '?page=bible-plugin', [ BibleBrainsController::class, 'show' ] );
+			$r->get( '?page=bible-plugin&tab=bible', [ BibleBrainsController::class, 'show' ] );
+			$r->get( '?page=bible-plugin&tab=customization', [ CustomizationController::class, 'show' ] );
+			$r->get( '?page=bible-plugin&tab=support', [ SupportController::class, 'show' ] );
 		} );
 	} );
 } );

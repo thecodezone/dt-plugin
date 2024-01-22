@@ -1,5 +1,5 @@
 {
-  "name": "bible-reader",
+  "name": "bible-plugin",
   "version": "1.0.0",
   "description": "A bible plugin for WordPress.",
   "main": "vite.config.js",

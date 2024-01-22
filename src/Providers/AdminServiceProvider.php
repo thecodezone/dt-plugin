@@ -14,43 +14,43 @@ class AdminServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Registers the Bible Reader menu page and submenu page.
+	 * Registers the The Bible Plugin menu page and submenu page.
 	 *
-	 * This method adds the Bible Reader menu page and submenu page to the WordPress admin menu.
+	 * This method adds the The Bible Plugin menu page and submenu page to the WordPress admin menu.
 	 *
 	 * @return void
 	 */
 	public function register_menu(): void {
 		$menu = add_menu_page(
-			__( 'Bible Reader', 'bible-reader' ),
-			__( 'Bible Reader', 'bible-reader' ),
+			__( 'The Bible Plugin', 'bible-plugin' ),
+			__( 'The Bible Plugin', 'bible-plugin' ),
 			'manage_options',
-			'bible-reader',
+			'bible-plugin',
 			'',
 			'dashicons-book-alt',
 			99
 		);
 
-		$submenu = add_submenu_page(
-			'bible-reader',
-			__( 'Bible Reader', 'bible-reader' ),
-			__( 'Bible Reader', 'bible-reader' ),
+		add_submenu_page(
+			'bible-plugin',
+			__( 'The Bible Plugin', 'bible-plugin' ),
+			__( 'The Bible Plugin', 'bible-plugin' ),
 			'manage_options',
-			'bible-reader',
+			'bible-plugin',
 			[ $this, 'register_router' ]
 		);
 
-		add_filter( 'bible_reader_settings_tabs', function ( $menu ) {
+		add_filter( 'bible_plugin_settings_tabs', function ( $menu ) {
 			$menu[] = [
-				'label' => __( 'Biblical Text Setup', 'bible-reader' ),
+				'label' => __( 'Biblical Text Setup', 'bible-plugin' ),
 				'tab'   => 'bible'
 			];
 			$menu[] = [
-				'label' => __( 'Customization', 'bible-reader' ),
+				'label' => __( 'Customization', 'bible-plugin' ),
 				'tab'   => 'customization'
 			];
 			$menu[] = [
-				'label' => __( 'Support', 'bible-reader' ),
+				'label' => __( 'Support', 'bible-plugin' ),
 				'tab'   => 'support'
 			];
 
@@ -108,7 +108,7 @@ class AdminServiceProvider extends ServiceProvider {
 			plugin_path( '/dist' ),
 			'resources/js/admin.js',
 			[
-				'handle'    => 'bible-reader-admin',
+				'handle'    => 'bible-plugin-admin',
 				'css-media' => 'all', // Optional.
 				'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
 				'in-footer' => false, // Optional. Defaults to false.
@@ -140,7 +140,7 @@ class AdminServiceProvider extends ServiceProvider {
 		 * Only uncomment the strings in the config array if you want to customize the strings.
 		 */
 		$config = [
-			'id'           => 'bible-reader',
+			'id'           => 'bible-plugin',
 			// Unique ID for hashing notices for multiple instances of TGMPA.
 			'default_path' => '/partials/plugins/',
 			// Default absolute path to bundled plugins.
@@ -154,7 +154,7 @@ class AdminServiceProvider extends ServiceProvider {
 			// Show admin notices or not.
 			'dismissable'  => true,
 			// If false, a user cannot dismiss the nag message.
-			'dismiss_msg'  => 'These are recommended plugins to complement the Bible Reader plugin.',
+			'dismiss_msg'  => 'These are recommended plugins to complement The Bible Plugin.',
 			// If 'dismissable' is false, this message will be output at top of nag.
 			'is_automatic' => true,
 			// Automatically activate plugins after installation or not.

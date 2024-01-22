@@ -2,7 +2,11 @@
 
 namespace CodeZone\Bible\Providers;
 
+use CodeZone\Bible\Illuminate\Filesystem\Filesystem;
 use CodeZone\Bible\Illuminate\Http\Request;
+use CodeZone\Bible\Illuminate\Translation\FileLoader;
+use CodeZone\Bible\Illuminate\Translation\Translator;
+use CodeZone\Bible\Illuminate\Validation\Factory;
 
 class PluginServiceProvider extends ServiceProvider {
 	/**
@@ -30,6 +34,17 @@ class PluginServiceProvider extends ServiceProvider {
 			$provider = $this->container->make( $provider );
 			$provider->register();
 		}
+
+		$this->container->bind( FileLoader::class, function ( $container ) {
+			return new FileLoader( $container->make( Filesystem::class ), 'lang' );
+		} );
+
+		$this->container->bind( Factory::class, function ( $container ) {
+			$loader     = $container->make( FileLoader::class );
+			$translator = new Translator( $loader, 'en' );
+
+			return new Factory( $translator, $container );
+		} );
 	}
 
 

@@ -2,4 +2,4 @@
 {translation-domain}-{localisation}.po
 
 ex:
-bible-reader-fr_FR.po
+bible-plugin-fr_FR.po
