@@ -4,6 +4,7 @@ namespace CodeZone\Bible\Controllers\Admin;
 
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
+use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
 use function CodeZone\Bible\set_option;
 use function CodeZone\Bible\transaction;
 use function CodeZone\Bible\validate;
@@ -69,17 +70,25 @@ class BibleBrainsController {
 	/**
 	 * Authorize the API key
 	 *
-	 * @param Request $request The HTTP request object.
 	 * @param Response $response The HTTP response object.
 	 *
 	 * @return array|Response An array with 'success' key if the API key is valid, or a Response object with an error message if the API key is invalid.
 	 */
-	public function authorize( Request $request, Response $response ) {
-		return random_int( 0, 1 ) ? [
-			'success' => $request->get( 'key' ),
-		] : $response->setStatusCode( 400 )->setContent( [
-			'error' => __( 'Invalid API key', 'bible-plugin' )
-		] );
+	public function authorize( Response $response, Bibles $bibles ) {
+		$bibleBrainsResponse = $bibles->copyright( 'KJV' );
+
+		if ( $bibleBrainsResponse->getStatusCode() !== 200 ) {
+			return $response->setStatusCode( 401 )->setContent( [
+				'error'  => __( 'Invalid API key', 'bible-plugin' ),
+				'errors' => [
+					'bible_plugin_bible_brains_key' => __( 'Invalid API key', 'bible-plugin' ),
+				],
+			] );
+		}
+
+		return [
+			'success' => true,
+		];
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 namespace CodeZone\Bible;
 
+use CodeZone\Bible\Illuminate\Http\Client\Factory as HTTPFactory;
 use CodeZone\Bible\Illuminate\Http\RedirectResponse;
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Support\Str;
@@ -42,7 +43,7 @@ function plugin_path( string $path = '' ): string {
 	return '/' . implode( '/', [
 			trim( Str::remove( '/src', plugin_dir_path( __FILE__ ) ), '/' ),
 			trim( $path, '/' ),
-		] );
+    ] );
 }
 
 /**
@@ -209,4 +210,8 @@ function transaction( $callback ): bool|string {
 	$wpdb->query( 'COMMIT' );
 
 	return true;
+}
+
+function http(): HTTPFactory {
+	return container()->make( HTTPFactory::class );
 }

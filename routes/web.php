@@ -36,6 +36,7 @@ $r->condition( 'plugin', function ( $r ) {
 	} );
 } );
 
+
 $r->condition( 'backend', function ( Routes $r ) {
 	$r->middleware( 'can:manage_options', function ( Routes $r ) {
 		$r->group( 'wp-admin/admin.php', function ( Routes $r ) {

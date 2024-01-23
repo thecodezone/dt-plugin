@@ -6,7 +6,6 @@ use CodeZone\Bible\CodeZone\Router\FastRoute\Routes;
 use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
 use CodeZone\Bible\CodeZone\Router\Router;
 use CodeZone\Bible\FastRoute\RouteCollector;
-use CodeZone\Bible\Illuminate\Http\Response;
 use function CodeZone\Bible\routes_path;
 
 class RouterServiceProvider extends ServiceProvider {
