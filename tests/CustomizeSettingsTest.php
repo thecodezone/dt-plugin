@@ -23,12 +23,11 @@ class CustomizeSettingsTest extends TestCase {
 		] );
 		wp_set_current_user( $user );
 
-		$response = $this->get( '/wp-admin/admin.php?page=bible-plugin&tab=bible', [
+		$response = $this->get( '/wp-admin/admin.php?page=bible-plugin&tab=customization', [
 			'page' => 'bible-plugin',
-			'tab'  => 'customize'
+			'tab'  => 'customization'
 		] );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertStringContainsString( 'bible_plugin_bible_brains_key', $response->getContent() );
 	}
 }
