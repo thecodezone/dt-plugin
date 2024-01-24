@@ -44,7 +44,7 @@ class BibleBrainsController {
 			'text'  => 'Text',
 		];
 		$old              = [
-			'bible_plugin_bible_brains_key' => get_option( 'bible_plugin_bible_brains_key', 'fake' ),
+			'bible_plugin_bible_brains_key' => get_option( 'bible_plugin_bible_brains_key', defined( 'BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '' ),
 			'bible_plugin_languages'        => get_option( 'bible_plugin_languages', 'eng' ),
 			'bible_plugin_language'         => get_option( 'bible_plugin_language', array_key_first( $language_options ) ),
 			'bible_plugin_versions'         => get_option( 'bible_plugin_versions', array_key_first( $version_options ) ),
@@ -54,8 +54,12 @@ class BibleBrainsController {
 		$error            = __( 'An error has occurred.', 'bible-plugin' );
 		$success          = __( 'Saved.', 'bible-plugin' );
 		$nonce            = wp_create_nonce( 'bible_plugin' );
+		$action           = '/bible/api/bible-brains';
+		$key_action       = '/bible/api/bible-brains/key';
 
 		return view( "settings/bible-brains", [
+			'action'           => $action,
+			'key_action'       => $key_action,
 			'tab'              => $tab,
 			'language_options' => $language_options,
 			'version_options'  => $version_options,
@@ -68,21 +72,49 @@ class BibleBrainsController {
 	}
 
 	/**
-	 * Authorize the API key
+	 * Submit the request and return either success or error message.
 	 *
-	 * @param Response $response The HTTP response object.
+	 * @param Request $request The request object.
+	 * @param Response $response The response object.
 	 *
-	 * @return array|Response An array with 'success' key if the API key is valid, or a Response object with an error message if the API key is invalid.
+	 * @return mixed Returns success with the key if random number is 1, otherwise returns error message.
+	 * @throws \Exception
 	 */
-	public function authorize( Response $response, Bibles $bibles ) {
-		$bibleBrainsResponse = $bibles->copyright( 'KJV' );
+	public function submit( Request $request, Response $response, Bibles $bibles ) {
+		$errors = validate( $request->post(), [
+			'bible_plugin_bible_brains_key' => 'required',
+			'bible_plugin_languages'        => 'required',
+			'bible_plugin_language'         => 'required',
+			'bible_plugin_versions'         => 'required',
+			'bible_plugin_version'          => 'required',
+			'bible_plugin_media'            => 'required',
+		] );
 
-		if ( $bibleBrainsResponse->getStatusCode() !== 200 ) {
-			return $response->setStatusCode( 401 )->setContent( [
-				'error'  => __( 'Invalid API key', 'bible-plugin' ),
-				'errors' => [
-					'bible_plugin_bible_brains_key' => __( 'Invalid API key', 'bible-plugin' ),
-				],
+		if ( $errors ) {
+			return $response->setStatusCode( 400 )->setContent( [
+				'error'  => __( 'Please complete the required fields.', 'bible-plugin' ),
+				'errors' => $errors,
+			] );
+		}
+
+		$result = $this->validate( $response, $request, $bibles );
+
+		if ( ! is_array( $result ) || empty( $result['success'] ) ) {
+			return $result;
+		}
+
+		$result = transaction( function () use ( $request ) {
+			set_option( 'bible_plugin_bible_brains_key', $request->post( 'bible_plugin_bible_brains_key' ) );
+			set_option( 'bible_plugin_languages', $request->post( 'bible_plugin_languages' ) );
+			set_option( 'bible_plugin_language', $request->post( 'bible_plugin_language' ) );
+			set_option( 'bible_plugin_versions', $request->post( 'bible_plugin_versions' ) );
+			set_option( 'bible_plugin_version', $request->post( 'bible_plugin_version' ) );
+			set_option( 'bible_plugin_media', $request->post( 'bible_plugin_media' ) );
+		} );
+
+		if ( ! $result === true ) {
+			return $response->setStatusCode( 400 )->setContent( [
+				'error' => __( 'Form could not be submitted.', 'bible-plugin' ),
 			] );
 		}
 
@@ -92,39 +124,37 @@ class BibleBrainsController {
 	}
 
 	/**
-	 * Submit the request and return either success or error message.
+	 * Authorize the API key
 	 *
-	 * @param Request $request The request object.
-	 * @param Response $response The response object.
+	 * @param Response $response The HTTP response object.
 	 *
-	 * @return mixed Returns success with the key if random number is 1, otherwise returns error message.
-	 * @throws \Exception
+	 * @return array|Response An array with 'success' key if the API key is valid, or a Response object with an error message if the API key is invalid.
 	 */
-	public function submit( Request $request, Response $response ) {
-		global $wpdb;
-
+	public function validate( Response $response, Request $request, Bibles $bibles ) {
 		$errors = validate( $request->post(), [
-			'bible_plugin_languages' => 'required',
-			'bible_plugin_language'  => 'required',
-			'bible_plugin_versions'  => 'required',
-			'bible_plugin_version'   => 'required',
-			'bible_plugin_media'     => 'required',
+			'bible_plugin_bible_brains_key' => 'required',
 		] );
-
 
 		if ( $errors ) {
 			return $response->setStatusCode( 400 )->setContent( [
-				'error'  => __( 'Please complete the required fields.', 'bible-plugin' ),
+				'error'  => __( 'Please enter a key.', 'bible-plugin' ),
 				'errors' => $errors,
 			] );
 		}
 
+		$bibleBrainsResponse = $bibles->copyright( 'ENGESV', [ 'key' => $request->get( 'bible_plugin_bible_brains_key' ) ] );
+
+		if ( $bibleBrainsResponse->status() !== 200 ) {
+			return $response->setStatusCode( 401 )->setContent( [
+				'error'  => __( 'Failed to validate key.', 'bible-plugin' ),
+				'errors' => [
+					'bible_plugin_bible_brains_key' => __( 'Invalid.', 'bible-plugin' ),
+				],
+			] );
+		}
+
 		$result = transaction( function () use ( $request ) {
-			set_option( 'bible_plugin_languages', $request->post( 'bible_plugin_languages' ) );
-			set_option( 'bible_plugin_language', $request->post( 'bible_plugin_language' ) );
-			set_option( 'bible_plugin_versions', $request->post( 'bible_plugin_versions' ) );
-			set_option( 'bible_plugin_version', $request->post( 'bible_plugin_version' ) );
-			set_option( 'bible_plugin_media', $request->post( 'bible_plugin_media' ) );
+			set_option( 'bible_plugin_bible_brains_key', $request->post( 'bible_plugin_bible_brains_key' ) );
 		} );
 
 		if ( ! $result === true ) {

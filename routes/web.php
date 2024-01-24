@@ -30,7 +30,7 @@ $r->condition( 'plugin', function ( $r ) {
 		$r->get( '/media', [ MediaController::class, 'index' ] );
 
 		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin' ], function ( Routes $r ) {
-			$r->post( '/bible-brains/authorize', [ BibleBrainsController::class, 'authorize' ] );
+			$r->post( '/bible-brains/key', [ BibleBrainsController::class, 'validate' ] );
 			$r->post( '/bible-brains', [ BibleBrainsController::class, 'submit' ] );
 		} );
 	} );

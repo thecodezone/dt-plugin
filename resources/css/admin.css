@@ -43,6 +43,10 @@ body {
         margin-top: 1rem;
     }
 
+    form > sp-button-group {
+        margin-top: 1rem;
+    }
+
     br-alert-banner {
         max-width: 400px;
     }

@@ -2,82 +2,103 @@
 /**
  * @var $error string
  * @var $success string
+ * @var $action string
  * @var $nonce string
  * @var $tab string
  * @var $language_options array
  * @var $version_options array
  * @var $media_options array
  * @var $old array
+ * @var $key_action string
  */
 $this->layout( 'layouts/settings', compact( 'tab' ) )
 ?>
 
-    <form method="post">
-		<?php wp_nonce_field( 'dt_admin_form', 'bible_plugin' ) ?>
+<form method="post"
+    x-data="br_bible_brains_form(<?php echo esc_attr(
+        wp_json_encode(
+            array_merge(
+                $old,
+                [
+				      'action'           => $action,
+				      'key_action'       => $key_action,
+				      'nonce'            => $nonce,
+				      'language_options' => $language_options,
+				      'version_options'  => $version_options,
+				      'media_options'    => $media_options
+			      ]
+            )
+        )
+    ); ?>)"
+      @submit="submit"
+>
+
+    <fieldset>
+
+        <br-alert-banner positive x-ref="success_alert">
+			<?php echo esc_html( $success ); ?>
+        </br-alert-banner>
+
+        <br-alert-banner negative x-ref="error_alert">
+            <span x-show="typeof error !== 'boolean'" x-text="error">
+                <?php echo esc_html( $error ); ?>
+            </span>
+            <span x-show="error === true">
+                <?php echo esc_html( $error ); ?>
+            </span>
+        </br-alert-banner>
+
+        <div class="br-form-group">
+            <sp-field-group>
+                <sp-field-label
+                        required
+                        for="bible_plugin_bible_brains_key"><?php esc_html_e( 'Bible Brain API Key', 'bible-plugin' ); ?></sp-field-label>
+
+                <div>
+                    <sp-textfield id="bible_plugin_bible_brains_key"
+                                  name="bible_plugin_bible_brains_key"
+                                  :value="dirty_bible_plugin_bible_brains_key"
+                                  :invalid="!bible_brains_key_verified"
+                                  :valid="bible_brains_key_verified"
+                                  @change="dirty_bible_plugin_bible_brains_key = $event.target.value"
+                                  placeholder="<?php esc_attr_e( 'Enter key...', 'bible-plugin' ); ?>"
+                    ></sp-textfield>
+                    <sp-button
+                            x-show="!bible_brains_key_verified"
+                            key="bible_plugin_bible_brains_button_negative"
+                            variant="negative"
+                            label="<?php esc_attr_e( 'Validate', 'bible-plugin' ); ?>"
+                            @click="validate_bible_brains_key"
+                            size="m">
+						<?php esc_html_e( 'Validate', 'bible-plugin' ); ?>
+                        <sp-icon-key slot="icon"></sp-icon-key>
+                    </sp-button>
+                    <sp-button
+                            x-show="bible_brains_key_verified"
+                            key="bible_plugin_bible_brains_button_positive"
+                            variant="accent"
+                            label="<?php esc_attr_e( 'Valid', 'bible-plugin' ); ?>"
+                            @click="validate_bible_brains_key"
+                            size="m">
+						<?php esc_html_e( 'Valid', 'bible-plugin' ); ?>
+                        <sp-icon-key slot="icon"></sp-icon-key>
+                    </sp-button>
+                </div>
+
+                <sp-help-text size="s">
+                    <sp-link href="https://scripture.api.bible/docs">
+						<?php esc_html_e( "Here's how to get your key.", 'bible-plugin' ); ?>
+                    </sp-link>
+                </sp-help-text>
+            </sp-field-group>
+        </div>
+    </fieldset>
+
+    <DIV x-show="bible_brains_key_verified">
+
+        <sp-divider size="s" x-show="Object.values(language_options).length > 0"></sp-divider>
 
         <fieldset>
-            <div class="br-form-group">
-                <sp-field-group>
-                    <sp-field-label
-                            required
-                            for="bible_plugin_bible_brains_key"><?php esc_html_e( 'Bible Brain API Key', 'bible-plugin' ); ?></sp-field-label>
-
-                    <div>
-                        <sp-textfield id="bible_plugin_bible_brains_key"
-                                      name="bible_plugin_bible_brains_key"
-                                      value="<?php echo esc_attr( $old['bible_plugin_bible_brains_key'] ?? null ); ?>"
-                                      placeholder="<?php esc_attr_e( 'Enter key...', 'bible-plugin' ); ?>"
-                                      required
-                        ></sp-textfield>
-                        <sp-button variant="secondary"
-                                   label="<?php esc_attr_e( 'Validate', 'bible-plugin' ); ?>"
-                                   size="m">
-							<?php esc_html_e( 'Validate', 'bible-plugin' ); ?>
-                            <sp-icon-key slot="icon"></sp-icon-key>
-                        </sp-button>
-                    </div>
-
-                    <sp-help-text size="s">
-                        <sp-link href="https://scripture.api.bible/docs">
-							<?php esc_html_e( "Here's how to get your key.", 'bible-plugin' ); ?>
-                        </sp-link>
-                    </sp-help-text>
-                </sp-field-group>
-            </div>
-        </fieldset>
-    </form>
-
-<?php if ( $old['bible_plugin_bible_brains_key'] ): ?>
-    <sp-divider size="s" x-show="Object.values(language_options).length > 0"></sp-divider>
-
-    <form method="post"
-          x-data="br_bible_brains_form(<?php echo esc_attr(
-		      wp_json_encode(
-			      array_merge(
-				      $old,
-				      [
-					      'nonce'            => $nonce,
-					      'language_options' => $language_options,
-					      'version_options'  => $version_options,
-					      'media_options'    => $media_options
-				      ]
-			      )
-		      )
-	      ); ?>)"
-          x-show="Object.values(language_options).length > 0"
-          @submit="submit"
-    >
-
-        <fieldset>
-
-            <br-alert-banner positive x-show:open="success" open x-ref="successAlert">
-				<?php echo esc_html( $success ); ?>
-            </br-alert-banner>
-
-
-            <br-alert-banner negative x-show="!success & error" open x-ref="errorAlert">
-				<?php echo esc_html( $error ); ?>
-            </br-alert-banner>
 
             <sp-field-group>
                 <sp-field-label
@@ -223,8 +244,10 @@ $this->layout( 'layouts/settings', compact( 'tab' ) )
                 </sp-help-text>
             </sp-field-group>
 
+
             <sp-button-group>
                 <sp-button
+                        active="false"
                         type="submit"
                         variant="accent"
                         label="Save"
@@ -233,5 +256,5 @@ $this->layout( 'layouts/settings', compact( 'tab' ) )
                 </sp-button>
             </sp-button-group>
         </fieldset>
-    </form>
-<?php endif; ?>
+    </DIV>
+</form>

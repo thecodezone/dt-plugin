@@ -6,3 +6,4 @@ node_modules
 tmp-*
 dist/*
 mysite.sql.gz
+.env

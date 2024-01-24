@@ -7,7 +7,7 @@ use CodeZone\Bible\GuzzleHttp\Psr7\UriResolver;
 use CodeZone\Bible\Psr\Http\Message\RequestInterface;
 
 class GuzzleMiddleware {
-	protected string $base_url = 'https://api.scripture.api.bible/v1';
+	protected string $base_url = 'https://4.dbt.io/api/';
 	protected string $key;
 
 
@@ -20,8 +20,15 @@ class GuzzleMiddleware {
 		return function ( RequestInterface $request, array $options ) use ( $handler ) {
 			$newUri = UriResolver::resolve( new Uri( $this->base_url ), $request->getUri() );
 
+			parse_str( $newUri->getQuery(), $query );
+
 			// Add the 'key' query parameter
-			$newUri = Uri::withQueryValue( $newUri, 'key', $this->key );
+			if ( empty( $query['key'] ) ) {
+				$newUri = Uri::withQueryValue( $newUri, 'key', $this->key );
+			}
+			if ( empty( $query['v'] ) ) {
+				$newUri = Uri::withQueryValue( $newUri, 'v', '4' );
+			}
 
 			// Update the request with the modified URI
 			$request = $request->withUri( $newUri );

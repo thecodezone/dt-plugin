@@ -7,6 +7,7 @@
     "illuminate/validation": "^10.14",
     "illuminate/translation": "^10.14",
     "illuminate/support": "^10.14",
-    "guzzlehttp/guzzle": "^7.2"
+    "guzzlehttp/guzzle": "^7.2",
+    "vlucas/phpdotenv": "^5.4.1"
   }
 }

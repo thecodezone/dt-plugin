@@ -37,6 +37,7 @@ import '@spectrum-web-components/theme/src/express/themes.js';
 import '@spectrum-web-components/toast/sp-toast.js';
 import '@spectrum-web-components/action-bar/sp-action-bar.js';
 import '@spectrum-web-components/banner/sp-banner.js';
+import '@spectrum-web-components/icon/sp-icon.js';
 
 /**
  * Custom Web Components

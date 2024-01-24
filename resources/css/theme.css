@@ -66,20 +66,20 @@ sp-theme {
     --spectrum-brown-800-rgb: 97, 64, 46;
     --spectrum-brown-900-rgb: 80, 54, 39;
     --spectrum-brown-1000-rgb: 64, 44, 33;
-    --spectrum-green-100-rgb: 183, 226, 204;
-    --spectrum-green-200-rgb: 160, 220, 192;
-    --spectrum-green-300-rgb: 137, 214, 180;
-    --spectrum-green-400-rgb: 114, 208, 167;
-    --spectrum-green-500-rgb: 80, 199, 152;
-    --spectrum-green-600-rgb: 47, 184, 128; /* Base color */
-    --spectrum-green-700-rgb: 29, 163, 110;
-    --spectrum-green-800-rgb: 11, 143, 92;
-    --spectrum-green-900-rgb: 0, 123, 74;
-    --spectrum-green-1000-rgb: 0, 103, 56;
-    --spectrum-green-1100-rgb: 0, 83, 37;
-    --spectrum-green-1200-rgb: 0, 63, 19;
-    --spectrum-green-1300-rgb: 0, 44, 5;
-    --spectrum-green-1400-rgb: 0, 25, 0;
+    --spectrum-green-100-rgb: 164, 232, 226;
+    --spectrum-green-200-rgb: 143, 223, 217;
+    --spectrum-green-300-rgb: 121, 214, 208;
+    --spectrum-green-400-rgb: 37, 178, 162; /* was: 47, 188, 172 */
+    --spectrum-green-500-rgb: 30, 163, 148;
+    --spectrum-green-600-rgb: 24, 148, 134;
+    --spectrum-green-700-rgb: 18, 133, 120;
+    --spectrum-green-800-rgb: 13, 118, 106;
+    --spectrum-green-900-rgb: 7, 103, 92;
+    --spectrum-green-1000-rgb: 2, 88, 78;
+    --spectrum-green-1100-rgb: 0, 73, 64;
+    --spectrum-green-1200-rgb: 0, 58, 50;
+    --spectrum-green-1300-rgb: 0, 43, 35;
+    --spectrum-green-1400-rgb: 0, 28, 21;
     --spectrum-accent-color-100: var(--spectrum-seafoam-100);
     --spectrum-accent-color-200: var(--spectrum-seafoam-200);
     --spectrum-accent-color-300: var(--spectrum-seafoam-300);
