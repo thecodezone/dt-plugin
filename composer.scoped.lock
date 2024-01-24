@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa9a5f6c53945c03fb55801013bcf062",
+    "content-hash": "85d71c1cbd499e649279d79a265090b5",
     "packages": [
         {
             "name": "amphp/amp",
@@ -990,16 +990,16 @@
         },
         {
             "name": "codezone/router",
-            "version": "0.4.1",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thecodezone/wp-router.git",
-                "reference": "553f0692ba10b891a1fcd626fe40df3d8168aa8a"
+                "reference": "af1769d059f52c27d7fc8f5f3db592244d4b10b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thecodezone/wp-router/zipball/553f0692ba10b891a1fcd626fe40df3d8168aa8a",
-                "reference": "553f0692ba10b891a1fcd626fe40df3d8168aa8a",
+                "url": "https://api.github.com/repos/thecodezone/wp-router/zipball/af1769d059f52c27d7fc8f5f3db592244d4b10b2",
+                "reference": "af1769d059f52c27d7fc8f5f3db592244d4b10b2",
                 "shasum": ""
             },
             "require": {
@@ -1037,9 +1037,9 @@
             "description": "A FastRoute-based router for use in Roots-based WordPress plugins and themes or any plugin or theme that use Illuminate/Container.",
             "support": {
                 "issues": "https://github.com/thecodezone/wp-router/issues",
-                "source": "https://github.com/thecodezone/wp-router/tree/0.4.1"
+                "source": "https://github.com/thecodezone/wp-router/tree/0.5.0"
             },
-            "time": "2024-01-23T17:21:17+00:00"
+            "time": "2024-01-24T15:03:22+00:00"
         },
         {
             "name": "daverandom/libdns",
