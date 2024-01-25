@@ -9,6 +9,7 @@ use CodeZone\Bible\Illuminate\Support\Str;
 use CodeZone\Bible\Illuminate\Validation\Factory;
 use CodeZone\Bible\League\Plates\Engine;
 use CodeZone\Bible\Services\Template;
+use CodeZone\Bible\Services\Translations;
 
 /**
  * Returns the singleton instance of the Plugin class.
@@ -225,4 +226,8 @@ function transaction( $callback ): bool|string {
 
 function http(): HTTPFactory {
 	return container()->make( HTTPFactory::class );
+}
+
+function translate( $text, $context = [] ): string {
+	return container()->make( Translations::class )->translate( $text, $context );
 }

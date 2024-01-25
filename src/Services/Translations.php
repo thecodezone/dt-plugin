@@ -30,10 +30,17 @@ class Translations {
 	 *
 	 * @return string The translated text.
 	 */
-	public function translate( $text ) {
+	public function translate( $text, $context = [] ) {
 		// phpcs:ignore
-		return get_option( 'bible_plugin_translations', __( $text, 'bible_plugin' ) );
+		if ( count( $context ) ) {
+			$default = _x( $text, $context, 'bible-plugin' );
+		} else {
+			$default = __( $text, 'bible-plugin' );
+		}
+
+		return $this->custom_translations()->get( $text, $default );
 	}
+
 
 	/**
 	 * Retrieves the custom translations stored in the 'bible_plugin_translations' option.
