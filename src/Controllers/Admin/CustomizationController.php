@@ -12,7 +12,23 @@ class CustomizationController {
 	 * Show the general settings admin tab
 	 */
 	public function show( Request $request, Response $response ) {
-		$tab = "customization";
+		$tab                  = "customization";
+		$action               = '/bible/api/bible-brains';
+		$method               = 'POST';
+		$nonce                = wp_create_nonce( 'bible-brains' );
+		$color_scheme_options = [
+			'lighter' => __( 'Lighter', 'bible-brains' ),
+			'light'   => __( 'Light', 'bible-brains' ),
+			'dark'    => __( 'Dark', 'bible-brains' ),
+			'darker'  => __( 'Darker', 'bible-brains' ),
+		];
+		$old                  = [
+			'bible_brains_color_scheme'        => get_option( 'bible_brains_scheme', 'lighter' ),
+			'bible_brains_header_color'        => get_option( 'bible_brains_header_color' ),
+			'bible_brains_header_color_custom' => get_option( 'bible_brains_header_color_custom' ),
+			'bible_brains_footer_color'        => get_option( 'bible_brains_header_color' ),
+			'bible_brains_footer_color_custom' => get_option( 'bible_brains_header_color_custom' ),
+		];
 
 		return view( "settings/customization", compact( 'tab' ) );
 	}

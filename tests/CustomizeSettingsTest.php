@@ -22,12 +22,10 @@ class CustomizeSettingsTest extends TestCase {
 			'role' => 'administrator',
 		] );
 		wp_set_current_user( $user );
-
 		$response = $this->get( '/wp-admin/admin.php?page=bible-plugin&tab=customization', [
 			'page' => 'bible-plugin',
 			'tab'  => 'customization'
 		] );
-
 		$this->assertEquals( 200, $response->getStatusCode() );
 	}
 }

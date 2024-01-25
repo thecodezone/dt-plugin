@@ -19,7 +19,7 @@ class Nonce implements Middleware {
 		            ?? $request->input( '_wpnonce' );
 
 		if ( empty( $nonce ) ) {
-			$response->setContent( __( 'Could not verify request.', 'bible_plugin' ) );
+			$response->setContent( __( 'Could not verify request.', 'bible-plugin' ) );
 
 			return $response->setStatusCode( 403 );
 		}

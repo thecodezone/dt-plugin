@@ -22,7 +22,8 @@
     }
   ],
   "require": {
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-gettext": "*"
   },
   "require-dev": {
     "wpify/scoper": "^3.0",

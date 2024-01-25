@@ -53,7 +53,7 @@ class BibleBrainsController {
 		];
 		$error            = __( 'An error has occurred.', 'bible-plugin' );
 		$success          = __( 'Saved.', 'bible-plugin' );
-		$nonce            = wp_create_nonce( 'bible_plugin' );
+		$nonce            = wp_create_nonce( 'bible-plugin' );
 		$action           = '/bible/api/bible-brains';
 		$key_action       = '/bible/api/bible-brains/key';
 

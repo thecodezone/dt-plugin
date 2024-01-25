@@ -15,6 +15,7 @@ class PluginServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $providers = [
+		TranslationsServiceProvider::class,
 		BibleBrainsServiceProvider::class,
 		ViewServiceProvider::class,
 		ConditionsServiceProvider::class,

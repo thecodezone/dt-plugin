@@ -69,6 +69,17 @@ function resources_path( string $path = '' ): string {
 }
 
 /**
+ * Get the languages path using the given path.
+ *
+ * @param string $path The path to append to the languages directory.
+ *
+ * @return string The complete languages path.
+ */
+function languages_path( string $path = '' ): string {
+	return plugin_path( 'languages/' . $path );
+}
+
+/**
  * Returns the path to the routes directory.
  *
  * @param string $path Optional. Subdirectory path to append to the routes directory.

@@ -1,0 +1,200 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: The Bible Plugin\n"
+"POT-Creation-Date: 2024-01-24 22:41-0600\n"
+"PO-Revision-Date: 2024-01-24 21:27-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: bible-plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: tmp-528879b2b4/source/vendor\n"
+"X-Poedit-SearchPathExcluded-4: tmp-528879b2b4/destination/vendor\n"
+"X-Poedit-SearchPathExcluded-5: resources/js\n"
+"X-Poedit-SearchPathExcluded-6: dist\n"
+"X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
+"X-Poedit-SearchPathExcluded-8: includes\n"
+"X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
+
+#: resources/views/layouts/plugin.php:2
+msgid "Plugin"
+msgstr ""
+
+#: resources/views/layouts/plugin.php:11
+msgid "Copyright "
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: resources/views/layouts/settings.php:30
+#: resources/views/layouts/settings.php:36
+#: src/Providers/AdminServiceProvider.php:25
+#: src/Providers/AdminServiceProvider.php:26
+#: src/Providers/AdminServiceProvider.php:36
+#: src/Providers/AdminServiceProvider.php:37
+msgid "The Bible Plugin"
+msgstr ""
+
+#: resources/views/layouts/settings.php:52
+msgid "More Info"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:55
+msgid "Bible Brain API Key"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:64
+msgid "Enter key..."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:70
+#: resources/views/settings/bible-brains.php:73
+msgid "Validate"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:80
+#: resources/views/settings/bible-brains.php:83
+msgid "Valid"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:90
+msgid "Here's how to get your key."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:106
+msgid "Languages"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:126
+msgid "Select the bible languages you would like to make available."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:135
+msgid "Default Language"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:157
+msgid "Select the bible language that will be used by default."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:164
+msgid "Bible Versions"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:184
+msgid "Select the bible versions you would like to make available."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:192
+msgid "Default Bible Version"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:213
+msgid "Select the bible version that will be used by default."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:222
+msgid "Media Types"
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:243
+msgid "Note that some bible versions do not support all media types."
+msgstr ""
+
+#: resources/views/settings/bible-brains.php:255
+msgid "Save"
+msgstr ""
+
+#: resources/views/starter-magic-link/show.php:12
+msgid "Visit subpage"
+msgstr ""
+
+#: resources/views/starter-magic-link/subpage.php:12
+msgid "Visit home"
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:54
+msgid "An error has occurred."
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:55
+msgid "Saved."
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:95
+msgid "Please complete the required fields."
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:117
+#: src/Controllers/Admin/BibleBrainsController.php:162
+msgid "Form could not be submitted."
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:140
+msgid "Please enter a key."
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:149
+msgid "Failed to validate key."
+msgstr ""
+
+#: src/Controllers/Admin/BibleBrainsController.php:151
+msgid "Invalid."
+msgstr ""
+
+#: src/Controllers/Admin/CustomizationController.php:20
+msgid "Lighter"
+msgstr ""
+
+#: src/Controllers/Admin/CustomizationController.php:21
+msgid "Light"
+msgstr ""
+
+#: src/Controllers/Admin/CustomizationController.php:22
+msgid "Dark"
+msgstr ""
+
+#: src/Controllers/Admin/CustomizationController.php:23
+msgid "Darker"
+msgstr ""
+
+#: src/Middleware/Nonce.php:22
+msgid "Could not verify request."
+msgstr ""
+
+#: src/Providers/AdminServiceProvider.php:45
+msgid "Biblical Text Setup"
+msgstr ""
+
+#: src/Providers/AdminServiceProvider.php:49
+msgid "Customization"
+msgstr ""
+
+#: src/Providers/AdminServiceProvider.php:53
+msgid "Support"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/TheCodeZone/bible-plugin"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A bible plugin for WordPress."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/TheCodeZone"
+msgstr ""
