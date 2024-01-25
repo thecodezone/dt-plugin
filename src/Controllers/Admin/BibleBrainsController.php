@@ -5,6 +5,7 @@ namespace CodeZone\Bible\Controllers\Admin;
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
 use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
+use CodeZone\Bible\Services\BibleBrains\Services\Languages;
 use function CodeZone\Bible\set_option;
 use function CodeZone\Bible\transaction;
 use function CodeZone\Bible\validate;
@@ -23,18 +24,10 @@ class BibleBrainsController {
 	 * @param Request $request The request object.
 	 * @param Response $response The response object.
 	 */
-	public function show( Request $request, Response $response ) {
-		$tab              = "bible";
-		$language_options = [
-			'eng' => 'English',
-			'es'  => 'Spanish',
-			'fr'  => 'French',
-			'de'  => 'German',
-			'it'  => 'Italian',
-			'pt'  => 'Portuguese',
-			'ru'  => 'Russian',
-			'zh'  => 'Chinese',
-		];
+	public function show( Request $request, Response $response, Languages $languages ) {
+		$tab = "bible";
+
+		$language_options = collect( $languages->all()['data'] ?? [] )->pluck( 'name', 'iso' )->sort()->toArray();
 		$version_options  = [
 			'ENGKJV' => 'King James Version',
 		];

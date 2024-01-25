@@ -6,7 +6,6 @@ use CodeZone\Bible\Illuminate\Http\Client\Factory as Http;
 use CodeZone\Bible\Illuminate\Http\Client\PendingRequest;
 
 abstract class Service {
-
 	/**
 	 * @var Http
 	 */
