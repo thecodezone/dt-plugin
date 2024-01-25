@@ -27,7 +27,7 @@ class BibleBrainsController {
 	public function show( Request $request, Response $response, Languages $languages ) {
 		$tab = "bible";
 
-		$language_options = collect( $languages->all()['data'] ?? [] )->pluck( 'name', 'iso' )->sort()->toArray();
+		$language_options = collect( $languages->all()['data'] ?? [] )->pluck( 'name', 'id' )->sort()->toArray();
 		$version_options  = [
 			'ENGKJV' => 'King James Version',
 		];
