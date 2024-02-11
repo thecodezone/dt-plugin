@@ -38,6 +38,8 @@ import '@spectrum-web-components/toast/sp-toast.js';
 import '@spectrum-web-components/action-bar/sp-action-bar.js';
 import '@spectrum-web-components/banner/sp-banner.js';
 import '@spectrum-web-components/icon/sp-icon.js';
+import '@spectrum-web-components/search/sp-search.js';
+
 
 /**
  * Custom Web Components

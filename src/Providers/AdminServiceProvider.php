@@ -4,6 +4,7 @@ namespace CodeZone\Bible\Providers;
 
 use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
+use function CodeZone\Bible\namespace_string;
 use function CodeZone\Bible\plugin_path;
 
 class AdminServiceProvider extends ServiceProvider {
@@ -40,7 +41,7 @@ class AdminServiceProvider extends ServiceProvider {
 			[ $this, 'register_router' ]
 		);
 
-		add_filter( 'bible_plugin_settings_tabs', function ( $menu ) {
+		add_filter( namespace_string( 'settings_tabs' ), function ( $menu ) {
 			$menu[] = [
 				'label' => __( 'Biblical Text Setup', 'bible-plugin' ),
 				'tab'   => 'bible'
@@ -66,7 +67,7 @@ class AdminServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register_router(): void {
-		apply_filters( 'codezone/bible/middleware', $this->container->make( Stack::class ) )
+		apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
 			->run();
 	}
 

@@ -2,6 +2,7 @@
 
 namespace CodeZone\Bible\Providers;
 
+use CodeZone\Bible\CodeZone\Router;
 use CodeZone\Bible\CodeZone\Router\Middleware\DispatchController;
 use CodeZone\Bible\CodeZone\Router\Middleware\HandleErrors;
 use CodeZone\Bible\CodeZone\Router\Middleware\HandleRedirects;
@@ -14,6 +15,7 @@ use CodeZone\Bible\Middleware\LoggedIn;
 use CodeZone\Bible\Middleware\LoggedOut;
 use CodeZone\Bible\Middleware\MagicLink;
 use CodeZone\Bible\Middleware\Nonce;
+use function CodeZone\Bible\namespace_string;
 
 /**
  * Request middleware to be used in the request lifecycle.
@@ -47,13 +49,13 @@ class MiddlewareServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register(): void {
-		add_filter( 'codezone/bible/middleware', function ( Stack $stack ) {
+		add_filter( namespace_string( 'middleware' ), function ( Stack $stack ) {
 			$stack->push( ...$this->middleware );
 
 			return $stack;
 		} );
 
-		add_filter( 'codezone/router/middleware', function ( array $middleware ) {
+		add_filter( Router\namespace_string( 'middleware' ), function ( array $middleware ) {
 			return array_merge( $middleware, $this->route_middleware );
 		} );
 
@@ -61,7 +63,7 @@ class MiddlewareServiceProvider extends ServiceProvider {
 		 * Parse named signature to instantiate any middleware that takes arguments.
 		 * Signature format: "name:signature"
 		 */
-		add_filter( 'codezone/router/middleware/factory', function ( Middleware|null $middleware, $attributes ) {
+		add_filter( Router\namespace_string( 'middleware_factory' ), function ( Middleware|null $middleware, $attributes ) {
 			$classname = $attributes['className'] ?? null;
 			$name      = $attributes['name'] ?? null;
 			$signature = $attributes['signature'] ?? null;

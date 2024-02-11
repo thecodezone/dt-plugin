@@ -25,42 +25,56 @@ class BibleBrainsController {
 	 * @param Response $response The response object.
 	 */
 	public function show( Request $request, Response $response, Languages $languages ) {
-		$tab = "bible";
-
-		$language_options = collect( $languages->all()['data'] ?? [] )->pluck( 'name', 'id' )->sort()->toArray();
-		$version_options  = [
-			'ENGKJV' => 'King James Version',
+		$tab                       = "bible";
+		$language_options_endpoint = '/bible/api/languages/options';
+		$version_options           = [
+			[
+				'value' => 'kjv',
+				'label' => 'King James Version',
+			],
+			[
+				'value' => 'asv',
+				'label' => 'American Standard Version',
+			]
 		];
-		$media_options    = [
-			'audio' => 'Audio',
-			'video' => 'Video',
-			'text'  => 'Text',
+		$media_options             = [
+			[
+				'value' => 'audio',
+				'label' => 'Audio',
+			],
+			[
+				'value' => 'video',
+				'label' => 'Video',
+			],
+			[
+				'value' => 'text',
+				'label' => 'Text',
+			]
 		];
-		$old              = [
+		$old                       = [
 			'bible_plugin_bible_brains_key' => get_option( 'bible_plugin_bible_brains_key', defined( 'BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '' ),
 			'bible_plugin_languages'        => get_option( 'bible_plugin_languages', 'eng' ),
-			'bible_plugin_language'         => get_option( 'bible_plugin_language', array_key_first( $language_options ) ),
 			'bible_plugin_versions'         => get_option( 'bible_plugin_versions', array_key_first( $version_options ) ),
 			'bible_plugin_version'          => get_option( 'bible_plugin_version', array_key_first( $version_options ) ),
 			'bible_plugin_media'            => get_option( 'bible_plugin_media', implode( ',', array_keys( $media_options ) ) ),
 		];
-		$error            = __( 'An error has occurred.', 'bible-plugin' );
-		$success          = __( 'Saved.', 'bible-plugin' );
-		$nonce            = wp_create_nonce( 'bible-plugin' );
-		$action           = '/bible/api/bible-brains';
-		$key_action       = '/bible/api/bible-brains/key';
+		$error                     = __( 'An error has occurred.', 'bible-plugin' );
+		$success                   = __( 'Saved.', 'bible-plugin' );
+		$nonce                     = wp_create_nonce( 'bible-plugin' );
+		$action                    = '/bible/api/bible-brains';
+		$key_action                = '/bible/api/bible-brains/key';
 
 		return view( "settings/bible-brains", [
-			'action'           => $action,
-			'key_action'       => $key_action,
-			'tab'              => $tab,
-			'language_options' => $language_options,
-			'version_options'  => $version_options,
-			'media_options'    => $media_options,
-			'old'              => $old,
-			'error'            => $error,
-			'success'          => $success,
-			'nonce'            => $nonce,
+			'action'                    => $action,
+			'key_action'                => $key_action,
+			'tab'                       => $tab,
+			'language_options_endpoint' => $language_options_endpoint,
+			'version_options'           => $version_options,
+			'media_options'             => $media_options,
+			'old'                       => $old,
+			'error'                     => $error,
+			'success'                   => $success,
+			'nonce'                     => $nonce,
 		] );
 	}
 

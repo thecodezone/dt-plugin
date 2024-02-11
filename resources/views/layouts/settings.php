@@ -1,4 +1,8 @@
 <?php
+
+use function CodeZone\Bible\namespace_string;
+use function CodeZone\Bible\plugin_url;
+
 /**
  * @var $tab string
  **/
@@ -9,9 +13,7 @@
  * @var array $nav
  */
 
-use function CodeZone\Bible\plugin_url;
-
-$nav = apply_filters( 'bible_plugin_settings_tabs', [] );
+$nav = apply_filters( namespace_string( 'settings_tabs' ), [] );
 
 /**
  * Is there a Bible Brain API Key?

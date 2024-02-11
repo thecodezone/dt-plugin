@@ -10,6 +10,7 @@
  * @var $media_options array
  * @var $old array
  * @var $key_action string
+ * @var $language_options_endpoint string
  */
 $this->layout( 'layouts/settings', compact( 'tab' ) )
 ?>
@@ -20,12 +21,11 @@ $this->layout( 'layouts/settings', compact( 'tab' ) )
             array_merge(
                 $old,
                 [
-				      'action'           => $action,
-				      'key_action'       => $key_action,
-				      'nonce'            => $nonce,
-				      'language_options' => $language_options,
-				      'version_options'  => $version_options,
-				      'media_options'    => $media_options
+				      'action'          => $action,
+				      'key_action'      => $key_action,
+				      'nonce'           => $nonce,
+				      'version_options' => $version_options,
+				      'media_options'   => $media_options
 			      ]
             )
         )
@@ -102,7 +102,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) )
 
             <sp-field-group>
                 <sp-field-label
-                        required
+                        require
                         for="bible_plugin_languages"><?php esc_html_e( 'Languages', 'bible-plugin' ); ?></sp-field-label>
 
                 <br-multi-picker id="bible_plugin_languages"
@@ -111,15 +111,10 @@ $this->layout( 'layouts/settings', compact( 'tab' ) )
                                  required
                                  :value="bible_plugin_languages"
                                  @change="bible_plugin_languages = $event.target.value"
+                                 nonce="<?php echo esc_attr( $nonce ); ?>"
+                                 endpoint="<?php echo esc_attr( $language_options_endpoint ); ?>"
+                                 searchable
                 >
-                    <template x-for="(label, value) in language_options" :key="value">
-                        <sp-menu-item
-                                :value="value">
-                            <span x-text="label"></span>
-                        </sp-menu-item>
-                    </template>
-
-
                 </br-multi-picker>
 
                 <sp-help-text size="s">

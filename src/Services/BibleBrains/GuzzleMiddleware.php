@@ -12,7 +12,10 @@ class GuzzleMiddleware {
 
 
 	public function __construct() {
-		$this->key = get_option( 'bible_plugin_bible_brains_key' );
+		$this->key = get_option( 'bible_plugin_bible_brains_key', defined( 'BP_BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '' );
+		if ( empty( $this->key ) ) {
+			throw new \Exception( 'Bible Brains API key is not set' );
+		}
 	}
 
 

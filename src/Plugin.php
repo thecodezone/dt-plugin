@@ -43,7 +43,7 @@ class Plugin {
 	 */
 	public function __construct( Container $container ) {
 		$this->container  = $container;
-		self::$home_route = apply_filters( 'bible_plugin_route', self::$home_route );
+		self::$home_route = apply_filters( namespace_string( 'route' ), self::$home_route );
 		$this->provider   = $container->make( PluginServiceProvider::class );
 	}
 

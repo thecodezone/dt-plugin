@@ -3,10 +3,80 @@ import chevronStyles from '@spectrum-web-components/icon/src/spectrum-icon-chevr
 import pickerStyles from '@spectrum-web-components/picker/src/picker.css.js';
 import {css, html} from '@spectrum-web-components/base';
 import {ifDefined} from '@spectrum-web-components/base/src/directives.js';
+import {customElement, property} from '@spectrum-web-components/base/src/decorators.js';
+import {createRef, ref} from 'lit/directives/ref.js';
 
+
+@customElement('br-multi-picker')
 export class MultiPicker extends PickerBase {
-    selectedItems = []
+    /**
+     * Represents an array of selected items.
+     *
+     * @type {Array}
+     * @name selectedItems
+     * @memberOf global
+     */
+    @property()
+    selectedItems = [];
 
+    /**
+     * Represents a search query.
+     *
+     * @typedef {string} search
+     */
+    @property({type: String, attribute: 'search', reflect: true})
+    search = '';
+
+    /**
+     * Indicates whether an options are searchable or not.
+     *
+     * @type {boolean}
+     */
+    @property({type: Boolean})
+    searchable = false;
+
+    /**
+     * The endpoint variable represents the URL of an API endpoint.
+     *
+     * @type {string}
+     */
+    @property({type: String})
+    endpoint = '';
+
+    /**
+     * A unique number or string used to prevent replay attacks or ensure data integrity.
+     *
+     * @type {string}
+     */
+    @property({type: String})
+    nonce = '';
+
+    @property({type: Array, attribute: 'options'})
+    options = []
+
+    @property({type: Number})
+    total = 0
+
+    /**
+     * Represents a reference object for searching.
+     *
+     * @typedef {object} SearchRef
+     * @property {function} createRef - A function to create a new reference object.
+     */
+    searchRef = createRef()
+
+    previousSearch = ""
+
+    page = 0
+
+    abortController
+
+
+    /**
+     * Returns an array of CSS styles for the component.
+     *
+     * @return {Array} Array of CSS styles
+     */
     static get styles() {
         return [pickerStyles, chevronStyles, css`
             :host {
@@ -25,18 +95,43 @@ export class MultiPicker extends PickerBase {
                 gap: var(--spectrum-spacing-75);
                 pointer-events: none;
             }
+
+            :host > #search {
+                display: none;
+            }
+
+            #search {
+                padding: var(--spectrum-global-dimension-size-100) var(--spectrum-global-dimension-size-200) var(--spectrum-global-dimension-size-200) var(--spectrum-global-dimension-size-200);
+            }
         `];
     }
 
+    /**
+     * Returns the first selected item from the list of selected items.
+     * If no item is selected, it returns null.
+     *
+     * @returns {any|null} The first selected item or null if no item is selected.
+     */
     get selectedItem() {
         return this.selectedItems[0] ?? null
     }
 
+    /**
+     * Sets the selected item.
+     *
+     * @param {any} selectedItem - The item to be selected.
+     */
     set selectedItem(selectedItem) {
         this.selectedItems.push(selectedItem)
     }
 
 
+    /**
+     * Returns the container styles for the component.
+     * If the quiet property is not set, it sets the minimum width to the offset width of the component.
+     *
+     * @return {Object} The container styles object.
+     */
     get containerStyles() {
         const styles = super.containerStyles;
         if (!this.quiet) {
@@ -45,8 +140,13 @@ export class MultiPicker extends PickerBase {
         return styles;
     }
 
+    /**
+     * Renders the menu component
+     * @returns {HTMLElement} - The rendered menu component
+     */
     get renderMenu() {
         const menu = html`
+            ${this.renderSearch()}
             <sp-menu
                     aria-labelledby="applied-label"
                     @change=${this.handleChange}
@@ -62,8 +162,12 @@ export class MultiPicker extends PickerBase {
                     size=${this.size}
                     @sp-menu-item-added-or-updated=${this.shouldManageSelection}
             >
+                ${this.options.map((option) => html`
+                    <sp-menu-item value="${option.value}" ?disabled="${option.disabled}" :key="${option.value}">
+                        ${option.label}
+                    </sp-menu-item>
+                `)}
                 <slot @slotchange=${this.shouldScheduleManageSelection}></slot>
-
             </sp-menu>
         `;
         this.hasRenderedOverlay =
@@ -77,6 +181,13 @@ export class MultiPicker extends PickerBase {
         return menu;
     }
 
+    /**
+     * The connectedCallback method is called when the element is attached to the DOM.
+     * It performs the necessary initialization tasks before rendering the element.
+     *
+     * @memberof MyElement
+     * @return {void}
+     */
     connectedCallback() {
         super.connectedCallback()
 
@@ -87,8 +198,104 @@ export class MultiPicker extends PickerBase {
             this.requestUpdate()
         }, 1);
 
+        if (this.endpoint) {
+            this.page = 1
+            this.fetchOptions()
+        }
     }
 
+    /**
+     * Renders the search field and help text.
+     * @function renderSearch
+     * @returns {HTMLElement} The rendered HTML element.
+     */
+    renderSearch() {
+        if (!this.searchable) return html``
+        return html`
+            <sp-field-group vertical id="search">
+                <sp-search quiet :value="${this.search}" ${ref(this.searchRef)} @keydown=${this.handleSearch}>
+                </sp-search>
+            </sp-field-group>
+        `
+    }
+
+    /**
+     * Handles the search functionality by updating the visibility of menu items based on the search input value.
+     *
+     * @param {Object} event - The event object containing the search input value.
+     */
+    handleSearch(event) {
+        this.search = event.target.value
+
+
+        //If enter or return
+        if (event.keyCode === 13) {
+            event.stopPropagation()
+            event.preventDefault()
+        }
+
+        this.filter()
+
+        this.dispatchEvent(
+            new Event('search', {
+                bubbles: true,
+                // Allow it to be prevented.
+                cancelable: true,
+                composed: true,
+            })
+        );
+
+        this.fetchOptions()
+    }
+
+    filter() {
+        if (!this.endpoint) {
+            this.menuItems.forEach((item) => {
+                if (item.textContent.toLowerCase().includes(this.search.toLowerCase())) {
+                    item.hidden = false
+                } else {
+                    item.hidden = true
+                }
+            })
+        }
+    }
+
+    fetchOptions() {
+        if (this.search !== this.previousSearch) {
+            this.page = 1
+            this.previousSearch = this.search
+        } else {
+            this.page++
+        }
+
+        if (this.abortController) {
+            this.abortController.abort()
+        }
+        this.abortController = new AbortController()
+
+        const {signal} = this.abortController;
+
+        fetch(`${this.endpoint}?&search=${this.search}&paged=${this.page}`, {
+            signal,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-WP-Nonce': this.nonce
+            }
+
+        })
+            .then(response => response.json())
+            .then(data => {
+                this.options = data.data
+                this.total = data?.meta?.pagination?.total ?? 0
+            })
+    }
+
+    /**
+     * Renders the label content based on the given values and selected items.
+     *
+     * @returns {TemplateResult} - The rendered label content.
+     */
     renderLabelContent() {
         if (this.value && this.selectedItems) {
             return html`
@@ -114,6 +321,11 @@ export class MultiPicker extends PickerBase {
     }
 
 
+    /**
+     * Handles keydown events.
+     *
+     * @param {Event} event - The keydown event.
+     */
     handleKeydown = (event) => {
         const {code} = event;
         this.focused = true;
@@ -142,6 +354,13 @@ export class MultiPicker extends PickerBase {
         }
     };
 
+    /**
+     * Handles the change event for a target element.
+     *
+     * @param {Event} event - The change event triggered by the target element.
+     *
+     * @return {void} - This method does not return a value.
+     */
     handleChange(event) {
         const target = event.target;
         const selectedItems = target.selectedItems;
@@ -154,6 +373,13 @@ export class MultiPicker extends PickerBase {
         }
     }
 
+    /**
+     * Sets the value of the component based on the provided items.
+     *
+     * @param {Array} items - An array of items to be used for setting the value.
+     * @param {Event} menuChangeEvent - [Optional] The menu change event that triggers the method.
+     * @return {Promise} - A promise that resolves when the value has been set.
+     */
     async setValueFromItems(
         items,
         menuChangeEvent
@@ -201,6 +427,11 @@ export class MultiPicker extends PickerBase {
         }
     }
 
+    /**
+     * Manages the selection of items in a menu.
+     *
+     * @returns {Promise<void>} A promise that resolves when the selection is managed.
+     */
     async manageSelection() {
         if (this.selects == null) return;
 
@@ -232,5 +463,3 @@ export class MultiPicker extends PickerBase {
         this.willManageSelection = false;
     }
 }
-
-window.customElements.define("br-multi-picker", MultiPicker);

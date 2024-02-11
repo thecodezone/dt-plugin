@@ -206,6 +206,24 @@ window.br_bible_brains_form = (props) => {
             this.toggleAlerts()
         },
 
+        async fetch_options(event, endpoint) {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-Nonce': this.nonce
+                },
+                body: JSON.stringify({
+                    bible_plugin_bible_brains_key: this.bible_plugin_bible_brains_key,
+                    bible_plugin_languages: this.bible_plugin_languages,
+                    bible_plugin_language: this.bible_plugin_language,
+                    bible_plugin_versions: this.bible_plugin_versions,
+                    bible_plugin_version: this.bible_plugin_version,
+                    bible_plugin_media: this.bible_plugin_media,
+                })
+            })
+        },
+
         async validate_bible_brains_key(e = null) {
             if (this.submitting_key) {
                 return

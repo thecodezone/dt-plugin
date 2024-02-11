@@ -9,6 +9,7 @@ use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
 use CodeZone\Bible\Illuminate\Http\Request;
 use WP_UnitTestCase;
 use function CodeZone\Bible\container;
+use function CodeZone\Bible\namespace_string;
 
 abstract class TestCase extends WP_UnitTestCase {
 	public function setUp(): void {
@@ -32,7 +33,7 @@ abstract class TestCase extends WP_UnitTestCase {
 	 *
 	 * @return mixed The response returned from the GET request.
 	 */
-	public function get( $uri, $parameters, array $headers = [] ) {
+	public function get( $uri, $parameters = [], array $headers = [] ) {
 		return $this->request( 'GET', $uri, $parameters, $headers );
 	}
 
@@ -65,12 +66,12 @@ abstract class TestCase extends WP_UnitTestCase {
 			return $request;
 		} );
 
-		add_filter( 'codezone/bible/middleware', function ( $stack ) use ( $blacklisted_middleware ) {
+		add_filter( namespace_string( 'middleware' ), function ( $stack ) use ( $blacklisted_middleware ) {
 			return $stack->filter( function ( $middleware ) use ( $blacklisted_middleware ) {
 				return ! in_array( $middleware, $blacklisted_middleware );
 			} );
 		} );
-		$stack    = apply_filters( 'codezone/bible/middleware', container()->make( Stack::class ) );
+		$stack    = apply_filters( namespace_string( 'middleware' ), container()->make( Stack::class ) );
 		$response = $stack->run();
 
 		container()->bind( Request::class, function () use ( $initial_request ) {

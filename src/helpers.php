@@ -231,3 +231,14 @@ function http(): HTTPFactory {
 function translate( $text, $context = [] ): string {
 	return container()->make( Translations::class )->translate( $text, $context );
 }
+
+/**
+ * Concatenates the given string to the namespace of the Router class.
+ *
+ * @param string $string The string to be concatenated to the namespace.
+ *
+ * @return string The result of concatenating the given string to the namespace of the Router class.
+ */
+function namespace_string( string $string ): string {
+	return Plugin::class . '\\' . $string;
+}
