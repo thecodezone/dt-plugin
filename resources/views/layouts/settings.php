@@ -42,7 +42,7 @@ $has_api_key = ! ! get_option( 'bible_plugin_bible_brains_key', false );
 
 		<?php if ( ! $has_api_key ): ?>
             <sp-toast variant="negative" size="s" float open>
-				<?php echo_html_e( 'You must add your Bible Brain API Key in order for this plugin to work.', 'bible-plugin' ) ?>
+				<?php esc_html_e( 'You must add your Bible Brain API Key in order for this plugin to work.', 'bible-plugin' ) ?>
 
                 <a href="https://scripture.api.bible/docs" slot="action">
                     <sp-button

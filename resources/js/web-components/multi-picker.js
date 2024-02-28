@@ -162,7 +162,7 @@ export class MultiPicker extends PickerBase {
                     size=${this.size}
                     @sp-menu-item-added-or-updated=${this.shouldManageSelection}
             >
-                ${this.options.map((option) => html`
+                ${this.getOptions().map((option) => html`
                     <sp-menu-item value="${option.value}" ?disabled="${option.disabled}" :key="${option.value}">
                         ${option.label}
                     </sp-menu-item>
@@ -181,6 +181,23 @@ export class MultiPicker extends PickerBase {
         return menu;
     }
 
+    getOptions() {
+        const selectedOptions = this.selectedItems.map(el => {
+            return {
+                value: parseInt(el.value),
+                label: el.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim(),
+            }
+        })
+        const filteredOptions = this.options.filter(option => {
+            return !selectedOptions.find(el => el.value === option.value)
+        })
+        const mergedOptions = [
+            ...selectedOptions,
+            ...filteredOptions
+        ]
+        return mergedOptions
+    }
+
     /**
      * The connectedCallback method is called when the element is attached to the DOM.
      * It performs the necessary initialization tasks before rendering the element.
@@ -197,11 +214,6 @@ export class MultiPicker extends PickerBase {
             });
             this.requestUpdate()
         }, 1);
-
-        if (this.endpoint) {
-            this.page = 1
-            this.fetchOptions()
-        }
     }
 
     /**
@@ -350,7 +362,7 @@ export class MultiPicker extends PickerBase {
             nextIndex += nextOffset;
         }
         if (!this.menuItems[nextIndex] || this.menuItems[nextIndex].disabled) {
-            return;
+
         }
     };
 
@@ -418,12 +430,12 @@ export class MultiPicker extends PickerBase {
             this.selectedItems = oldSelectedItems;
             this.value = oldValue;
             this.open = true;
-            return;
+
         } else if (!this.selects) {
             // Unset the value if not carrying a selection
             this.selectedItems = oldSelectedItems;
             this.value = oldValue;
-            return;
+
         }
     }
 

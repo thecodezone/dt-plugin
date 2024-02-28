@@ -4,7 +4,9 @@ namespace CodeZone\Bible\Controllers;
 
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
+use CodeZone\Bible\Illuminate\Support\Str;
 use CodeZone\Bible\Services\BibleBrains\Services\Languages;
+use function CodeZone\Bible\collect;
 
 /**
  * Class LanguageController
@@ -22,14 +24,9 @@ class LanguageController {
 	 */
 	public function options( Request $request, Response $response, Languages $languages ) {
 		$result         = $this->index( $request, $response, $languages );
-		$result['data'] = array_map( function ( $language ) {
-			return [
-				'value' => $language['id'],
-				'label' => $language['name']
-			];
-		}, $result['data'] ?? [] );
+		$result['data'] = $languages->as_options( $result['data'] ?? [] );
 
-		return $result;
+		return $response->setContent( $result );
 	}
 
 	/**

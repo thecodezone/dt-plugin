@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use CodeZone\Bible\Illuminate\Support\Str;
 use CodeZone\Bible\Services\BibleBrains\Services\Languages;
 use function CodeZone\Bible\container;
 
@@ -15,6 +16,24 @@ require "vendor-scoped/autoload.php";
  * @test
  */
 class LanguageTest extends TestCase {
+	/**
+	 * @test
+	 */
+	public function it_filters_language_variants_from_options() {
+		$languages              = container()->make( Languages::class );
+		$result                 = $languages->as_options(
+			collect( $languages->search( 'english' )->collect()->get( 'data' ) )
+		);
+		$containing_english     = $result->filter( function ( $language ) {
+			return Str::contains( $language['name'], 'English' );
+		} );
+		$containing_parenthesis = $result->filter( function ( $language ) {
+			return Str::contains( $language['name'], '(' );
+		} );
+		$this->assertEquals( 1, $containing_english->count() );
+		$this->assertEquals( 0, $containing_parenthesis->count() );
+	}
+
 	/**
 	 * Test that the BibleBrains settings page loads.
 	 * @test
