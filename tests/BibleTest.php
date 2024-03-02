@@ -3,6 +3,7 @@
 namespace Tests;
 
 use CodeZone\Bible\Illuminate\Support\Str;
+use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
 use CodeZone\Bible\Services\BibleBrains\Services\Languages;
 use function CodeZone\Bible\container;
 
@@ -15,33 +16,15 @@ require "vendor-scoped/autoload.php";
  *
  * @test
  */
-class LanguageTest extends TestCase {
+class BibleTest extends TestCase {
 	/**
 	 * @test
 	 */
-	public function it_can_fetch_a_language() {
-		$response = $this->get( 'bible/api/languages/6414' );
+	public function it_can_fetch_a_bible() {
+		$response = $this->get( 'bible/api/bibles/ENGESV' );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
-		$this->assertEquals( '6414', $result['data']['id'] );
-	}
-
-	/**
-	 * @test
-	 */
-	public function it_filters_language_variants_from_options() {
-		$languages              = container()->make( Languages::class );
-		$result                 = $languages->as_options(
-			collect( $languages->search( 'english' )->collect()->get( 'data' ) )
-		);
-		$containing_english     = $result->filter( function ( $language ) {
-			return Str::contains( $language['name'], 'English' );
-		} );
-		$containing_parenthesis = $result->filter( function ( $language ) {
-			return Str::contains( $language['name'], '(' );
-		} );
-		$this->assertEquals( 1, $containing_english->count() );
-		$this->assertEquals( 0, $containing_parenthesis->count() );
+		$this->assertEquals( 'ENGESV', $result['data']['abbr'] );
 	}
 
 	/**
@@ -49,7 +32,7 @@ class LanguageTest extends TestCase {
 	 * @test
 	 */
 	public function it_can_fetch_language_options() {
-		$response = $this->get( 'bible/api/languages/options', [ 'limit' => 2 ] );
+		$response = $this->get( 'bible/api/bibles/options', [ 'limit' => 2 ] );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
 		$this->assertEquals( 2, count( $result['data'] ) );
@@ -59,15 +42,26 @@ class LanguageTest extends TestCase {
 		}
 	}
 
+
 	/**
 	 * Test that the BibleBrains settings page loads.
 	 * @test
 	 */
 	public function it_can_search() {
-		$languages = container()->make( Languages::class );
-		$response  = $languages->search( 'Eng' );
+		$languages = container()->make( Bibles::class );
+		$response  = $languages->search( 'New King James Version' );
 		$this->assertEquals( 200, $response->status() );
 		$result = $response->json();
+		$this->assertGreaterThan( 0, count( $result['data'] ) );
+	}
+
+	/**
+	 * @test
+	 */
+	public function it_can_fetch_bibles_for_a_language() {
+		$response = $this->get( 'bible/api/languages/6414/bibles' );
+		$this->assertEquals( 200, $response->status() );
+		$result = json_decode( $response->getContent(), true );
 		$this->assertGreaterThan( 0, count( $result['data'] ) );
 	}
 }

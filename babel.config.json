@@ -4,12 +4,9 @@
   },
   "plugins": [
     [
-      "@babel/plugin-proposal-decorators",
-      {
-        "version": "2018-09",
-        "decoratorsBeforeExport": true
-      }
-    ],
-    "@babel/plugin-proposal-class-properties"
-  ]
+      "@babel/plugin-proposal-decorators", {"version": "2023-05"}],
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-class-static-block",
+      "@babel/plugin-syntax-import-attributes"
+    ]
 }

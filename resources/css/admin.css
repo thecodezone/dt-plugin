@@ -21,8 +21,13 @@ body {
         display: block;
     }
 
+    .alerts + sp-button-group,
     sp-field-group + sp-field-group {
         margin-top: .5rem;
+    }
+
+    sp-field-group + .alerts {
+        margin-top: 1rem;
     }
 
     sp-field-group + sp-button-group {

@@ -11,10 +11,13 @@ use CodeZone\Bible\CodeZone\Router\Middleware\Render;
 use CodeZone\Bible\CodeZone\Router\Middleware\Route;
 use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
 use CodeZone\Bible\CodeZone\Router\Middleware\UserHasCap;
+use CodeZone\Bible\Middleware\BibleBrains;
+use CodeZone\Bible\Middleware\BibleBrainsKeySet;
 use CodeZone\Bible\Middleware\LoggedIn;
 use CodeZone\Bible\Middleware\LoggedOut;
 use CodeZone\Bible\Middleware\MagicLink;
 use CodeZone\Bible\Middleware\Nonce;
+use Exception;
 use function CodeZone\Bible\namespace_string;
 
 /**
@@ -33,11 +36,12 @@ class MiddlewareServiceProvider extends ServiceProvider {
 	];
 
 	protected $route_middleware = [
-		'auth'  => LoggedIn::class,
-		'can'   => UserHasCap::class, // can:manage_dt
-		'guest' => LoggedOut::class,
-		'magic' => MagicLink::class,
-		'nonce' => Nonce::class,  // nonce:bible_plugin_nonce
+		'auth'         => LoggedIn::class,
+		'can'          => UserHasCap::class, // can:manage_dt
+		'guest'        => LoggedOut::class,
+		'magic'        => MagicLink::class,
+		'bible_brains' => BibleBrains::class,
+		'nonce'        => Nonce::class,  // nonce:bible_plugin_nonce
 	];
 
 	/**

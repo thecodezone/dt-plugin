@@ -5,6 +5,7 @@ namespace CodeZone\Bible\Controllers;
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
 use CodeZone\Bible\Illuminate\Support\Str;
+use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
 use CodeZone\Bible\Services\BibleBrains\Services\Languages;
 use function CodeZone\Bible\collect;
 
@@ -14,6 +15,17 @@ use function CodeZone\Bible\collect;
  * The LanguageController class is responsible for handling language-related requests
  */
 class LanguageController {
+	/**
+	 * Retrieve a language.
+	 *
+	 * @param Request $request The request object.
+	 * @param Response $response The response object.
+	 * @param Languages $languages The Languages instance.
+	 */
+	public function show( Request $request, Response $response, $id, Languages $languages ) {
+		return $response->setContent( $languages->find( $id ) );
+	}
+
 
 	/**
 	 * Retrieve select options for the search results.

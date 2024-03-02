@@ -13,12 +13,13 @@
  */
 
 use CodeZone\Bible\CodeZone\Router\FastRoute\Routes;
-use CodeZone\Bible\Controllers\Admin\BibleBrainsController;
+use CodeZone\Bible\Controllers\Admin\BibleBrainsFormController;
 use CodeZone\Bible\Controllers\Admin\CustomizationController;
 use CodeZone\Bible\Controllers\Admin\SupportController;
+use CodeZone\Bible\Controllers\LanguageBibleController;
 use CodeZone\Bible\Controllers\LanguageController;
-use CodeZone\Bible\Controllers\MediaController;
-use CodeZone\Bible\Controllers\VersionController;
+use CodeZone\Bible\Controllers\BibleMediaTypesController;
+use CodeZone\Bible\Controllers\BibleController;
 use CodeZone\Bible\Plugin;
 
 
@@ -27,14 +28,21 @@ $r->condition( 'plugin', function ( $r ) {
 	} );
 
 	$r->group( Plugin::$home_route . '/api', function ( Routes $r ) {
-		$r->get( '/versions', [ VersionController::class, 'index' ] );
-		$r->get( '/media', [ MediaController::class, 'index' ] );
 		$r->get( '/languages', [ LanguageController::class, 'index' ] );
 		$r->get( '/languages/options', [ LanguageController::class, 'options' ] );
+		$r->get( '/languages/{id}', [ LanguageController::class, 'show' ] );
+		$r->get( '/languages/{id}/bibles', [ LanguageBibleController::class, 'index' ] );
+		$r->get( '/languages/{id}/bibles/options', [ LanguageBibleController::class, 'options' ] );
+
+		$r->get( '/bibles', [ BibleController::class, 'index' ] );
+		$r->get( '/bibles/media-types', [ BibleMediaTypesController::class, 'index' ] );
+		$r->get( '/bibles/media-types/options', [ BibleMediaTypesController::class, 'options' ] );
+		$r->get( '/bibles/options', [ BibleController::class, 'options' ] );
+		$r->get( '/bibles/{id}', [ BibleController::class, 'show' ] );
 
 		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin' ], function ( Routes $r ) {
-			$r->post( '/bible-brains/key', [ BibleBrainsController::class, 'validate' ] );
-			$r->post( '/bible-brains', [ BibleBrainsController::class, 'submit' ] );
+			$r->post( '/bible-brains/key', [ BibleBrainsFormController::class, 'validate' ] );
+			$r->post( '/bible-brains', [ BibleBrainsFormController::class, 'submit' ] );
 		} );
 	} );
 } );
@@ -43,8 +51,17 @@ $r->condition( 'plugin', function ( $r ) {
 $r->condition( 'backend', function ( Routes $r ) {
 	$r->middleware( 'can:manage_options', function ( Routes $r ) {
 		$r->group( 'wp-admin/admin.php', function ( Routes $r ) {
-			$r->get( '?page=bible-plugin', [ BibleBrainsController::class, 'show' ] );
-			$r->get( '?page=bible-plugin&tab=bible', [ BibleBrainsController::class, 'show' ] );
+			$r->get( '?page=bible-plugin', [
+				BibleBrainsFormController::class,
+				'show',
+				[ 'middleware' => 'bible_brains' ]
+			] );
+			$r->get( '?page=bible-plugin&tab=bible_brains_key', [ BibleBrainsFormController::class, 'add_key' ] );
+			$r->get( '?page=bible-plugin&tab=bible', [
+				BibleBrainsFormController::class,
+				'show',
+				[ 'middleware' => 'bible_brains' ]
+			] );
 			$r->get( '?page=bible-plugin&tab=customization', [ CustomizationController::class, 'show' ] );
 			$r->get( '?page=bible-plugin&tab=support', [ SupportController::class, 'show' ] );
 		} );

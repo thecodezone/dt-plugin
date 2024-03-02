@@ -1,3 +1,5 @@
+import {getProperty, setProperty} from 'dot-prop';
+
 export default {
     /**
      * Converts the value of a specified field in an object to an array.
@@ -12,11 +14,9 @@ export default {
      */
     $as_array(field, array = null) {
         if (array) {
-            this.$data[field] = array.filter((value, index, self) =>
-                value && self.indexOf(value) === index
-            ).join(",")
+            setProperty(this.$data, field, array.join(","))
         }
-        const current = this.$data[field] ?? ""
+        const current = getProperty(this.$data, field) ?? ''
         if (Array.isArray(current)) {
             return current;
         }
@@ -24,36 +24,5 @@ export default {
             return [current]
         }
         return current.split(",");
-    },
-
-    /**
-     * Changes the value of a stringable checkbox field.
-     *
-     * @param {string} field - The name of the checkbox field.
-     * @param {Event} event - The event triggered by the checkbox change.
-     *
-     * @return {void}
-     */
-    $stringable_checkbox_change(field, event) {
-        this.$set_stringable_checkbox_value(field, event.target)
-    },
-
-    /**
-     * Sets the value of a stringable checkbox field.
-     *
-     * @param {string} field - The field name.
-     * @param {HTMLInputElement} el - The checkbox element.
-     *
-     * @return {void}
-     */
-    $set_stringable_checkbox_value(field, el) {
-        let values = this.$as_array('bible_plugin_media');
-        if (el.checked) {
-            values.push(el.value);
-            this.$as_array('bible_plugin_media', values);
-        } else {
-            const newValues = values.filter((value) => value !== el.value)
-            this.$as_array('bible_plugin_media', newValues);
-        }
     }
 }

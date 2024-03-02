@@ -44,12 +44,13 @@ import '@spectrum-web-components/search/sp-search.js';
 /**
  * Custom Web Components
  */
-import './web-components/multi-picker.js'
-import './web-components/alert-banner.js'
+import './web-components/picker.js';
+import './web-components/alert-banner.js';
 
 /**
  * Alpine Components
  */
+import './alpine-components/bible-brains-key-form.js';
 import './alpine-components/bible-brains-form.js';
 
 loaded(() => {

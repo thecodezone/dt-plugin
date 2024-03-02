@@ -49,11 +49,11 @@ class BibleBrainsSettingsTest extends TestCase {
 		wp_set_current_user( $user );
 
 		$response = $this->post( 'bible/api/bible-brains', [
-			'bible_plugin_languages' => 'eng',
-			'bible_plugin_language'  => 'eng',
-			'bible_plugin_versions'  => 'ENGKJV',
-			'bible_plugin_version'   => 'ENGKJV',
-			'bible_plugin_media'     => 'audio,video,text',
+			'bible_plugin_languages'   => 'eng',
+			'bible_plugin_language'    => 'eng',
+			'bible_plugin_bibles'      => 'ENGKJV',
+			'bible_plugin_bible'       => 'ENGKJV',
+			'bible_plugin_media_types' => 'audio,video,text',
 		] );
 
 		$this->assertEquals( 400, $response->getStatusCode() );
@@ -70,11 +70,11 @@ class BibleBrainsSettingsTest extends TestCase {
 		wp_set_current_user( $user );
 
 		$response = $this->post( 'bible/api/bible-brains', [
-			'bible_plugin_languages' => null,
-			'bible_plugin_language'  => 'eng',
-			'bible_plugin_versions'  => 'ENGKJV',
-			'bible_plugin_version'   => 'ENGKJV',
-			'bible_plugin_media'     => 'audio,video,text',
+			'bible_plugin_languages'   => null,
+			'bible_plugin_language'    => 'eng',
+			'bible_plugin_bibles'      => 'ENGKJV',
+			'bible_plugin_bible'       => 'ENGKJV',
+			'bible_plugin_media_types' => 'audio,video,text',
             ], [
 			'X-WP-Nonce' => wp_create_nonce( 'bible-plugin' ),
 		] );
@@ -101,9 +101,9 @@ class BibleBrainsSettingsTest extends TestCase {
 			'bible_plugin_bible_brains_key' => BP_BIBLE_BRAINS_KEY,
 			'bible_plugin_languages'        => 'bible_plugin_languages',
 			'bible_plugin_language'         => 'bible_plugin_language',
-			'bible_plugin_versions'         => 'bible_plugin_versions',
-			'bible_plugin_version'          => 'bible_plugin_version',
-			'bible_plugin_media'            => 'bible_plugin_media'
+			'bible_plugin_bibles'           => 'ENGKJV',
+			'bible_plugin_bible'            => 'ENGKJV',
+			'bible_plugin_media_types'      => 'audio,video,text',
 		];
 
 		$response = $this->post( 'bible/api/bible-brains', $payload, [
