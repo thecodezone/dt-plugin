@@ -22,6 +22,24 @@ abstract class Service {
 		$this->http = $http->bibleBrains();
 	}
 
+	public function get( $endpoint, $params = [] ) {
+		$cache_key = 'bible-plugin-' . $endpoint . '?' . http_build_query( $params );
+		$cached    = get_transient( $cache_key );
+		if ( $cached ) {
+			return $cached;
+		}
+
+		$result = $this->http->get( $endpoint, $params );
+
+		if ( $result->successful() ) {
+			set_transient( $cache_key, $result->json(), 60 * 60 * 24 * 7 );
+		} else {
+			throw new \Exception( $result->json()['error']['message'] );
+		}
+
+		return $result->json();
+	}
+
 	/**
 	 * Convert records to options array.
 	 *
@@ -36,7 +54,7 @@ abstract class Service {
 			return $this->map_option( $record );
             } )->filter( function ( $option ) {
 			return ! empty( $option['value'] )
-			&& ! empty( $option['label'] );
+			&& ! empty( $option['itemText'] );
 		} )->toArray() );
 	}
 
@@ -50,8 +68,8 @@ abstract class Service {
 	 */
 	public function map_option( array $record ): array {
 		return [
-			'value' => (string) $record['id'],
-			'label' => (string) $record['name'],
+			'value'    => (string) $record['id'],
+			'itemText' => (string) $record['name'],
 		];
 	}
 
@@ -70,7 +88,7 @@ abstract class Service {
 
 		$params = array_merge( $this->default_options, $params );
 
-		return $this->http->get( $this->endpoint . '/search/' . $name, $params );
+		return $this->get( $this->endpoint . '/search/' . $name, $params );
 	}
 
 	/**
@@ -109,7 +127,7 @@ abstract class Service {
 	public function all( $params = [] ) {
 		$params = array_merge( $this->default_options, $params );
 
-		return $this->http->get( $this->endpoint, $params );
+		return $this->get( $this->endpoint, $params );
 	}
 
 	/**
@@ -124,9 +142,13 @@ abstract class Service {
 		$data   = [];
 		$result = [ 'data' => [] ];
 		foreach ( $ids as $id ) {
-			$result = $this->http->get( $this->endpoint . '/' . $id )->json();
-			if ( ! empty( $result['data'] ) ) {
-				$data[] = $result['data'];
+			try {
+				$result = $this->get( $this->endpoint . '/' . $id );
+				if ( ! empty( $result['data'] ) ) {
+					$data[] = $result['data'];
+				}
+			} catch ( \Exception $e ) {
+				// Ignore errors and continue.
 			}
 			$result['data'] = $data;
 		}
@@ -146,6 +168,6 @@ abstract class Service {
 			return $this->find_many( $id );
 		}
 
-		return $this->http->get( $this->endpoint . '/' . $id );
+		return $this->get( $this->endpoint . '/' . $id );
 	}
 }

@@ -37,12 +37,8 @@ class BibleBrainsFormController {
 			return $this->validation_form( $request, $response );
 		}
 		try {
-			$validate = $bibles->media_types();
+			$bibles->media_types();
 		} catch ( Exception $e ) {
-			return $this->validation_form( $request, $response );
-		}
-
-		if ( $validate->status() === 401 ) {
 			return $this->validation_form( $request, $response );
 		}
 
@@ -133,12 +129,6 @@ class BibleBrainsFormController {
 				'error'  => __( 'Please complete the required fields.', 'bible-plugin' ),
 				'errors' => $errors,
 			] );
-		}
-
-		$validation_response = $this->validate( $response, $request, $bibles );
-
-		if ( ! $validation_response->isOk() ) {
-			return $validation_response;
 		}
 
 		$result = transaction( function () use ( $request ) {

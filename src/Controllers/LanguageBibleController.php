@@ -40,11 +40,16 @@ class LanguageBibleController {
 
 		$payload['data'] = collect( $payload['data'] )->unique( 'id' );
 
-		return $payload;
+		return $response->setContent( $payload );
 	}
 
 	public function options( Request $request, Response $response, $id, Languages $languages, Bibles $bibles ) {
 		$result = $this->index( $request, $response, $id, $languages );
+		if ( ! $result->isOk() ) {
+			return $result;
+		}
+
+		$result = $result->getOriginalContent();
 
 		$result['data'] = $bibles->as_options( $result['data'] ?? [] );
 

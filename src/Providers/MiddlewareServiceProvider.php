@@ -36,12 +36,11 @@ class MiddlewareServiceProvider extends ServiceProvider {
 	];
 
 	protected $route_middleware = [
-		'auth'         => LoggedIn::class,
-		'can'          => UserHasCap::class, // can:manage_dt
-		'guest'        => LoggedOut::class,
-		'magic'        => MagicLink::class,
-		'bible_brains' => BibleBrains::class,
-		'nonce'        => Nonce::class,  // nonce:bible_plugin_nonce
+		'auth'  => LoggedIn::class,
+		'can'   => UserHasCap::class, // can:manage_dt
+		'guest' => LoggedOut::class,
+		'magic' => MagicLink::class,
+		'nonce' => Nonce::class,  // nonce:bible_plugin_nonce
 	];
 
 	/**

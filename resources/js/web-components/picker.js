@@ -327,8 +327,15 @@ export class Picker extends LitElement {
      * @return {void}
      */
     async refreshOptions() {
-        const result = await this.fetch()
-        this.options = result.data
+        try {
+            const result = await this.fetch()
+            const {data: options} = await result.json()
+            if (options) {
+                this.options = options
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     /**

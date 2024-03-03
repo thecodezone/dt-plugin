@@ -22,8 +22,8 @@ class Bibles extends Service {
 	 */
 	public function map_option( array $record ): array {
 		return [
-			'value' => $record['abbr'] ?? $record['id'],
-			'label' => $record['name'] ?? Arr::get( $record, 'translations.0.name' ),
+			'value'    => $record['abbr'] ?? $record['id'],
+			'itemText' => $record['name'] ?? Arr::get( $record, 'translations.0.name' ),
 		];
 	}
 
@@ -43,7 +43,7 @@ class Bibles extends Service {
 	}
 
 	public function default_for_language( string $language_code ) {
-		return $this->http->get( $this->endpoint . '/defaults/types', [
+		return $this->get( $this->endpoint . '/defaults/types', [
 			'language_code' => $language_code
 		] );
 	}
@@ -59,26 +59,25 @@ class Bibles extends Service {
 	}
 
 	public function media_types() {
-		return $this->http->get( $this->endpoint . '/filesets/media/types' );
+		return $this->get( $this->endpoint . '/filesets/media/types' );
 	}
 
 	public function media_type_options() {
 		return [
-			'data' => $this->media_types()
-			               ->collect()
-                        ->map( function ( $label, $value ) {
-				               return [
-					               'value' => $value,
-					               'label' => $label
-				               ];
-                        } )->filter( function ( $option ) {
-                            $whitelist = [ "audio_drama", "audio", "video_stream" ];
+			'data' => collect( $this->media_types() )
+				->map( function ( $label, $value ) {
+					return [
+						'value'    => $value,
+						'itemText' => $label
+					];
+				} )->filter( function ( $option ) {
+					$whitelist = [ "audio_drama", "audio", "video_stream" ];
 
-                            return in_array( $option['value'], $whitelist );
-						} )->push( [
-                            'value' => 'text',
-                            'label' => 'Text'
-                        ] )->sortBy( 'value' )->values()
+					return in_array( $option['value'], $whitelist );
+				} )->push( [
+					'value'    => 'text',
+					'itemText' => 'Text'
+				] )->sortBy( 'value' )->values()
 		];
 	}
 }

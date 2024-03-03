@@ -64,12 +64,12 @@ class LanguageController {
 			return $languages->search( $search, [
 				'page'  => $page,
 				'limit' => $limit,
-			] )->collect()->toArray();
+			] );
 		}
 
 		return $languages->all( [
 			'page'  => $page,
 			'limit' => $limit,
-		] )->collect()->toArray();
+		] );
 	}
 }

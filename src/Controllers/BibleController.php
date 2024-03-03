@@ -33,7 +33,12 @@ class BibleController {
 	 * @param Bibles $bibles The Bibles instance.
 	 */
 	public function options( Request $request, Response $response, Bibles $bibles ) {
-		$result         = $this->index( $request, $response, $bibles );
+		$index_response = $this->index( $request, $response, $bibles );
+		if ( ! $index_response->isOk() ) {
+			return $index_response;
+		}
+		$result = $index_response->getOriginalContent();
+
 		$result['data'] = $bibles->as_options( $result['data'] ?? [] );
 
 		return $response->setContent( $result );
@@ -53,23 +58,23 @@ class BibleController {
 	 *
 	 * @return array The array containing the search results or all bibles
 	 */
-	public function index( Request $request, Response $response, Bibles $bibles ) {
+	public function index( Request $request, Response $response, Bibles $bibles ): Response {
 		$search        = $request->get( 'search', '' );
 		$language_code = $request->get( 'language_code', '' );
 		$page          = $request->get( 'paged', 1 );
 		$limit         = $request->get( 'limit', 25 );
 
 		if ( $search ) {
-			return $bibles->search( $search, [
+			return $response->setContent( $bibles->search( $search, [
 				'page'          => $page,
 				'limit'         => $limit,
 				'language_code' => $language_code,
-			] )->collect()->toArray();
+			] ) );
 		}
 
-		return $bibles->all( [
+		return $response->setContent( $bibles->all( [
 			'page'  => $page,
 			'limit' => $limit,
-		] )->json();
+		] ) );
 	}
 }
