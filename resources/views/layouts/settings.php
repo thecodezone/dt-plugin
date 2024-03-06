@@ -52,17 +52,23 @@ $accent_steps = $colors['accent_steps'] ?? [];
     <div class=" bible-plugin br-cloak wrap">
 
         <header>
-            <div class="bible-plugin__header">
-                <div class="bible-plugin__header__logo">
-                    <img src="<?php echo esc_url( plugin_url( 'resources/img/icon.png', __FILE__ ) ) ?>"
-                         alt="<?php esc_attr_e( 'The Bible Plugin', 'bible-plugin' ) ?>"
-                         width="125"
-                         height="125"
-                    >
-                </div>
-                <div class="bible-plugin__header__title hidden">
-                    <h1><?php esc_html_e( 'The Bible Plugin', 'bible-plugin' ) ?></h1>
-                </div>
+            <div class="header__brand">
+                <img src="<?php echo esc_url( plugin_url( 'resources/img/tbp-vertical-dark.svg', __FILE__ ) ) ?>"
+                     alt="<?php esc_attr_e( 'The Bible Plugin', 'bible-plugin' ) ?>"
+                     width="150"
+                     height="135"
+                     class="header__logo header__logo--dark"
+                >
+                <img src="<?php echo esc_url( plugin_url( 'resources/img/tbp-vertical-light.svg', __FILE__ ) ) ?>"
+                     alt="<?php esc_attr_e( 'The Bible Plugin', 'bible-plugin' ) ?>"
+                     width="150"
+                     height="135"
+                     class="header__logo header__logo--light"
+                >
+            </div>
+
+            <div class="header__title hidden">
+                <h1><?php esc_html_e( 'The Bible Plugin', 'bible-plugin' ) ?></h1>
             </div>
         </header>
 

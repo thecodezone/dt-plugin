@@ -80,3 +80,20 @@ sp-slider {
 .cards sp-card {
     width: 100%;
 }
+
+header {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.header__logo {
+    display: none;
+}
+
+sp-theme[color=dark] .header__logo--dark {
+    display: block;
+}
+
+sp-theme[color=light] .header__logo--light {
+    display: block;
+}

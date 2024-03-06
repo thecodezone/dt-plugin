@@ -9,6 +9,7 @@ export class AlertBanner extends ActionBar {
             actionBarStyles,
             css`
                 :host {
+                    --default-alertbanner-accent-color: white;
                     --default-alertbanner-positive-color: white;
                     --default-alertbanner-negativ-color: white;
                     --mod-closebutton-icon-color-default: white;
@@ -69,6 +70,13 @@ export class AlertBanner extends ActionBar {
                     color: var(
                             --mod-actionbar-emphasized-item-counter-color,
                             var(--spectrum-actionbar-negative-item-counter-color)
+                    );
+                }
+
+                :host([accent]) .field-label {
+                    color: var(
+                            --mod-actionbar-emphasized-item-counter-color,
+                            var(--spectrum-actionbar-accent-item-counter-color)
                     );
                 }
             `];
