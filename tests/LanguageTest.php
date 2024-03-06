@@ -32,7 +32,7 @@ class LanguageTest extends TestCase {
 	public function it_filters_language_variants_from_options() {
 		$languages              = container()->make( Languages::class );
 		$result                 = $languages->as_options(
-			collect( $languages->search( 'english' )->collect()->get( 'data' ) )
+			collect( collect( $languages->search( 'english' ) )->get( 'data' ) )
 		);
 		$containing_english     = $result->filter( function ( $language ) {
 			return Str::contains( $language['name'], 'English' );
@@ -55,7 +55,7 @@ class LanguageTest extends TestCase {
 		$this->assertEquals( 2, count( $result['data'] ) );
 		foreach ( json_decode( $response->getContent(), true )['data'] as $language ) {
 			$this->assertArrayHasKey( 'value', $language );
-			$this->assertArrayHasKey( 'label', $language );
+			$this->assertArrayHasKey( 'itemText', $language );
 		}
 	}
 
@@ -65,9 +65,7 @@ class LanguageTest extends TestCase {
 	 */
 	public function it_can_search() {
 		$languages = container()->make( Languages::class );
-		$response  = $languages->search( 'Eng' );
-		$this->assertEquals( 200, $response->status() );
-		$result = $response->json();
+		$result    = $languages->search( 'Spanish' );
 		$this->assertGreaterThan( 0, count( $result['data'] ) );
 	}
 }

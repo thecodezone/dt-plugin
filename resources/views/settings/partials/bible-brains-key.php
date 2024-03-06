@@ -13,18 +13,18 @@
     x-data="br_bible_brains_key_form(<?php echo esc_attr(
         wp_json_encode(
             array_merge(
-                $fields,
                 [
+				      'fields'          => $fields,
 				      'success_message' => __( 'Bible Brains API Key verified.', 'bible-plugin' ),
 				      'nonce'           => $nonce,
 				      'redirect_url'    => esc_url( "/wp-admin/admin.php?page=bible-plugin" ),
 				      'url'             => esc_url( '/wp-admin/admin.php?page=bible-plugin&tab=bible' ),
 				      'action'          => esc_url( '/bible/api/bible-brains/key' ),
+				      'error'           => $error ?? '',
 			      ]
             )
         )
     ); ?>)"
-      @submit="submit"
 >
 
     <fieldset>
@@ -35,33 +35,35 @@
             <sp-field-group>
                 <sp-field-label
                         required
-                        for="bible_plugin_bible_brains_key"><?php esc_html_e( 'Bible Brain API Key', 'bible-plugin' ); ?></sp-field-label>
+                        for="bible_brains_key"><?php esc_html_e( 'Bible Brain API Key', 'bible-plugin' ); ?></sp-field-label>
 
                 <div>
-                    <sp-textfield id="bible_plugin_bible_brains_key"
-                                  name="bible_plugin_bible_brains_key"
-                                  :value="dirty_bible_plugin_bible_brains_key"
+                    <sp-textfield id="bible_brains_key"
+                                  name="bible_brains_key"
+                                  :value="dirty_bible_brains_key"
                                   :invalid="!verified"
                                   :valid="verified"
-                                  @change="dirty_bible_plugin_bible_brains_key = $event.target.value"
+                                  @change="dirty_bible_brains_key = $event.target.value"
                                   placeholder="<?php esc_attr_e( 'Enter key...', 'bible-plugin' ); ?>"
                     ></sp-textfield>
+
                     <sp-button
                             x-show="!verified"
-                            key="bible_plugin_bible_brains_button_negative"
+                            key="bible_brains_button_negative"
                             variant="negative"
                             label="<?php esc_attr_e( 'Validate', 'bible-plugin' ); ?>"
-                            @click="validate_bible_brains_key"
+                            @click="submit"
                             size="m">
 						<?php esc_html_e( 'Validate', 'bible-plugin' ); ?>
                         <sp-icon-key slot="icon"></sp-icon-key>
                     </sp-button>
+
                     <sp-button
                             x-show="verified"
-                            key="bible_plugin_bible_brains_button_positive"
+                            key="bible_brains_button_positive"
                             variant="accent"
                             label="<?php esc_attr_e( 'Valid', 'bible-plugin' ); ?>"
-                            @click="validate"
+                            @click="submit"
                             size="m">
 						<?php esc_html_e( 'Valid', 'bible-plugin' ); ?>
                         <sp-icon-key slot="icon"></sp-icon-key>

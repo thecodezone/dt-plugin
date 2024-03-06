@@ -59,22 +59,21 @@ class BibleController {
 	 * @return array The array containing the search results or all bibles
 	 */
 	public function index( Request $request, Response $response, Bibles $bibles ): Response {
-		$search        = $request->get( 'search', '' );
 		$language_code = $request->get( 'language_code', '' );
 		$page          = $request->get( 'paged', 1 );
-		$limit         = $request->get( 'limit', 25 );
+		$limit         = $request->get( 'limit', 50 );
 
-		if ( $search ) {
-			return $response->setContent( $bibles->search( $search, [
-				'page'          => $page,
-				'limit'         => $limit,
-				'language_code' => $language_code,
+		if ( $language_code ) {
+			$language_codes = explode( ',', $language_code );
+
+			return $response->setContent( $bibles->for_languages( $language_codes, [
+				'limit' => 150
 			] ) );
 		}
 
 		return $response->setContent( $bibles->all( [
 			'page'  => $page,
-			'limit' => $limit,
+			'limit' => $limit
 		] ) );
 	}
 }

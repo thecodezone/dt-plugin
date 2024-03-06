@@ -2,12 +2,16 @@
 
 namespace CodeZone\Bible\Services\BibleBrains\Services;
 
+use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Illuminate\Http\Client\Factory as Http;
 use CodeZone\Bible\Illuminate\Http\Client\PendingRequest;
 use CodeZone\Bible\Illuminate\Http\Client\Response;
 use CodeZone\Bible\Illuminate\Support\Collection;
 use CodeZone\Bible\Illuminate\Support\Str;
+use CodeZone\Bible\Services\Cache;
+use Exception;
 use function CodeZone\Bible\collect;
+use function CodeZone\Bible\container;
 
 abstract class Service {
 	/**
@@ -22,22 +26,37 @@ abstract class Service {
 		$this->http = $http->bibleBrains();
 	}
 
+	/**
+	 * Sends a GET request to the specified endpoint with optional parameters.
+	 *
+	 * @param string $endpoint The URL endpoint to send the GET request to.
+	 * @param array $params Additional parameters for the GET request (optional).
+	 *                     Available options:
+	 *                     - cache: Whether to cache the response (default: true).
+	 *
+	 * @return array The JSON response from the GET request.
+	 * @throws BibleBrainsException If the GET request is unsuccessful and returns an error.
+	 */
 	public function get( $endpoint, $params = [] ) {
-		$cache_key = 'bible-plugin-' . $endpoint . '?' . http_build_query( $params );
-		$cached    = get_transient( $cache_key );
+		$cache        = container()->make( Cache::class );
+		$cache_key    = $endpoint . '?' . http_build_query( $params );
+		$should_cache = $params['cache'] ?? true;
+		$cached       = $should_cache ? $cache->get( $cache_key ) : false;
 		if ( $cached ) {
 			return $cached;
 		}
 
-		$result = $this->http->get( $endpoint, $params );
+		$response = $this->http->get( $endpoint );
+		$result   = $response->throw()->json();
 
-		if ( $result->successful() ) {
-			set_transient( $cache_key, $result->json(), 60 * 60 * 24 * 7 );
+		if ( $response->successful() ) {
+			$cache->set( $cache_key, $result );
 		} else {
-			throw new \Exception( $result->json()['error']['message'] );
+			// phpcs:ignore
+			throw new BibleBrainsException( $result['error']['message'] ?? $result['error'] );
 		}
 
-		return $result->json();
+		return $result;
 	}
 
 	/**
@@ -83,6 +102,7 @@ abstract class Service {
 	 *                    - include_all_names: Whether to include all names of the languages (default: false).
 	 *
 	 * @return Response The search results.
+	 * @throws BibleBrainsException If the search request is unsuccessful and returns an error.
 	 */
 	public function search( $name, $params = [] ) {
 
@@ -99,6 +119,8 @@ abstract class Service {
 	 *                     - page: The page number to retrieve (default: 1).
 	 *
 	 * @return Response The combined data from all pages.
+	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
+	 *
 	 */
 	public function all_pages( $params = [] ) {
 		$page        = 0;
@@ -123,6 +145,7 @@ abstract class Service {
 	 *                    - limit: The maximum number of languages to retrieve (default: 500).
 	 *
 	 * @return Response The retrieved languages.
+	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
 	 */
 	public function all( $params = [] ) {
 		$params = array_merge( $this->default_options, $params );
@@ -142,12 +165,16 @@ abstract class Service {
 		$data   = [];
 		$result = [ 'data' => [] ];
 		foreach ( $ids as $id ) {
+			if ( ! $id ) {
+				continue;
+			}
 			try {
 				$result = $this->get( $this->endpoint . '/' . $id );
 				if ( ! empty( $result['data'] ) ) {
 					$data[] = $result['data'];
 				}
-			} catch ( \Exception $e ) {
+				// phpcs:ignore
+			} catch ( BibleBrainsException $e ) {
 				// Ignore errors and continue.
 			}
 			$result['data'] = $data;
@@ -162,12 +189,13 @@ abstract class Service {
 	 * @param array|string|int $id The identifier of the resource.
 	 *
 	 * @return Response The resource found.
+	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
 	 */
-	public function find( array|string|int $id ) {
+	public function find( array|string|int $id, $params = [] ) {
 		if ( is_array( $id ) ) {
 			return $this->find_many( $id );
 		}
 
-		return $this->get( $this->endpoint . '/' . $id );
+		return $this->get( $this->endpoint . '/' . $id, $params );
 	}
 }

@@ -21,9 +21,7 @@ window.br_bible_brains_form = (props) => {
          * @returns {void}
          */
         init() {
-            this.watchForAlerts()
-            this.$watch('fields.bible_plugin_languages', this.reset_languages_dependencies.bind(this))
-            this.$watch('fields.bible_plugin_bibles', this.reset_bibles_dependencies.bind(this))
+            this.$watch('fields.languages', this.reset_languages_dependencies.bind(this))
         },
 
         /**
@@ -32,18 +30,8 @@ window.br_bible_brains_form = (props) => {
          */
         get selected_language_options() {
             return this.language_options.filter(({value}) => {
-                return this.$as_array('fields.bible_plugin_languages').includes(value.toString())
+                return this.$as_array('fields.languages').includes(value.toString())
             })
-        },
-
-        /**
-         * Retrieves the selected bible options based on the available Bible reader bibles.
-         *
-         * @returns {Object} Returns an object containing the selected bible options.
-         */
-        get selected_bible_options() {
-            return this.bible_options.filter(({value}) =>
-                this.$as_array('fields.bible_plugin_bibles').includes(value.toString()))
         },
 
         /**
@@ -52,7 +40,7 @@ window.br_bible_brains_form = (props) => {
          * @return {string} The language options endpoint.
          */
         get language_bibles_options_endpoint() {
-            return this.bible_options_endpoint.replace('{id}', this.fields.bible_plugin_languages)
+            return this.bible_options_endpoint + "?language_code=" + this.selected_language_options.map(({language_code}) => language_code).join(',')
         },
 
         /**
@@ -63,21 +51,10 @@ window.br_bible_brains_form = (props) => {
          * @return {void}
          */
         reset_languages_dependencies() {
-            this.fields.bible_plugin_language = ""
-            this.fields.bible_plugin_bibles = ""
-            this.fields.bible_plugin_bible = ""
-            this.fields.bible_plugin_media_types = ""
+            this.fields.language = ""
+            this.fields.bibles = ""
         },
 
-        /**
-         * Resets the bibles and dependencies
-         *
-         * @return {void}
-         */
-        reset_bibles_dependencies() {
-            this.fields.bible_plugin_bible = ""
-            this.fields.bible_plugin_media_types = ""
-        },
 
         /**
          * Changes the value of a stringable checkbox field.

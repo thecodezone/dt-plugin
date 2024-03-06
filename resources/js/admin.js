@@ -48,6 +48,13 @@ import '@spectrum-web-components/menu/sp-menu-group.js';
 import '@spectrum-web-components/menu/sp-menu-item.js';
 import '@spectrum-web-components/menu/sp-menu-divider.js';
 import '@spectrum-web-components/picker/sp-picker.js';
+import '@spectrum-web-components/color-slider/sp-color-slider.js';
+import '@spectrum-web-components/swatch/sp-swatch.js';
+import '@spectrum-web-components/slider/sp-slider.js';
+import '@spectrum-web-components/swatch/sp-swatch-group.js';
+import '@spectrum-web-components/accordion/sp-accordion.js';
+import '@spectrum-web-components/accordion/sp-accordion-item.js';
+import '@spectrum-web-components/card/sp-card.js';
 
 
 /**
@@ -55,7 +62,8 @@ import '@spectrum-web-components/picker/sp-picker.js';
  */
 import './web-components/alert-banner.js';
 import './web-components/overlay-picker.js';
-
+import './web-components/color-slider.js';
+import './web-components/color-steps.js';
 /**
  * Alpine Components
  */

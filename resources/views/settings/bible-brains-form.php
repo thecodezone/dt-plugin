@@ -51,13 +51,13 @@ $this->insert( 'settings/partials/bible-brains-key', [
                     require
                     for="bible_plugin_languages"><?php esc_html_e( 'Languages', 'bible-plugin' ); ?></sp-field-label>
 
-            <br-overlay-picker id="bible_plugin_languages"
-                               name="bible_plugin_languages"
+            <br-overlay-picker id="languages"
+                               name="languages"
                                placeholder="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>..."
                                label="<?php esc_attr_e( 'Languages', 'bible-plugin' ); ?>"
                                searchLabel="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>"
-                               :value="fields.bible_plugin_languages"
-                               @change="fields.bible_plugin_languages = $event.target.value;"
+                               :value="fields.languages"
+                               @change="fields.languages = $event.target.value;"
                                @options="language_options = Object.values($event.target.option_history)"
                                :optionsUrl="language_options_endpoint"
                                options="<?php echo esc_attr( wp_json_encode( $language_options ) ); ?>"
@@ -72,21 +72,21 @@ $this->insert( 'settings/partials/bible-brains-key', [
         </sp-field-group>
 
         <sp-field-group
-                x-show="fields.bible_plugin_languages && selected_language_options">
+                x-show="fields.languages && selected_language_options">
             <sp-field-label
                     required
-                    for="bible_plugin_language"
+                    for="language"
             ><?php esc_html_e( 'Default Language', 'bible-plugin' ); ?></sp-field-label>
 
             <sp-picker
-                    id="bible_plugin_language"
-                    name="bible_plugin_language"
+                    id="language"
+                    name="language"
                     label="<?php esc_attr_e( 'Choose', 'bible-plugin' ); ?>..."
-                    :value="fields.bible_plugin_language"
+                    :value="fields.language"
                     autocomplete
                     grows
                     required
-                    @change="fields.bible_plugin_language = $event.target.value"
+                    @change="fields.language = $event.target.value"
             >
                 <template x-for="({itemText, value}) in selected_language_options"
                           :key="value"
@@ -103,19 +103,19 @@ $this->insert( 'settings/partials/bible-brains-key', [
             </sp-help-text>
         </sp-field-group>
 
-        <sp-field-group x-show="fields.bible_plugin_languages && bible_options.length">
+        <sp-field-group x-show="fields.languages && bible_options.length">
             <sp-field-label
                     required
                     for="default_bible"><?php esc_html_e( 'Bible Versions', 'bible-plugin' ); ?></sp-field-label>
 
             <br-overlay-picker
-                    id="bible_plugin_bibles"
-                    name="bible_plugin_bibles"
+                    id="bibles"
+                    name="bibles"
                     placeholder="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>..."
                     label="<?php esc_attr_e( 'Translations', 'bible-plugin' ); ?>"
                     searchLabel="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>"
-                    :value="fields.bible_plugin_bibles"
-                    @change="fields.bible_plugin_bibles = $event.target.value"
+                    :value="fields.bibles"
+                    @change="fields.bibles = $event.target.value"
                     @options="bible_options = Object.values($event.target.option_history)"
                     :nonce="nonce"
                     :options="JSON.stringify(bible_options)"
@@ -130,53 +130,23 @@ $this->insert( 'settings/partials/bible-brains-key', [
             </sp-help-text>
         </sp-field-group>
 
-        <sp-field-group x-show="fields.bible_plugin_bibles && selected_bible_options.length">
+        <sp-field-group x-show="fields.bibles && Object.values(media_type_options).length">
             <sp-field-label
                     required
-                    for="bible_plugin_bible"
-            ><?php esc_html_e( 'Default Bible Version', 'bible-plugin' ); ?></sp-field-label>
-
-            <sp-picker id="bible_plugin_bible"
-                       name="bible_plugin_bible"
-                       label="<?php esc_attr_e( 'Choose', 'bible-plugin' ); ?>..."
-                       autocomplete
-                       grows
-                       required
-                       :value="fields.bible_plugin_bible"
-                       @change="fields.bible_plugin_bible = $event.target.value"
-            >
-                <template x-for="({itemText, value}) in selected_bible_options"
-                          :key="value"
-                >
-                    <sp-menu-item
-                            :value="value">
-                        <span x-text="itemText"></span>
-                    </sp-menu-item>
-                </template>
-            </sp-picker>
-
-            <sp-help-text size="s">
-				<?php esc_html_e( "Select the bible version that will be used by default.", 'bible-plugin' ); ?>
-            </sp-help-text>
-        </sp-field-group>
-
-        <sp-field-group x-show="fields.bible_plugin_bibles && Object.values(media_type_options).length">
-            <sp-field-label
-                    required
-                    for="bible_plugin_media_types"
+                    for="media_types"
             >
 				<?php esc_html_e( 'Media Types', 'bible-plugin' ); ?>
             </sp-field-label>
 
-            <input type="hidden" name="bible_plugin_media_types" x-model="fields.bible_plugin_media_types">
+            <input type="hidden" name="media_types" x-model="fields.media_types">
 
             <sp-field-group horizontal>
                 <template x-for="({itemText, value}) in media_type_options">
                     <sp-checkbox required
                                  size="m"
-                                 name="bible_plugin_media_types_checkbox"
-                                 @change="$stringable_checkbox_change('fields.bible_plugin_media_types', $event)"
-                                 :checked="$as_array('fields.bible_plugin_media_types').includes(value)"
+                                 name="media_types_checkbox"
+                                 @change="$stringable_checkbox_change('fields.media_types', $event)"
+                                 :checked="$as_array('fields.media_types').includes(value)"
                                  :value="value"
                     >
                         <span x-text="itemText"></span>

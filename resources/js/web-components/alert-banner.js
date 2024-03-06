@@ -25,6 +25,17 @@ export class AlertBanner extends ActionBar {
                     );
                 }
 
+                :host([accent]) #popover {
+                    color: var(
+                            --default-alertbanner-accent-color,
+                            var(--mod-alertbanner-accent-color)
+                    );
+                    background-color: var(
+                            --spectrum-accent-background-color-default,
+                            var(--mod-alertbanner-accent-background-color)
+                    );
+                }
+
                 :host([positive]) #popover {
                     color: var(
                             --default-alertbanner-positive-color,

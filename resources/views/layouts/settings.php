@@ -2,6 +2,8 @@
 
 use function CodeZone\Bible\namespace_string;
 use function CodeZone\Bible\plugin_url;
+use function CodeZone\Bible\rgb;
+use function CodeZone\Bible\get_plugin_option;
 
 /**
  * @var $tab string
@@ -20,10 +22,34 @@ $nav = apply_filters( namespace_string( 'settings_tabs' ), [] );
  *
  * @var bool $has_api_key
  */
-$has_api_key = ! ! get_option( 'bible_plugin_bible_brains_key', false );
+$has_api_key  = ! ! get_plugin_option( 'bible_brains_key', false );
+$color_scheme = get_plugin_option( 'color_scheme' );
+$colors       = get_plugin_option( 'colors' );
+$accent_steps = $colors['accent_steps'] ?? [];
 ?>
-<sp-theme scale="medium" color="lightest" theme="spectrum">
-    <div class="bible-plugin br-cloak wrap">
+
+<style>
+    .br-cloak {
+        display: none;
+    }
+
+    <?php if ( $color_scheme === 'dark' ): ?>
+    body {
+        background-color: #1D2327;
+    }
+
+    <?php endif; ?>
+</style>
+
+<style>
+
+</style>
+<sp-theme scale="medium" color="<?php esc_attr_e( $color_scheme ); ?>" style="
+        --spectrum-accent-color-default: <?php echo esc_attr( $accent_steps['600'] ) ?>;
+<?php foreach ( $accent_steps as $step => $rgba ): ?>
+        --spectrum-accent-color-<?php echo esc_attr( $step ) ?>: <?php echo esc_attr( $rgba ) ?>;
+<?php endforeach; ?>">
+    <div class=" bible-plugin br-cloak wrap">
 
         <header>
             <div class="bible-plugin__header">

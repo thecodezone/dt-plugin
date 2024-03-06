@@ -8,6 +8,7 @@ use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Support\Str;
 use CodeZone\Bible\Illuminate\Validation\Factory;
 use CodeZone\Bible\League\Plates\Engine;
+use CodeZone\Bible\Services\Options;
 use CodeZone\Bible\Services\Template;
 use CodeZone\Bible\Services\Translations;
 
@@ -191,7 +192,7 @@ function validate( array $data, array $rules, array $messages = [] ): array {
  * @return bool Returns true if the option was successfully set, false otherwise.
  */
 function set_option( string $option_name, mixed $value ): bool {
-	if ( get_option( $option_name ) === false ) {
+	if ( get_plugin_option( $option_name ) === false ) {
 		return add_option( $option_name, $value );
 	} else {
 		return update_option( $option_name, $value );
@@ -241,4 +242,57 @@ function translate( $text, $context = [] ): string {
  */
 function namespace_string( string $string ): string {
 	return Plugin::class . '\\' . $string;
+}
+
+/**
+ * Checks if the provided color is already in the RGB format, and converts it if necessary.
+ *
+ * @param string $color The color to check or convert. Accepts hexadecimal (#ABCDEF) or RGB (rgb(0, 0, 0)) formats.
+ *
+ * @return string The color in RGB format. If the provided color is already in RGB format, it is returned unchanged.
+ */
+function rgb( $color ): string {
+	if ( Str::contains( $color, 'rgb' ) ) {
+		return $color;
+	}
+	$color = str_replace( '#', '', $color );
+	if ( strlen( $color ) == 3 ) {
+		$r = hexdec( substr( $color, 0, 1 ) . substr( $color, 0, 1 ) );
+		$g = hexdec( substr( $color, 1, 1 ) . substr( $color, 1, 1 ) );
+		$b = hexdec( substr( $color, 2, 1 ) . substr( $color, 2, 1 ) );
+	} else {
+		$r = hexdec( substr( $color, 0, 2 ) );
+		$g = hexdec( substr( $color, 2, 2 ) );
+		$b = hexdec( substr( $color, 4, 2 ) );
+	}
+
+	return "rgb($r, $g, $b)";
+}
+
+/**
+ * Retrieves the value of an option from the options container.
+ *
+ * @param string $option The name of the option to retrieve.
+ * @param mixed $default Optional. The default value to return if the option does not exist. Defaults to false.
+ *
+ * @return mixed The value of the option if it exists, or the default value if it doesn't.
+ */
+function get_plugin_option( $option, $default = null, $required = false ) {
+	$options = container()->make( Options::class );
+
+	return $options->get( $option, $default, $required );
+}
+
+/**
+ * Sets the value of a plugin option.
+ *
+ * @param string $option The name of the option to set.
+ * @param mixed $value The value to set for the option.
+ *
+ * @return bool true if the option was successfully set; otherwise, false.
+ */
+function set_plugin_option( $option, $value ): bool {
+	$options = container()->make( Options::class );
+
+	return $options->set( $option, $value );
 }

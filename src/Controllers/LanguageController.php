@@ -58,13 +58,10 @@ class LanguageController {
 	public function index( Request $request, Response $response, Languages $languages ) {
 		$search = $request->get( 'search', '' );
 		$page   = $request->get( 'paged', 1 );
-		$limit  = $request->get( 'limit', 25 );
+		$limit  = $request->get( 'limit', 50 );
 
 		if ( $search ) {
-			return $languages->search( $search, [
-				'page'  => $page,
-				'limit' => $limit,
-			] );
+			return $languages->search( $search );
 		}
 
 		return $languages->all( [

@@ -11,8 +11,8 @@ export const form = (props = {}) => {
         success: false,
         error: false,
         submitting: false,
-        fields: {},
         action: "",
+        refresh: false,
         ...props,
 
         /**
@@ -23,12 +23,8 @@ export const form = (props = {}) => {
          * @returns {void}
          */
         init() {
-            this.watchForAlerts()
-        },
-
-        watchForAlerts() {
-            this.$watch('success', this.toggleAlerts.bind(this))
-            this.$watch('error', this.toggleAlerts.bind(this))
+            this.toggleAlerts()
+            this.initialized()
         },
 
         toggleAlerts() {
@@ -63,20 +59,22 @@ export const form = (props = {}) => {
                 e.stopPropagation()
             }
 
-            this.submitting = false
             this.reset_alerts()
-
+            this.submitting = true
             try {
+                this.beforeSubmission()
                 const response = await fetch(this.action, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-WP-Nonce': this.nonce
                     },
-                    body: JSON.stringify(this.fields)
+                    body: JSON.stringify(this.submission())
                 })
 
                 const data = await response.json()
+
+                this.afterSubmission()
 
                 if (response.status === 200) {
                     this.handleSubmissionSuccess(data.success)
@@ -93,11 +91,26 @@ export const form = (props = {}) => {
             }
         },
 
+        /**
+         * Retrieves the submission of the form.
+         *
+         * @function
+         * @returns {object} - The submission object containing the form fields.
+         */
+        submission() {
+            return this.fields
+        },
+
+
         handleSubmissionSuccess(success = true) {
             this.success = success
-            this.toggleAlerts()
+            this.error = false
             this.submitting = false
+            this.toggleAlerts()
             this.submissionSucceeded()
+            if (this.refresh) {
+                setTimeout(() => location.reload(), 1000)
+            }
         },
 
         /**
@@ -115,7 +128,33 @@ export const form = (props = {}) => {
         },
 
         /**
-         * Override this method in the component to handle submission failure.
+         * The component is initialized.
+         *
+         * @function initialized
+         * @memberof module:MyModule
+         * @returns {void}
+         */
+        initialized() {
+
+        },
+
+        /**
+         * Performs necessary tasks before submitting the document.
+         *
+         * @function beforeSubmission
+         * @description This method is responsible for executing the required actions before submitting the document.
+         *              It can be used to perform any necessary pre-submission checks or preparations.
+         *
+         * @returns {undefined} This method does not return any value.
+         *
+         */
+        beforeSubmission() {
+
+        },
+
+        /**
+         * Override this method in the component to handle su
+         * mission failure.
          *
          * @returns {void}
          */
@@ -128,6 +167,18 @@ export const form = (props = {}) => {
          * @returns {void}
          */
         submissionSucceeded() {
+        },
+
+        /**
+         * Performs necessary actions after submission.
+         * This method can be implemented to handle any post-submission logic, such as
+         * saving the data, sending notifications, or performing additional processing.
+         *
+         * @function afterSubmission
+         * @returns {void
+         */
+        afterSubmission() {
+
         }
 
     }

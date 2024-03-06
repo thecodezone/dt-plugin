@@ -246,8 +246,12 @@ export class OverlayPicker extends LitElement {
         this.abortController = new AbortController()
 
         const {signal} = this.abortController;
+        let url = this.optionsUrl
+        if (!url.includes('?')) {
+            url += '?'
+        }
 
-        return fetch(`${this.optionsUrl}?&search=${searchTerm}`, {
+        return fetch(`${url}&search=${searchTerm}`, {
             signal,
             method: 'GET',
             headers: {

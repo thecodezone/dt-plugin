@@ -14,7 +14,7 @@
 
 use CodeZone\Bible\CodeZone\Router\FastRoute\Routes;
 use CodeZone\Bible\Controllers\Admin\BibleBrainsFormController;
-use CodeZone\Bible\Controllers\Admin\CustomizationController;
+use CodeZone\Bible\Controllers\Admin\CustomizationFomController;
 use CodeZone\Bible\Controllers\Admin\SupportController;
 use CodeZone\Bible\Controllers\LanguageBibleController;
 use CodeZone\Bible\Controllers\LanguageController;
@@ -43,6 +43,7 @@ $r->condition( 'plugin', function ( $r ) {
 		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin' ], function ( Routes $r ) {
 			$r->post( '/bible-brains/key', [ BibleBrainsFormController::class, 'validate' ] );
 			$r->post( '/bible-brains', [ BibleBrainsFormController::class, 'submit' ] );
+			$r->post( '/customization', [ CustomizationFomController::class, 'submit' ] );
 		} );
 	} );
 } );
@@ -60,7 +61,7 @@ $r->condition( 'backend', function ( Routes $r ) {
 				BibleBrainsFormController::class,
 				'show',
 			] );
-			$r->get( '?page=bible-plugin&tab=customization', [ CustomizationController::class, 'show' ] );
+			$r->get( '?page=bible-plugin&tab=customization', [ CustomizationFomController::class, 'show' ] );
 			$r->get( '?page=bible-plugin&tab=support', [ SupportController::class, 'show' ] );
 		} );
 	} );
