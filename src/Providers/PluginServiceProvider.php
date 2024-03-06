@@ -16,6 +16,7 @@ class PluginServiceProvider extends ServiceProvider {
 	 */
 	protected $providers = [
 		TranslationsServiceProvider::class,
+		ShortcodeProvider::class,
 		BibleBrainsServiceProvider::class,
 		ViewServiceProvider::class,
 		ConditionsServiceProvider::class,
