@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use function CodeZone\Bible\set_option;
+use function CodeZone\Bible\set_plugin_option;
 
 require "vendor-scoped/autoload.php";
 
@@ -19,15 +19,17 @@ class TranslatorsTest extends TestCase {
 	 */
 	public function it_translates() {
 		$this->assertEquals( 'Hello World', \CodeZone\Bible\translate( 'Hello World' ) );
+		$this->assertEquals( 'Hello World', __( 'Hello World' ) );
 	}
 
 	/**
 	 * @test
 	 */
 	public function it_custom_translates() {
-		set_option( 'bible_plugin_translations', [
+		set_plugin_option( 'translations', [
 			'Hello World' => 'Hola Mundo'
 		] );
 		$this->assertEquals( 'Hola Mundo', \CodeZone\Bible\translate( 'Hello World' ) );
+		$this->assertEquals( 'Hola Mundo', __( 'Hello World' ) );
 	}
 }

@@ -23,6 +23,11 @@ abstract class Service {
 	 * @param Http $http
 	 */
 	public function __construct( Http $http ) {
+		$this->init( $http );
+	}
+
+	public function init( Http $http = null ) {
+		$http       = $http ?? container()->make( Http::class );
 		$this->http = $http->bibleBrains();
 	}
 
@@ -46,8 +51,8 @@ abstract class Service {
 			return $cached;
 		}
 
-		$response = $this->http->get( $endpoint );
-		$result   = $response->throw()->json();
+		$response = $this->http->get( $endpoint, $params );
+		$result   = $response->json();
 
 		if ( $response->successful() ) {
 			$cache->set( $cache_key, $result );

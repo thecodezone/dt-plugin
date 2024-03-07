@@ -31,8 +31,6 @@ $r->condition( 'plugin', function ( $r ) {
 		$r->get( '/languages', [ LanguageController::class, 'index' ] );
 		$r->get( '/languages/options', [ LanguageController::class, 'options' ] );
 		$r->get( '/languages/{id}', [ LanguageController::class, 'show' ] );
-		$r->get( '/languages/{id}/bibles', [ LanguageBibleController::class, 'index' ] );
-		$r->get( '/languages/{id}/bibles/options', [ LanguageBibleController::class, 'options' ] );
 
 		$r->get( '/bibles', [ BibleController::class, 'index' ] );
 		$r->get( '/bibles/media-types', [ BibleMediaTypesController::class, 'index' ] );

@@ -38,7 +38,7 @@ class BibleTest extends TestCase {
 		$this->assertEquals( 2, count( $result['data'] ) );
 		foreach ( json_decode( $response->getContent(), true )['data'] as $language ) {
 			$this->assertArrayHasKey( 'value', $language );
-			$this->assertArrayHasKey( 'label', $language );
+			$this->assertArrayHasKey( 'itemText', $language );
 		}
 	}
 
@@ -49,19 +49,8 @@ class BibleTest extends TestCase {
 	 */
 	public function it_can_search() {
 		$languages = container()->make( Bibles::class );
-		$response  = $languages->search( 'New King James Version' );
-		$this->assertEquals( 200, $response->status() );
-		$result = $response->json();
-		$this->assertGreaterThan( 0, count( $result['data'] ) );
-	}
-
-	/**
-	 * @test
-	 */
-	public function it_can_fetch_bibles_for_a_language() {
-		$response = $this->get( 'bible/api/languages/6414/bibles' );
-		$this->assertEquals( 200, $response->status() );
-		$result = json_decode( $response->getContent(), true );
+		$result    = $languages->search( 'New King James Version' );
+		$this->assertGreaterThan( 0, $result['data'] );
 		$this->assertGreaterThan( 0, count( $result['data'] ) );
 	}
 }

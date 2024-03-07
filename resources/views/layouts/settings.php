@@ -45,7 +45,9 @@ $accent_steps = $colors['accent_steps'] ?? [];
 
 </style>
 <sp-theme scale="medium" color="<?php esc_attr_e( $color_scheme ); ?>" style="
-        --spectrum-accent-color-default: <?php echo esc_attr( $accent_steps['600'] ) ?>;
+<?php if ( ! empty( $accent_steps['600'] ) ): ?>
+        --spectrum-accent-color-default: <?php echo esc_attr( $accent_steps['600'] ?? '' ) ?>;
+<?php endif; ?>
 <?php foreach ( $accent_steps as $step => $rgba ): ?>
         --spectrum-accent-color-<?php echo esc_attr( $step ) ?>: <?php echo esc_attr( $rgba ) ?>;
 <?php endforeach; ?>">

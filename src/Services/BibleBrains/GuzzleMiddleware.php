@@ -5,6 +5,7 @@ namespace CodeZone\Bible\Services\BibleBrains;
 use CodeZone\Bible\GuzzleHttp\Psr7\Uri;
 use CodeZone\Bible\GuzzleHttp\Psr7\UriResolver;
 use CodeZone\Bible\Psr\Http\Message\RequestInterface;
+use function CodeZone\Bible\get_plugin_option;
 
 class GuzzleMiddleware {
 	protected string $base_url = 'https://4.dbt.io/api/';
@@ -12,7 +13,7 @@ class GuzzleMiddleware {
 
 
 	public function __construct() {
-		$this->key = get_option( 'bible_plugin_bible_brains_key', defined( 'BP_BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '' );
+		$this->key = get_plugin_option( 'bible_brains_key', defined( 'BP_BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '', true );
 		if ( empty( $this->key ) ) {
 			throw new \Exception( 'Bible Brains API key is not set' );
 		}

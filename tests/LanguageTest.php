@@ -31,14 +31,14 @@ class LanguageTest extends TestCase {
 	 */
 	public function it_filters_language_variants_from_options() {
 		$languages              = container()->make( Languages::class );
-		$result                 = $languages->as_options(
+		$result                 = collect( $languages->as_options(
 			collect( collect( $languages->search( 'english' ) )->get( 'data' ) )
-		);
+		) );
 		$containing_english     = $result->filter( function ( $language ) {
-			return Str::contains( $language['name'], 'English' );
+			return Str::contains( $language['itemText'], 'English' );
 		} );
 		$containing_parenthesis = $result->filter( function ( $language ) {
-			return Str::contains( $language['name'], '(' );
+			return Str::contains( $language['itemText'], '(' );
 		} );
 		$this->assertEquals( 1, $containing_english->count() );
 		$this->assertEquals( 0, $containing_parenthesis->count() );

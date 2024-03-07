@@ -38,19 +38,20 @@ abstract class TestCase extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The request method sends a request to a specified URI using the specified HTTP method and additional parameters.
+	 * Sends a request using the specified HTTP method to the specified URI.
 	 *
-	 * @param string $method The HTTP method for the request.
+	 * @param string $method The HTTP method (e.g., GET, POST).
 	 * @param string $uri The URI to send the request to.
-	 * @param array $parameters An array of parameters to include in the request.
-	 * @param array $cookies An array of cookies to include in the request.
-	 * @param array $files An array of files to include in the request.
-	 * @param array $server An array of server variables to include in the request.
-	 * @param mixed $content The content to send with the request.
+	 * @param array $parameters An array of request parameters.
+	 * @param array $headers An array of request headers.
+	 * @param array $cookies An array of request cookies.
+	 * @param array $files An array of uploaded files.
+	 * @param array $server An array of server parameters.
+	 * @param mixed|null $content The request content.
 	 *
 	 * @return mixed The response from the request.
 	 */
-	public function request( $method, $uri, array $parameters = [], $headers = [], array $cookies = [], array $files = [], array $server = [], $content = null ) {
+	public function request( $method, $uri, array $parameters = [], $headers = [], array $cookies = [], array $files = [], array $server = [], $content = null ): mixed {
 		$initial_request = container()->make( Request::class );
 		$request         = Request::create( $uri, $method, $parameters, $cookies, $files, $server, $content );
 		foreach ( $headers as $key => $value ) {

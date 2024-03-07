@@ -24,7 +24,7 @@ class Options {
 	 */
 	private function defaults(): array {
 		return [
-			'bible_brains_key' => defined( 'BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '',
+			'bible_brains_key' => defined( 'BP_BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '',
 			'languages'        => '6414',
 			'language'         => '6414',
 			'bibles'           => 'ENGESV',
@@ -80,7 +80,9 @@ class Options {
 
 		$key = $this->scope_key( $key );
 
+
 		$result = get_option( $key, $default );
+
 
 		if ( $required && ! $result ) {
 			set_plugin_option( $key, $default );

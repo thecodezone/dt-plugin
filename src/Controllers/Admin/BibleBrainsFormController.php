@@ -172,7 +172,7 @@ class BibleBrainsFormController {
 
 		$key = $request->input( 'bible_brains_key' );
 		try {
-			$bibles->find( 'ENGESV', [ 'key' => $key, 'cache' => false ] );
+			$bibles = $bibles->find( 'ENGESV', [ 'key' => $key, 'cache' => false ] );
 		} catch ( BibleBrainsException $e ) {
 			return $response->setStatusCode( 401 )->setContent( [
 				'error'  => __( 'Failed to validate key.', 'bible-plugin' ),

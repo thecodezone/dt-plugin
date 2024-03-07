@@ -2,10 +2,14 @@
 
 namespace Tests;
 
+use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\GuzzleHttp\Psr7\Response as Psr7Response;
+use CodeZone\Bible\Illuminate\Http\Client\RequestException;
 use CodeZone\Bible\Illuminate\Http\Client\Response;
+use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
 use function CodeZone\Bible\container;
+use function CodeZone\Bible\get_plugin_option;
 
 require "vendor-scoped/autoload.php";
 
@@ -34,7 +38,7 @@ class BibleBrainsSettingsTest extends TestCase {
 		] );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertStringContainsString( 'bible_plugin_bible_brains_key', $response->getContent() );
+		$this->assertStringContainsString( 'bible_brains_key', $response->getContent() );
 	}
 
 
@@ -70,11 +74,11 @@ class BibleBrainsSettingsTest extends TestCase {
 		wp_set_current_user( $user );
 
 		$response = $this->post( 'bible/api/bible-brains', [
-			'bible_plugin_languages'   => null,
-			'bible_plugin_language'    => 'eng',
-			'bible_plugin_bibles'      => 'ENGKJV',
-			'bible_plugin_bible'       => 'ENGKJV',
-			'bible_plugin_media_types' => 'audio,video,text',
+			'languages'   => null,
+			'language'    => 'eng',
+			'bibles'      => 'ENGKJV',
+			'bible'       => 'ENGKJV',
+			'media_types' => 'audio,video,text',
             ], [
 			'X-WP-Nonce' => wp_create_nonce( 'bible-plugin' ),
 		] );
@@ -82,8 +86,8 @@ class BibleBrainsSettingsTest extends TestCase {
 		$data = json_decode( $response->getContent(), true );
 		$this->assertEquals( 400, $response->getStatusCode() );
 		$this->assertArrayHasKey( 'errors', $data );
-		$this->assertArrayHasKey( 'bible_plugin_languages', $data['errors'] );
-		$this->assertArrayNotHasKey( 'bible_plugin_language', $data['errors'] );
+		$this->assertArrayHasKey( 'languages', $data['errors'] );
+		$this->assertArrayNotHasKey( 'language', $data['errors'] );
 	}
 
 	/**
@@ -98,12 +102,10 @@ class BibleBrainsSettingsTest extends TestCase {
 		wp_set_current_user( $user );
 
 		$payload = [
-			'bible_plugin_bible_brains_key' => BP_BIBLE_BRAINS_KEY,
-			'bible_plugin_languages'        => 'bible_plugin_languages',
-			'bible_plugin_language'         => 'bible_plugin_language',
-			'bible_plugin_bibles'           => 'ENGKJV',
-			'bible_plugin_bible'            => 'ENGKJV',
-			'bible_plugin_media_types'      => 'audio,video,text',
+			'languages'   => 'languages',
+			'language'    => 'language',
+			'bibles'      => 'ENGKJV',
+			'media_types' => 'audio,video,text',
 		];
 
 		$response = $this->post( 'bible/api/bible-brains', $payload, [
@@ -113,7 +115,7 @@ class BibleBrainsSettingsTest extends TestCase {
 		$this->assertEquals( 200, $response->getStatusCode() );
 
 		foreach ( $payload as $key => $value ) {
-			$this->assertEquals( $value, get_option( $key ) );
+			$this->assertEquals( $value, get_plugin_option( $key ) );
 		}
 	}
 
@@ -127,17 +129,8 @@ class BibleBrainsSettingsTest extends TestCase {
 
 		wp_set_current_user( $user );
 
-
-		$mock = $this->createPartialMock( Bibles::class, [ 'copyright' ] );
-		container()->bind( Bibles::class, function () use ( $mock ) {
-			return $mock;
-		} );
-
-		$mock->method( 'copyright' )
-		     ->willReturn( new Response( new Psr7Response( 401 ) ) );
-
 		$payload = [
-			'bible_plugin_bible_brains_key' => 'fake_key'
+			'bible_brains_key' => 'fake_key'
 		];
 
 		$response = $this->post( 'bible/api/bible-brains/key', $payload, [
@@ -149,30 +142,19 @@ class BibleBrainsSettingsTest extends TestCase {
 		$data = json_decode( $response->getContent(), true );
 
 		$this->assertArrayHasKey( 'errors', $data );
-		$this->assertArrayHasKey( 'bible_plugin_bible_brains_key', $data['errors'] );
+		$this->assertArrayHasKey( 'bible_brains_key', $data['errors'] );
 	}
 
 	/**
 	 * @test
 	 */
 	public function it_handles_api_key_success() {
-		$user = $this->factory()->user->create( [
+		$this->factory()->user->create( [
 			'role' => 'administrator',
 		] );
 
-		wp_set_current_user( $user );
-
-
-		$mock = $this->createPartialMock( Bibles::class, [ 'copyright' ] );
-		container()->bind( Bibles::class, function () use ( $mock ) {
-			return $mock;
-		} );
-
-		$mock->method( 'copyright' )
-		     ->willReturn( new Response( new Psr7Response( 200 ) ) );
-
 		$payload = [
-			'bible_plugin_bible_brains_key' => 'fake_key'
+			'bible_brains_key' => BP_BIBLE_BRAINS_KEY
 		];
 
 		$response = $this->post( 'bible/api/bible-brains/key', $payload, [
