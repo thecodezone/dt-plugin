@@ -2,6 +2,8 @@
 
 <div>
     <b>
-        Hello, <?php echo $this->e( $name ); ?>!
+		<?php echo esc_attr_x( 'Bible', 'reader', 'bible-plugin' ); ?>
+		<?php echo esc_attr_x( 'Next Chapter', 'reader', 'bible-plugin' ); ?>
+		<?php echo esc_attr_x( 'Previous Chapter', 'reader', 'bible-plugin' ); ?>
     </b>
 </div>

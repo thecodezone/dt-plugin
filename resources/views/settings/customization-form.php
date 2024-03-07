@@ -5,28 +5,29 @@
  * @var string $tab
  * @var string $color_scheme_options
  * @var string $error
+ * @var string $translation_options
  */
 $this->layout( 'layouts/settings', compact( 'tab' ) );
 ?>
-<form method="post"
-    x-data="br_form(<?php echo esc_attr(
-        wp_json_encode(
-            array_merge(
-                [
-				      'refresh'              => true,
-				      'fields'               => $fields,
-				      'nonce'                => $nonce,
-				      'action'               => esc_url( '/bible/api/customization' ),
-				      'error'                => $error ?? '',
-				      'color_scheme_options' => $color_scheme_options
-			      ]
-            )
-        )
-    ); ?>)"
+<form x-data="br_form(<?php echo esc_attr(
+	wp_json_encode(
+		array_merge(
+			[
+				'refresh'              => true,
+				'fields'               => $fields,
+				'nonce'                => $nonce,
+				'action'               => esc_url( '/bible/api/customization' ),
+				'error'                => $error ?? '',
+				'color_scheme_options' => $color_scheme_options
+			]
+		)
+	)
+); ?>)"
       @submit="submit"
 >
-
     <fieldset>
+
+        <h2><?php esc_html_e( "Theme", 'bible_plugin' ); ?></h2>
 
 		<?php $this->insert( 'partials/alerts' ); ?>
 
@@ -94,18 +95,35 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
 					<?php esc_html_e( "This range of colors could be displayed in the bible reader. The accent color you chose will be used most often.", 'bible-plugin' ); ?>
                 </sp-help-text>
             </sp-field-group>
-
-            <sp-button-group>
-
-                <sp-button
-                        active="false"
-                        type="submit"
-                        variant="accent"
-                        label="<?php esc_attr_e( 'Save', 'bible-plugin' ); ?>"
-                >
-					<?php esc_html_e( 'Save', 'bible-plugin' ); ?>
-                </sp-button>
-            </sp-button-group>
         </div>
     </fieldset>
+
+    <fieldset>
+        <h2><?php esc_html_e( "Translations", 'bible_plugin' ); ?></h2>
+        <div class="br-form-group">
+            <template x-for="(value, string) in fields.translations">
+                <sp-field-group>
+                    <sp-field-label
+                            :for="`translation-`+string"
+                            x-text="string"></sp-field-label>
+                    <sp-textfield
+                            :id="`translation-`+string"
+                            placeholder="<?php esc_attr_e( 'Enter a translation...', 'bible-plugin' ); ?>"
+                            :name="`translations[`+string+`]`"
+                            :value="fields.translations[string]"
+                            @input="console.log('stgring'); fields.translations[string] = $event.target.value"
+                </sp-field-group>
+            </template>
+    </fieldset>
+
+    <sp-button-group>
+        <sp-button
+                active="false"
+                type="submit"
+                variant="accent"
+                label="<?php esc_attr_e( 'Save', 'bible-plugin' ); ?>"
+        >
+			<?php esc_html_e( 'Save', 'bible-plugin' ); ?>
+        </sp-button>
+    </sp-button-group>
 </form>

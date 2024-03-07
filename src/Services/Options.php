@@ -31,6 +31,7 @@ class Options {
 			'bible'            => 'ENGESV',
 			'media_types'      => 'text,audio-video',
 			'color_scheme'     => 'light',
+			'translations'     => [],
 			'colors'           => [
 				'accent'       => '#29ac9d',
 				'accent_steps' => [

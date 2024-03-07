@@ -10,7 +10,7 @@ class TranslationsServiceProvider extends ServiceProvider {
 
 	public function register(): void {
 		$this->container->singleton( Translations::class, function ( $app ) {
-			return $app->make( PoLoader::class )->loadFile( languages_path( 'es_MX.po' ) );
+			return $app->make( PoLoader::class )->loadFile( languages_path( 'bible-plugin-es_MX.po' ) );
 		} );
 	}
 

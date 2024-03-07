@@ -7,6 +7,7 @@ use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Translation\FileLoader;
 use CodeZone\Bible\Illuminate\Translation\Translator;
 use CodeZone\Bible\Illuminate\Validation\Factory;
+use CodeZone\Bible\Services\Translations;
 
 class PluginServiceProvider extends ServiceProvider {
 	/**
@@ -32,6 +33,12 @@ class PluginServiceProvider extends ServiceProvider {
 		$this->container->singleton( Request::class, function () {
 			return Request::capture();
 		} );
+
+		$this->container->singleton( Translations::class, function () {
+			return new Translations();
+		} );
+
+		$this->container->make( Translations::class );
 
 		foreach ( $this->providers as $provider ) {
 			$provider = $this->container->make( $provider );

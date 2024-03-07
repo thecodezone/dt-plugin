@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-01-24 22:41-0600\n"
+"POT-Creation-Date: 2024-03-07 16:31-0600\n"
 "PO-Revision-Date: 2024-01-24 21:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-WPHeader: bible-plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -30,6 +30,21 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
 
+#: resources/views/hello.php:5
+msgctxt "reader"
+msgid "Bible"
+msgstr ""
+
+#: resources/views/hello.php:6
+msgctxt "reader"
+msgid "Next Chapter"
+msgstr ""
+
+#: resources/views/hello.php:7
+msgctxt "reader"
+msgid "Previous Chapter"
+msgstr ""
+
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
 msgstr ""
@@ -39,83 +54,222 @@ msgid "Copyright "
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:30
-#: resources/views/layouts/settings.php:36
-#: src/Providers/AdminServiceProvider.php:25
+#: resources/views/layouts/settings.php:59
+#: resources/views/layouts/settings.php:65
+#: resources/views/layouts/settings.php:73
+#: resources/views/settings/support.php:66
 #: src/Providers/AdminServiceProvider.php:26
-#: src/Providers/AdminServiceProvider.php:36
+#: src/Providers/AdminServiceProvider.php:27
 #: src/Providers/AdminServiceProvider.php:37
+#: src/Providers/AdminServiceProvider.php:38
 msgid "The Bible Plugin"
 msgstr ""
 
-#: resources/views/layouts/settings.php:52
+#: resources/views/layouts/settings.php:79
+msgid ""
+"You must add your Bible Brain API Key in order for this plugin to work."
+msgstr ""
+
+#: resources/views/layouts/settings.php:88
 msgid "More Info"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:55
-msgid "Bible Brain API Key"
+#: resources/views/partials/alerts.php:4
+msgid "Success!"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:64
-msgid "Enter key..."
+#: resources/views/partials/alerts.php:9
+msgid "An error has occurred."
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:70
-#: resources/views/settings/bible-brains.php:73
-msgid "Validate"
-msgstr ""
-
-#: resources/views/settings/bible-brains.php:80
-#: resources/views/settings/bible-brains.php:83
-msgid "Valid"
-msgstr ""
-
-#: resources/views/settings/bible-brains.php:90
-msgid "Here's how to get your key."
-msgstr ""
-
-#: resources/views/settings/bible-brains.php:106
+#: resources/views/settings/bible-brains-form.php:52
+#: resources/views/settings/bible-brains-form.php:57
 msgid "Languages"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:126
+#: resources/views/settings/bible-brains-form.php:56
+#: resources/views/settings/bible-brains-form.php:58
+#: resources/views/settings/bible-brains-form.php:114
+#: resources/views/settings/bible-brains-form.php:116
+msgid "Search"
+msgstr ""
+
+#: resources/views/settings/bible-brains-form.php:70
 msgid "Select the bible languages you would like to make available."
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:135
+#: resources/views/settings/bible-brains-form.php:79
 msgid "Default Language"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:157
-msgid "Select the bible language that will be used by default."
+#: resources/views/settings/bible-brains-form.php:84
+#: resources/views/settings/customization-form.php:38
+msgid "Choose"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:164
+#: resources/views/settings/bible-brains-form.php:102
+msgid "Select   the bible language that will be used by default."
+msgstr ""
+
+#: resources/views/settings/bible-brains-form.php:109
 msgid "Bible Versions"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:184
+#: resources/views/settings/bible-brains-form.php:115
+#: resources/views/settings/customization-form.php:102
+msgid "Translations"
+msgstr ""
+
+#: resources/views/settings/bible-brains-form.php:129
 msgid "Select the bible versions you would like to make available."
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:192
-msgid "Default Bible Version"
-msgstr ""
-
-#: resources/views/settings/bible-brains.php:213
-msgid "Select the bible version that will be used by default."
-msgstr ""
-
-#: resources/views/settings/bible-brains.php:222
+#: resources/views/settings/bible-brains-form.php:138
 msgid "Media Types"
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:243
+#: resources/views/settings/bible-brains-form.php:160
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 
-#: resources/views/settings/bible-brains.php:255
+#: resources/views/settings/bible-brains-form.php:173
+#: resources/views/settings/bible-brains-form.php:175
+#: resources/views/settings/customization-form.php:124
+#: resources/views/settings/customization-form.php:126
 msgid "Save"
+msgstr ""
+
+#: resources/views/settings/customization-form.php:30
+msgid "Theme"
+msgstr ""
+
+#: resources/views/settings/customization-form.php:56
+msgid "Switch between light mode or dark mode to match your theme."
+msgstr ""
+
+#: resources/views/settings/customization-form.php:65
+msgid "Accent Color"
+msgstr ""
+
+#: resources/views/settings/customization-form.php:75
+msgid "The primary accent color used in the bible reader."
+msgstr ""
+
+#: resources/views/settings/customization-form.php:82
+msgid "Accent Color Steps"
+msgstr ""
+
+#: resources/views/settings/customization-form.php:95
+msgid ""
+"This range of colors could be displayed in the bible reader. The accent "
+"color you chose will be used most often."
+msgstr ""
+
+#: resources/views/settings/customization-form.php:111
+msgid "Enter a translation..."
+msgstr ""
+
+#: resources/views/settings/partials/bible-brains-key.php:18
+msgid "Bible Brains API Key verified."
+msgstr ""
+
+#: resources/views/settings/partials/bible-brains-key.php:38
+msgid "Bible Brain API Key"
+msgstr ""
+
+#: resources/views/settings/partials/bible-brains-key.php:47
+msgid "Enter key..."
+msgstr ""
+
+#: resources/views/settings/partials/bible-brains-key.php:54
+#: resources/views/settings/partials/bible-brains-key.php:57
+msgid "Validate"
+msgstr ""
+
+#: resources/views/settings/partials/bible-brains-key.php:65
+#: resources/views/settings/partials/bible-brains-key.php:68
+msgid "Valid"
+msgstr ""
+
+#: resources/views/settings/partials/bible-brains-key.php:75
+msgid "Here's how to get your key."
+msgstr ""
+
+#: resources/views/settings/support.php:14
+msgid "FAQ"
+msgstr ""
+
+#: resources/views/settings/support.php:20
+msgid ""
+"If you encounter an error or bug, please report it to us at our GitHub by "
+"clicking the button below."
+msgstr ""
+
+#: resources/views/settings/support.php:24
+msgid "Report an error"
+msgstr ""
+
+#: resources/views/settings/support.php:31
+#: resources/views/settings/support.php:42
+msgid ""
+"Fill out the support form on our website. You can expect a response within "
+"48 business days."
+msgstr ""
+
+#: resources/views/settings/support.php:35
+msgid "Request support"
+msgstr ""
+
+#: resources/views/settings/support.php:46
+msgid "Request a feature"
+msgstr ""
+
+#: resources/views/settings/support.php:53
+msgid ""
+"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
+"you contact them to request additional translations be added the Bible "
+"Reader."
+msgstr ""
+
+#: resources/views/settings/support.php:57
+msgid ""
+"We rely on community support to add additional languages to the Bible "
+"Plugin UI. If you are a translator or you would like more information on "
+"how you can get involved, please contact us using the contact form on our "
+"website."
+msgstr ""
+
+#: resources/views/settings/support.php:62
+msgid "Bible Brains"
+msgstr ""
+
+#: resources/views/settings/support.php:75
+#: resources/views/settings/support.php:88
+#: resources/views/settings/support.php:106
+msgid "About"
+msgstr ""
+
+#: resources/views/settings/support.php:91
+#: resources/views/settings/support.php:113
+msgid "Give"
+msgstr ""
+
+#: resources/views/settings/support.php:100
+msgid ""
+"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
+"reader in WordPress sites with the Bible text accessed through available "
+"Bible APIs.  Localization and focus is a priority of this plugin with "
+"admin settings allowing for selection of language, Bible version, number "
+"of Bible versions available to the end-user, and design elements (fonts, "
+"colors).  Simplicity and ease of use for the end-user is the second top "
+"priority with the goal of an intuitive interface.  Initial development of "
+"the plugin will be based on the Bible Brain / DBPv4 API but with the "
+"intention of expanding to other Bible APIs in subsequent releases.  "
+"Additional information is available in the SRS document on GitHub.\n"
+msgstr ""
+
+#: resources/views/settings/support.php:109
+msgid "GitHub"
 msgstr ""
 
 #: resources/views/starter-magic-link/show.php:12
@@ -126,65 +280,55 @@ msgstr ""
 msgid "Visit home"
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsController.php:54
-msgid "An error has occurred."
-msgstr ""
-
-#: src/Controllers/Admin/BibleBrainsController.php:55
-msgid "Saved."
-msgstr ""
-
-#: src/Controllers/Admin/BibleBrainsController.php:95
+#: src/Controllers/Admin/BibleBrainsFormController.php:130
+#: src/Controllers/Admin/CustomizationFomController.php:73
 msgid "Please complete the required fields."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsController.php:117
-#: src/Controllers/Admin/BibleBrainsController.php:162
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
+#: src/Controllers/Admin/BibleBrainsFormController.php:191
+#: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsController.php:140
+#: src/Controllers/Admin/BibleBrainsFormController.php:168
 msgid "Please enter a key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsController.php:149
+#: src/Controllers/Admin/BibleBrainsFormController.php:178
 msgid "Failed to validate key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsController.php:151
+#: src/Controllers/Admin/BibleBrainsFormController.php:180
 msgid "Invalid."
 msgstr ""
 
-#: src/Controllers/Admin/CustomizationController.php:20
-msgid "Lighter"
-msgstr ""
-
-#: src/Controllers/Admin/CustomizationController.php:21
+#: src/Controllers/Admin/CustomizationFomController.php:31
 msgid "Light"
 msgstr ""
 
-#: src/Controllers/Admin/CustomizationController.php:22
+#: src/Controllers/Admin/CustomizationFomController.php:35
 msgid "Dark"
-msgstr ""
-
-#: src/Controllers/Admin/CustomizationController.php:23
-msgid "Darker"
 msgstr ""
 
 #: src/Middleware/Nonce.php:22
 msgid "Could not verify request."
 msgstr ""
 
-#: src/Providers/AdminServiceProvider.php:45
+#: src/Providers/AdminServiceProvider.php:46
 msgid "Biblical Text Setup"
 msgstr ""
 
-#: src/Providers/AdminServiceProvider.php:49
+#: src/Providers/AdminServiceProvider.php:50
 msgid "Customization"
 msgstr ""
 
-#: src/Providers/AdminServiceProvider.php:53
+#: src/Providers/AdminServiceProvider.php:54
 msgid "Support"
+msgstr ""
+
+#: tests/TranslatorTest.php:26
+msgid "Hello World"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
