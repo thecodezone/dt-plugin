@@ -1,0 +1,413 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: The Bible Plugin\n"
+"POT-Creation-Date: 2024-03-07 16:31-0600\n"
+"PO-Revision-Date: 2024-03-07 16:31-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: bible-plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: tmp-528879b2b4/source/vendor\n"
+"X-Poedit-SearchPathExcluded-4: tmp-528879b2b4/destination/vendor\n"
+"X-Poedit-SearchPathExcluded-5: resources/js\n"
+"X-Poedit-SearchPathExcluded-6: dist\n"
+"X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
+"X-Poedit-SearchPathExcluded-8: includes\n"
+"X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
+
+#: resources/views/hello.php:5
+#, fuzzy
+msgctxt "reader"
+msgid "Bible"
+msgstr "Biblia"
+
+#: resources/views/hello.php:6
+#, fuzzy
+msgctxt "reader"
+msgid "Next Chapter"
+msgstr "Siguiente capítulo"
+
+#: resources/views/hello.php:7
+#, fuzzy
+msgctxt "reader"
+msgid "Previous Chapter"
+msgstr "Capítulo anterior"
+
+#: resources/views/layouts/plugin.php:2
+msgid "Plugin"
+msgstr "Plugin"
+
+#: resources/views/layouts/plugin.php:11
+msgid "Copyright "
+msgstr "Derechos de autor del sitio "
+
+#. Plugin Name of the plugin/theme
+#: resources/views/layouts/settings.php:59
+#: resources/views/layouts/settings.php:65
+#: resources/views/layouts/settings.php:73
+#: resources/views/settings/support.php:66
+#: src/Providers/AdminServiceProvider.php:26
+#: src/Providers/AdminServiceProvider.php:27
+#: src/Providers/AdminServiceProvider.php:37
+#: src/Providers/AdminServiceProvider.php:38
+#, fuzzy
+msgid "The Bible Plugin"
+msgstr "El complemento de la Biblia"
+
+#: resources/views/layouts/settings.php:79
+#, fuzzy
+msgid "You must add your Bible Brain API Key in order for this plugin to work."
+msgstr ""
+"Debes agregar tu clave API de Bible Brain para que este plugin funcione."
+
+#: resources/views/layouts/settings.php:88
+msgid "More Info"
+msgstr "Más Información"
+
+#: resources/views/partials/alerts.php:4
+msgid "Success!"
+msgstr "¡Éxito!"
+
+#: resources/views/partials/alerts.php:9
+msgid "An error has occurred."
+msgstr "Ha ocurrido un error."
+
+#: resources/views/settings/bible-brains-form.php:52
+#: resources/views/settings/bible-brains-form.php:57
+msgid "Languages"
+msgstr "Idiomas"
+
+#: resources/views/settings/bible-brains-form.php:56
+#: resources/views/settings/bible-brains-form.php:58
+#: resources/views/settings/bible-brains-form.php:114
+#: resources/views/settings/bible-brains-form.php:116
+msgid "Search"
+msgstr "Buscar"
+
+#: resources/views/settings/bible-brains-form.php:70
+#, fuzzy
+msgid "Select the bible languages you would like to make available."
+msgstr "Seleccione los idiomas bíblicos que le gustaría poner a disposición."
+
+#: resources/views/settings/bible-brains-form.php:79
+msgid "Default Language"
+msgstr "Idioma Predeterminado"
+
+#: resources/views/settings/bible-brains-form.php:84
+#: resources/views/settings/customization-form.php:38
+msgid "Choose"
+msgstr "Elegir"
+
+#: resources/views/settings/bible-brains-form.php:102
+#, fuzzy
+msgid "Select   the bible language that will be used by default."
+msgstr "Seleccione el idioma bíblico que se usará de forma predeterminada."
+
+#: resources/views/settings/bible-brains-form.php:109
+#, fuzzy
+msgid "Bible Versions"
+msgstr "Versiones de la Biblia"
+
+#: resources/views/settings/bible-brains-form.php:115
+#: resources/views/settings/customization-form.php:102
+msgid "Translations"
+msgstr "Traducciones"
+
+#: resources/views/settings/bible-brains-form.php:129
+#, fuzzy
+msgid "Select the bible versions you would like to make available."
+msgstr ""
+"Seleccione las versiones de la Biblia que le gustaría poner a disposición."
+
+#: resources/views/settings/bible-brains-form.php:138
+#, fuzzy
+msgid "Media Types"
+msgstr "Tipos de medios"
+
+#: resources/views/settings/bible-brains-form.php:160
+#, fuzzy
+msgid "Note that some bible versions do not support all media types."
+msgstr ""
+"Tenga en cuenta que algunas versiones de la Biblia no son compatibles con "
+"todos los tipos de medios."
+
+#: resources/views/settings/bible-brains-form.php:173
+#: resources/views/settings/bible-brains-form.php:175
+#: resources/views/settings/customization-form.php:124
+#: resources/views/settings/customization-form.php:126
+msgid "Save"
+msgstr "Guardar"
+
+#: resources/views/settings/customization-form.php:30
+msgid "Theme"
+msgstr "Tema"
+
+#: resources/views/settings/customization-form.php:56
+#, fuzzy
+msgid "Switch between light mode or dark mode to match your theme."
+msgstr ""
+"Cambia entre el modo claro o el modo oscuro para que coincida con tu tema."
+
+#: resources/views/settings/customization-form.php:65
+msgid "Accent Color"
+msgstr "Color a Resaltar"
+
+#: resources/views/settings/customization-form.php:75
+#, fuzzy
+msgid "The primary accent color used in the bible reader."
+msgstr "El color de acento primario utilizado en el lector de la Biblia."
+
+#: resources/views/settings/customization-form.php:82
+#, fuzzy
+msgid "Accent Color Steps"
+msgstr "Pasos de color de acento"
+
+#: resources/views/settings/customization-form.php:95
+#, fuzzy
+msgid ""
+"This range of colors could be displayed in the bible reader. The accent "
+"color you chose will be used most often."
+msgstr ""
+"Esta gama de colores podría mostrarse en el lector de la Biblia. El color de "
+"acento que elijas se usará con mayor frecuencia."
+
+#: resources/views/settings/customization-form.php:111
+#, fuzzy
+msgid "Enter a translation..."
+msgstr "Introduzca una traducción..."
+
+#: resources/views/settings/partials/bible-brains-key.php:18
+#, fuzzy
+msgid "Bible Brains API Key verified."
+msgstr "Clave API de Bible Brains verificada."
+
+#: resources/views/settings/partials/bible-brains-key.php:38
+#, fuzzy
+msgid "Bible Brain API Key"
+msgstr "Clave API de Bible Brain"
+
+#: resources/views/settings/partials/bible-brains-key.php:47
+#, fuzzy
+msgid "Enter key..."
+msgstr "Introduzca la tecla..."
+
+#: resources/views/settings/partials/bible-brains-key.php:54
+#: resources/views/settings/partials/bible-brains-key.php:57
+msgid "Validate"
+msgstr "Validar"
+
+#: resources/views/settings/partials/bible-brains-key.php:65
+#: resources/views/settings/partials/bible-brains-key.php:68
+msgid "Valid"
+msgstr "Válido"
+
+#: resources/views/settings/partials/bible-brains-key.php:75
+#, fuzzy
+msgid "Here's how to get your key."
+msgstr "A continuación, te explicamos cómo obtener tu llave."
+
+#: resources/views/settings/support.php:14
+msgid "FAQ"
+msgstr "FAQ"
+
+#: resources/views/settings/support.php:20
+#, fuzzy
+msgid ""
+"If you encounter an error or bug, please report it to us at our GitHub by "
+"clicking the button below."
+msgstr ""
+"Si encuentra un error o fallo, infórmenos en nuestro GitHub haciendo clic en "
+"el botón a continuación."
+
+#: resources/views/settings/support.php:24
+#, fuzzy
+msgid "Report an error"
+msgstr "Notificar un error"
+
+#: resources/views/settings/support.php:31
+#: resources/views/settings/support.php:42
+#, fuzzy
+msgid ""
+"Fill out the support form on our website. You can expect a response within "
+"48 business days."
+msgstr ""
+"Complete el formulario de soporte en nuestro sitio web. Puede esperar una "
+"respuesta en un plazo de 48 días hábiles."
+
+#: resources/views/settings/support.php:35
+#, fuzzy
+msgid "Request support"
+msgstr "Solicitar soporte"
+
+#: resources/views/settings/support.php:46
+#, fuzzy
+msgid "Request a feature"
+msgstr "Solicitar una función"
+
+#: resources/views/settings/support.php:53
+#, fuzzy
+msgid ""
+"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
+"you contact them to request additional translations be added the Bible "
+"Reader."
+msgstr ""
+"El lector de la Biblia usa la Biblia El cerebro por la fe viene por el oído. "
+"Le recomendamos que se ponga en contacto con ellos para solicitar que se "
+"agreguen traducciones adicionales al Lector de la Biblia."
+
+#: resources/views/settings/support.php:57
+#, fuzzy
+msgid ""
+"We rely on community support to add additional languages to the Bible Plugin "
+"UI. If you are a translator or you would like more information on how you "
+"can get involved, please contact us using the contact form on our website."
+msgstr ""
+"Confiamos en el apoyo de la comunidad para agregar idiomas adicionales a la "
+"interfaz de usuario del complemento de la Biblia. Si eres traductor o "
+"quieres más información sobre cómo puedes participar, ponte en contacto con "
+"nosotros a través del formulario de contacto de nuestra página web."
+
+#: resources/views/settings/support.php:62
+#, fuzzy
+msgid "Bible Brains"
+msgstr "Cerebros bíblicos"
+
+#: resources/views/settings/support.php:75
+#: resources/views/settings/support.php:88
+#: resources/views/settings/support.php:106
+msgid "About"
+msgstr "Acerca de"
+
+#: resources/views/settings/support.php:91
+#: resources/views/settings/support.php:113
+msgid "Give"
+msgstr "Give"
+
+#: resources/views/settings/support.php:100
+#, fuzzy
+msgid ""
+"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
+"reader in WordPress sites with the Bible text accessed through available "
+"Bible APIs.  Localization and focus is a priority of this plugin with admin "
+"settings allowing for selection of language, Bible version, number of Bible "
+"versions available to the end-user, and design elements (fonts, colors).  "
+"Simplicity and ease of use for the end-user is the second top priority with "
+"the goal of an intuitive interface.  Initial development of the plugin will "
+"be based on the Bible Brain / DBPv4 API but with the intention of expanding "
+"to other Bible APIs in subsequent releases.  Additional information is "
+"available in the SRS document on GitHub.\n"
+msgstr ""
+"Poner la palabra en WordPress.  El complemento de la Biblia proporciona un "
+"lector de la Biblia simple en los sitios de WordPress con el texto de la "
+"Biblia al que se accede a través de las API de la Biblia disponibles.  La "
+"localización y el enfoque son una prioridad de este complemento con "
+"configuraciones de administración que permiten la selección del idioma, la "
+"versión de la Biblia, el número de versiones de la Biblia disponibles para "
+"el usuario final y los elementos de diseño (fuentes, colores).  La "
+"simplicidad y la facilidad de uso para el usuario final es la segunda "
+"prioridad con el objetivo de una interfaz intuitiva.  El desarrollo inicial "
+"del plugin se basará en la API de Bible Brain / DBPv4 pero con la intención "
+"de expandirse a otras API de Bible en versiones posteriores.  Hay "
+"información adicional disponible en el documento SRS en GitHub.\n"
+
+#: resources/views/settings/support.php:109
+msgid "GitHub"
+msgstr "GitHub"
+
+#: resources/views/starter-magic-link/show.php:12
+#, fuzzy
+msgid "Visit subpage"
+msgstr "Ir a la subpágina"
+
+#: resources/views/starter-magic-link/subpage.php:12
+#, fuzzy
+msgid "Visit home"
+msgstr "Visita a casa"
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:130
+#: src/Controllers/Admin/CustomizationFomController.php:73
+#, fuzzy
+msgid "Please complete the required fields."
+msgstr "Por favor, rellene los campos obligatorios."
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
+#: src/Controllers/Admin/BibleBrainsFormController.php:191
+#: src/Controllers/Admin/CustomizationFomController.php:86
+#, fuzzy
+msgid "Form could not be submitted."
+msgstr "No se pudo enviar el formulario."
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:168
+#, fuzzy
+msgid "Please enter a key."
+msgstr "Por favor, introduzca una clave."
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:178
+#, fuzzy
+msgid "Failed to validate key."
+msgstr "No se pudo validar la clave."
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:180
+#, fuzzy
+msgid "Invalid."
+msgstr "No válido."
+
+#: src/Controllers/Admin/CustomizationFomController.php:31
+msgid "Light"
+msgstr "Claro"
+
+#: src/Controllers/Admin/CustomizationFomController.php:35
+msgid "Dark"
+msgstr "Oscuro"
+
+#: src/Middleware/Nonce.php:22
+#, fuzzy
+msgid "Could not verify request."
+msgstr "No se pudo verificar la solicitud."
+
+#: src/Providers/AdminServiceProvider.php:46
+#, fuzzy
+msgid "Biblical Text Setup"
+msgstr "Configuración del texto bíblico"
+
+#: src/Providers/AdminServiceProvider.php:50
+msgid "Customization"
+msgstr "Personalización"
+
+#: src/Providers/AdminServiceProvider.php:54
+msgid "Support"
+msgstr "Soporte"
+
+#: tests/TranslatorTest.php:26
+msgid "Hello World"
+msgstr "Hola mundo"
+
+#. Plugin URI of the plugin/theme
+#, fuzzy
+msgid "https://github.com/TheCodeZone/bible-plugin"
+msgstr "https://github.com/TheCodeZone/bible-plugin"
+
+#. Description of the plugin/theme
+#, fuzzy
+msgid "A bible plugin for WordPress."
+msgstr "Un plugin de la biblia para WordPress."
+
+#. Author URI of the plugin/theme
+#, fuzzy
+msgid "https://github.com/TheCodeZone"
+msgstr "https://github.com/TheCodeZone"
