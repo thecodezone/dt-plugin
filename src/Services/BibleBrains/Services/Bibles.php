@@ -5,6 +5,10 @@ namespace CodeZone\Bible\Services\BibleBrains\Services;
 use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Illuminate\Support\Arr;
 use CodeZone\Bible\Illuminate\Support\Str;
+use CodeZone\Bible\PhpOption\Option;
+use CodeZone\Bible\Services\BibleBrains\Reference;
+use CodeZone\Bible\Services\Options;
+use function CodeZone\Bible\CodeZone\Router\container;
 use function CodeZone\Bible\collect;
 
 class Bibles extends Service {
@@ -12,6 +16,29 @@ class Bibles extends Service {
 	protected $default_options = [
 		'limit' => 500,
 	];
+	protected $media_types = [
+		'audio_drama'  => [
+			'label'         => 'Dramatized Audio',
+			'fileset_types' => [ 'audio_drama' ],
+			'group'         => 'dbp-prod'
+		],
+		'audio'        => [
+			'label'         => 'Audio',
+			'fileset_types' => [ 'audio' ],
+			'group'         => 'dbp-prod'
+		],
+		'video_stream' => [
+			'label'         => 'Video',
+			'fileset_types' => [ 'video_stream' ],
+			'group'         => 'dbp-vid'
+		],
+		'text'         => [
+			'label'         => 'Text',
+			'fileset_types' => [ 'text_json' ],
+			'group'         => 'dbp-prod'
+		]
+	];
+
 
 	/**
 	 * Transforms a collection of records into an array of options.
@@ -30,6 +57,19 @@ class Bibles extends Service {
 			return ! empty( $option['value'] )
 			&& ! empty( $option['itemText'] );
 		} )->toArray() );
+	}
+
+	/**
+	 * Retrieves the books of a given code.
+	 *
+	 * @param string $code The code of the book.
+	 * @param array $query An optional array of query parameters to filter the books.
+	 *
+	 * @return array Returns an array of books for the given code.
+	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
+	 */
+	public function books( $code, $query = [] ) {
+		return $this->find( $code, $query )['data']['books'] ?? [];
 	}
 
 	/**
@@ -130,7 +170,7 @@ class Bibles extends Service {
 	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
 	 */
 	public function media_types() {
-		return $this->get( $this->endpoint . '/filesets/media/types' );
+		return $this->media_types;
 	}
 
 	/**
@@ -151,19 +191,28 @@ class Bibles extends Service {
 	public function media_type_options() {
 		return [
 			'data' => collect( $this->media_types() )
-				->map( function ( $label, $value ) {
+				->map( function ( $data, $value ) {
 					return [
 						'value'    => $value,
-						'itemText' => $label
+						'itemText' => $data['label']
 					];
-				} )->filter( function ( $option ) {
-					$whitelist = [ "audio_drama", "audio", "video_stream" ];
-
-					return in_array( $option['value'], $whitelist );
-				} )->push( [
-					'value'    => 'text',
-					'itemText' => 'Text'
-				] )->sortBy( 'value' )->values()
+				} )
 		];
+	}
+
+	public function content( $fileset, $book, $chapter, $verse_start, $verse_end ): array {
+		return $this->get( 'filesets/' . $fileset . '/' . $book . '/' . $chapter, [
+			'verse_start' => $verse_start,
+			'verse_end'   => $verse_end
+		] );
+	}
+
+	public function reference( $reference, $fileset ): array {
+		[ $book, $chapter, $verse_start, $verse_end ] = Reference::spread( $reference );
+
+		return $this->get( $this->endpoint . "/filesets/" . $fileset . "/" . $book . "/" . $chapter, [
+			'verse_start' => $verse_start,
+			'verse_end'   => $verse_end
+		] );
 	}
 }

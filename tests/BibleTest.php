@@ -3,8 +3,10 @@
 namespace Tests;
 
 use CodeZone\Bible\Illuminate\Support\Str;
+use CodeZone\Bible\Services\BibleBrains\Scripture;
 use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
 use CodeZone\Bible\Services\BibleBrains\Services\Languages;
+use CodeZone\Bible\Services\Cache;
 use function CodeZone\Bible\container;
 
 require "vendor-scoped/autoload.php";
@@ -52,5 +54,27 @@ class BibleTest extends TestCase {
 		$result    = $languages->search( 'New King James Version' );
 		$this->assertGreaterThan( 0, $result['data'] );
 		$this->assertGreaterThan( 0, count( $result['data'] ) );
+	}
+
+	/**
+	 * @test
+	 */
+	public function it_can_get_bible_content() {
+		$bibles    = container()->make( Bibles::class );
+		$scripture = $bibles->reference( 'John 3', 'ENGESV' );
+		$this->assertGreaterThan( 3, count( $scripture['data'] ) );
+		foreach ( $scripture['data'] as $verse ) {
+			$this->assertEquals( $verse['book_id'], 'JHN' );
+		}
+		$scripture = $bibles->reference( 'JHN 3:16-17', 'ENGKJV' );
+		$this->assertEquals( 2, count( $scripture['data'] ) );
+		foreach ( $scripture['data'] as $verse ) {
+			$this->assertEquals( $verse['book_id'], 'JHN' );
+		}
+		$scripture = $bibles->reference( 'john 3:16', 'ENGKJV' );
+		$this->assertEquals( 1, count( $scripture['data'] ) );
+		foreach ( $scripture['data'] as $verse ) {
+			$this->assertEquals( $verse['book_id'], 'JHN' );
+		}
 	}
 }
