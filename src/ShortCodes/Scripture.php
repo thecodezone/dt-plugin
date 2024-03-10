@@ -24,7 +24,7 @@ class Scripture {
 	/**
 	 * Render function for the shortcode.
 	 *
-	 * @param array $atts An array of attributes passed to the shortcode.
+	 * @param array $attributes An array of attributes passed to the shortcode.
 	 *                    The following attributes are available:
 	 *                    - book: The book name. Default is an empty string.
 	 *                    - chapter: The chapter number. Default is an empty string.
@@ -33,15 +33,15 @@ class Scripture {
 	 *
 	 * @return void This method does not return a value.
 	 */
-	public function render( $atts ) {
-		$atts = shortcode_atts( [
+	public function render( $attributes ) {
+		$attributes = shortcode_atts( [
 			'book'    => '',
 			'chapter' => '',
 			'verse'   => '',
 			'media'   => ''
-		], $atts );
+		], $attributes );
 
 
-		echo template( 'shortcodes/scripture', $atts );
+		echo template( 'shortcodes/scripture', $attributes );
 	}
 }

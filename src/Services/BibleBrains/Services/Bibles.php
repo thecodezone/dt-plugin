@@ -16,28 +16,6 @@ class Bibles extends Service {
 	protected $default_options = [
 		'limit' => 500,
 	];
-	protected $media_types = [
-		'audio_drama'  => [
-			'label'         => 'Dramatized Audio',
-			'fileset_types' => [ 'audio_drama' ],
-			'group'         => 'dbp-prod'
-		],
-		'audio'        => [
-			'label'         => 'Audio',
-			'fileset_types' => [ 'audio' ],
-			'group'         => 'dbp-prod'
-		],
-		'video_stream' => [
-			'label'         => 'Video',
-			'fileset_types' => [ 'video_stream' ],
-			'group'         => 'dbp-vid'
-		],
-		'text'         => [
-			'label'         => 'Text',
-			'fileset_types' => [ 'text_json' ],
-			'group'         => 'dbp-prod'
-		]
-	];
 
 
 	/**
@@ -161,43 +139,6 @@ class Bibles extends Service {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * Retrieves the media types supported by the filesets endpoint.
-	 *
-	 * @return array Returns an array of media types supported by the filesets endpoint.
-	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
-	 */
-	public function media_types() {
-		return $this->media_types;
-	}
-
-	/**
-	 * Retrieves the available media type options.
-	 *
-	 * This method retrieves an array of media type options based on the media types supported by the filesets endpoint.
-	 * It filters the options by a whitelist of predefined media types and adds a "Text" option at the end.
-	 * The options are sorted by their value in ascending order.
-	 *
-	 * @return array Returns an array of available media type options.
-	 *               Each option is represented as an associative array with the following keys:
-	 *               - 'value': The value of the media type option.
-	 *               - 'itemText': The text to be displayed for the media type option.
-	 *
-	 * @throws BibleBrainsException If the request to retrieve the media types from the filesets endpoint is unsuccessful
-	 *                             or returns an error.
-	 */
-	public function media_type_options() {
-		return [
-			'data' => collect( $this->media_types() )
-				->map( function ( $data, $value ) {
-					return [
-						'value'    => $value,
-						'itemText' => $data['label']
-					];
-				} )
-		];
 	}
 
 	public function content( $fileset, $book, $chapter, $verse_start, $verse_end ): array {
