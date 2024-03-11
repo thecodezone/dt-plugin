@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeZone\Bible\Services\BibleBrains\Services;
+namespace CodeZone\Bible\Services\BibleBrains\Api;
 
 use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Illuminate\Http\Client\Factory as Http;
@@ -13,7 +13,7 @@ use Exception;
 use function CodeZone\Bible\collect;
 use function CodeZone\Bible\container;
 
-abstract class Service {
+abstract class ApiService {
 	/**
 	 * @var Http
 	 */
@@ -57,6 +57,10 @@ abstract class Service {
 		if ( $response->successful() ) {
 			$cache->set( $cache_key, $result );
 		} else {
+			if ( ! isset( $result['error'] ) ) {
+				// phpcs:ignore
+				throw new BibleBrainsException( 'An error occurred while retrieving data from the BibleBrains API.' );
+			}
 			// phpcs:ignore
 			throw new BibleBrainsException( $result['error']['message'] ?? $result['error'] );
 		}

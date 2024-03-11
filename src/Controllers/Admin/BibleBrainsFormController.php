@@ -6,8 +6,8 @@ use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
 use CodeZone\Bible\Illuminate\Support\Arr;
-use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
-use CodeZone\Bible\Services\BibleBrains\Services\Languages;
+use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
+use CodeZone\Bible\Services\BibleBrains\Api\Languages;
 use Exception;
 use function CodeZone\Bible\transaction;
 use function CodeZone\Bible\validate;
@@ -49,7 +49,7 @@ class BibleBrainsFormController {
 			$language_options      = $language_service->as_options( $selected_languages );
 
 			//Bibles
-			$bibles = get_plugin_option( 'bibles', false );
+			$bibles = get_plugin_option( 'bibles', false, true );
 			if ( ! $bibles ) {
 				$bibles = implode( ',', $bible_service->default_for_languages( Arr::pluck( $selected_languages, 'codes.Iso 639-2' ) )['data'] );
 			}

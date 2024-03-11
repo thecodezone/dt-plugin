@@ -5,8 +5,8 @@ namespace CodeZone\Bible\Controllers;
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Http\Response;
 use CodeZone\Bible\Illuminate\Support\Str;
-use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
-use CodeZone\Bible\Services\BibleBrains\Services\Languages;
+use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
+use CodeZone\Bible\Services\BibleBrains\Api\Languages;
 use function CodeZone\Bible\collect;
 
 /**

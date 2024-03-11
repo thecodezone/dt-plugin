@@ -1,13 +1,13 @@
 <?php
 
-namespace CodeZone\Bible\Services\BibleBrains\Services;
+namespace CodeZone\Bible\Services\BibleBrains\Api;
 
 use CodeZone\Bible\Illuminate\Http\Client\Response;
 use CodeZone\Bible\Illuminate\Support\Collection;
 use CodeZone\Bible\Illuminate\Support\Str;
 use function CodeZone\Bible\collect;
 
-class Languages extends Service {
+class Languages extends ApiService {
 	protected $endpoint = 'languages';
 	protected $default_options = [
 		'include_translations' => false,

@@ -52,7 +52,7 @@ class Reference {
 	 *
 	 * @return array The normalized array.
 	 */
-	private static function normalize_array( $array ) {
+	public static function normalize_array( $array ) {
 		$array = array_merge(
 			[
 				'book'        => '',
@@ -71,8 +71,9 @@ class Reference {
 			return $value;
 		} );
 
-		if ( ! $array['verse_end'] ) {
-			$array['verse_end'] = $array['verse_start'];
+		if ( isset( $array['verse'] ) && ! $array['verse_start'] ) {
+			$array['verse_start'] = $array['verse'];
+			$array['verse_end']   = $array['verse'];
 		}
 
 		$books         = container()->make( Books::class );
@@ -105,6 +106,9 @@ class Reference {
 		[ $book, $chapter_and_verse ] = array_pad( explode( ' ', $reference ?? "", 2 ), 2, null );
 		[ $chapter, $verses ] = array_pad( explode( ':', $chapter_and_verse ?? "", 2 ), 2, null );
 		$verses = array_pad( explode( '-', $verses ?? "", 2 ), 2, null );
+		if ( ! $verses[1] ) {
+			$verses[1] = $verses[0];
+		}
 
 		$parsed = [
 			'book'        => $book,

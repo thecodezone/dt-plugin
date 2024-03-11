@@ -34,7 +34,7 @@ class MediaTypes {
 		],
 		'text'         => [
 			'label'         => 'Text',
-			'fileset_types' => [ 'text_json' ],
+			'fileset_types' => [ 'text_json', "text_plain", "text_format" ],
 			'group'         => 'dbp-prod'
 		]
 	];
@@ -64,7 +64,7 @@ class MediaTypes {
 	 * @throws BibleBrainsException If the request to retrieve the media types from the filesets endpoint is unsuccessful
 	 *                             or returns an error.
 	 */
-	public function media_type_options() {
+	public function media_type_options(): array {
 		return collect( $this->all() )
 			->map( function ( $data, $value ) {
 				return [
@@ -75,16 +75,23 @@ class MediaTypes {
 	}
 
 	/**
-	 * @param $media_type
+	 * Find the first occurrence of a given media type in the collection.
 	 *
-	 * @return \Closure|null
-	 * @throws BibleBrainsException
+	 * @param string $media_type The media type to search for.
+	 *
+	 * @throws BibleBrainsException If the media type is not found in the collection.
 	 */
-	public function find( $media_type ) {
-		return collect( $this->all() )
+	public function find( $media_type ): array {
+		$result = collect( $this->all() )
 			->filter( function ( $data, $value ) use ( $media_type ) {
 				return $value === $media_type;
 			} )
 			->first();
+
+		if ( ! $result ) {
+			throw new BibleBrainsException( esc_html( "Invalid media type: {$media_type}." ) );
+		}
+
+		return $result;
 	}
 }

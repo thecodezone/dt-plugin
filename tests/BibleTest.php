@@ -4,8 +4,8 @@ namespace Tests;
 
 use CodeZone\Bible\Illuminate\Support\Str;
 use CodeZone\Bible\Services\BibleBrains\Scripture;
-use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
-use CodeZone\Bible\Services\BibleBrains\Services\Languages;
+use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
+use CodeZone\Bible\Services\BibleBrains\Api\Languages;
 use CodeZone\Bible\Services\Cache;
 use function CodeZone\Bible\container;
 
@@ -24,7 +24,6 @@ class BibleTest extends TestCase {
 	 */
 	public function it_can_fetch_a_bible() {
 		$response = $this->get( 'bible/api/bibles/ENGESV' );
-		dd( json_decode( $response->getContent() ) );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
 		$this->assertEquals( 'ENGESV', $result['data']['abbr'] );

@@ -3,7 +3,7 @@
 namespace Tests;
 
 use CodeZone\Bible\Illuminate\Support\Str;
-use CodeZone\Bible\Services\BibleBrains\Services\Languages;
+use CodeZone\Bible\Services\BibleBrains\Api\Languages;
 use function CodeZone\Bible\container;
 
 require "vendor-scoped/autoload.php";

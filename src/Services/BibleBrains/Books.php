@@ -2,50 +2,155 @@
 
 namespace CodeZone\Bible\Services\BibleBrains;
 
+use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Illuminate\Support\Arr;
 use CodeZone\Bible\Illuminate\Support\Str;
-use CodeZone\Bible\Services\BibleBrains\Services\Bibles;
+use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
 
 /**
- * Class Books
+ * Books service class for interacting with the Bible Brains books.
  */
 class Books {
-	public function __construct( protected Bibles $bible ) {
+	private $old_testament = [
+		'GEN' => 'Genesis',
+		'EXO' => 'Exodus',
+		'LEV' => 'Leviticus',
+		'NUM' => 'Numbers',
+		'DEU' => 'Deuteronomy',
+		'JOS' => 'Joshua',
+		'JDG' => 'Judges',
+		'RUT' => 'Ruth',
+		'1SA' => '1 Samuel',
+		'2SA' => '2 Samuel',
+		'1KI' => '1 Kings',
+		'2KI' => '2 Kings',
+		'1CH' => '1 Chronicles',
+		'2CH' => '2 Chronicles',
+		'EZR' => 'Ezra',
+		'NEH' => 'Nehemiah',
+		'EST' => 'Esther',
+		'JOB' => 'Job',
+		'PSA' => 'Psalms',
+		'PRO' => 'Proverbs',
+		'ECC' => 'Ecclesiastes',
+		'SNG' => 'Song of Solomon',
+		'ISA' => 'Isaiah',
+		'JER' => 'Jeremiah',
+		'LAM' => 'Lamentations',
+		'EZK' => 'Ezekiel',
+		'DAN' => 'Daniel',
+		'HOS' => 'Hosea',
+		'JOL' => 'Joel',
+		'AMO' => 'Amos',
+		'OBA' => 'Obadiah',
+		'JON' => 'Jonah',
+		'MIC' => 'Micah',
+		'NAM' => 'Nahum',
+		'HAB' => 'Habakkuk',
+		'ZEP' => 'Zephaniah',
+		'HAG' => 'Haggai',
+		'ZEC' => 'Zechariah',
+		'MAL' => 'Malachi'
+	];
+
+	private $new_testament = [
+		'MAT' => 'Matthew',
+		'MRK' => 'Mark',
+		'LUK' => 'Luke',
+		'JHN' => 'John',
+		'ACT' => 'Acts',
+		'ROM' => 'Romans',
+		'1CO' => '1 Corinthians',
+		'2CO' => '2 Corinthians',
+		'GAL' => 'Galatians',
+		'EPH' => 'Ephesians',
+		'PHP' => 'Philippians',
+		'COL' => 'Colossians',
+		'1TH' => '1 Thessalonians',
+		'2TH' => '2 Thessalonians',
+		'1TI' => '1 Timothy',
+		'2TI' => '2 Timothy',
+		'TIT' => 'Titus',
+		'PHI' => 'Philemon',
+		'HEB' => 'Hebrews',
+		'JAS' => 'James',
+		'1PE' => '1 Peter',
+		'2PE' => '2 Peter',
+		'1JN' => '1 John',
+		'2JN' => '2 John',
+		'3JN' => '3 John',
+		'JUD' => 'Jude',
+		'REV' => 'Revelation'
+	];
+
+	public function guess_testament( $abbr ) {
+		return array_key_exists( $abbr, $this->old_testament ) ? 'OT' : 'NT';
+	}
+
+	public function __construct( protected Bibles $bibles ) {
 	}
 
 	/**
-	 * Retrieves all books from the Bible using the specified translation.
+	 * Retrieves all books from the specified bible version.
 	 *
-	 * @return array The list of books in the Bible.
+	 * @param string|array $bible The version of the bible to retrieve the books from.
+	 *                            Can be either the version ID or an associative array containing the books.
+	 *                            Defaults to 'ENGESV'.
+	 *
+	 * @return array The array containing all the books from the specified bible version.
+	 * @throws BibleBrainsException
 	 */
-	public function all() {
-		return $this->bible->books( 'ENGESV' );
+	public function all( string|array $bible = 'ENGESV' ): array {
+		if ( is_array( $bible ) ) {
+			return $bible['books'];
+		}
+
+		return $this->bibles->books( $bible );
 	}
 
 	/**
-	 * Find the first occurrence of a book in the given array.
+	 * Find a book within the given Bible.
 	 *
-	 * @param string $book The book to search for.
+	 * @param string $book The book to find.
+	 * @param string|array $bible The Bible to search in. Defaults to 'ENGESV'.
 	 *
-	 * @return mixed The first occurrence of the book, or null if not found.
+	 * @return ?array Returns an array representing the found book, or null if not found.
+	 * @throws BibleBrainsException
 	 */
-	public function find( $book ) {
-		return Arr::first( $this->all(), function ( $b ) use ( $book ) {
+	public function find( string $book, string $bible = 'ENGESV' ): ?array {
+		$books = $this->all( $bible );
+
+		return $this->pluck( $book, $books );
+	}
+
+	/**
+	 * Pluck a book from the given Bible.
+	 *
+	 * @param string $book The book to pluck.
+	 * @param array $bible The Bible to pluck from.
+	 *
+	 * @return array Returns an array representing the plucked book, or null if not found.
+	 * @throws BibleBrainsException
+	 */
+	public function pluck( string $book, array $books ): array {
+		return Arr::first( $books, function ( $b ) use ( $book ) {
 			return $b['book_id'] === Str::upper( $book )
 			       || $b['name'] === Str::ucfirst( $book )
 			       || $b['name_short'] === Str::ucfirst( $book );
-		} );
+		}, [] );
 	}
 
 	/**
-	 * Normalize a book by returning its book_id if found in the data array, otherwise return the original book value
+	 * Normalize a book within the given Bible.
 	 *
-	 * @param string $book The book to be normalized.
+	 * @param string $book The book to normalize.
+	 * @param string|array $bible The Bible to search in. Defaults to 'ENGESV'.
 	 *
-	 * @return string The normalized book_id if found in the data array, otherwise the original book value.
+	 * @return string|array Returns the normalized book if found, otherwise returns the original book.
+	 * @throws BibleBrainsException
 	 */
-	public function normalize( $book ) {
-		$data = $this->find( $book );
+	public function normalize( string $book, string|array $bible = 'ENGESV' ) {
+		$data = $this->find( $book, $bible );
 
 		if ( ! $data ) {
 			return $book;
