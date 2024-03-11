@@ -23,7 +23,7 @@ class TranslatorTest extends TestCase {
 		set_plugin_option( 'translations', [
 			'Hello World' => 'Hola Mundo'
 		] );
-		$this->assertEquals( 'Hola Mundo', __( 'Hello World', 'bible-plugin' ) );
+		$this->assertEquals( 'Hola Mundo', _x( 'Hello World', 'reader', 'bible-plugin' ) );
 	}
 
 	/**

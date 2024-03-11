@@ -23,6 +23,7 @@ class Translations {
 
 
 	public function __construct() {
+		load_plugin_textdomain( 'bible-plugin', false, 'bible-plugin/languages' );
 		add_filter( 'gettext_with_context', [ $this, 'gettext_with_context' ], 10, 4 );
 	}
 

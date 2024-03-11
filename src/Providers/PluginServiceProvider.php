@@ -34,12 +34,6 @@ class PluginServiceProvider extends ServiceProvider {
 			return Request::capture();
 		} );
 
-		$this->container->singleton( Translations::class, function () {
-			return new Translations();
-		} );
-
-		$this->container->make( Translations::class );
-
 		foreach ( $this->providers as $provider ) {
 			$provider = $this->container->make( $provider );
 			$provider->register();
