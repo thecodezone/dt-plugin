@@ -5,7 +5,7 @@ import {Textfield} from "@spectrum-web-components/textfield";
 import textFieldStyles from "@spectrum-web-components/textfield/src/textfield.css.js";
 import convert from "color-convert";
 
-@customElement('br-color-slider')
+@customElement('tbp-color-slider')
 export class ColorPicker extends Textfield {
     static get styles() {
         return [

@@ -113,4 +113,4 @@ export class AlertBanner extends ActionBar {
     }
 }
 
-window.customElements.define("br-alert-banner", AlertBanner);
+window.customElements.define("tbp-alert-banner", AlertBanner);

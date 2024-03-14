@@ -71,7 +71,7 @@ import './alpine-components/bible-brains-key-form.js';
 import './alpine-components/bible-brains-form.js';
 
 loaded(() => {
-    document.querySelectorAll('.br-cloak').forEach((el) => el.classList.remove('br-cloak'));
+    document.querySelectorAll('.tbp-cloak').forEach((el) => el.classList.remove('tbp-cloak'));
 });
 
 window.Alpine = Alpine

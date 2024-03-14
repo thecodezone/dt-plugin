@@ -12,29 +12,29 @@ class MediaTypes {
 	/**
 	 * Media types and their properties.
 	 *
-	 * @var array $media_types
+	 * @var array $data
 	 * Key-value pairs where the key is the media type and the value is an array of properties.
 	 * Properties include the label, fileset types, and group.
 	 */
-	private $media_types = [
-		'audio_drama'  => [
+	private $data = [
+		'audio_drama' => [
 			'label'         => 'Dramatized Audio',
 			'fileset_types' => [ 'audio_drama' ],
 			'group'         => 'dbp-prod'
 		],
-		'audio'        => [
+		'audio'       => [
 			'label'         => 'Audio',
 			'fileset_types' => [ 'audio' ],
 			'group'         => 'dbp-prod'
 		],
-		'video_stream' => [
+		'video'       => [
 			'label'         => 'Video',
 			'fileset_types' => [ 'video_stream' ],
 			'group'         => 'dbp-vid'
 		],
-		'text'         => [
+		'text'        => [
 			'label'         => 'Text',
-			'fileset_types' => [ 'text_json', "text_plain", "text_format" ],
+			'fileset_types' => [ "text_format" ],
 			'group'         => 'dbp-prod'
 		]
 	];
@@ -46,7 +46,7 @@ class MediaTypes {
 	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
 	 */
 	public function all() {
-		return $this->media_types;
+		return $this->data;
 	}
 
 	/**
@@ -64,7 +64,7 @@ class MediaTypes {
 	 * @throws BibleBrainsException If the request to retrieve the media types from the filesets endpoint is unsuccessful
 	 *                             or returns an error.
 	 */
-	public function media_type_options(): array {
+	public function options(): array {
 		return collect( $this->all() )
 			->map( function ( $data, $value ) {
 				return [

@@ -53,9 +53,8 @@ class Scripture {
 	 */
 	public function search( array $parameters = [] ): array {
 		$parameters = $this->normalize_query( $parameters );
-		$fileset    = $this->query_fileset_id( $parameters );
 
-		return $this->by_fileset( $fileset, $parameters );
+		return $this->query( $parameters );
 	}
 
 	/**
@@ -77,6 +76,7 @@ class Scripture {
 			'verse_start' => null,
 			'verse_end'   => null,
 		], $parameters );
+;
 
 		return array_merge( $parameters, $this->reference->parse( $parameters ) );
 	}
@@ -98,7 +98,7 @@ class Scripture {
 	 *
 	 * @throws BibleBrainsException If an invalid media type is specified or if there are any other errors.
 	 */
-	private function query_fileset( array $parameters ): array {
+	private function query( array $parameters ): array {
 		$parameters = $this->normalize_query( $parameters );
 
 		//If no language, fetch the default from options
@@ -116,35 +116,21 @@ class Scripture {
 			throw new BibleBrainsException( esc_attr( "Bible, {$bible['name']}, does not contain {$parameters["media_type"]} fileset for {$book['book']}." ) );
 		}
 
-		return $fileset;
+		$parameters['fileset'] = $fileset['id'];
+
+		$content = $this->fetch_content( $parameters );
+
+		return [
+			...$parameters,
+			'media_type' => $media_type,
+			'language'   => $language,
+			'bible'      => $bible,
+			'book'       => $book,
+			'fileset'    => $fileset,
+			'content'    => $content['data'] ?? []
+		];
 	}
 
-	/**
-	 * Retrieve the fileset ID based on the provided parameters.
-	 *
-	 * @param array $parameters An associative array of parameters.
-	 *                          - language: The language to search in. Defaults to null.
-	 *                          - fileset: The fileset to search in. Defaults to null.
-	 *                          - bible: The specific Bible to search in. Defaults to null.
-	 *                          - book: The specific book of the Bible to search in. Defaults to null.
-	 *                          - chapter: The specific chapter of the Bible to search in. Defaults to null.
-	 *                          - media_type: The media type to search for. Defaults to 'text'.
-	 *                          - verse_start: The starting verse to search from. Defaults to null.
-	 *                          - verse_end: The ending verse to search to. Defaults to null.
-	 *
-	 * @return string The fileset ID.
-	 *
-	 * @throws BibleBrainsException If an invalid media type is specified.
-	 *
-	 * @see query_fileset()
-	 */
-	private function query_fileset_id( array $parameters ) {
-		if ( $parameters['fileset'] ) {
-			return $parameters['fileset'];
-		}
-
-		return $this->query_fileset( $parameters )['id'];
-	}
 
 	/**
 	 * Search for verses in the Bible using the given reference and additional parameters.
@@ -157,7 +143,7 @@ class Scripture {
 	 *                          - book: The specific book of the Bible to search in. Defaults to null.
 	 *                          - chapter: The specific chapter of the Bible to search in. Defaults to null.
 	 *                          - media_type: The media type to search for. Defaults to 'text'.
-	 *                          - verse_start: The starting verse to search from. Defaults to null.
+	 *                          - verse_start: The starting verbiblese to search from. Defaults to null.
 	 *                          - verse_end: The ending verse to search to. Defaults to null.
 	 *
 	 * @return array The search results as an associative array.
@@ -166,29 +152,31 @@ class Scripture {
 	public function by_reference( string $reference = "", array $parameters = [] ): array {
 		$reference  = $this->reference->parse( $reference );
 		$parameters = $this->normalize_query( array_merge( $reference, $parameters ) );
-		$fileset    = $this->query_fileset_id( $parameters );
 
-		return $this->by_fileset( $fileset, $parameters );
+		return $this->query( $parameters );
 	}
 
 	/**
-	 * Search for verses in the Bible using a specific fileset and additional parameters.
+	 * Fetches the content of Bible verses based on the specified parameters.
 	 *
-	 * @param string $fileset The fileset to search in.
-	 * @param array $parameters An associative array of search parameters.
-	 *                          - language: The language to search in. Defaults to null.
-	 *                          - bible: The specific Bible to search in. Defaults to null.
-	 *                          - book: The specific book of the Bible to search in. Defaults to null.
-	 *                          - chapter: The specific chapter of the Bible to search in. Defaults to null.
-	 *                          - verse_start: The starting verse to search from. Defaults to null.
-	 *                          - verse_end: The ending verse to search to. Defaults to null.
+	 * @param array $parameters An associative array of parameters specifying the content to fetch.
+	 *                          - fileset: The fileset from which to fetch the content.
+	 *                          - book: The book of the Bible from which to fetch the content.
+	 *                          - chapter: The chapter of the Bible from which to fetch the content.
+	 *                          - verse_start: The starting verse of the content to fetch.
+	 *                          - verse_end: The ending verse of the content to fetch.
 	 *
-	 * @return array The search results.
-	 * @throws BibleBrainsException If an invalid media type is specified.
+	 * @return array An array containing the fetched content.
+	 * @throws BibleBrainsException If an error occurs while fetching the content.
 	 */
-	public function by_fileset( string $fileset, array $parameters = [] ): array {
-		[ $book, $chapter, $verse_start, $verse_end ] = $this->reference->spread( $parameters );
+	private function fetch_content( array $parameters = [] ): array {
 
-		return $this->bibles->content( $fileset, $book, $chapter, $verse_start, $verse_end );
+		return $this->bibles->content(
+			$parameters['fileset'],
+			$parameters['book'],
+			$parameters['chapter'],
+			$parameters['verse_start'],
+			$parameters["verse_end"]
+		);
 	}
 }

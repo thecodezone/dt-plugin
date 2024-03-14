@@ -3,12 +3,12 @@ import {css, html, LitElement} from "lit";
 import {range, lightestShade, darkestShade} from "../_helpers.js"
 import {TinyColor} from '@ctrl/tinycolor';
 
-@customElement('br-color-steps')
+@customElement('tbp-color-steps')
 export class ColorSteps extends LitElement {
 
-    @property({type: String}) accessor color;
-    @property({type: Array}) accessor range = range(100, 900, 100);
-    @property({type: Object}) accessor value = {};
+    @property({type: String}) color;
+    @property({type: Array}) range = range(100, 900, 100);
+    @property({type: Object}) value = {};
 
     static get styles() {
         return css`

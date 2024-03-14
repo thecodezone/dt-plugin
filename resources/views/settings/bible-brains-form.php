@@ -51,20 +51,20 @@ $this->insert( 'settings/partials/bible-brains-key', [
                     require
                     for="bible_plugin_languages"><?php esc_html_e( 'Languages', 'bible-plugin' ); ?></sp-field-label>
 
-            <br-overlay-picker id="languages"
-                               name="languages"
-                               placeholder="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>..."
-                               label="<?php esc_attr_e( 'Languages', 'bible-plugin' ); ?>"
-                               searchLabel="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>"
-                               :value="fields.languages"
-                               @change="fields.languages = $event.target.value;"
-                               @options="language_options = Object.values($event.target.option_history)"
-                               :optionsUrl="language_options_endpoint"
-                               options="<?php echo esc_attr( wp_json_encode( $language_options ) ); ?>"
-                               required
-                               searchable
+            <tbp-overlay-picker id="languages"
+                                name="languages"
+                                placeholder="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>..."
+                                label="<?php esc_attr_e( 'Languages', 'bible-plugin' ); ?>"
+                                searchLabel="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>"
+                                :value="fields.languages"
+                                @change="fields.languages = $event.target.value;"
+                                @options="language_options = Object.values($event.target.option_history)"
+                                :optionsUrl="language_options_endpoint"
+                                options="<?php echo esc_attr( wp_json_encode( $language_options ) ); ?>"
+                                required
+                                searchable
             >
-            </br-overlay-picker>
+            </tbp-overlay-picker>
 
             <sp-help-text size="s">
 				<?php esc_html_e( "Select the bible languages you would like to make available.", 'bible-plugin' ); ?>
@@ -108,7 +108,7 @@ $this->insert( 'settings/partials/bible-brains-key', [
                     required
                     for="default_bible"><?php esc_html_e( 'Bible Versions', 'bible-plugin' ); ?></sp-field-label>
 
-            <br-overlay-picker
+            <tbp-overlay-picker
                     id="bibles"
                     name="bibles"
                     placeholder="<?php esc_attr_e( 'Search', 'bible-plugin' ); ?>..."
@@ -124,7 +124,7 @@ $this->insert( 'settings/partials/bible-brains-key', [
                     searchFetch
                     required
             >
-            </br-overlay-picker>
+            </tbp-overlay-picker>
             <sp-help-text size="s">
 				<?php esc_html_e( "Select the bible versions you would like to make available.", 'bible-plugin' ); ?>
             </sp-help-text>

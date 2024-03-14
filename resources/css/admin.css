@@ -2,11 +2,6 @@ body {
     background-color: white;
 }
 
-
-.br-cloak {
-    display: none;
-}
-
 #poststuff h2 {
     padding-left: 0;
 }
@@ -59,12 +54,12 @@ form > sp-button-group {
     margin-top: 1rem;
 }
 
-br-alert-banner {
+tpb--alert-banner {
     max-width: 400px;
 }
 
-sp-divider[brown] {
-    --spectrum-divider-background-color-large: var(--spectrum-brown-600);
+sp-divider[tpb-own] {
+    --spectrum-divider-background-color-large: var(--spectrum-tpb-own-600);
 }
 
 sp-slider {

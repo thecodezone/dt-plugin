@@ -31,7 +31,7 @@
 
 		<?php $this->insert( 'partials/alerts' ); ?>
 
-        <div class="br-form-group">
+        <div class="tbp-form-group">
             <sp-field-group>
                 <sp-field-label
                         required

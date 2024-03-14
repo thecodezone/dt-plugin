@@ -18,7 +18,8 @@ use function CodeZone\Bible\collect;
 class Translations {
 	protected $custom_translation_contexts = [
 		'reader',
-		'scripture'
+		'scripture',
+		'shortcode'
 	];
 
 
@@ -39,7 +40,7 @@ class Translations {
 	public function gettext_with_context( $translation, $text, $context, $domain ): string {
 		if ( 'bible-plugin' === $domain && in_array( $context, $this->custom_translation_contexts ) ) {
 			$custom_translation = $this->apply_custom_translation( $text );
-			if ( $translation ) {
+			if ( $custom_translation ) {
 				return $custom_translation;
 			}
 		}

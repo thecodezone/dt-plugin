@@ -29,10 +29,6 @@ $accent_steps = $colors['accent_steps'] ?? [];
 ?>
 
 <style>
-    .br-cloak {
-        display: none;
-    }
-
     <?php if ( $color_scheme === 'dark' ): ?>
     body {
         background-color: #1D2327;
@@ -51,7 +47,7 @@ $accent_steps = $colors['accent_steps'] ?? [];
 <?php foreach ( $accent_steps as $step => $rgba ): ?>
         --spectrum-accent-color-<?php echo esc_attr( $step ) ?>: <?php echo esc_attr( $rgba ) ?>;
 <?php endforeach; ?>">
-    <div class=" bible-plugin br-cloak wrap">
+    <div class=" bible-plugin tbp-cloak wrap">
 
         <header>
             <div class="header__brand">

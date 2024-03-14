@@ -26,7 +26,7 @@ class Reference {
 			$reference['book'],
 			$reference['chapter'],
 			$reference['verse_start'],
-			$reference['verse_end'],
+			$reference['verse_end']
 		];
 	}
 

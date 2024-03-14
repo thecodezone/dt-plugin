@@ -154,7 +154,7 @@ abstract class ApiService {
 	 *                    - limit: The maximum number of languages to retrieve (default: 500).
 	 *
 	 * @return Response The retrieved languages.
-	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
+	 * @throws BibleBrainsException Ifdd(  the request is unsuccessful and returns an error.
 	 */
 	public function all( $params = [] ) {
 		$params = array_merge( $this->default_options, $params );

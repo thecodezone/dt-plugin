@@ -2,11 +2,15 @@
 
 namespace CodeZone\Bible\Services;
 
+use CodeZone\Bible\League\Plates\Extension\Asset;
+use function CodeZone\Bible\container;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
 use function CodeZone\Bible\plugin_path;
 use function CodeZone\Bible\view;
 
 class Template {
+	public function __construct( protected Assets $assets ) {
+	}
 
 	/**
 	 * Allow access to blank template
@@ -65,7 +69,7 @@ class Template {
 		add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
 		add_action( 'dt_blank_head', [ $this, 'header' ] );
 		add_action( 'dt_blank_footer', [ $this, 'footer' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
+		$this->assets->enqueue();
 
 		return view()->render( $template, $data );
 	}

@@ -2,23 +2,23 @@ import {css, html, LitElement} from "lit";
 import uniqua from "uniqua";
 import {customElement, property, state} from "lit/decorators.js";
 
-@customElement('br-overlay-picker')
+@customElement('tbp-overlay-picker')
 
 export class OverlayPicker extends LitElement {
-    @property({type: Array, reflect: true, attribute: true}) accessor options = [];
-    @property({type: String, reflect: true, attribute: true}) accessor optionsUrl = [];
-    @property({type: String, reflect: true, attribute: true}) accessor label = ''
-    @property({type: String}) accessor nonce = '';
-    @property({type: Boolean}) accessor prefetch = false
-    @property({type: Boolean}) accessor searchFetch = true
-    @property({type: String}) accessor value = ''
-    @property({type: String}) accessor searchLabel = 'Search'
-    @property({type: Boolean, attribute: true}) accessor searchable = false
+    @property({type: Array, reflect: true, attribute: true}) options = [];
+    @property({type: String, reflect: true, attribute: true}) optionsUrl = [];
+    @property({type: String, reflect: true, attribute: true}) label = ''
+    @property({type: String}) nonce = '';
+    @property({type: Boolean}) prefetch = false
+    @property({type: Boolean}) searchFetch = true
+    @property({type: String}) value = ''
+    @property({type: String}) searchLabel = 'Search'
+    @property({type: Boolean, attribute: true}) searchable = false
 
-    @state() accessor option_history = {}
-    @state() accessor selectedOptions = {}
-    @state() accessor values = []
-    @state() accessor search = ''
+    @state() option_history = {}
+    @state() selectedOptions = {}
+    @state() values = []
+    @state() search = ''
 
 
     /**

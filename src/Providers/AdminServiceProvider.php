@@ -3,10 +3,16 @@
 namespace CodeZone\Bible\Providers;
 
 use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
+use CodeZone\Bible\Services\Assets;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
 use function CodeZone\Bible\namespace_string;
 use function CodeZone\Bible\plugin_path;
 
+/**
+ * Class AdminServiceProvider
+ *
+ * This class is responsible for handling administrative tasks and providing services for the admin area of the plugin.
+ */
 class AdminServiceProvider extends ServiceProvider {
 	/**
 	 * Do any setup needed before the theme is ready.
@@ -15,9 +21,9 @@ class AdminServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Registers the The Bible Plugin menu page and submenu page.
+	 * Registers the Bible Plugin menu page and submenu page.
 	 *
-	 * This method adds the The Bible Plugin menu page and submenu page to the WordPress admin menu.
+	 * This method adds the Bible Plugin menu page and submenu page to the WordPress admin menu.
 	 *
 	 * @return void
 	 */
@@ -80,41 +86,7 @@ class AdminServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function load(): void {
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
-		add_action( 'admin_head', [ $this, 'admin_head' ] );
-	}
-
-	/**
-	 * Add the admin head
-	 *
-	 * @return void
-	 */
-	public function admin_head(): void {
-		?>
-        <style>
-            .br-cloak {
-                display: none;
-            }
-        </style>
-		<?php
-	}
-
-	/**
-	 * Enqueue the admin assets
-	 *
-	 * @return void
-	 */
-	public function admin_enqueue_scripts(): void {
-		enqueue_asset(
-			plugin_path( '/dist' ),
-			'resources/js/admin.js',
-			[
-				'handle'    => 'bible-plugin-admin',
-				'css-media' => 'all', // Optional.
-				'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
-				'in-footer' => false, // Optional. Defaults to false.
-			]
-		);
+		$this->container->make( Assets::class )->enqueue();
 	}
 
 

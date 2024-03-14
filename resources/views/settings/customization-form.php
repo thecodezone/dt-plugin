@@ -31,7 +31,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
 
 		<?php $this->insert( 'partials/alerts' ); ?>
 
-        <div class="br-form-group">
+        <div class="tbp-form-group">
             <sp-picker
                     id="color_scheme"
                     name="color_scheme"
@@ -57,19 +57,19 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
             </sp-help-text>
         </div>
 
-        <div class="br-form-group">
+        <div class="tbp-form-group">
 
             <sp-field-group>
                 <sp-field-label
                         required
                         for="colors_accent"><?php esc_html_e( 'Accent Color', 'bible-plugin' ); ?></sp-field-label>
 
-                <br-color-slider
+                <tbp-color-slider
                         id="colors_accent"
                         name="colors_accent"
                         :value="fields.colors.accent"
                         @change="fields.colors.accent = $event.target.value"
-                ></br-color-slider>
+                ></tbp-color-slider>
 
                 <sp-help-text size="s">
 					<?php esc_html_e( "The primary accent color used in the bible reader.", 'bible-plugin' ); ?>
@@ -81,14 +81,14 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
                         required
                         for="colors_accent"><?php esc_html_e( 'Accent Color Steps', 'bible-plugin' ); ?></sp-field-label>
 
-                <br-color-steps
+                <tbp-color-steps
                         id="colors_accent_steps"
                         name="colors_accent_steps"
                         :color="fields.colors.accent"
                         :value="fields.colors.accent_steps"
                         range="<?php echo esc_attr( wp_json_encode( range( 100, 1500, 100 ) ) ); ?>"
                         @change="fields.colors.accent_steps = $event.target.value"
-                ></br-color-steps>
+                ></tbp-color-steps>
 
 
                 <sp-help-text size="s">
@@ -100,7 +100,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
 
     <fieldset>
         <h2><?php esc_html_e( "Translations", 'bible_plugin' ); ?></h2>
-        <div class="br-form-group">
+        <div class="tbp-form-group">
             <template x-for="(value, string) in fields.translations">
                 <sp-field-group>
                     <sp-field-label

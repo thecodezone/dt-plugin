@@ -2,12 +2,22 @@
 
 namespace CodeZone\Bible\ShortCodes;
 
-use function CodeZone\Bible\template;
+use CodeZone\Bible\Exceptions\BibleBrainsException;
+use CodeZone\Bible\Services\Assets;
+use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
+use CodeZone\Bible\Services\BibleBrains\FileSets;
+use CodeZone\Bible\Services\BibleBrains\Scripture as ScriptureService;
+use function CodeZone\Bible\container;
+use function CodeZone\Bible\view;
 
 /**
  * Class Scripture
  *
- * The Scripture class is responsible for rendering the [tbp_scripture] shortcode.
+ * This class represents a shortcode for rendering scripture in a WordPress site.
+ * It registers the shortcode 'tbp_scripture' and maps it to the `render` method of the current object.
+ * The `render` method processes the shortcode attributes, retrieves the scripture data, and renders the output.
+ *
+ * @package YourPackage
  */
 class Scripture {
 	/**
@@ -17,31 +27,53 @@ class Scripture {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
-		add_shortcode( 'tbp_scripture', [ $this, 'render' ] );
+	public function __construct( private ScriptureService $scripture, private Assets $assets, private Bibles $bibles ) {
+		add_shortcode( 'tbp-scripture', [ $this, 'render' ] );
 	}
 
 	/**
-	 * Render function for the shortcode.
+	 * Renders a scripture shortcode.
 	 *
-	 * @param array $attributes An array of attributes passed to the shortcode.
-	 *                    The following attributes are available:
-	 *                    - book: The book name. Default is an empty string.
-	 *                    - chapter: The chapter number. Default is an empty string.
-	 *                    - verse: The verse number. Default is an empty string.
-	 *                    - media: The media source. Default is an empty string.
+	 * @param array $attributes The attributes for the shortcode.
+	 *  - language (optional) The language of the scripture.
+	 *  - reference (optional) The reference of the scripture.
+	 *  - media_type (optional) The media type of the scripture.
 	 *
-	 * @return void This method does not return a value.
+	 * @throws BibleBrainsException
 	 */
 	public function render( $attributes ) {
+		$this->assets->enqueue();
+
 		$attributes = shortcode_atts( [
-			'book'    => '',
-			'chapter' => '',
-			'verse'   => '',
-			'media'   => ''
+			'language'  => '',
+			'reference' => '',
+			'media'     => 'text'
 		], $attributes );
 
+		$error = false;
+		try {
+			$result = $this->scripture->by_reference( $attributes['reference'], [
+				'language'   => $attributes['language'],
+				'media_type' => $attributes['media'],
+			] ) ?? [];
 
-		echo template( 'shortcodes/scripture', $attributes );
+		} catch ( \Exception $e ) {
+			$error  = $e->getMessage();
+			$result = false;
+		}
+
+
+		if ( ! $error && empty( $result["content"] ) ) {
+			$error = _x( "No results found", "shortcode", "bible-plugin" );
+		}
+
+		//dd( $result['content'] );
+
+		return view( 'shortcodes/scripture', [
+			'error'        => $error,
+			'fileset_type' => $result["fileset"]["type"] ?? '',
+			'attributes'   => $attributes,
+			'content'      => $result['content'] ?? [],
+		] );
 	}
 }

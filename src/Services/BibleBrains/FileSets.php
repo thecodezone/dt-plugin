@@ -16,7 +16,7 @@ class FileSets {
 	 * @return string The group name. Returns "dpb-vid" if the type contains the word "video", otherwise returns "dpb-prod".
 	 */
 	public function group_from_type( array $bible, string $type ): string {
-		return Str::contains( $type, 'video' ) ? "dpb-vid" : "dbp-prod";
+		return Str::contains( $type, 'video' ) ? "dbp-vid" : "dbp-prod";
 	}
 
 	/**
@@ -31,7 +31,8 @@ class FileSets {
 	public function pluck( array $bible, array $book, array $fileset_types ): array {
 		$fileset_group = $this->group_from_type( $bible, $fileset_types[0] );
 
-		$fileset = Arr::first( $bible['filesets'][ $fileset_group ] ?? [], function ( $fileset ) use ( $fileset_types, $book ) {
+		$filesets = $bible['filesets'][ $fileset_group ] ?? [];
+		$fileset  = Arr::first( $filesets, function ( $fileset ) use ( $fileset_types, $book ) {
 			return in_array( $fileset['type'], $fileset_types )
 			       && $fileset["size"] === "C" || Str::contains( $fileset["size"], $book["testament"] );
 		}, null );

@@ -8,6 +8,7 @@ use CodeZone\Bible\Illuminate\Http\Response;
 use CodeZone\Bible\Illuminate\Support\Arr;
 use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
 use CodeZone\Bible\Services\BibleBrains\Api\Languages;
+use CodeZone\Bible\Services\BibleBrains\MediaTypes;
 use Exception;
 use function CodeZone\Bible\transaction;
 use function CodeZone\Bible\validate;
@@ -27,7 +28,7 @@ class BibleBrainsFormController {
 	 * @param Request $request The request object.
 	 * @param Response $response The response object.
 	 */
-	public function show( Request $request, Response $response, Languages $language_service, Bibles $bible_service ) {
+	public function show( Request $request, Response $response, Languages $language_service, Bibles $bible_service, MediaTypes $media_type_service ) {
 		$tab              = "bible";
 		$bible_brains_key = get_plugin_option( 'bible_brains_key' );
 		if ( ! $bible_brains_key ) {
@@ -35,7 +36,7 @@ class BibleBrainsFormController {
 		}
 
 		try {
-			$bible_service->media_types();
+			$bible_service->find( 'ENGESV' );
 		} catch ( BibleBrainsException $e ) {
 			return $this->validation_form( $request, $response, $e->getMessage() );
 		}
@@ -59,7 +60,7 @@ class BibleBrainsFormController {
 
 			//Media
 			$media_types        = get_plugin_option( 'media_types' );
-			$media_type_options = $bible_service->media_type_options()["data"];
+			$media_type_options = $media_type_service->options();
 		} catch ( Exception $e ) {
 			return $this->validation_form( $request, $response, $e->getMessage() );
 		}
