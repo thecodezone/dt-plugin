@@ -16,7 +16,7 @@ export class Video extends TBPElement {
 
     @state() ready = false;
 
-    get thubnail() {
+    get thumbnail() {
         return this.content[0].thumbnail;
     }
 
@@ -37,6 +37,7 @@ export class Video extends TBPElement {
                 console.log(this.content)
                 this.content.forEach(({path}) => {
                     //hls.loadSource("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8")
+                    console.log(path)
                     hls.loadSource(path);
                 });
                 hls.attachMedia(this.videoRef.value);
@@ -60,6 +61,7 @@ export class Video extends TBPElement {
                     ${ref(this.playerRef)}>
                 <video ${ref(this.videoRef)}
                        controls
+                       autoplay
                        poster="${this.thumbnail}"></video>
             </tbp-player>`;
 

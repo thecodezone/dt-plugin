@@ -51,6 +51,7 @@ class Scripture {
 			'media'        => 'text',
 			'heading'      => true,
 			"heading_text" => "",
+			"bible"        => "",
 		], cast_bool_values( $attributes ) );
 
 		$error = false;
@@ -59,6 +60,7 @@ class Scripture {
 			$result = $this->scripture->by_reference( $attributes['reference'], [
 				'language'   => $attributes['language'],
 				'media_type' => $attributes['media'],
+				'bible'      => $attributes['bible'],
 			] ) ?? [];
 
 		} catch ( \Exception $e ) {

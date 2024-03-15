@@ -105,17 +105,23 @@ class Scripture {
 		if ( ! $parameters['language'] ) {
 			$parameters['language'] = $this->options->get( 'language', false, true );
 		}
-		$media_type    = $this->media_types->find( $parameters['media_type'] );
+		$media_type = $this->media_types->find( $parameters['media_type'] );
+
 		$fileset_types = $media_type['fileset_types'];
 		$language      = $this->languages->find( $parameters['language'] )["data"];
 		$bible         = $this->bibles->find_or_default( $parameters['bible'], $language['id'] )["data"];
-		$book          = $this->books->pluck( $parameters['book'], $bible['books'] );
-		$fileset       = $this->file_sets->pluck( $bible, $book, $fileset_types );
+
+		$book = $this->books->pluck( $parameters['book'], $bible['books'] );
+
+		if ( ! $book ) {
+			throw new BibleBrainsException( esc_attr( "Bible, {$bible['name']}, does not contain {$parameters['book']}." ) );
+		}
+
+		$fileset = $this->file_sets->pluck( $bible, $book, $fileset_types );
 
 		if ( ! $fileset ) {
 			throw new BibleBrainsException( esc_attr( "Bible, {$bible['name']}, does not contain {$parameters["media_type"]} fileset for {$book['book']}." ) );
 		}
-
 		$parameters['fileset'] = $fileset['id'];
 
 		$content = $this->fetch_content( $parameters );

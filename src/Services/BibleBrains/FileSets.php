@@ -34,8 +34,9 @@ class FileSets {
 		$filesets = $bible['filesets'][ $fileset_group ] ?? [];
 		$fileset  = Arr::first( $filesets, function ( $fileset ) use ( $fileset_types, $book ) {
 			return in_array( $fileset['type'], $fileset_types )
-			       && $fileset["size"] === "C" || Str::contains( $fileset["size"], $book["testament"] );
+			       && ( $fileset["size"] === "C" || Str::contains( $fileset["size"], $book["testament"] ) );
 		}, null );
+
 
 		if ( ! $fileset ) {
 			throw new BibleBrainsException( "Fileset not found" );

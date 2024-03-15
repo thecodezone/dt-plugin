@@ -34,7 +34,7 @@ class MediaTypes {
 		],
 		'text'        => [
 			'label'         => 'Text',
-			'fileset_types' => [ "text_format" ],
+			'fileset_types' => [ "text_format", "text_plain" ],
 			'group'         => 'dbp-prod'
 		]
 	];
