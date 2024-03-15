@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-03-07 16:31-0600\n"
+"POT-Creation-Date: 2024-03-15 15:07-0500\n"
 "PO-Revision-Date: 2024-01-24 21:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,7 +31,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
 
 #: resources/views/hello.php:5
-msgctxt "reader"
+msgctxt "scripture"
 msgid "Bible"
 msgstr ""
 
@@ -54,23 +54,23 @@ msgid "Copyright "
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:59
-#: resources/views/layouts/settings.php:65
-#: resources/views/layouts/settings.php:73
+#: resources/views/layouts/settings.php:55
+#: resources/views/layouts/settings.php:61
+#: resources/views/layouts/settings.php:69
 #: resources/views/settings/support.php:66
-#: src/Providers/AdminServiceProvider.php:26
-#: src/Providers/AdminServiceProvider.php:27
-#: src/Providers/AdminServiceProvider.php:37
-#: src/Providers/AdminServiceProvider.php:38
+#: src/Providers/AdminServiceProvider.php:32
+#: src/Providers/AdminServiceProvider.php:33
+#: src/Providers/AdminServiceProvider.php:43
+#: src/Providers/AdminServiceProvider.php:44
 msgid "The Bible Plugin"
 msgstr ""
 
-#: resources/views/layouts/settings.php:79
+#: resources/views/layouts/settings.php:75
 msgid ""
 "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr ""
 
-#: resources/views/layouts/settings.php:88
+#: resources/views/layouts/settings.php:84
 msgid "More Info"
 msgstr ""
 
@@ -280,26 +280,26 @@ msgstr ""
 msgid "Visit home"
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:130
+#: src/Controllers/Admin/BibleBrainsFormController.php:131
 #: src/Controllers/Admin/CustomizationFomController.php:73
 msgid "Please complete the required fields."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:145
-#: src/Controllers/Admin/BibleBrainsFormController.php:191
+#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:192
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:168
+#: src/Controllers/Admin/BibleBrainsFormController.php:169
 msgid "Please enter a key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:178
+#: src/Controllers/Admin/BibleBrainsFormController.php:179
 msgid "Failed to validate key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:180
+#: src/Controllers/Admin/BibleBrainsFormController.php:181
 msgid "Invalid."
 msgstr ""
 
@@ -315,19 +315,25 @@ msgstr ""
 msgid "Could not verify request."
 msgstr ""
 
-#: src/Providers/AdminServiceProvider.php:46
+#: src/Providers/AdminServiceProvider.php:52
 msgid "Biblical Text Setup"
 msgstr ""
 
-#: src/Providers/AdminServiceProvider.php:50
+#: src/Providers/AdminServiceProvider.php:56
 msgid "Customization"
 msgstr ""
 
-#: src/Providers/AdminServiceProvider.php:54
+#: src/Providers/AdminServiceProvider.php:60
 msgid "Support"
 msgstr ""
 
+#: src/ShortCodes/Scripture.php:73
+msgctxt "shortcode"
+msgid "No results found"
+msgstr ""
+
 #: tests/TranslatorTest.php:26
+msgctxt "reader"
 msgid "Hello World"
 msgstr ""
 
