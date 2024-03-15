@@ -296,3 +296,15 @@ function set_plugin_option( $option, $value ): bool {
 
 	return $options->set( $option, $value );
 }
+
+function cast_bool_values( $map ): array {
+	return array_map( function ( $value ) {
+		if ( $value === "true" ) {
+			return true;
+		} elseif ( $value === "false" ) {
+			return false;
+		}
+
+		return $value;
+	}, $map );
+}

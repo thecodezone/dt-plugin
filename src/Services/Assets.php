@@ -49,6 +49,7 @@ class Assets {
 				'in-footer' => false, // Optional. Defaults to false.
 			]
 		);
+		wp_enqueue_style( 'plyr', 'https://cdn.plyr.io/3.6.8/plyr.css' );
 	}
 
 	/**

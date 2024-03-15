@@ -27,11 +27,45 @@ export class Content extends TBPElement {
     type = ""
 
     /**
-     * Retrieves the reference from the content.
+     * Determines whether the heading should display or not
      *
+     * @param {boolean} heading - The heading value.
+     * @returns {boolean} - Display scripture reference if heading is true, hide if false
+     */
+    @property({type: Boolean})
+    heading = false
+
+    /**
+     * Custom heading text to display in place of the reference
+     */
+    @property({type: String})
+    heading_text = ""
+
+    @property({type: Object})
+    reference = {
+        book: "",
+        chapter: "",
+        verse_start: "",
+        verse_end: ""
+    }
+
+    /**
+     * Retrieves the reference from the content.
+     *chapter
      * @returns {Reference} The reference obtained from the content.
      */
-    get reference() {
+    get heading_label() {
+        if (this.heading_text) {
+            return this.heading_text
+        }
+
+        if (this.reference
+            && this.reference.book
+            && this.reference.chapter
+            && !this.reference.verse_start) {
+            return `${this.reference.book} ${this.reference.chapter}`
+        }
+
         return reference_from_content(this.content)
     }
 
@@ -62,10 +96,21 @@ export class Content extends TBPElement {
      */
     render() {
         return html`
-            <h2>${this.reference}</h2>
+            ${this.renderHeading()}
             ${this.renderContent()}
         `;
     }
+
+    renderHeading() {
+        if (this.heading === false) {
+            return html``
+        }
+
+        return html`
+            <h2>${this.heading_label}</h2>
+        `
+    }
+
 
     /**
      * Renders the content based on the media type.

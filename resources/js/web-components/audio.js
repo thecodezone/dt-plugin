@@ -13,12 +13,15 @@ export class Audio extends TBPElement {
         }
 
         return html`
-            <audio controls preload>
-                ${this.content.map((item) => {
-                    return html`
-                        <source src="${item.path}">`;
-                })}
-            </audio>
+            <tbp-player>
+                <audio controls preload>
+                    ${this.content.map((item) => {
+                        return html`
+                            <source src="${item.path}">`;
+                    })}
+                </audio>
+            </tbp-player>
+            
         `;
     }
 }

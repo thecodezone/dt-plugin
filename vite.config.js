@@ -1,5 +1,6 @@
 import {v4wp} from '@kucrut/vite-for-wp';
 import babel from 'vite-plugin-babel';
+import svgLoader from "vite-svg-loader";
 
 export default {
     plugins: [
@@ -11,5 +12,8 @@ export default {
             outDir: 'dist', // Optional, defaults to 'dist'.
         }),
         babel(),
+        svgLoader({
+            defaultImport: 'raw'
+        }),
     ],
 };

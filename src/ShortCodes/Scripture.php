@@ -9,6 +9,7 @@ use CodeZone\Bible\Services\BibleBrains\FileSets;
 use CodeZone\Bible\Services\BibleBrains\Scripture as ScriptureService;
 use function CodeZone\Bible\container;
 use function CodeZone\Bible\view;
+use function CodeZone\Bible\cast_bool_values;
 
 /**
  * Class Scripture
@@ -45,12 +46,15 @@ class Scripture {
 		$this->assets->enqueue();
 
 		$attributes = shortcode_atts( [
-			'language'  => '',
-			'reference' => '',
-			'media'     => 'text'
-		], $attributes );
+			'language'     => '',
+			'reference'    => '',
+			'media'        => 'text',
+			'heading'      => true,
+			"heading_text" => "",
+		], cast_bool_values( $attributes ) );
 
 		$error = false;
+
 		try {
 			$result = $this->scripture->by_reference( $attributes['reference'], [
 				'language'   => $attributes['language'],
@@ -67,13 +71,17 @@ class Scripture {
 			$error = _x( "No results found", "shortcode", "bible-plugin" );
 		}
 
-		//dd( $result['content'] );
-
 		return view( 'shortcodes/scripture', [
 			'error'        => $error,
 			'fileset_type' => $result["fileset"]["type"] ?? '',
 			'attributes'   => $attributes,
 			'content'      => $result['content'] ?? [],
+			"reference"    => [
+				"verse_start" => $result["verse_start"] ?? "",
+				"verse_end"   => $result["verse_end"] ?? "",
+				"chapter"     => $result["chapter"] ?? "",
+				"book"        => $result["book"]["name"] ?? "",
+			]
 		] );
 	}
 }
