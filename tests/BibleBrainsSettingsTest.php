@@ -154,7 +154,7 @@ class BibleBrainsSettingsTest extends TestCase {
 		] );
 
 		$payload = [
-			'bible_brains_key' => BP_BIBLE_BRAINS_KEY
+			'bible_brains_key' => TBP_BIBLE_BRAINS_KEY
 		];
 
 		$response = $this->post( 'bible/api/bible-brains/key', $payload, [

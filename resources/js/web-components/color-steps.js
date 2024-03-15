@@ -1,6 +1,6 @@
 import {customElement, property} from "lit/decorators.js";
 import {css, html, LitElement} from "lit";
-import {range, lightestShade, darkestShade} from "../_helpers.js"
+import {range, lightestShade, darkestShade} from "../helpers.js"
 import {TinyColor} from '@ctrl/tinycolor';
 
 @customElement('tbp-color-steps')

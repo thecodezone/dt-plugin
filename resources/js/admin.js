@@ -8,7 +8,7 @@ import '../css/admin.css';
  * Dependencies
  */
 import Alpine from 'alpinejs'
-import {loaded} from './_helpers';
+import {loaded} from './helpers';
 
 /**
  * Spectrum Web Components

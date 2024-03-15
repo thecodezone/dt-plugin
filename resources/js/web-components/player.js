@@ -7,8 +7,6 @@ import {createRef, ref} from "lit/directives/ref.js";
 import svg from 'plyr/dist/plyr.svg?raw'
 import {unsafeSVG} from "lit-html/directives/unsafe-svg.js";
 
-console.log('svg', svg)
-
 @customElement('tbp-player')
 export class Scripture extends TBPElement {
     @property({type: Boolean}) uninitialized = false;

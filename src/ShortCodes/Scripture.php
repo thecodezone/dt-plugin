@@ -45,6 +45,10 @@ class Scripture {
 	public function render( $attributes ) {
 		$this->assets->enqueue();
 
+		if ( ! $attributes ) {
+			$attributes = [];
+		}
+
 		$attributes = shortcode_atts( [
 			'language'     => '',
 			'reference'    => '',

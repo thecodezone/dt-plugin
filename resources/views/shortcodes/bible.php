@@ -1,0 +1,1 @@
+<tbp-bible></tbp-bible>

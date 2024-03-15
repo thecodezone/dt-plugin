@@ -24,7 +24,7 @@ class Options {
 	 */
 	private function defaults(): array {
 		return [
-			'bible_brains_key' => defined( 'BP_BIBLE_BRAINS_KEY' ) ? BP_BIBLE_BRAINS_KEY : '',
+			'bible_brains_key' => defined( 'TBP_BIBLE_BRAINS_KEY' ) ? TBP_BIBLE_BRAINS_KEY : '',
 			'languages'        => '6414',
 			'language'         => '6414',
 			'bibles'           => 'ENGESV',

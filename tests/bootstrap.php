@@ -25,7 +25,7 @@ require_once $_core_dir . '/wp-content/plugins/bible-plugin/vendor-scoped/illumi
  */
 $_register_plugin = function () use ( $_plugin_file ) {
 	require $_plugin_file;
-	define( 'BP_BIBLE_BRAINS_KEY', $_ENV['BP_BIBLE_BRAINS_KEY'] ?? '' );
+	define( 'TBP_BIBLE_BRAINS_KEY', $_ENV['TBP_BIBLE_BRAINS_KEY'] ?? '' );
 };
 
 tests_add_filter( 'muplugins_loaded', $_register_plugin );
