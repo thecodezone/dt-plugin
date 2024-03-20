@@ -18,21 +18,25 @@ class MediaTypes {
 	 */
 	private $data = [
 		'audio_drama' => [
+			'key'           => 'audio_drama',
 			'label'         => 'Dramatized Audio',
 			'fileset_types' => [ 'audio_drama' ],
 			'group'         => 'dbp-prod'
 		],
 		'audio'       => [
+			'key'           => 'audio',
 			'label'         => 'Audio',
 			'fileset_types' => [ 'audio' ],
 			'group'         => 'dbp-prod'
 		],
 		'video'       => [
+			'key'           => 'video',
 			'label'         => 'Video',
 			'fileset_types' => [ 'video_stream' ],
 			'group'         => 'dbp-vid'
 		],
 		'text'        => [
+			'key'           => 'text',
 			'label'         => 'Text',
 			'fileset_types' => [ "text_format", "text_plain" ],
 			'group'         => 'dbp-prod'

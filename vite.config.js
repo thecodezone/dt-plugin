@@ -15,5 +15,5 @@ export default {
         svgLoader({
             defaultImport: 'raw'
         }),
-    ],
+    ]
 };

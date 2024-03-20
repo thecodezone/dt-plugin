@@ -16,7 +16,7 @@ use CodeZone\Bible\CodeZone\Router\FastRoute\Routes;
 use CodeZone\Bible\Controllers\Admin\BibleBrainsFormController;
 use CodeZone\Bible\Controllers\Admin\CustomizationFomController;
 use CodeZone\Bible\Controllers\Admin\SupportController;
-use CodeZone\Bible\Controllers\LanguageBibleController;
+use CodeZone\Bible\Controllers\ScriptureController;
 use CodeZone\Bible\Controllers\LanguageController;
 use CodeZone\Bible\Controllers\BibleMediaTypesController;
 use CodeZone\Bible\Controllers\BibleController;
@@ -37,6 +37,8 @@ $r->condition( 'plugin', function ( $r ) {
 		$r->get( '/bibles/media-types/options', [ BibleMediaTypesController::class, 'options' ] );
 		$r->get( '/bibles/options', [ BibleController::class, 'options' ] );
 		$r->get( '/bibles/{id}', [ BibleController::class, 'show' ] );
+
+		$r->get( '/scripture', [ ScriptureController::class, 'index' ] );
 
 		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin' ], function ( Routes $r ) {
 			$r->post( '/bible-brains/key', [ BibleBrainsFormController::class, 'validate' ] );
