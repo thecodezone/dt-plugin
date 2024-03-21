@@ -69,6 +69,12 @@ export const darkestShade = function (color) {
     return `rgb(${rgb.map(val => Math.max(0, val - minVal)).join(',')})`;
 }
 
+/**
+ * Generate a reference string from an array of items.
+ *
+ * @param {Array} items - The array of items.
+ * @returns {string} - The generated reference string.
+ */
 export const reference_from_content = (items = []) => {
     if (!items || !items.length) return ""
     const firstItem = items[0]
@@ -128,4 +134,36 @@ export const reference_from_content = (items = []) => {
     }
 
     return `${book} ${firstChapter}`
+}
+
+export const reference_from_object = (item) => {
+    const book = item.book ?? item.book_id ?? "Genesis"
+    const chapter = item.chapter ?? 1
+    const verse_start = item.verse_start ?? 1
+    const verse_end = item.verse_end ?? item.verse_start ?? null
+
+    if (verse_start === verse_end) {
+        return `${book} ${chapter}:${verse_start}`
+    }
+
+    if (verse_end) {
+        return `${book} ${chapter}:${verse_start}-${verse_end}`
+    }
+
+    return `${book} ${chapter}`
+}
+
+/**
+ * Generates a full URL by appending the provided path to the base API URL.
+ *
+ * @param {string} path - The path to be appended to the base API URL.
+ * @returns {string} - The full URL.
+ */
+export const apiUrl = (path) => {
+    return `${window.$tbp.apiUrl.replace(/\/$/, "").trim()}/${path.replace(/^\/|\/$/g, '').trim()}`
+}
+
+export const __ = (key, fallback = "") => {
+    if (!fallback) fallback = key
+    return window.$tbp.translations[key] ?? fallback
 }

@@ -7,8 +7,9 @@ import {$content} from "./content.js";
 import {$reference} from './reference.js';
 import {$language, $languageId, $languageIso} from "./language.js";
 import {$media_type, $media_type_key} from "./media-type.js";
+import {apiUrl} from "../helpers.js";
 
-export const $query = fetchState(['/bible/api/scripture', '?reference=', $reference]);
+export const $query = fetchState([apiUrl('scripture'), '?reference=', $reference]);
 
 $query.listen(({loading, data}) => {
     if (loading) {

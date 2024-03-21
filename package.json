@@ -54,6 +54,7 @@
     "@spectrum-web-components/tags": "^0.41.2",
     "@spectrum-web-components/textfield": "^0.41.2",
     "@spectrum-web-components/toast": "^0.41.2",
+    "@spectrum-web-components/top-nav": "^0.42.0",
     "alpinejs": "^3.13.3",
     "choices.js": "^10.2.0",
     "color": "^4.2.3",

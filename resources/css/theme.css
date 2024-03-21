@@ -98,4 +98,7 @@ sp-theme {
     --spectrum-accent-background-color-down: var(--spectrum-accent-color-800);
     --spectrum-accent-background-color-key-focus: var(--spectrum-accent-color-700);
     --spectrum-seafoam-background-color-default: var(--spectrum-seafoam-500);
+    --mod-tabs-selection-indicator-color: var(--spectrum-accent-color-600);
+    --mod-actionbutton-background-color-default-selected: var(--spectrum-accent-color-700);
+    --mod-actionbutton-background-color-hover-selected: var(--spectrum-accent-color-800);
 }

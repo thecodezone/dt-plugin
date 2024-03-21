@@ -1,3 +1,4 @@
+
 sp-theme {
     --spectrum-font-family: var(--tbp-font-family, var(--wp--preset--font-family--body, var(--spectrum-font-family)));
 }

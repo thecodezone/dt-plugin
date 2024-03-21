@@ -8,6 +8,13 @@ use function CodeZone\Bible\plugin_path;
 class Assets {
 	private static $enqueued = false;
 
+	public function translations() {
+		return [
+			'Old Testament' => __( 'Old Testament', 'bible-plugin' ),
+			'New Testament' => __( 'New Testament', 'bible-plugin' ),
+		];
+	}
+
 	/**
 	 * Register method to add necessary actions for enqueueing scripts and adding cloaked styles
 	 *
@@ -39,6 +46,7 @@ class Assets {
 	 * @return void
 	 */
 	public function wp_enqueue_scripts() {
+		global $wp_scripts;
 		enqueue_asset(
 			plugin_path( '/dist' ),
 			'resources/js/plugin.js',
@@ -46,9 +54,16 @@ class Assets {
 				'handle'    => 'bible-plugin',
 				'css-media' => 'all', // Optional.
 				'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
-				'in-footer' => false, // Optional. Defaults to false.
+				'in-footer' => true, // Optional. Defaults to false.
 			]
 		);
+
+		wp_localize_script( 'bible-plugin', '$tbp', [
+			'apiUrl'       => "/bible/api/",
+			'nonce'        => wp_create_nonce( 'bible_plugin_nonce' ),
+			'translations' => $this->translations(),
+		] );
+
 		wp_enqueue_style( 'plyr', 'https://cdn.plyr.io/3.6.8/plyr.css' );
 	}
 

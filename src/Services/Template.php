@@ -31,24 +31,6 @@ class Template {
 	}
 
 	/**
-	 * Enqueue CSS and JS assets
-	 * @return void
-	 */
-	public function wp_enqueue_scripts(): void {
-		enqueue_asset(
-			plugin_path( '/dist' ),
-			'resources/js/plugin.js',
-			[
-				'handle'    => 'bible-plugin',
-				'css-media' => 'all', // Optional.
-				'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
-				'in-footer' => false, // Optional. Defaults to false.
-			]
-		);
-	}
-
-
-	/**
 	 * Render the header
 	 * @return void
 	 */

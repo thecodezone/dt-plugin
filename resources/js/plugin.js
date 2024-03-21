@@ -1,14 +1,27 @@
+import '../css/theme.css';
 import "../css/plugin.css";
 import "plyr/dist/plyr.css";
 
 import '@spectrum-web-components/theme/sp-theme.js';
 import '@spectrum-web-components/theme/src/themes.js';
-import '@spectrum-web-components/banner/sp-banner.js';
+
 import '@spectrum-web-components/action-bar/sp-action-bar.js';
-import '@spectrum-web-components/progress-circle/sp-progress-circle.js';
 import '@spectrum-web-components/action-button/sp-action-button.js';
 import '@spectrum-web-components/action-group/sp-action-group.js';
 import '@spectrum-web-components/action-menu/sp-action-menu.js';
+import '@spectrum-web-components/banner/sp-banner.js';
+import '@spectrum-web-components/dialog/sp-dialog.js';
+import '@spectrum-web-components/divider/sp-divider.js';
+import '@spectrum-web-components/icon/sp-icon.js';
+import '@spectrum-web-components/icons-ui/icons/sp-icon-arrow500.js';
+import '@spectrum-web-components/menu/sp-menu.js';
+import '@spectrum-web-components/menu/sp-menu-group.js';
+import '@spectrum-web-components/menu/sp-menu-item.js';
+import '@spectrum-web-components/menu/sp-menu-divider.js';
+import '@spectrum-web-components/progress-circle/sp-progress-circle.js';
+import '@spectrum-web-components/top-nav/sp-top-nav.js';
+import '@spectrum-web-components/top-nav/sp-top-nav-item.js';
+
 
 import "./web-components/content.js"
 import "./web-components/verse.js"
