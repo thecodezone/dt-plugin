@@ -2,6 +2,7 @@
 
 namespace DT\Plugin\Services;
 
+use function DT\Plugin\namespace_string;
 use function DT\Plugin\Kucrut\Vite\enqueue_asset;
 use function DT\Plugin\plugin_path;
 use function DT\Plugin\view;
@@ -14,6 +15,35 @@ class Template {
 	 */
 	public function blank_access(): bool {
 		return true;
+	}
+
+    /**
+	 * Reset asset queue
+	 * @return void
+	 */
+	/**
+	 * Reset asset queue
+	 * @return void
+	 */
+	private function filter_asset_queue() {
+		global $wp_scripts;
+		global $wp_styles;
+
+		$whitelist = apply_filters( namespace_string( 'allowed_scripts' ), [] );
+		foreach ( $wp_scripts->registered as $script ) {
+			if ( in_array( $script->handle, $whitelist ) ) {
+				continue;
+			}
+			wp_dequeue_script( $script->handle );
+		}
+
+		$whitelist = apply_filters( namespace_string( 'allowed_styles' ), [] );
+		foreach ( $wp_styles->registered as $style ) {
+			if ( in_array( $script->handle, $whitelist ) ) {
+				continue;
+			}
+			wp_dequeue_style( $style->handle );
+		}
 	}
 
 	/**
@@ -65,7 +95,7 @@ class Template {
 		add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
 		add_action( 'dt_blank_head', [ $this, 'header' ] );
 		add_action( 'dt_blank_footer', [ $this, 'footer' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 1000 );
 
 		return view()->render( $template, $data );
 	}
