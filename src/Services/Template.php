@@ -149,7 +149,7 @@ class Template {
 		add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
 		add_action( 'dt_blank_head', [ $this, 'header' ] );
 		add_action( 'dt_blank_footer', [ $this, 'footer' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 1000 );
 
 		return view()->render( $template, $data );
 	}

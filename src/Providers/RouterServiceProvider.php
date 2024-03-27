@@ -4,7 +4,10 @@ namespace DT\Plugin\Providers;
 
 use DT\Plugin\CodeZone\Router;
 use DT\Plugin\CodeZone\Router\FastRoute\Routes;
+use DT\Plugin\CodeZone\Router\Middleware\Stack;
 use DT\Plugin\FastRoute\RouteCollector;
+use DT\Plugin\Illuminate\Http\Response;
+use function DT\Plugin\namespace_string;
 use function DT\Plugin\routes_path;
 
 class RouterServiceProvider extends ServiceProvider {
@@ -18,8 +21,8 @@ class RouterServiceProvider extends ServiceProvider {
 		] );
 
 		add_filter( Router\namespace_string( "routes" ), [ $this, 'include_route_file' ], 1 );
+		add_action( Router\namespace_string( 'render' ), [ $this, 'render_response' ], 10, 2 );
 	}
-
 
 	/**
 	 * Do any setup needed after the theme is ready.
@@ -28,7 +31,7 @@ class RouterServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot(): void {
-		// TODO: Implement boot() method.
+
 	}
 
 	/**

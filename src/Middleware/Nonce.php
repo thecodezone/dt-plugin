@@ -28,4 +28,5 @@ class Nonce implements Middleware {
 
 		return $next( $request, $response );
 	}
+
 }
