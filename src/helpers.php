@@ -8,6 +8,8 @@ use DT\Plugin\Illuminate\Http\Request;
 use DT\Plugin\Illuminate\Support\Str;
 use DT\Plugin\League\Plates\Engine;
 use DT\Plugin\Services\Template;
+use DT_Magic_URL;
+use DT_Posts;
 use Exception;
 
 /**
@@ -37,6 +39,10 @@ function container(): Illuminate\Container\Container {
  */
 function plugin_url( string $path = '' ): string {
 	return plugins_url( 'dt-plugin' ) . '/' . ltrim( $path, '/' );
+}
+
+function route_url( string $path = '' ): string {
+	return site_url( Plugin::HOME_ROUTE . '/' . ltrim( $path, '/' ) );
 }
 
 /**
@@ -229,7 +235,7 @@ function http(): HTTPFactory {
 }
 
 /**
- * Concatenates the given string to the namespace of the Router class.
+ * Concatenates the given string to the namespace of the Plugin class.
  *
  * @param string $string The string to be concatenated to the namespace.
  *
@@ -237,4 +243,48 @@ function http(): HTTPFactory {
  */
 function namespace_string( string $string ) {
 	return Plugin::class . '\\' . $string;
+}
+
+/**
+ * Returns the registered magic apps for a specific root and type.
+ *
+ * @param string $root The root of the magic apps.
+ * @param string $type The type of the magic app.
+ *
+ * @return array|bool The registered magic apps for the given root and type.
+ *                  Returns an array if found, otherwise returns false.
+ */
+function magic_app( $root, $type ): array|bool {
+	$magic_apps = apply_filters( 'dt_magic_url_register_types', [] );
+	$root_apps  = $magic_apps[ $root ] ?? [];
+
+	return $root_apps[ $type ] ?? false;
+}
+
+/**
+ * Generates a magic URL for a given root, type, and ID.
+ *
+ * @param string $root The root of the magic URL.
+ * @param string $type The type of the magic URL.
+ * @param int $id The ID of the post to generate the magic URL for.
+ *
+ * @return string The generated magic URL.
+ */
+function magic_url( $root, $type, $id ): string {
+	$app = magic_app( $root, $type );
+	if ( ! $app ) {
+		return "";
+	}
+	$record = DT_Posts::get_post( $app["post_type"], $id, true, false );
+	if ( ! isset( $record[ $app["meta_key"] ] ) ) {
+		$key = dt_create_unique_key();
+		update_post_meta( get_the_ID(), $app["meta_key"], $key );
+	}
+
+	return DT_Magic_URL::get_link_url_for_post(
+		$app["post_type"],
+		$id,
+		$app["root"],
+		$app["type"]
+	);
 }
