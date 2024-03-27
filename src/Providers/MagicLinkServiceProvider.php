@@ -2,6 +2,7 @@
 
 namespace DT\Plugin\Providers;
 
+use DT\Plugin\MagicLinks\ExampleMagicLink;
 use DT\Plugin\MagicLinks\StarterMagicApp;
 use function DT\Plugin\collect;
 
@@ -9,7 +10,7 @@ class MagicLinkServiceProvider extends ServiceProvider {
 	protected $container;
 
 	protected $magic_links = [
-		'starter/app' => StarterMagicApp::class,
+		'example/link' => ExampleMagicLink::class,
 	];
 
 	/**
