@@ -16,7 +16,7 @@ class PluginServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $providers = [
-		ViewServiceProvider::class,
+		TemplateServiceProvider::class,
 		ConditionsServiceProvider::class,
 		MiddlewareServiceProvider::class,
 		//AdminServiceProvider::class,

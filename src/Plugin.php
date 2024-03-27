@@ -2,6 +2,7 @@
 
 namespace DT\Plugin;
 
+use DT\Plugin\CodeZone\Router\Middleware\Stack;
 use DT\Plugin\Illuminate\Container\Container;
 use DT\Plugin\Providers\PluginServiceProvider;
 
@@ -59,18 +60,18 @@ class Plugin {
 	public function init() {
 		static::$instance = $this;
 		$this->provider->register();
-		add_action( 'init', function () {
-			$this->provider->boot();
-			$this->setup();
-		}, 20 );
+		add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
+		add_action( 'init', [ $this, 'rewrite_rules' ] );
+		add_action( 'query_vars', [ $this, 'query_vars' ] );
+		add_action( 'template_redirect', [ $this, 'template_redirect' ], );
 	}
 
 	/**
-	 * Runs after init
+	 * Runs after wp_loaded
 	 * @return void
 	 */
-	public function setup(): void {
+	public function wp_loaded(): void {
 		if ( ! $this->is_dt_version() ) {
 			add_action( 'admin_notices', [ $this, 'admin_notices' ] );
 			add_action( 'wp_ajax_dismissed_notice_handler', [ $this, 'ajax_notice_handler' ] );
@@ -108,6 +109,60 @@ class Plugin {
 	 */
 	protected function is_dt_theme(): bool {
 		return class_exists( 'Disciple_Tools' );
+	}
+
+	/**
+	 * Rewrite rules method.
+	 *
+	 * This method is responsible for adding any custom rewrite rules to the plugin.
+	 * We'll use this method to add a custom rewrite rule for the all routes prefixed
+	 * with the plugin's home route. Subsequent routes will be handled by the plugin's
+	 * router.
+	 *
+	 * @return void
+	 */
+	public function rewrite_rules(): void {
+		add_rewrite_rule( '^' . self::HOME_ROUTE . '/?', 'index.php?dt-plugin=true', 'top' );
+	}
+
+	/**
+	 * Add query vars
+	 *
+	 * @param array $vars
+	 *
+	 * @return array
+	 */
+	public function query_vars( array $vars ): array {
+		$vars[] = 'dt-plugin';
+
+		return $vars;
+	}
+
+	/**
+	 * Perform template redirect based on query var 'dt_autolink'.
+	 *
+	 * @return void
+	 */
+	public function template_redirect(): void {
+		if ( ! get_query_var( 'dt-plugin' ) ) {
+			return;
+		}
+
+		$response = apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
+			->run();
+
+		if ( ! $response ) {
+			wp_die( esc_attr( __( "The page could not be found.", 'dt-plugin' ) ), 404 );
+		}
+
+		if ( ! $response->isSuccessful() ) {
+			wp_die( esc_attr( $response->statusText() ), esc_attr( $response->getStatusCode() ) );
+		}
+
+		$path = get_theme_file_path( 'template-blank.php' );
+		include $path;
+
+		die();
 	}
 
 	/**
