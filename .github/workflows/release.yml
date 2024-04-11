@@ -15,14 +15,33 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 18.x
+
       - name: Build project
         run: |
           npm install
           npm run build
-          composer install --no-interaction --no-dev
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: "8.1"
+
+      - name: Add Composer Global to PATH
+        run: echo "$(composer global config bin-dir --absolute --quiet)" >> $GITHUB_PATH
+
+      - name: Install Scoper
+        run: |
+          ./setup-scoper.sh
+
+      - name: Install dependencies
+        run: composer install --no-dev --no-interaction --ignore-platform-reqs
+
+      - name: Package release
+        run: |
           mkdir dt-plugin
           cp -r dt-plugin.php dist languages resources routes src vendor vendor-scoped composer.json composer.lock composer.scoped.json composer.scoped.lock LICENSE package.json package-lock.json version-control.json SECURITY.md dt-plugin/
           zip -r dt-plugin.zip dt-plugin
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
