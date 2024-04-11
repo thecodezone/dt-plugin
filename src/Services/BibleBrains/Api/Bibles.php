@@ -63,10 +63,10 @@ class Bibles extends ApiService {
 
 		return array_values( $records->map( function ( $record ) {
 			return $this->map_option( $record );
-            } )->filter( function ( $option ) {
-			return ! empty( $option['value'] )
-			&& ! empty( $option['itemText'] );
-		} )->toArray() );
+		} )->filter( function ( $option ) {
+                return ! empty( $option['value'] )
+                && ! empty( $option['itemText'] );
+            } )->toArray() );
 	}
 
 	/**
@@ -189,10 +189,6 @@ class Bibles extends ApiService {
 	 * @throws BibleBrainsException If an error occurs during the retrieval of the content.
 	 */
 	public function content( $fileset, $book, $chapter, $verse_start, $verse_end ): array {
-		if ( $fileset === "ENGESHP2DV" ) {
-			dd( $this->endpoint . '/filesets/' . $fileset . '/' . $book . '/' . $chapter );
-		}
-
 		return $this->get( $this->endpoint . '/filesets/' . $fileset . '/' . $book . '/' . $chapter, [
 			'verse_start' => $verse_start,
 			'verse_end'   => $verse_end

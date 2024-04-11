@@ -2,8 +2,11 @@
 
 namespace CodeZone\Bible\Services;
 
+use CodeZone\Bible\Illuminate\Support\Str;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
 use function CodeZone\Bible\plugin_path;
+use function CodeZone\Bible\namespace_string;
+use const CodeZone\Bible\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 class Assets {
 	private static $enqueued = false;
@@ -14,6 +17,7 @@ class Assets {
 			'New Testament' => __( 'New Testament', 'bible-plugin' ),
 		];
 	}
+
 
 	/**
 	 * Register method to add necessary actions for enqueueing scripts and adding cloaked styles
@@ -35,6 +39,35 @@ class Assets {
 		}
 	}
 
+	/**
+	 * Reset asset queue
+	 * @return void
+	 */
+	/**
+	 * Reset asset queue
+	 * @return void
+	 */
+	private function filter_asset_queue() {
+		global $wp_scripts;
+		global $wp_styles;
+
+		$whitelist = apply_filters( namespace_string( 'allowed_scripts' ), [] );
+		foreach ( $wp_scripts->registered as $script ) {
+			if ( in_array( $script->handle, $whitelist ) ) {
+				continue;
+			}
+			wp_dequeue_script( $script->handle );
+		}
+
+		$whitelist = apply_filters( namespace_string( 'allowed_styles' ), [] );
+		foreach ( $wp_styles->registered as $style ) {
+			if ( in_array( $script->handle, $whitelist ) ) {
+				continue;
+			}
+			wp_dequeue_style( $style->handle );
+		}
+	}
+
 
 	/**
 	 * Enqueues scripts and styles for the frontend.
@@ -46,7 +79,6 @@ class Assets {
 	 * @return void
 	 */
 	public function wp_enqueue_scripts() {
-		global $wp_scripts;
 		enqueue_asset(
 			plugin_path( '/dist' ),
 			'resources/js/plugin.js',
@@ -57,6 +89,9 @@ class Assets {
 				'in-footer' => true, // Optional. Defaults to false.
 			]
 		);
+
+		$this->whitelist_vite();
+		$this->filter_asset_queue();
 
 		wp_localize_script( 'bible-plugin', '$tbp', [
 			'apiUrl'       => "/bible/api/",
@@ -107,5 +142,59 @@ class Assets {
             }
         </style>
 		<?php
+	}
+
+	/**
+	 * Determines if the given asset handle is allowed.
+	 *
+	 * This method checks if the provided asset handle is contained in the list of allowed handles.
+	 * Allows the Template script file and the Vite client script file for dev use.
+	 *
+	 * @param string $asset_handle The asset handle to check.
+	 *
+	 * @return bool True if the asset handle is allowed, false otherwise.
+	 */
+	private function is_vite_asset( $asset_handle ) {
+		if ( Str::contains( $asset_handle, [
+			'bible-plugin',
+			VITE_CLIENT_SCRIPT_HANDLE
+		] ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private function whitelist_vite() {
+		global $wp_scripts;
+		global $wp_styles;
+
+		$scripts = [];
+		$styles = [];
+
+		foreach ( $wp_scripts->registered as $script ) {
+			if ( $this->is_vite_asset( $script->handle ) ) {
+				$scripts[] = $script->handle;
+			}
+		}
+
+		// phpcs:ignore
+		add_filter( namespace_string( 'allowed_scripts' ),
+			function ( $allowed ) use ( $scripts ) {
+				return array_merge( $allowed, $scripts );
+			}
+		);
+
+		foreach ( $wp_styles->registered as $style ) {
+			if ( $this->is_vite_asset( $style->handle ) ) {
+				$styles[] = $style->handle;
+			}
+		}
+
+		add_filter( namespace_string( 'allowed_styles' ),
+			function ( $allowed ) use ( $styles ) {
+				return array_merge( $allowed, $styles );
+			}
+		);
 	}
 }

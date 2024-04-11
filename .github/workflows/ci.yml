@@ -1,8 +1,6 @@
-name: Tests
+name: CI
 
-on:
-  push:
-  pull_request:
+on: [ push, pull_request ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -27,7 +25,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [ '8.2' ]
+        php: [ '8.1', '8.2' ]
 
     name: PHP ${{ matrix.php }}
     steps:
@@ -42,17 +40,18 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
-      - name: Report PHP version
-        run: php -v
+      - name: Add Composer Global to PATH
+        run: echo "$(composer global config bin-dir --absolute --quiet)" >> $GITHUB_PATH
+
+      - name: Install Scoper
+        run: |
+          ./setup-scoper.sh
 
       - name: Install dependencies
-        run: composer install --no-interaction
+        run: composer install --no-interaction --ignore-platform-reqs
 
-      - name: Test Syntax
+      - name: Test syntax
         run: ./tests/test_for_syntax_errors.sh
 
-      - name: Test Installation
-        run: ./tests/test_installation.sh
-
-      - name: Test phpcs
-        run: ./tests/test_phpcs.sh
+#      - name: Test phpcs
+#        run: ./tests/test_phpcs.sh

@@ -11,6 +11,7 @@ use CodeZone\Bible\CodeZone\Router\Middleware\Render;
 use CodeZone\Bible\CodeZone\Router\Middleware\Route;
 use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
 use CodeZone\Bible\CodeZone\Router\Middleware\UserHasCap;
+use CodeZone\Bible\CodeZone\Router\Middleware\SetHeaders;
 use CodeZone\Bible\Middleware\BibleBrains;
 use CodeZone\Bible\Middleware\BibleBrainsKeySet;
 use CodeZone\Bible\Middleware\LoggedIn;
@@ -32,6 +33,7 @@ class MiddlewareServiceProvider extends ServiceProvider {
 		DispatchController::class,
 		HandleErrors::class,
 		HandleRedirects::class,
+		SetHeaders::class,
 		Render::class,
 	];
 

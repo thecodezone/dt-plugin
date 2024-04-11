@@ -25,12 +25,6 @@ class RouterServiceProvider extends ServiceProvider {
 	 * Do any setup needed before the theme is ready.
 	 */
 	public function boot(): void {
-		if ( is_admin() ) {
-			return;
-		}
-
-		apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
-			->run();
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 namespace CodeZone\Bible\Providers;
 
+use CodeZone\Bible\CodeZone\Router\Middleware\SetHeaders;
 use CodeZone\Bible\Illuminate\Filesystem\Filesystem;
 use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Translation\FileLoader;
@@ -19,7 +20,7 @@ class PluginServiceProvider extends ServiceProvider {
 		TranslationsServiceProvider::class,
 		BibleBrainsServiceProvider::class,
 		ShortcodeProvider::class,
-		ViewServiceProvider::class,
+		TemplateServiceProvider::class,
 		ConditionsServiceProvider::class,
 		MiddlewareServiceProvider::class,
 		AdminServiceProvider::class,
