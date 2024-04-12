@@ -10,11 +10,11 @@ export const $hasChapter = (chapter) => {
 }
 
 export const $hasPreviousChapter = computed([$chapter, $chapters], (chapter) => {
-    return $hasChapter(chapter - 1)
+    return $hasChapter(parseInt(chapter) - 1)
 })
 
 export const $hasNextChapter = computed([$chapter, $chapters], (chapter) => {
-    return $hasChapter(chapter + 1)
+    return $hasChapter(parseInt(chapter) + 1)
 })
 
 export const $visitChapter = (chapter) => {

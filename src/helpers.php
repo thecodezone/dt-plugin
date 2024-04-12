@@ -34,6 +34,10 @@ function plugin_url( string $path = '' ): string {
 	return plugins_url( 'bible-plugin' ) . '/' . ltrim( $path, '/' );
 }
 
+function route_url( string $path ): string {
+	return '/' . plugin()::$home_route . '/' . ltrim( $path, '/' );
+}
+
 /**
  * Returns the path of a plugin file or directory, relative to the plugin directory.
  *

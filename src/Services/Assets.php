@@ -6,6 +6,7 @@ use CodeZone\Bible\Illuminate\Support\Str;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
 use function CodeZone\Bible\plugin_path;
 use function CodeZone\Bible\namespace_string;
+use function CodeZone\Bible\route_url;
 use const CodeZone\Bible\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 class Assets {
@@ -94,7 +95,7 @@ class Assets {
 		$this->filter_asset_queue();
 
 		wp_localize_script( 'bible-plugin', '$tbp', [
-			'apiUrl'       => "/bible/api/",
+			'apiUrl'       => route_url( 'api' ),
 			'nonce'        => wp_create_nonce( 'bible_plugin_nonce' ),
 			'translations' => $this->translations(),
 		] );

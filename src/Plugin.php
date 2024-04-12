@@ -15,7 +15,7 @@ class Plugin {
 	 * The route for the plugin's home page
 	 * @var string
 	 */
-	public static $home_route = 'bible';
+	public static $home_route = 'the-bible-plugin';
 
 	/**
 	 * The instance of the plugin
@@ -106,6 +106,7 @@ class Plugin {
 		if ( ! get_query_var( 'bible-plugin' ) ) {
 			return;
 		}
+
 
 		$response = apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
 			->run();

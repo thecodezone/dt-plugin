@@ -13,6 +13,6 @@ export const $bookId = atom("")
 
 export const $bookName = computed($book, (book) => book.name)
 
-export const $visitBook = (book) => {
-    $visitReference(`${book.book_id} 1`)
+export const $visitBook = (book, chapter = 1) => {
+    $visitReference(`${book.book_id} ${chapter}`)
 }

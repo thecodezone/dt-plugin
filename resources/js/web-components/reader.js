@@ -13,7 +13,9 @@ export class Reader extends withStores(TBPElement, [$content, $referenceData]) {
             super.styles,
             css`
                 #reader {
-                    max-height: 80vh;
+                    max-height: 75vh;
+                    max-width: var(--wp--style--global--wide-size, 1200px);
+                    margin: 0 auto;
                     overflow: auto;
                 }
             `
