@@ -1,12 +1,67 @@
 import {TBPElement} from "./base.js";
-import {customElement, property} from "lit/decorators.js";
+import {customElement, property, query} from "lit/decorators.js";
 import {css, html} from "@spectrum-web-components/base";
 import {classMap} from "lit/directives/class-map.js";
+import interact from 'interactjs';
 
 @customElement('tbp-verse')
 export class Scripture extends TBPElement {
     @property({type: String}) verse = '';
     @property({type: String}) text = '';
+    @property({type: Boolean}) selectable = false;
+    @property({type: Boolean, reflect: true}) selected = false;
+    @query('.verse') verseEl;
+
+    tapTimeout = null;
+
+    firstUpdated(_changedProperties) {
+        super.firstUpdated(_changedProperties);
+        this.proxyEvents();
+    }
+
+    /**
+     * Proxy some non-native events from interact.js to lit
+     */
+    proxyEvents() {
+        interact(this.verseEl)
+            .on('hold', (event) => {
+                const detail = {
+                    verse: this.verse,
+                    text: this.text,
+                }
+                this.verseEl.dispatchEvent(new CustomEvent('hold', {bubbles: true, detail}))
+                this.dispatchEvent(new CustomEvent('hold', {bubbles: true, detail}))
+            });
+        interact(this.verseEl)
+            .on('tap', (event) => {
+                if (event.dt > 300) {
+                    clearTimeout(this.tapTimeout);
+                    return;
+                }
+
+                const detail = {
+                    verse: this.verse,
+                    text: this.text,
+                    double: event.double,
+                    dt: event.dt,
+                }
+
+                this.verseEl.dispatchEvent(new CustomEvent('tap', {bubbles: true, detail}))
+                this.dispatchEvent(new CustomEvent('tap', {bubbles: true, detail}))
+
+                if (event.double) {
+                    clearTimeout(this.tapTimeout);
+                    this.verseEl.dispatchEvent(new CustomEvent('doubletap', {bubbles: true, detail}))
+                    this.dispatchEvent(new CustomEvent('doubletap', {bubbles: true, detail}))
+                } else {
+                    this.tapTimeout = setTimeout(() => {
+                        console.log(event)
+                        this.verseEl.dispatchEvent(new CustomEvent('singletap', {bubbles: true, detail}))
+                        this.dispatchEvent(new CustomEvent('singletap', {bubbles: true, detail}))
+                    }, 300);
+                }
+            });
+    }
 
     static get styles() {
         return [
@@ -20,22 +75,44 @@ export class Scripture extends TBPElement {
                 .verse {
                     line-height: var(--tbp-verse-line-height, 2);
                 }
+
+                .verse--selected {
+                    background-color: var(--tbp-verse-selected-background-color, var(--spectrum-yellow-background-color-default, yellow));
+                }
             `];
     }
 
     get classMap() {
+        const {selected} = this;
         return classMap({
-            "verse": true
+            "verse": true,
+            "verse--selected": selected,
         })
     }
 
     render() {
         return html`
-            <span
-                    } class="${this.classMap}">
-                <span class="verse__reference">${this.verse}</span>
+            <span class="${this.classMap}"
+                  @hold="${this.toggle}"
+                  @doubletap="${this.toggle}"
+                  .aria-selected="${this.selected}"
+            >
+                <span class="verse__reference">
+                    ${this.verse}
+                </span>
                 ${this.text}
             </span>
         `;
+    }
+
+    toggle() {
+        if (!this.selectable) {
+            return;
+        }
+        this.selected = !this.selected;
+        this.dispatchEvent(new CustomEvent('selection', {
+            bubbles: true,
+            detail: {selected: this.selected}
+        }))
     }
 }

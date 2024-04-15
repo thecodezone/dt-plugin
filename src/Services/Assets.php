@@ -14,8 +14,12 @@ class Assets {
 
 	public function translations() {
 		return [
-			'Old Testament' => __( 'Old Testament', 'bible-plugin' ),
-			'New Testament' => __( 'New Testament', 'bible-plugin' ),
+			'Old Testament'         => __( 'Old Testament', 'bible-plugin' ),
+			'New Testament'         => __( 'New Testament', 'bible-plugin' ),
+            'Link'                  => __( 'Link', 'bible-plugin' ),
+			'Selection'             => __( 'Selection', 'bible-plugin' ),
+            'Copy'                  => __( 'Copy', 'bible-plugin' ),
+            "Copied successfully." => __( "Copied successfully.", "bible-plugin" ),
 		];
 	}
 

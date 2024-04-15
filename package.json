@@ -67,6 +67,7 @@
     "hls.js": "^1.5.7",
     "iconify": "^1.4.0",
     "iconify-icon": "^2.0.0",
+    "interactjs": "^1.10.27",
     "lit-element": "^2.5.0",
     "lit-html": "^2.8.0",
     "nanostores": "^0.10.0",

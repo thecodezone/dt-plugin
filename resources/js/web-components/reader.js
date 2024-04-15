@@ -29,7 +29,9 @@ export class Reader extends withStores(TBPElement, [$content, $referenceData]) {
                 <tbp-content
                         .content=${$content.get()}
                         .reference="${$referenceData.get()}"
-                        type="${$media_type_key.get()}"/>
+                        type="${$media_type_key.get()}"
+                        selectable
+                />
             </sp-dialog>
         `;
     }
