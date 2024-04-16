@@ -13,10 +13,12 @@ export class Reader extends withStores(TBPElement, [$content, $referenceData]) {
             super.styles,
             css`
                 #reader {
-                    max-height: 75vh;
+                    --mod-dialog-confirm-padding-grid: 0;
+                    max-height: var(--tbp-reader-height, 75vh);
                     max-width: var(--wp--style--global--wide-size, 1200px);
-                    margin: 0 auto;
-                    overflow: auto;
+                    margin: var(--tpb-reader-margin, 25px auto);
+                    overflow-y: auto;
+                    overflow-x: hidden;
                 }
             `
         ];
@@ -24,7 +26,6 @@ export class Reader extends withStores(TBPElement, [$content, $referenceData]) {
 
     render() {
         return html`
-
             <sp-dialog id="reader" no-divider size="md">
                 <tbp-content
                         .content=${$content.get()}

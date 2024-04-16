@@ -47,15 +47,6 @@ export class DialogWrapper extends SpectrumDialogWrapper {
                             />
                         `
                         : nothing}
-                <div slot="heading">
-                    <slot name="top">
-                        <h2
-                                ?hidden=${this.headlineVisibility === 'none'}
-                        >
-                            ${this.headline}
-                        </h2>
-                    </slot>
-                </div>
                 <slot></slot>
                 <div slot="footer">
                     <slot name="bottom">

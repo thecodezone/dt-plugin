@@ -13,11 +13,54 @@ export class Scripture extends TBPElement {
     @query('.verse') verseEl;
 
     tapTimeout = null;
+    selectionChangeListener = null;
 
-    firstUpdated(_changedProperties) {
-        super.firstUpdated(_changedProperties);
-        this.proxyEvents();
+    static get styles() {
+        return [
+            super.styles,
+            css`
+                .verse__reference {
+                    color: var(--tpb-verse-reference-color, var(--spectrum-neutral-visual-color, gray));
+                    font-weight: var(--tbp-verse-reference-font-weight, normal);
+                }
+
+                .verse {
+                    line-height: var(--tbp-verse-line-height, 2);
+                    padding: .5em 0;
+                }
+
+                .verse--selected {
+                    background-color: var(--tbp-verse-selected-background-color, var(--spectrum-yellow-background-color-default, yellow));
+                }
+            `];
     }
+
+    get classMap() {
+        const {selected} = this;
+        return classMap({
+            "verse": true,
+            "verse--selected": selected,
+        })
+    }
+
+    get isSelected() {
+        let selection = this.shadowRoot.getSelection();
+        return selection.type !== "None";
+    }
+
+    connectedCallback() {
+        this.selectionChangeListener = this.handleSelectionChange.bind(this);
+        super.connectedCallback();
+        setTimeout(() => {
+            this.proxyEvents();
+        });
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        interact(this.verseEl).unset();
+    }
+
 
     /**
      * Proxy some non-native events from interact.js to lit
@@ -55,7 +98,6 @@ export class Scripture extends TBPElement {
                     this.dispatchEvent(new CustomEvent('doubletap', {bubbles: true, detail}))
                 } else {
                     this.tapTimeout = setTimeout(() => {
-                        console.log(event)
                         this.verseEl.dispatchEvent(new CustomEvent('singletap', {bubbles: true, detail}))
                         this.dispatchEvent(new CustomEvent('singletap', {bubbles: true, detail}))
                     }, 300);
@@ -63,38 +105,20 @@ export class Scripture extends TBPElement {
             });
     }
 
-    static get styles() {
-        return [
-            super.styles,
-            css`
-                .verse__reference {
-                    color: var(--tpb-verse-reference-color, var(--spectrum-neutral-visual-color, gray));
-                    font-weight: var(--tbp-verse-reference-font-weight, normal);
-                }
-
-                .verse {
-                    line-height: var(--tbp-verse-line-height, 2);
-                }
-
-                .verse--selected {
-                    background-color: var(--tbp-verse-selected-background-color, var(--spectrum-yellow-background-color-default, yellow));
-                }
-            `];
-    }
-
-    get classMap() {
-        const {selected} = this;
-        return classMap({
-            "verse": true,
-            "verse--selected": selected,
-        })
+    handleSelectionChange() {
+        if (!this.isSelected) {
+            return;
+        }
+        let range = document.createRange();
+        range.selectNodeContents(this.shadowRoot);
+        let selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 
     render() {
         return html`
             <span class="${this.classMap}"
-                  @hold="${this.toggle}"
-                  @doubletap="${this.toggle}"
                   .aria-selected="${this.selected}"
             >
                 <span class="verse__reference">
@@ -103,16 +127,5 @@ export class Scripture extends TBPElement {
                 ${this.text}
             </span>
         `;
-    }
-
-    toggle() {
-        if (!this.selectable) {
-            return;
-        }
-        this.selected = !this.selected;
-        this.dispatchEvent(new CustomEvent('selection', {
-            bubbles: true,
-            detail: {selected: this.selected}
-        }))
     }
 }

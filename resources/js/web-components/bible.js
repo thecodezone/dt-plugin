@@ -3,14 +3,13 @@ import {TBPElement} from "./base.js";
 import {withStores} from "@nanostores/lit";
 import {css, html, nothing} from "@spectrum-web-components/base";
 import {$query} from "../stores/query.js"
-import {$bookName, $otBooks, $ntBooks, $visitBook} from "../stores/book.js"
+import {$bookName} from "../stores/book.js"
 import {$fullScreen} from "../stores/full-screen.js";
-
 import {$chapter} from "../stores/chapter.js"
-import {__} from "../helpers.js";
+import {$message} from "../stores/message.js"
 
 @customElement('tbp-bible')
-export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $otBooks, $ntBooks, $fullScreen]) {
+export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $fullScreen, $message]) {
     @property({type: String}) version = 'tbp';
 
     static get styles() {
@@ -32,6 +31,10 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                 .copyright {
                     font-size: 0.6rem;
                     text-align: center;
+                }
+
+                tbp-bible-menu {
+                    margin-left: auto;
                 }
 
                 footer {
@@ -67,10 +70,9 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                 <tbp-dialog-wrapper
                         mode="fullscreenTakeover"
                         no-divider
+                        headline-visibility="hidden"
                 >
-                    <div slot="top">
-                        ${this.renderHeader()}
-                    </div>
+                    ${this.renderHeader()}
 
                     ${loading ? this.renderLoader() : html`
                         <tbp-reader></tbp-reader>`}
@@ -93,16 +95,24 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                             label="Loading bible..."
                             indeterminate
                     ></sp-progress-circle>` : $bookName.get() + " " + $chapter.get()}</strong></sp-top-nav-item>
-                <sp-action-group style="margin-inline-start: auto;">
-                    <tbp-book-menu label="${__("Old Testament")}" .books=${$otBooks.get()}></tbp-book-menu>
-                    <sp-divider
-                            size="s"
-                            style="align-self: stretch; height: auto;"
-                            vertical
-                    ></sp-divider>
-                    <tbp-book-menu label="${__("New Testament")}" .books=${$ntBooks.get()}></tbp-book-menu>
-                </sp-action-group>
+                ${this.renderMessage()}
+                <tbp-bible-menu></tbp-bible-menu>
             </sp-top-nav>`
+    }
+
+    renderMessage() {
+        if (!$message.get()) {
+            return nothing;
+        }
+        return html`
+            <div id="message">
+                <sp-toast open variant="positive"
+                          timeout="6000"
+                          .key="${$message.get()}" size="s">
+                    ${$message.get()}
+                </sp-toast>
+            </div>
+        `
     }
 
     renderInPage() {
@@ -121,19 +131,6 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
             <div class="#loader">
             </div>
         `
-    }
-
-    renderBooksMenu(label, books) {
-        return html`
-            <sp-action-menu label="${label}">
-                <span slot="label">${label}</span>
-                ${books.map((book) => html`
-                    <sp-menu-item
-                            @click=${() => $visitBook(book)}
-                    >${book.name}
-                    </sp-menu-item>
-                `)}
-            </sp-action-menu>`
     }
 
     renderFooter() {

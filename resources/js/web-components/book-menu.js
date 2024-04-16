@@ -33,6 +33,14 @@ export class BookMenu extends withStores(TBPElement, []) {
                 justify-content: flex-start;
             }
 
+            sp-popover {
+                padding: 0px;
+            }
+
+            sp-action-button {
+                border-radius: 0 !important;
+            }
+
             .book-menu__chapter-menu {
                 display: grid;
                 grid-template-columns: repeat(6, 1fr);
