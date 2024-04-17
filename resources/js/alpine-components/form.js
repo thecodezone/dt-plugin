@@ -7,7 +7,6 @@ import hasArrayable from "./mixins/has-arrayable.js";
 export const form = (props = {}) => {
     return {
         ...hasArrayable,
-        nonce: "",
         success: false,
         error: false,
         submitting: false,
@@ -67,7 +66,7 @@ export const form = (props = {}) => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-WP-Nonce': this.nonce
+                        'X-WP-Nonce': $tbp.nonce
                     },
                     body: JSON.stringify(this.submission())
                 })

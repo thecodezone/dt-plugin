@@ -40,7 +40,7 @@ $r->condition( 'plugin', function ( $r ) {
 
 		$r->get( '/scripture', [ ScriptureController::class, 'index' ] );
 
-		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin' ], function ( Routes $r ) {
+		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin_nonce' ], function ( Routes $r ) {
 			$r->post( '/bible-brains/key', [ BibleBrainsFormController::class, 'validate' ] );
 			$r->post( '/bible-brains', [ BibleBrainsFormController::class, 'submit' ] );
 			$r->post( '/customization', [ CustomizationFomController::class, 'submit' ] );

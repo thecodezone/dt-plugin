@@ -31,7 +31,8 @@ class Scripture {
 		private Languages $languages,
 		private Reference $reference,
 		private Options $options,
-		private MediaTypes $media_types
+		private MediaTypes $media_types,
+		private Language $language
 	) {
 	}
 
@@ -101,16 +102,14 @@ class Scripture {
 	private function query( array $parameters ): array {
 		$parameters = $this->normalize_query( $parameters );
 
-		//If no language, fetch the default from options
-		if ( ! $parameters['language'] ) {
-			$parameters['language'] = $this->options->get( 'language', false, true );
-		}
+
 		$media_type = $this->media_types->find( $parameters['media_type'] );
-
 		$fileset_types = $media_type['fileset_types'];
-		$language      = $this->languages->find( $parameters['language'] )["data"];
-		$bible         = $this->bibles->find_or_default( $parameters['bible'], $language['id'] )["data"];
-
+		$language = $this->language->find_or_resolve( $parameters['language'] ?? null );
+		$bible = ( $parameters['bible'] ?? null ) ? $this->bibles->find( $parameters['bible'] )["data"] : null;
+		if ( ! $bible ) {
+			$bible = $this->bibles->find_or_default( $language['bibles'], $language['value'] )["data"];
+		}
 		$book = $this->books->pluck( $parameters['book'], $bible['books'] );
 
 		if ( ! $book ) {

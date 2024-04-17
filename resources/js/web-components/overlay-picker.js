@@ -1,12 +1,14 @@
 import {css, html, LitElement} from "lit";
 import uniqua from "uniqua";
-import {customElement, property, state} from "lit/decorators.js";
+import {customElement, property, query, state} from "lit/decorators.js";
 
 @customElement('tbp-overlay-picker')
 
 export class OverlayPicker extends LitElement {
     @property({type: Array, reflect: true, attribute: true}) options = [];
     @property({type: String, reflect: true, attribute: true}) optionsUrl = [];
+    @property({type: String}) optionsValueKey = 'value'
+    @property({type: String}) optionsLabelKey = 'itemText'
     @property({type: String, reflect: true, attribute: true}) label = ''
     @property({type: String}) nonce = '';
     @property({type: Boolean}) prefetch = false
@@ -14,12 +16,14 @@ export class OverlayPicker extends LitElement {
     @property({type: String}) value = ''
     @property({type: String}) searchLabel = 'Search'
     @property({type: Boolean, attribute: true}) searchable = false
+    @property({type: String, attribute: true}) selects = "single"
+
+    @query('sp-dialog-wrapper') dialogWrapper
 
     @state() option_history = {}
     @state() selectedOptions = {}
     @state() values = []
     @state() search = ''
-
 
     /**
      * Returns an array of CSS styles including choices.js CSS
@@ -93,10 +97,18 @@ export class OverlayPicker extends LitElement {
         this.has_updated = true
     }
 
+    refreshSelectedOptions() {
+        this.selectedOptions = this.values.map(value => this.option_history[value]).filter(option => !!option)
+        this.requestUpdate()
+    }
+
     handleOptionChange() {
         this.options.forEach(option => {
-            this.option_history[option.value] = option
+            console.log(option)
+            console.log(option[this.optionsValueKey])
+            this.option_history[option[this.optionsValueKey]] = option
         })
+        this.refreshSelectedOptions()
         this.dispatchEvent(
             new Event('options', {
                 bubbles: false,
@@ -108,19 +120,25 @@ export class OverlayPicker extends LitElement {
 
     handleValueChange() {
         this.values = this.value.split(',')
-        this.selectedOptions = this.values.map(value => this.option_history[value]).filter(option => !!option)
+        this.refreshSelectedOptions()
+        const detail = {
+            values: this.values,
+            options: this.selectedOptions
+        }
         this.dispatchEvent(
             new Event('input', {
                 bubbles: false,
                 cancelable: true,
-                composed: true
+                composed: true,
+                detail
             })
         );
         this.dispatchEvent(
             new Event('change', {
                 bubbles: false,
                 cancelable: true,
-                composed: true
+                composed: true,
+                detail
             })
         );
     }
@@ -128,14 +146,16 @@ export class OverlayPicker extends LitElement {
     render() {
         return html`
             <div class="multiselect">
-
                 <sp-action-group size="m" emphasized>
-                    ${Object.values(this.selectedOptions).map(({value, itemText}) =>
+                    ${Object.values(this.selectedOptions).map((option) =>
                             html`
-                                <sp-tag deletable @click="${() => this.removeValue(value)}">${itemText}</sp-tag>
+                                <sp-tag deletable @click="${() => this.removeValue(option[this.optionsValueKey])}">
+                                    ${option[this.optionsLabelKey]}
+                                </sp-tag>
                             `
                     )}
-                    <sp-action-button emphasized selected @click="${this.searching = true}" id="search">
+                    <sp-action-button @click="${this.searching = true}"
+                                      id="search">
                         <sp-icon-magnify slot="icon"></sp-icon-magnify>
                     </sp-action-button>
                 </sp-action-group>
@@ -152,14 +172,14 @@ export class OverlayPicker extends LitElement {
                                            @input="${this.handleSearch}"></sp-search>` : ''}
 
                             <sp-menu
-                                    selects="multiple"
+                                    selects="${this.selects}"
                             >
-                                ${this.options.map(({value, itemText}) =>
+                                ${this.options.map((option) =>
                                         html`
-                                            <sp-menu-item value="${value}"
+                                            <sp-menu-item value="${option[this.optionsValueKey]}"
                                                           @click="${this.handleOptionClick}"
-                                                          ?selected=${this.isValueSelected(value)}>
-                                                ${itemText}
+                                                          ?selected=${this.isValueSelected(option[this.optionsValueKey])}>
+                                                ${option[this.optionsLabelKey]}
                                             </sp-menu-item>
                                         `
                                 )}
@@ -184,7 +204,13 @@ export class OverlayPicker extends LitElement {
     }
 
     addValue(value) {
-        this.value = uniqua(this.values.concat(value)).join(',')
+        if (this.selects === 'single') {
+            this.value = value
+            this.dialogWrapper.dialog.close()
+        } else {
+            this.value = uniqua(this.values.concat(value)).join(',')
+        }
+        this.requestUpdate()
     }
 
     isValueSelected(value) {
@@ -259,5 +285,9 @@ export class OverlayPicker extends LitElement {
                 'X-WP-Nonce': this.nonce
             }
         })
+    }
+
+    getSelectedOptions() {
+        return this.selectedOptions
     }
 }

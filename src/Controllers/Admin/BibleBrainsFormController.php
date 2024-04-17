@@ -28,7 +28,7 @@ class BibleBrainsFormController {
 	 * @param Request $request The request object.
 	 * @param Response $response The response object.
 	 */
-	public function show( Request $request, Response $response, Languages $language_service, Bibles $bible_service, MediaTypes $media_type_service ) {
+	public function show( Request $request, Response $response, Bibles $bible_service, MediaTypes $media_type_service ) {
 		$tab              = "bible";
 		$bible_brains_key = get_plugin_option( 'bible_brains_key' );
 		if ( ! $bible_brains_key ) {
@@ -41,47 +41,19 @@ class BibleBrainsFormController {
 			return $this->validation_form( $request, $response, $e->getMessage() );
 		}
 
-		try {
-			//Languages
-			$languages             = get_plugin_option( 'languages' );
-			$selected_language_ids = explode( ',', $languages );
-			$language              = get_plugin_option( 'language', Arr::first( $selected_language_ids ) );
-			$selected_languages    = $selected_language_ids ? $language_service->find_many( $selected_language_ids )['data'] : [];
-			$language_options      = $language_service->as_options( $selected_languages );
-
-			//Bibles
-			$bibles = get_plugin_option( 'bibles', false, true );
-			if ( ! $bibles ) {
-				$bibles = implode( ',', $bible_service->default_for_languages( Arr::pluck( $selected_languages, 'codes.Iso 639-2' ) )['data'] );
-			}
-			$selected_bible_ids = explode( ',', $bibles );
-			$selected_bibles    = $selected_bible_ids ? $bible_service->find_many( $selected_bible_ids )['data'] : [];
-			$bible_options      = $bible_service->as_options( $selected_bibles );
-
-			//Media
-			$media_types        = get_plugin_option( 'media_types' );
-			$media_type_options = $media_type_service->options();
-		} catch ( Exception $e ) {
-			return $this->validation_form( $request, $response, $e->getMessage() );
+		//Languages
+		$languages             = get_plugin_option( 'languages' );
+		if ( ! is_array( $languages ) ) {
+			$languages = [];
 		}
 
-		$fields = compact( 'bible_brains_key', 'languages', 'language', 'bibles', 'media_types' );
-		$nonce  = wp_create_nonce( 'bible-plugin' );
-
-		$action                    = '/bible/api/bible-brains';
-		$language_options_endpoint = '/bible/api/languages/options';
-		$bible_options_endpoint    = '/bible/api/bibles/options';
+		$fields = compact( 'bible_brains_key', 'languages' );
+		$media_type_options = $media_type_service->options();
 
 		return view( "settings/bible-brains-form", [
-			'action'                    => $action,
 			'tab'                       => $tab,
-			'language_options_endpoint' => $language_options_endpoint,
-			'language_options'          => $language_options,
-			'bible_options'             => $bible_options,
-			'bible_options_endpoint'    => $bible_options_endpoint,
-			'media_type_options'        => $media_type_options,
 			'fields'                    => $fields,
-			'nonce'                     => $nonce,
+			'media_type_options'        => $media_type_options,
 		] );
 	}
 
@@ -121,9 +93,6 @@ class BibleBrainsFormController {
 	public function submit( Request $request, Response $response, Bibles $bibles ) {
 		$errors = validate( $request->post(), [
 			'languages'   => 'required',
-			'language'    => 'required',
-			'bibles'      => 'required',
-			'media_types' => 'required',
 		] );
 
 		if ( $errors ) {
@@ -134,11 +103,7 @@ class BibleBrainsFormController {
 		}
 
 		$result = transaction( function () use ( $request ) {
-			set_plugin_option( 'bible_brains_key', $request->post( 'bible_brains_key' ) );
 			set_plugin_option( 'languages', $request->post( 'languages' ) );
-			set_plugin_option( 'language', $request->post( 'language' ) );
-			set_plugin_option( 'bibles', $request->post( 'bibles' ) );
-			set_plugin_option( 'media_types', $request->post( 'media_types' ) );
 		} );
 
 		if ( ! $result === true ) {

@@ -7,9 +7,11 @@ import {$bookName} from "../stores/book.js"
 import {$fullScreen} from "../stores/full-screen.js";
 import {$chapter} from "../stores/chapter.js"
 import {$message} from "../stores/message.js"
+import {$error} from "../stores/error.js"
+import {$reference} from "../stores/reference.js";
 
 @customElement('tbp-bible')
-export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $fullScreen, $message]) {
+export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $fullScreen, $message, $error]) {
     @property({type: String}) version = 'tbp';
 
     static get styles() {
@@ -26,6 +28,10 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                     justify-content: center;
                     align-items: center;
                     height: 100%;
+                }
+
+                #error {
+                    --mod-toast-max-inline-size: 100%;
                 }
 
                 .copyright {
@@ -55,11 +61,39 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
     }
 
     render() {
+        if ($query.get().loading) {
+            return this.renderLoader();
+        }
+        return $error.get() ? this.renderError() : this.renderSuccess()
+    }
+
+    renderSuccess() {
         return html`
-            <main>
-                ${$fullScreen.get() ? this.renderFullScreen() : this.renderInPage()}
-            </main>
-        `;
+            <main>${$fullScreen.get() ? this.renderFullScreen() : this.renderInPage()}</main>`;
+    }
+
+    renderError() {
+        return html`
+            <sp-toast open variant="negative" id="error"
+                      .key="${$error.get()}" size="s">
+                ${$error.get()}
+
+                <sp-button
+                        slot="action"
+                        static="white"
+                        variant="secondary"
+                        treatment="outline"
+                        @click=${() => this.handleErrorClick()}
+                >
+                    Reload
+                </sp-button>
+            </sp-toast>
+        `
+    }
+
+    handleErrorClick() {
+        const url = new URL(window.location.href);
+        window.location.href = url.protocol + "//" + url.host + url.pathname;
     }
 
     renderFullScreen() {

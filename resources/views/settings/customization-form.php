@@ -16,7 +16,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
 				'refresh'              => true,
 				'fields'               => $fields,
 				'nonce'                => $nonce,
-				'action'               => esc_url( '/bible/api/customization' ),
+				'action'               => esc_url( '/the-bible-plugin/api/customization' ),
 				'error'                => $error ?? '',
 				'color_scheme_options' => $color_scheme_options
 			]

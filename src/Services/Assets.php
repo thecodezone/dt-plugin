@@ -14,12 +14,20 @@ class Assets {
 
 	public function translations() {
 		return [
+			'Copy'                  => __( 'Copy', 'bible-plugin' ),
+			"Copied successfully." => __( "Copied successfully.", "bible-plugin" ),
+            'Language'              => __( 'Language', 'bible-plugin' ),
+			"Languages"             => __( "Languages", "bible-plugin" ),
+			'Link'                  => __( 'Link', 'bible-plugin' ),
 			'Old Testament'         => __( 'Old Testament', 'bible-plugin' ),
+            'Media Types'           => __( 'Media Types', 'bible-plugin' ),
 			'New Testament'         => __( 'New Testament', 'bible-plugin' ),
-            'Link'                  => __( 'Link', 'bible-plugin' ),
+			'Note that some bible versions do not support all media types.' => __( 'Note that some bible versions do not support all media types.', 'bible-plugin' ),
+			"Search"                => __( "Search", "bible-plugin" ),
+			'Select the bible language you would like to make available.' => __( 'Select the bible language you would like to make available.', 'bible-plugin' ),
+            'Select the bible version you would like to make available for this language.' => __( 'Select the bible version you would like to make available for this language.', 'bible-plugin' ),
 			'Selection'             => __( 'Selection', 'bible-plugin' ),
-            'Copy'                  => __( 'Copy', 'bible-plugin' ),
-            "Copied successfully." => __( "Copied successfully.", "bible-plugin" ),
+            'Translation'           => __( 'Translation', 'bible-plugin' ),
 		];
 	}
 
@@ -127,6 +135,12 @@ class Assets {
 				'in-footer' => false, // Optional. Defaults to false.
 			]
 		);
+
+		wp_localize_script( 'bible-plugin-admin', '$tbp', [
+			'apiUrl'       => route_url( 'api' ),
+			'nonce'        => wp_create_nonce( 'bible_plugin_nonce' ),
+			'translations' => $this->translations(),
+		] );
 	}
 
 	/**

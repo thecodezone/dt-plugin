@@ -16,9 +16,12 @@ import {loaded} from './helpers';
 import '@spectrum-web-components/theme/sp-theme.js';
 import '@spectrum-web-components/theme/src/themes.js';
 
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-add.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-delete.js';
 import '@spectrum-web-components/badge/sp-badge.js';
 import '@spectrum-web-components/button/sp-button.js';
 import '@spectrum-web-components/button-group/sp-button-group.js';
+import '@spectrum-web-components/card/sp-card.js';
 import '@spectrum-web-components/checkbox/sp-checkbox.js';
 import '@spectrum-web-components/combobox/sp-combobox.js';
 import '@spectrum-web-components/divider/sp-divider.js';
@@ -64,11 +67,12 @@ import './web-components/alert-banner.js';
 import './web-components/overlay-picker.js';
 import './web-components/color-slider.js';
 import './web-components/color-steps.js';
+import './web-components/languages-field.js';
+
 /**
  * Alpine Components
  */
 import './alpine-components/bible-brains-key-form.js';
-import './alpine-components/bible-brains-form.js';
 
 loaded(() => {
     document.querySelectorAll('.tbp-cloak').forEach((el) => el.classList.remove('tbp-cloak'));

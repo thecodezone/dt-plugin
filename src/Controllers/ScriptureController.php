@@ -21,7 +21,9 @@ class ScriptureController {
 		try {
 			$result = $scripture->by_reference( $request->get( 'reference' ) );
 		} catch ( \Exception $e ) {
-			return $response->setStatusCode( $e->getCode() )->setContent( $e->getMessage() );
+			return $response->setStatusCode( 500 )->setContent( [
+				'error' => $e->getMessage()
+			] );
 		}
 
 		return $response->setContent( $result );

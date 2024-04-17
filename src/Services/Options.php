@@ -25,11 +25,15 @@ class Options {
 	private function defaults(): array {
 		return [
 			'bible_brains_key' => defined( 'TBP_BIBLE_BRAINS_KEY' ) ? TBP_BIBLE_BRAINS_KEY : '',
-			'languages'        => '6414',
+			'languages'        => [
+				[
+					'bibles' => 'ENGESV',
+					'media_types' => 'text,audio-video',
+					'itemText' => 'English',
+					'value' => 'eng'
+				]
+			],
 			'language'         => '6414',
-			'bibles'           => 'ENGESV',
-			'bible'            => 'ENGESV',
-			'media_types'      => 'text,audio-video',
 			'color_scheme'     => 'light',
 			'translations'     => [],
 			'colors'           => [
@@ -55,6 +59,10 @@ class Options {
 		];
 	}
 
+	public function get_default( string $key ) {
+		return Arr::get( $this->defaults(), $key );
+	}
+
 	/**
 	 * Determines the scope key for a given key.
 	 *
@@ -76,7 +84,7 @@ class Options {
 	 */
 	public function get( string $key, mixed $default = null, $required = false ) {
 		if ( $default !== null ) {
-			$default = Arr::get( $this->defaults(), $key );
+			$default = $this->get_default( $key );
 		}
 
 		$key = $this->scope_key( $key );

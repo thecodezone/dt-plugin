@@ -16,10 +16,9 @@
                 [
 				      'fields'          => $fields,
 				      'success_message' => __( 'Bible Brains API Key verified.', 'bible-plugin' ),
-				      'nonce'           => $nonce,
 				      'redirect_url'    => esc_url( "/wp-admin/admin.php?page=bible-plugin" ),
 				      'url'             => esc_url( '/wp-admin/admin.php?page=bible-plugin&tab=bible' ),
-				      'action'          => esc_url( '/bible/api/bible-brains/key' ),
+				      'action'          => esc_url( '/the-bible-plugin/api/bible-brains/key' ),
 				      'error'           => $error ?? '',
 			      ]
             )
