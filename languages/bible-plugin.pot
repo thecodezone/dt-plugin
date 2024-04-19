@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-03-15 15:07-0500\n"
+"POT-Creation-Date: 2024-04-19 14:27-0500\n"
 "PO-Revision-Date: 2024-01-24 21:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -82,58 +82,8 @@ msgstr ""
 msgid "An error has occurred."
 msgstr ""
 
-#: resources/views/settings/bible-brains-form.php:52
-#: resources/views/settings/bible-brains-form.php:57
-msgid "Languages"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:56
-#: resources/views/settings/bible-brains-form.php:58
-#: resources/views/settings/bible-brains-form.php:114
-#: resources/views/settings/bible-brains-form.php:116
-msgid "Search"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:70
-msgid "Select the bible languages you would like to make available."
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:79
-msgid "Default Language"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:84
-#: resources/views/settings/customization-form.php:38
-msgid "Choose"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:102
-msgid "Select   the bible language that will be used by default."
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:109
-msgid "Bible Versions"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:115
-#: resources/views/settings/customization-form.php:102
-msgid "Translations"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:129
-msgid "Select the bible versions you would like to make available."
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:138
-msgid "Media Types"
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:160
-msgid "Note that some bible versions do not support all media types."
-msgstr ""
-
-#: resources/views/settings/bible-brains-form.php:173
-#: resources/views/settings/bible-brains-form.php:175
+#: resources/views/settings/bible-brains-form.php:53
+#: resources/views/settings/bible-brains-form.php:55
 #: resources/views/settings/customization-form.php:124
 #: resources/views/settings/customization-form.php:126
 msgid "Save"
@@ -141,6 +91,10 @@ msgstr ""
 
 #: resources/views/settings/customization-form.php:30
 msgid "Theme"
+msgstr ""
+
+#: resources/views/settings/customization-form.php:38
+msgid "Choose"
 msgstr ""
 
 #: resources/views/settings/customization-form.php:56
@@ -165,6 +119,10 @@ msgid ""
 "color you chose will be used most often."
 msgstr ""
 
+#: resources/views/settings/customization-form.php:102
+msgid "Translations"
+msgstr ""
+
 #: resources/views/settings/customization-form.php:111
 msgid "Enter a translation..."
 msgstr ""
@@ -173,25 +131,25 @@ msgstr ""
 msgid "Bible Brains API Key verified."
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:38
+#: resources/views/settings/partials/bible-brains-key.php:37
 msgid "Bible Brain API Key"
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:47
+#: resources/views/settings/partials/bible-brains-key.php:46
 msgid "Enter key..."
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:54
-#: resources/views/settings/partials/bible-brains-key.php:57
+#: resources/views/settings/partials/bible-brains-key.php:53
+#: resources/views/settings/partials/bible-brains-key.php:56
 msgid "Validate"
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:65
-#: resources/views/settings/partials/bible-brains-key.php:68
+#: resources/views/settings/partials/bible-brains-key.php:64
+#: resources/views/settings/partials/bible-brains-key.php:67
 msgid "Valid"
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:75
+#: resources/views/settings/partials/bible-brains-key.php:74
 msgid "Here's how to get your key."
 msgstr ""
 
@@ -280,26 +238,26 @@ msgstr ""
 msgid "Visit home"
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:131
+#: src/Controllers/Admin/BibleBrainsFormController.php:100
 #: src/Controllers/Admin/CustomizationFomController.php:73
 msgid "Please complete the required fields."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
-#: src/Controllers/Admin/BibleBrainsFormController.php:192
+#: src/Controllers/Admin/BibleBrainsFormController.php:111
+#: src/Controllers/Admin/BibleBrainsFormController.php:157
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:169
+#: src/Controllers/Admin/BibleBrainsFormController.php:134
 msgid "Please enter a key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:179
+#: src/Controllers/Admin/BibleBrainsFormController.php:144
 msgid "Failed to validate key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:181
+#: src/Controllers/Admin/BibleBrainsFormController.php:146
 msgid "Invalid."
 msgstr ""
 
@@ -315,6 +273,10 @@ msgstr ""
 msgid "Could not verify request."
 msgstr ""
 
+#: src/Plugin.php:115
+msgid "The page could not be found."
+msgstr ""
+
 #: src/Providers/AdminServiceProvider.php:52
 msgid "Biblical Text Setup"
 msgstr ""
@@ -327,7 +289,74 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: src/ShortCodes/Scripture.php:73
+#: src/Services/Assets.php:21
+msgid "Copy"
+msgstr ""
+
+#: src/Services/Assets.php:22
+msgid "Copied successfully."
+msgstr ""
+
+#: src/Services/Assets.php:23
+msgid "Language"
+msgstr ""
+
+#: src/Services/Assets.php:24
+msgid "Languages"
+msgstr ""
+
+#: src/Services/Assets.php:25
+msgid "Link"
+msgstr ""
+
+#: src/Services/Assets.php:26
+msgid "Old Testament"
+msgstr ""
+
+#: src/Services/Assets.php:27
+msgid "Media Types"
+msgstr ""
+
+#: src/Services/Assets.php:28
+msgid "New Testament"
+msgstr ""
+
+#: src/Services/Assets.php:29
+msgid "Note that some bible versions do not support all media types."
+msgstr ""
+
+#: src/Services/Assets.php:30
+msgid "Search"
+msgstr ""
+
+#: src/Services/Assets.php:31
+msgid "Select the bible language you would like to make available."
+msgstr ""
+
+#: src/Services/Assets.php:32
+msgid ""
+"Select the bible version you would like to make available for this "
+"language."
+msgstr ""
+
+#: src/Services/Assets.php:33
+msgid "Selection"
+msgstr ""
+
+#: src/Services/Assets.php:34
+msgid "Translation"
+msgstr ""
+
+#: src/Services/Assets.php:35
+msgid "Loading"
+msgstr ""
+
+#: src/ShortCodes/Scripture.php:66
+msgctxt "shortcode"
+msgid "Invalid media type"
+msgstr ""
+
+#: src/ShortCodes/Scripture.php:86
 msgctxt "shortcode"
 msgid "No results found"
 msgstr ""

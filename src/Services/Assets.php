@@ -32,6 +32,7 @@ class Assets {
             'Select the bible version you would like to make available for this language.' => __( 'Select the bible version you would like to make available for this language.', 'bible-plugin' ),
 			'Selection'             => __( 'Selection', 'bible-plugin' ),
             'Translation'           => __( 'Translation', 'bible-plugin' ),
+            "Loading"            => __( "Loading", "bible-plugin" ),
 		];
 	}
 

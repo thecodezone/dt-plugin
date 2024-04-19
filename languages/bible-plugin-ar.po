@@ -2,11 +2,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:26-0500\n"
-"PO-Revision-Date: 2024-04-19 14:26-0500\n"
+"POT-Creation-Date: 2024-04-19 14:27-0500\n"
+"PO-Revision-Date: 2024-04-19 14:36-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_MX\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,27 +34,27 @@ msgstr ""
 #, fuzzy
 msgctxt "scripture"
 msgid "Bible"
-msgstr "Biblia"
+msgstr "الكتاب المقدس"
 
 #: resources/views/hello.php:6
 #, fuzzy
 msgctxt "reader"
 msgid "Next Chapter"
-msgstr "Siguiente capítulo"
+msgstr "الفصل التالي"
 
 #: resources/views/hello.php:7
 #, fuzzy
 msgctxt "reader"
 msgid "Previous Chapter"
-msgstr "Capítulo anterior"
+msgstr "الفصل السابق"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "إضافة"
 
 #: resources/views/layouts/plugin.php:11
 msgid "Copyright "
-msgstr "Derechos de autor del sitio "
+msgstr "حقوق النشر "
 
 #. Plugin Name of the plugin/theme
 #: resources/views/layouts/settings.php:55
@@ -67,60 +67,59 @@ msgstr "Derechos de autor del sitio "
 #: src/Providers/AdminServiceProvider.php:44
 #, fuzzy
 msgid "The Bible Plugin"
-msgstr "El complemento de la Biblia"
+msgstr "البرنامج المساعد الكتاب المقدس"
 
 #: resources/views/layouts/settings.php:75
 #, fuzzy
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr ""
-"Debes agregar tu clave API de Bible Brain para que este plugin funcione."
+"يجب عليك إضافة مفتاح Bible Brain API الخاص بك حتى يعمل هذا المكون الإضافي."
 
 #: resources/views/layouts/settings.php:84
 msgid "More Info"
-msgstr "Más Información"
+msgstr "مزيد من المعلومات"
 
 #: resources/views/partials/alerts.php:4
 msgid "Success!"
-msgstr "¡Éxito!"
+msgstr "نجاح!"
 
 #: resources/views/partials/alerts.php:9
 msgid "An error has occurred."
-msgstr "Ha ocurrido un error."
+msgstr "حصل خطأ غير معروف."
 
 #: resources/views/settings/bible-brains-form.php:53
 #: resources/views/settings/bible-brains-form.php:55
 #: resources/views/settings/customization-form.php:124
 #: resources/views/settings/customization-form.php:126
 msgid "Save"
-msgstr "Guardar"
+msgstr "حفظ"
 
 #: resources/views/settings/customization-form.php:30
 msgid "Theme"
-msgstr "Tema"
+msgstr "القالب"
 
 #: resources/views/settings/customization-form.php:38
 msgid "Choose"
-msgstr "Elegir"
+msgstr "اختر"
 
 #: resources/views/settings/customization-form.php:56
 #, fuzzy
 msgid "Switch between light mode or dark mode to match your theme."
-msgstr ""
-"Cambia entre el modo claro o el modo oscuro para que coincida con tu tema."
+msgstr "قم بالتبديل بين الوضع الفاتح أو الوضع الداكن لمطابقة المظهر الخاص بك."
 
 #: resources/views/settings/customization-form.php:65
 msgid "Accent Color"
-msgstr "Color a Resaltar"
+msgstr "لون التمييز"
 
 #: resources/views/settings/customization-form.php:75
 #, fuzzy
 msgid "The primary accent color used in the bible reader."
-msgstr "El color de acento primario utilizado en el lector de la Biblia."
+msgstr "لون التمييز الأساسي المستخدم في قارئ الكتاب المقدس."
 
 #: resources/views/settings/customization-form.php:82
 #, fuzzy
 msgid "Accent Color Steps"
-msgstr "Pasos de color de acento"
+msgstr "خطوات لون التمييز"
 
 #: resources/views/settings/customization-form.php:95
 #, fuzzy
@@ -128,51 +127,51 @@ msgid ""
 "This range of colors could be displayed in the bible reader. The accent "
 "color you chose will be used most often."
 msgstr ""
-"Esta gama de colores podría mostrarse en el lector de la Biblia. El color de "
-"acento que elijas se usará con mayor frecuencia."
+"يمكن عرض هذا النطاق من الألوان في قارئ الكتاب المقدس. سيتم استخدام لون "
+"التمييز الذي اخترته في أغلب الأحيان."
 
 #: resources/views/settings/customization-form.php:102
 msgid "Translations"
-msgstr "Traducciones"
+msgstr "الترجمة"
 
 #: resources/views/settings/customization-form.php:111
 #, fuzzy
 msgid "Enter a translation..."
-msgstr "Introduzca una traducción..."
+msgstr "أدخل ترجمة..."
 
 #: resources/views/settings/partials/bible-brains-key.php:18
 #, fuzzy
 msgid "Bible Brains API Key verified."
-msgstr "Clave API de Bible Brains verificada."
+msgstr "تم التحقق من مفتاح API لأدمغة الكتاب المقدس."
 
 #: resources/views/settings/partials/bible-brains-key.php:37
 #, fuzzy
 msgid "Bible Brain API Key"
-msgstr "Clave API de Bible Brain"
+msgstr "الكتاب المقدس الدماغ API مفتاح"
 
 #: resources/views/settings/partials/bible-brains-key.php:46
 #, fuzzy
 msgid "Enter key..."
-msgstr "Introduzca la tecla..."
+msgstr "أدخل المفتاح..."
 
 #: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
 msgid "Validate"
-msgstr "Validar"
+msgstr "التحقق"
 
 #: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
 msgid "Valid"
-msgstr "Válido"
+msgstr "صالح"
 
 #: resources/views/settings/partials/bible-brains-key.php:74
 #, fuzzy
 msgid "Here's how to get your key."
-msgstr "A continuación, te explicamos cómo obtener tu llave."
+msgstr "إليك كيفية الحصول على مفتاحك."
 
 #: resources/views/settings/support.php:14
 msgid "FAQ"
-msgstr "FAQ"
+msgstr "الأسئلة الشائعة"
 
 #: resources/views/settings/support.php:20
 #, fuzzy
@@ -180,13 +179,12 @@ msgid ""
 "If you encounter an error or bug, please report it to us at our GitHub by "
 "clicking the button below."
 msgstr ""
-"Si encuentra un error o fallo, infórmenos en nuestro GitHub haciendo clic en "
-"el botón a continuación."
+"إذا واجهت خطأ أو خطأ ، فيرجى إبلاغنا به على GitHub بالنقر فوق الزر أدناه."
 
 #: resources/views/settings/support.php:24
 #, fuzzy
 msgid "Report an error"
-msgstr "Notificar un error"
+msgstr "الإبلاغ عن خطأ"
 
 #: resources/views/settings/support.php:31
 #: resources/views/settings/support.php:42
@@ -194,19 +192,16 @@ msgstr "Notificar un error"
 msgid ""
 "Fill out the support form on our website. You can expect a response within "
 "48 business days."
-msgstr ""
-"Complete el formulario de soporte en nuestro sitio web. Puede esperar una "
-"respuesta en un plazo de 48 días hábiles."
+msgstr "املأ نموذج الدعم على موقعنا. يمكنك توقع رد في غضون 48 يوم عمل."
 
 #: resources/views/settings/support.php:35
 #, fuzzy
 msgid "Request support"
-msgstr "Solicitar soporte"
+msgstr "طلب الدعم"
 
 #: resources/views/settings/support.php:46
-#, fuzzy
 msgid "Request a feature"
-msgstr "Solicitar una función"
+msgstr "طلب ميزة"
 
 #: resources/views/settings/support.php:53
 #, fuzzy
@@ -215,9 +210,8 @@ msgid ""
 "you contact them to request additional translations be added the Bible "
 "Reader."
 msgstr ""
-"El lector de la Biblia usa la Biblia El cerebro por la fe viene por el oído. "
-"Le recomendamos que se ponga en contacto con ellos para solicitar que se "
-"agreguen traducciones adicionales al Lector de la Biblia."
+"يستخدم قارئ الكتاب المقدس أدمغة الكتاب المقدس بالإيمان يأتي بالسمع. نوصيك "
+"بالاتصال بهم لطلب إضافة ترجمات إضافية لقارئ الكتاب المقدس."
 
 #: resources/views/settings/support.php:57
 #, fuzzy
@@ -226,21 +220,20 @@ msgid ""
 "UI. If you are a translator or you would like more information on how you "
 "can get involved, please contact us using the contact form on our website."
 msgstr ""
-"Confiamos en el apoyo de la comunidad para agregar idiomas adicionales a la "
-"interfaz de usuario del complemento de la Biblia. Si eres traductor o "
-"quieres más información sobre cómo puedes participar, ponte en contacto con "
-"nosotros a través del formulario de contacto de nuestra página web."
+"نحن نعتمد على دعم المجتمع لإضافة لغات إضافية إلى واجهة مستخدم المكون الإضافي "
+"للكتاب المقدس. إذا كنت مترجما أو ترغب في الحصول على مزيد من المعلومات حول "
+"كيفية المشاركة ، فيرجى الاتصال بنا باستخدام نموذج الاتصال على موقعنا."
 
 #: resources/views/settings/support.php:62
 #, fuzzy
 msgid "Bible Brains"
-msgstr "Cerebros bíblicos"
+msgstr "أدمغة الكتاب المقدس"
 
 #: resources/views/settings/support.php:75
 #: resources/views/settings/support.php:88
 #: resources/views/settings/support.php:106
 msgid "About"
-msgstr "Acerca de"
+msgstr "حول"
 
 #: resources/views/settings/support.php:91
 #: resources/views/settings/support.php:113
@@ -261,176 +254,173 @@ msgid ""
 "to other Bible APIs in subsequent releases.  Additional information is "
 "available in the SRS document on GitHub.\n"
 msgstr ""
-"Poner la palabra en WordPress.  El complemento de la Biblia proporciona un "
-"lector de la Biblia simple en los sitios de WordPress con el texto de la "
-"Biblia al que se accede a través de las API de la Biblia disponibles.  La "
-"localización y el enfoque son una prioridad de este complemento con "
-"configuraciones de administración que permiten la selección del idioma, la "
-"versión de la Biblia, el número de versiones de la Biblia disponibles para "
-"el usuario final y los elementos de diseño (fuentes, colores).  La "
-"simplicidad y la facilidad de uso para el usuario final es la segunda "
-"prioridad con el objetivo de una interfaz intuitiva.  El desarrollo inicial "
-"del plugin se basará en la API de Bible Brain / DBPv4 pero con la intención "
-"de expandirse a otras API de Bible en versiones posteriores.  Hay "
-"información adicional disponible en el documento SRS en GitHub.\n"
+"وضع الكلمة في وورد.  يوفر المكون الإضافي للكتاب المقدس قارئا بسيطا للكتاب "
+"المقدس في مواقع WordPress مع نص الكتاب المقدس الذي يتم الوصول إليه من خلال "
+"واجهات برمجة تطبيقات الكتاب المقدس المتاحة.  يعد التعريب والتركيز من أولويات "
+"هذا المكون الإضافي مع إعدادات المسؤول التي تسمح باختيار اللغة وإصدار الكتاب "
+"المقدس وعدد إصدارات الكتاب المقدس المتاحة للمستخدم النهائي وعناصر التصميم "
+"(الخطوط والألوان).  البساطة وسهولة الاستخدام للمستخدم النهائي هي الأولوية "
+"الثانية القصوى بهدف واجهة بديهية.  سيعتمد التطوير الأولي للمكون الإضافي على "
+"واجهة برمجة تطبيقات Bible Brain / DBPv4 ولكن بهدف التوسع إلى واجهات برمجة "
+"تطبيقات الكتاب المقدس الأخرى في الإصدارات اللاحقة.  تتوفر معلومات إضافية في "
+"مستند SRS على GitHub.\n"
 
 #: resources/views/settings/support.php:109
 msgid "GitHub"
-msgstr "GitHub"
+msgstr "جيت هاب"
 
 #: resources/views/starter-magic-link/show.php:12
 #, fuzzy
 msgid "Visit subpage"
-msgstr "Ir a la subpágina"
+msgstr "زيارة الصفحة الفرعية"
 
 #: resources/views/starter-magic-link/subpage.php:12
 #, fuzzy
 msgid "Visit home"
-msgstr "Visita a casa"
+msgstr "زيارة المنزل"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:100
 #: src/Controllers/Admin/CustomizationFomController.php:73
 #, fuzzy
 msgid "Please complete the required fields."
-msgstr "Por favor, rellene los campos obligatorios."
+msgstr "يرجى ملء الحقول المطلوبة."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
 #: src/Controllers/Admin/BibleBrainsFormController.php:157
 #: src/Controllers/Admin/CustomizationFomController.php:86
 #, fuzzy
 msgid "Form could not be submitted."
-msgstr "No se pudo enviar el formulario."
+msgstr "تعذر تقديم الاستمارة."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:134
 #, fuzzy
 msgid "Please enter a key."
-msgstr "Por favor, introduzca una clave."
+msgstr "الرجاء إدخال مفتاح."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:144
 #, fuzzy
 msgid "Failed to validate key."
-msgstr "No se pudo validar la clave."
+msgstr "فشل التحقق من صحة المفتاح."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:146
 #, fuzzy
 msgid "Invalid."
-msgstr "No válido."
+msgstr "غير صالح."
 
 #: src/Controllers/Admin/CustomizationFomController.php:31
 msgid "Light"
-msgstr "Claro"
+msgstr "فاتح"
 
 #: src/Controllers/Admin/CustomizationFomController.php:35
 msgid "Dark"
-msgstr "Oscuro"
+msgstr "داكن"
 
 #: src/Middleware/Nonce.php:22
 #, fuzzy
 msgid "Could not verify request."
-msgstr "No se pudo verificar la solicitud."
+msgstr "تعذر التحقق من الطلب."
 
 #: src/Plugin.php:115
 #, fuzzy
 msgid "The page could not be found."
-msgstr "No se pudo enviar el formulario."
+msgstr "تعذر العثور على الصفحة."
 
 #: src/Providers/AdminServiceProvider.php:52
 #, fuzzy
 msgid "Biblical Text Setup"
-msgstr "Configuración del texto bíblico"
+msgstr "إعداد النص الكتابي"
 
 #: src/Providers/AdminServiceProvider.php:56
 msgid "Customization"
-msgstr "Personalización"
+msgstr "تخصيص"
 
 #: src/Providers/AdminServiceProvider.php:60
 msgid "Support"
-msgstr "Soporte"
+msgstr "الدعم"
 
 #: src/Services/Assets.php:21
 msgid "Copy"
-msgstr "Copiar"
+msgstr "نسخ"
 
 #: src/Services/Assets.php:22
 #, fuzzy
 msgid "Copied successfully."
-msgstr "Copiado correctamente."
+msgstr "تم نسخها بنجاح."
 
 #: src/Services/Assets.php:23
 msgid "Language"
-msgstr "Idioma"
+msgstr "اللغة"
 
 #: src/Services/Assets.php:24
 msgid "Languages"
-msgstr "Idiomas"
+msgstr "اللغات"
 
 #: src/Services/Assets.php:25
 msgid "Link"
-msgstr "Enlace"
+msgstr "رابط"
 
 #: src/Services/Assets.php:26
+#, fuzzy
 msgid "Old Testament"
-msgstr "Antiguo Testamento"
+msgstr "العهد القديم"
 
 #: src/Services/Assets.php:27
 #, fuzzy
 msgid "Media Types"
-msgstr "Tipos de medios"
+msgstr "أنواع الوسائط"
 
 #: src/Services/Assets.php:28
+#, fuzzy
 msgid "New Testament"
-msgstr "Nuevo Testamento"
+msgstr "العهد الجديد"
 
 #: src/Services/Assets.php:29
 #, fuzzy
 msgid "Note that some bible versions do not support all media types."
-msgstr ""
-"Tenga en cuenta que algunas versiones de la Biblia no son compatibles con "
-"todos los tipos de medios."
+msgstr "لاحظ أن بعض إصدارات الكتاب المقدس لا تدعم جميع أنواع الوسائط."
 
 #: src/Services/Assets.php:30
 msgid "Search"
-msgstr "Buscar"
+msgstr "بحث"
 
 #: src/Services/Assets.php:31
 #, fuzzy
 msgid "Select the bible language you would like to make available."
-msgstr "Seleccione los idiomas bíblicos que le gustaría poner a disposición."
+msgstr "حدد لغة الكتاب المقدس التي ترغب في إتاحتها."
 
 #: src/Services/Assets.php:32
 #, fuzzy
 msgid ""
 "Select the bible version you would like to make available for this language."
-msgstr ""
-"Seleccione las versiones de la Biblia que le gustaría poner a disposición."
+msgstr "حدد نسخة الكتاب المقدس التي ترغب في إتاحتها لهذه اللغة."
 
 #: src/Services/Assets.php:33
 msgid "Selection"
-msgstr "Selección"
+msgstr "الاختيار"
 
 #: src/Services/Assets.php:34
 msgid "Translation"
-msgstr "Traducción"
+msgstr "ترجمة"
 
 #: src/Services/Assets.php:35
 msgid "Loading"
-msgstr "Cargando"
+msgstr "تحميل"
 
 #: src/ShortCodes/Scripture.php:66
 #, fuzzy
 msgctxt "shortcode"
 msgid "Invalid media type"
-msgstr "Tipo de medio no válido"
+msgstr "نوع الوسائط غير صالح"
 
 #: src/ShortCodes/Scripture.php:86
 msgctxt "shortcode"
 msgid "No results found"
-msgstr "No se encontraron resultados"
+msgstr "لا يوجد نتائج"
 
 #: tests/TranslatorTest.php:26
 msgctxt "reader"
 msgid "Hello World"
-msgstr "Hola mundo"
+msgstr "مرحبا بالعالم"
 
 #. Plugin URI of the plugin/theme
 #, fuzzy
@@ -440,20 +430,9 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 #. Description of the plugin/theme
 #, fuzzy
 msgid "A bible plugin for WordPress."
-msgstr "Un plugin de la biblia para WordPress."
+msgstr "مكون إضافي للكتاب المقدس ل WordPress."
 
 #. Author URI of the plugin/theme
 #, fuzzy
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
-
-#~ msgid "Default Language"
-#~ msgstr "Idioma Predeterminado"
-
-#, fuzzy
-#~ msgid "Select   the bible language that will be used by default."
-#~ msgstr "Seleccione el idioma bíblico que se usará de forma predeterminada."
-
-#, fuzzy
-#~ msgid "Bible Versions"
-#~ msgstr "Versiones de la Biblia"

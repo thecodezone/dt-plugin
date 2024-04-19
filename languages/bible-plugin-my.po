@@ -1,0 +1,466 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: The Bible Plugin\n"
+"POT-Creation-Date: 2024-04-19 14:33-0500\n"
+"PO-Revision-Date: 2024-04-19 14:33-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: my\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: bible-plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: tmp-528879b2b4/source/vendor\n"
+"X-Poedit-SearchPathExcluded-4: tmp-528879b2b4/destination/vendor\n"
+"X-Poedit-SearchPathExcluded-5: resources/js\n"
+"X-Poedit-SearchPathExcluded-6: dist\n"
+"X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
+"X-Poedit-SearchPathExcluded-8: includes\n"
+"X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
+
+#: resources/views/hello.php:5
+#, fuzzy
+msgctxt "scripture"
+msgid "Bible"
+msgstr "၁၁ ။"
+
+#: resources/views/hello.php:6
+#, fuzzy
+msgctxt "reader"
+msgid "Next Chapter"
+msgstr "နောက်အခန်း"
+
+#: resources/views/hello.php:7
+#, fuzzy
+msgctxt "reader"
+msgid "Previous Chapter"
+msgstr "ယခင်အခန်းကြီး"
+
+#: resources/views/layouts/plugin.php:2
+#, fuzzy
+msgid "Plugin"
+msgstr "Pluggy"
+
+#: resources/views/layouts/plugin.php:11
+#, fuzzy
+msgid "Copyright "
+msgstr "မူဝါဒ "
+
+#. Plugin Name of the plugin/theme
+#: resources/views/layouts/settings.php:55
+#: resources/views/layouts/settings.php:61
+#: resources/views/layouts/settings.php:69
+#: resources/views/settings/support.php:66
+#: src/Providers/AdminServiceProvider.php:32
+#: src/Providers/AdminServiceProvider.php:33
+#: src/Providers/AdminServiceProvider.php:43
+#: src/Providers/AdminServiceProvider.php:44
+#, fuzzy
+msgid "The Bible Plugin"
+msgstr "သမ္မာကျမ်းစာ ပလက်ဂျင်း"
+
+#: resources/views/layouts/settings.php:75
+#, fuzzy
+msgid "You must add your Bible Brain API Key in order for this plugin to work."
+msgstr ""
+"သင်၏သမ္မာကျမ်းစာ ဦးနှောက် API သော့ကို ဒီပလက်ဂျင်အလုပ်လုပ်နိုင်ဖို့ ကျမ်းစာဦးနှောက် API သော့ကို ထည့်ပေးရမယ်။"
+
+#: resources/views/layouts/settings.php:84
+msgid "More Info"
+msgstr "ပိုသောသတင်းအချက်အလက်"
+
+#: resources/views/partials/alerts.php:4
+#, fuzzy
+msgid "Success!"
+msgstr "အောင်မြင်ခြင်း!"
+
+#: resources/views/partials/alerts.php:9
+#, fuzzy
+msgid "An error has occurred."
+msgstr "အမှားတစ်ခု ဖြစ်ပွားခဲ့တယ်။"
+
+#: resources/views/settings/bible-brains-form.php:53
+#: resources/views/settings/bible-brains-form.php:55
+#: resources/views/settings/customization-form.php:124
+#: resources/views/settings/customization-form.php:126
+msgid "Save"
+msgstr "သိမ်းဆည်းသည်"
+
+#: resources/views/settings/customization-form.php:30
+#, fuzzy
+msgid "Theme"
+msgstr "သီအိုတာ"
+
+#: resources/views/settings/customization-form.php:38
+msgid "Choose"
+msgstr "ရွေးချယ်ပါ"
+
+#: resources/views/settings/customization-form.php:56
+#, fuzzy
+msgid "Switch between light mode or dark mode to match your theme."
+msgstr "သင့် အဓိကအကြောင်းနဲ့ ကိုက်ညီဖို့ အလင်းနည်း ဒါမှမဟုတ် မှောင်တဲ့နည်းကို ပြောင်းပါ။"
+
+#: resources/views/settings/customization-form.php:65
+#, fuzzy
+msgid "Accent Color"
+msgstr "အသံအရောင်"
+
+#: resources/views/settings/customization-form.php:75
+#, fuzzy
+msgid "The primary accent color used in the bible reader."
+msgstr "ကျမ်းစာဖတ်ရှုသူတွေမှာ အသုံးပြုထားတဲ့ အဓိကလေသံအရောင်ပါ။"
+
+#: resources/views/settings/customization-form.php:82
+#, fuzzy
+msgid "Accent Color Steps"
+msgstr "အသံအရောင် အဆင့်ဆင့်"
+
+#: resources/views/settings/customization-form.php:95
+#, fuzzy
+msgid ""
+"This range of colors could be displayed in the bible reader. The accent "
+"color you chose will be used most often."
+msgstr ""
+"ဒီအရောင်မျိုးစုံကို ကျမ်းစာဖတ်ရှုသူတွေမှာ ပြသနိုင်ပါတယ်။ သင်ရွေးချယ်ခဲ့သော လေသံအရောင်ကို အများအားဖြင့် "
+"အသုံးပြုလေ့ရှိသည်။"
+
+#: resources/views/settings/customization-form.php:102
+#, fuzzy
+msgid "Translations"
+msgstr "ဘာသာပြန်ကျမ်းများ"
+
+#: resources/views/settings/customization-form.php:111
+#, fuzzy
+msgid "Enter a translation..."
+msgstr "ဘာသာပြန်ကျမ်းထဲ ဝင်ပါ......"
+
+#: resources/views/settings/partials/bible-brains-key.php:18
+#, fuzzy
+msgid "Bible Brains API Key verified."
+msgstr "သမ္မာကျမ်းစာ ဦးနှောက် API Key အတည်ပြုခဲ့သည်။"
+
+#: resources/views/settings/partials/bible-brains-key.php:37
+#, fuzzy
+msgid "Bible Brain API Key"
+msgstr "သမ္မာကျမ်းစာ ဦးနှောက် API သော့"
+
+#: resources/views/settings/partials/bible-brains-key.php:46
+#, fuzzy
+msgid "Enter key..."
+msgstr "သော့ထဲထည့်ပါ......"
+
+#: resources/views/settings/partials/bible-brains-key.php:53
+#: resources/views/settings/partials/bible-brains-key.php:56
+msgid "Validate"
+msgstr "အတည်ပြုသည်"
+
+#: resources/views/settings/partials/bible-brains-key.php:64
+#: resources/views/settings/partials/bible-brains-key.php:67
+#, fuzzy
+msgid "Valid"
+msgstr "၁၂ ။"
+
+#: resources/views/settings/partials/bible-brains-key.php:74
+#, fuzzy
+msgid "Here's how to get your key."
+msgstr "ဒီမှာ ခင်ဗျားရဲ့ သော့ကို ဘယ်လိုရနိုင်မလဲဆိုတာပါ။"
+
+#: resources/views/settings/support.php:14
+#, fuzzy
+msgid "FAQ"
+msgstr "မကြာခဏမေးလေ့ရှိသောမေးခွန်းများ"
+
+#: resources/views/settings/support.php:20
+#, fuzzy
+msgid ""
+"If you encounter an error or bug, please report it to us at our GitHub by "
+"clicking the button below."
+msgstr ""
+"အမှား ဒါမှမဟုတ် ပိုးမွှားတစ်ကောင်နဲ့ ရင်ဆိုင်ရမယ်ဆိုရင် အောက်မှာဖော်ပြထားတဲ့ ခလုတ်ကိုနှိပ်ပြီး ကျွန်တော်တို့ရဲ့ "
+"ဂစ်ဟပ်မှာ သတင်းပို့ပေးပါ။"
+
+#: resources/views/settings/support.php:24
+#, fuzzy
+msgid "Report an error"
+msgstr "အမှားတစ်ခုကို မှတ်တမ်းတင်ပါ"
+
+#: resources/views/settings/support.php:31
+#: resources/views/settings/support.php:42
+#, fuzzy
+msgid ""
+"Fill out the support form on our website. You can expect a response within "
+"48 business days."
+msgstr ""
+"ကျွန်တော်တို့ရဲ့ ဝက်ဘ်ဆိုက်မှာ ထောက်ပံ့မှု ပုံစံကို ဖြည့်ပါ။ စီးပွားရေးနေ့ ၄၈ ရက်အတွင်း တုံ့ပြန်မှုတစ်ခုကို "
+"သင်မျှော်လင့်နိုင်ပါတယ်။"
+
+#: resources/views/settings/support.php:35
+#, fuzzy
+msgid "Request support"
+msgstr "ထောက်ပံ့ရန် တောင်းဆိုချက်"
+
+#: resources/views/settings/support.php:46
+#, fuzzy
+msgid "Request a feature"
+msgstr "အသွင်အပြင်တစ်ခု တောင်းဆိုပါ"
+
+#: resources/views/settings/support.php:53
+#, fuzzy
+msgid ""
+"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
+"you contact them to request additional translations be added the Bible "
+"Reader."
+msgstr ""
+"သမ္မာကျမ်းစာဖတ်ရှုသူက သမ္မာကျမ်းစာဦးနှောက်ကို ကြားနာခြင်းအားဖြင့် ယုံကြည်ခြင်းဖြင့် "
+"သမ္မာကျမ်းစာဦးနှောက်ကို အသုံးပြုသည်။ နောက်ထပ်ဘာသာပြန်ကျမ်းတွေ ထပ်ဖြည့်ပေးဖို့ သူတို့ကို ဆက်သွယ်ဖို့ ကျွန်တော်တို့ "
+"အကြံပြုပါတယ်။"
+
+#: resources/views/settings/support.php:57
+#, fuzzy
+msgid ""
+"We rely on community support to add additional languages to the Bible Plugin "
+"UI. If you are a translator or you would like more information on how you "
+"can get involved, please contact us using the contact form on our website."
+msgstr ""
+"ကျမ်းစာ ပလက်ဂျင်း ယူအိုင်မှာ နောက်ထပ်ဘာသာစကားတွေ ထပ်ဖြည့်စွက်ဖို့ ရပ်ရွာထောက်ပံ့မှုကို အားကိုးကြတယ်။ အကယ်၍ "
+"သင်သည် ဘာသာပြန်သူတစ်ဦးဖြစ်မည်ဆိုလျှင် သို့မဟုတ် မည်သို့ပါဝင်နိုင်ပုံနှင့်စပ်လျဉ်း၍ ပိုမိုသိလိုပါက ကျွန်ုပ်တို့၏ ဝက်ဘ်ဆိုက်ပေါ်ရှိ "
+"ဆက်သွယ်ရေးပုံစံကို အသုံးပြု၍ ဆက်သွယ်ပါ။"
+
+#: resources/views/settings/support.php:62
+#, fuzzy
+msgid "Bible Brains"
+msgstr "သမ္မာကျမ်းစာဦးနှောက်"
+
+#: resources/views/settings/support.php:75
+#: resources/views/settings/support.php:88
+#: resources/views/settings/support.php:106
+msgid "About"
+msgstr "အကွောငျး"
+
+#: resources/views/settings/support.php:91
+#: resources/views/settings/support.php:113
+#, fuzzy
+msgid "Give"
+msgstr "ပေးကမ်းခြင်း"
+
+#: resources/views/settings/support.php:100
+#, fuzzy
+msgid ""
+"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
+"reader in WordPress sites with the Bible text accessed through available "
+"Bible APIs.  Localization and focus is a priority of this plugin with admin "
+"settings allowing for selection of language, Bible version, number of Bible "
+"versions available to the end-user, and design elements (fonts, colors).  "
+"Simplicity and ease of use for the end-user is the second top priority with "
+"the goal of an intuitive interface.  Initial development of the plugin will "
+"be based on the Bible Brain / DBPv4 API but with the intention of expanding "
+"to other Bible APIs in subsequent releases.  Additional information is "
+"available in the SRS document on GitHub.\n"
+msgstr ""
+"နှုတ်ကဝေါ်ပရက်စ်တွင် နှုတ်ကပါဝင်ခြင်း။  ဝေါ့ပရက်စ်ဆိုက်တွေမှာ ရိုးရှင်းတဲ့ ကျမ်းစာဖတ်ရှုသူတစ်ယောက်ကို "
+"သမ္မာကျမ်းစာအာပီအိုင်အက်စ်ကနေ ရရှိနိုင်ပါတယ်။  ပြန်လည်သုံးစွဲခြင်းနှင့် အာရုံစိုက်ခြင်းတို့သည် "
+"ဘာသာစကားရွေးချယ်မှု၊ ကျမ်းစာဘာသာပြန်ကျမ်း၊ နောက်ဆုံးအသုံးပြုသူအတွက် ရရှိနိုင်သည့် "
+"ကျမ်းစာဘာသာပြန်ကျမ်းအရေအတွက်နှင့် ဒီဇိုင်းဒြပ်စင်များ (ဖောင့်၊ အရောင်များ) ရွေးချယ်ခွင့်ပြုသည့် "
+"စီမံခန့်ခွဲမှုများဖြင့် ဤပလက်ဂျင်း၏ ဦးစားပေးဖြစ်သည်။  နောက်ဆုံးအသုံးပြုသူအတွက် ရိုးရှင်းမှုနှင့် "
+"အလွယ်တကူအသုံးပြုခြင်းတို့သည် စူးစမ်းသိမြင်နိုင်သော အင်တာဖေ့စ်၏ ရည်မှန်းချက်ဖြင့် "
+"ဒုတိယအမြင့်ဆုံးဦးစားပေးအရာဖြစ်သည်။  ပလော်ဂျင် ၏ ကနဦး ဖွံ့ဖြိုး တိုးတက် မှု သည် သမ္မာကျမ်း စာ "
+"ဦးနှောက် / ဒီဘီပီ၄ အေပီအိုင် ပေါ် အခြေခံ လိမ့်မည် ဖြစ် သော်လည်း နောက်ဆက်တွဲ ထုတ် လွှင့် မှု များ တွင် အခြား "
+"အေပီအိုင်အက်စ် သို့ တိုး ချဲ့ ရန် ရည်ရွယ် ချက် နှင့်အတူ ဖြစ် ပါ လိမ့်မည် ။  နောက်ထပ် သတင်း အချက်အလက် များ ကို "
+"ဂစ်ဟပ် တွင် အက်စ်အာအက်စ် စာရွက်စာတမ်း တွင် ရရှိ နိုင် ပါ သည် ။\n"
+
+#: resources/views/settings/support.php:109
+#, fuzzy
+msgid "GitHub"
+msgstr "ဂိသ်ဟပ်"
+
+#: resources/views/starter-magic-link/show.php:12
+#, fuzzy
+msgid "Visit subpage"
+msgstr "လည်ပတ်ကြည့်ရှုပါ"
+
+#: resources/views/starter-magic-link/subpage.php:12
+#, fuzzy
+msgid "Visit home"
+msgstr "အိမ်သို့ လည်ပတ်ရန် လည်"
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:100
+#: src/Controllers/Admin/CustomizationFomController.php:73
+#, fuzzy
+msgid "Please complete the required fields."
+msgstr "ကျေးဇူးပြု၍ လိုအပ်သောလယ်ကွင်းများကို ပြီးအောင်လုပ်ပါ။"
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:111
+#: src/Controllers/Admin/BibleBrainsFormController.php:157
+#: src/Controllers/Admin/CustomizationFomController.php:86
+#, fuzzy
+msgid "Form could not be submitted."
+msgstr "ပုံစံကို တင်သွင်းလို့မရဘူး။"
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:134
+#, fuzzy
+msgid "Please enter a key."
+msgstr "ကျေးဇူးပြု၍ သော့တစ်ချက်ကို ဝင်ကြည့်ပါ။"
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#, fuzzy
+msgid "Failed to validate key."
+msgstr "သော့ချက်ကို အကဲဖြတ်ရန် ပျက်ကွက်ခဲ့သည်။"
+
+#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#, fuzzy
+msgid "Invalid."
+msgstr "၁၉ ။"
+
+#: src/Controllers/Admin/CustomizationFomController.php:31
+#, fuzzy
+msgid "Light"
+msgstr "အလင်းရောင်"
+
+#: src/Controllers/Admin/CustomizationFomController.php:35
+#, fuzzy
+msgid "Dark"
+msgstr "အမှောင်"
+
+#: src/Middleware/Nonce.php:22
+#, fuzzy
+msgid "Could not verify request."
+msgstr "တောင်းဆိုချက်ကို အတည်မပြုနိုင်ပါ။"
+
+#: src/Plugin.php:115
+#, fuzzy
+msgid "The page could not be found."
+msgstr "စာမျက်နှာကို မတွေ့ရပါ။"
+
+#: src/Providers/AdminServiceProvider.php:52
+#, fuzzy
+msgid "Biblical Text Setup"
+msgstr "သမ္မာကျမ်းစာဆိုင်ရာ စာသားတပ်ဆင်မှု"
+
+#: src/Providers/AdminServiceProvider.php:56
+#, fuzzy
+msgid "Customization"
+msgstr "အလိုအလျောက်ပြုလုပ်ခြင်း"
+
+#: src/Providers/AdminServiceProvider.php:60
+msgid "Support"
+msgstr "အထောက်အပံ့လက်မှတ်"
+
+#: src/Services/Assets.php:21
+#, fuzzy
+msgid "Copy"
+msgstr "မိတ္တူကူးယူပါ"
+
+#: src/Services/Assets.php:22
+#, fuzzy
+msgid "Copied successfully."
+msgstr "အောင်မြင်စွာ ကူးယူခဲ့လေသည်။"
+
+#: src/Services/Assets.php:23
+#, fuzzy
+msgid "Language"
+msgstr "ဘာသာစကား"
+
+#: src/Services/Assets.php:24
+#, fuzzy
+msgid "Languages"
+msgstr "ဘာသာစကားများ"
+
+#: src/Services/Assets.php:25
+#, fuzzy
+msgid "Link"
+msgstr "လင့်ခ်"
+
+#: src/Services/Assets.php:26
+#, fuzzy
+msgid "Old Testament"
+msgstr "ဓမ္မဟောင်းကျမ်း"
+
+#: src/Services/Assets.php:27
+#, fuzzy
+msgid "Media Types"
+msgstr "မီဒီယာအမျိုးအစားများ"
+
+#: src/Services/Assets.php:28
+#, fuzzy
+msgid "New Testament"
+msgstr "ဓမ္မသစ်ကျမ်း"
+
+#: src/Services/Assets.php:29
+#, fuzzy
+msgid "Note that some bible versions do not support all media types."
+msgstr ""
+"ကျမ်းစာ ဘာသာ ပြန် ကျမ်း တချို့ က မီဒီယာ အမျိုးအစား အားလုံး ကို မ ထောက်ခံ ကြောင်း သတိပြု ပါ ။"
+
+#: src/Services/Assets.php:30
+msgid "Search"
+msgstr "ရှာတွေ့သည်"
+
+#: src/Services/Assets.php:31
+#, fuzzy
+msgid "Select the bible language you would like to make available."
+msgstr "သင်ရရှိလိုသည့် ကျမ်းစာဘာသာစကားကို ရွေးချယ်ပါ။"
+
+#: src/Services/Assets.php:32
+#, fuzzy
+msgid ""
+"Select the bible version you would like to make available for this language."
+msgstr "ဤဘာသာစကားအတွက် သင်ရရှိလိုသည့် ကျမ်းစာဘာသာပြန်ကျမ်းကို ရွေးချယ်ပါ။"
+
+#: src/Services/Assets.php:33
+#, fuzzy
+msgid "Selection"
+msgstr "ရွေးချယ်ချက်"
+
+#: src/Services/Assets.php:34
+#, fuzzy
+msgid "Translation"
+msgstr "ဘာသာပြန်ခြင်း"
+
+#: src/Services/Assets.php:35
+msgid "Loading"
+msgstr "လုပ်ဆောင်နေဆဲ"
+
+#: src/ShortCodes/Scripture.php:66
+#, fuzzy
+msgctxt "shortcode"
+msgid "Invalid media type"
+msgstr "မမှန်ကန်တဲ့ မီဒီယာ အမျိုးအစား"
+
+#: src/ShortCodes/Scripture.php:86
+#, fuzzy
+msgctxt "shortcode"
+msgid "No results found"
+msgstr "မည်သည့်ရလဒ်ကိုမျှ မတွေ့ရ"
+
+#: tests/TranslatorTest.php:26
+#, fuzzy
+msgctxt "reader"
+msgid "Hello World"
+msgstr "မင်္ဂလာပါကမ္ဘာလောက"
+
+#. Plugin URI of the plugin/theme
+#, fuzzy
+msgid "https://github.com/TheCodeZone/bible-plugin"
+msgstr "https://github.com/TheCodeZone/bible-plugin"
+
+#. Description of the plugin/theme
+#, fuzzy
+msgid "A bible plugin for WordPress."
+msgstr "WordPress အတွက် ကျမ်းစာ ပလက်ဂျက်။"
+
+#. Author URI of the plugin/theme
+#, fuzzy
+msgid "https://github.com/TheCodeZone"
+msgstr "https://github.com/TheCodeZone"

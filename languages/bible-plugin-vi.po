@@ -2,11 +2,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:26-0500\n"
-"PO-Revision-Date: 2024-04-19 14:26-0500\n"
+"POT-Creation-Date: 2024-04-19 14:27-0500\n"
+"PO-Revision-Date: 2024-04-19 14:31-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_MX\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,27 +34,28 @@ msgstr ""
 #, fuzzy
 msgctxt "scripture"
 msgid "Bible"
-msgstr "Biblia"
+msgstr "Kinh Thánh"
 
 #: resources/views/hello.php:6
 #, fuzzy
 msgctxt "reader"
 msgid "Next Chapter"
-msgstr "Siguiente capítulo"
+msgstr "Chương tiếp theo"
 
 #: resources/views/hello.php:7
 #, fuzzy
 msgctxt "reader"
 msgid "Previous Chapter"
-msgstr "Capítulo anterior"
+msgstr "Chương trước"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
 msgstr "Plugin"
 
 #: resources/views/layouts/plugin.php:11
+#, fuzzy
 msgid "Copyright "
-msgstr "Derechos de autor del sitio "
+msgstr "Bản quyền "
 
 #. Plugin Name of the plugin/theme
 #: resources/views/layouts/settings.php:55
@@ -67,60 +68,59 @@ msgstr "Derechos de autor del sitio "
 #: src/Providers/AdminServiceProvider.php:44
 #, fuzzy
 msgid "The Bible Plugin"
-msgstr "El complemento de la Biblia"
+msgstr "Plugin Kinh Thánh"
 
 #: resources/views/layouts/settings.php:75
 #, fuzzy
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
-msgstr ""
-"Debes agregar tu clave API de Bible Brain para que este plugin funcione."
+msgstr "Bạn phải thêm Khóa API Bible Brain của mình để plugin này hoạt động."
 
 #: resources/views/layouts/settings.php:84
 msgid "More Info"
-msgstr "Más Información"
+msgstr "Thông tin thêm"
 
 #: resources/views/partials/alerts.php:4
 msgid "Success!"
-msgstr "¡Éxito!"
+msgstr "Thành công!"
 
 #: resources/views/partials/alerts.php:9
 msgid "An error has occurred."
-msgstr "Ha ocurrido un error."
+msgstr "Một lỗi đã xảy ra."
 
 #: resources/views/settings/bible-brains-form.php:53
 #: resources/views/settings/bible-brains-form.php:55
 #: resources/views/settings/customization-form.php:124
 #: resources/views/settings/customization-form.php:126
 msgid "Save"
-msgstr "Guardar"
+msgstr "Lưu"
 
 #: resources/views/settings/customization-form.php:30
 msgid "Theme"
-msgstr "Tema"
+msgstr "Chủ đề"
 
 #: resources/views/settings/customization-form.php:38
 msgid "Choose"
-msgstr "Elegir"
+msgstr "Chọn"
 
 #: resources/views/settings/customization-form.php:56
 #, fuzzy
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr ""
-"Cambia entre el modo claro o el modo oscuro para que coincida con tu tema."
+"Chuyển đổi giữa chế độ sáng hoặc chế độ tối để phù hợp với chủ đề của bạn."
 
 #: resources/views/settings/customization-form.php:65
 msgid "Accent Color"
-msgstr "Color a Resaltar"
+msgstr "Accent Color"
 
 #: resources/views/settings/customization-form.php:75
 #, fuzzy
 msgid "The primary accent color used in the bible reader."
-msgstr "El color de acento primario utilizado en el lector de la Biblia."
+msgstr "Màu nhấn chính được sử dụng trong trình đọc kinh thánh."
 
 #: resources/views/settings/customization-form.php:82
 #, fuzzy
 msgid "Accent Color Steps"
-msgstr "Pasos de color de acento"
+msgstr "Các bước màu nhấn"
 
 #: resources/views/settings/customization-form.php:95
 #, fuzzy
@@ -128,51 +128,51 @@ msgid ""
 "This range of colors could be displayed in the bible reader. The accent "
 "color you chose will be used most often."
 msgstr ""
-"Esta gama de colores podría mostrarse en el lector de la Biblia. El color de "
-"acento que elijas se usará con mayor frecuencia."
+"Phạm vi màu sắc này có thể được hiển thị trong trình đọc kinh thánh. Màu "
+"nhấn bạn chọn sẽ được sử dụng thường xuyên nhất."
 
 #: resources/views/settings/customization-form.php:102
 msgid "Translations"
-msgstr "Traducciones"
+msgstr "Bản dịch"
 
 #: resources/views/settings/customization-form.php:111
 #, fuzzy
 msgid "Enter a translation..."
-msgstr "Introduzca una traducción..."
+msgstr "Nhập bản dịch..."
 
 #: resources/views/settings/partials/bible-brains-key.php:18
 #, fuzzy
 msgid "Bible Brains API Key verified."
-msgstr "Clave API de Bible Brains verificada."
+msgstr "Khóa API của Bộ não Kinh thánh đã được xác minh."
 
 #: resources/views/settings/partials/bible-brains-key.php:37
 #, fuzzy
 msgid "Bible Brain API Key"
-msgstr "Clave API de Bible Brain"
+msgstr "Khóa API não Kinh thánh"
 
 #: resources/views/settings/partials/bible-brains-key.php:46
 #, fuzzy
 msgid "Enter key..."
-msgstr "Introduzca la tecla..."
+msgstr "Nhập khóa..."
 
 #: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
 msgid "Validate"
-msgstr "Validar"
+msgstr "Xác nhận"
 
 #: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
 msgid "Valid"
-msgstr "Válido"
+msgstr "Hợp lệ"
 
 #: resources/views/settings/partials/bible-brains-key.php:74
 #, fuzzy
 msgid "Here's how to get your key."
-msgstr "A continuación, te explicamos cómo obtener tu llave."
+msgstr "Đây là cách lấy chìa khóa của bạn."
 
 #: resources/views/settings/support.php:14
 msgid "FAQ"
-msgstr "FAQ"
+msgstr "Câu hỏi thường gặp"
 
 #: resources/views/settings/support.php:20
 #, fuzzy
@@ -180,13 +180,13 @@ msgid ""
 "If you encounter an error or bug, please report it to us at our GitHub by "
 "clicking the button below."
 msgstr ""
-"Si encuentra un error o fallo, infórmenos en nuestro GitHub haciendo clic en "
-"el botón a continuación."
+"Nếu bạn gặp lỗi hoặc lỗi, vui lòng báo cáo cho chúng tôi tại GitHub của "
+"chúng tôi bằng cách nhấp vào nút bên dưới."
 
 #: resources/views/settings/support.php:24
 #, fuzzy
 msgid "Report an error"
-msgstr "Notificar un error"
+msgstr "Báo cáo lỗi"
 
 #: resources/views/settings/support.php:31
 #: resources/views/settings/support.php:42
@@ -195,18 +195,18 @@ msgid ""
 "Fill out the support form on our website. You can expect a response within "
 "48 business days."
 msgstr ""
-"Complete el formulario de soporte en nuestro sitio web. Puede esperar una "
-"respuesta en un plazo de 48 días hábiles."
+"Điền vào mẫu hỗ trợ trên trang web của chúng tôi. Bạn có thể nhận được phản "
+"hồi trong vòng 48 ngày làm việc."
 
 #: resources/views/settings/support.php:35
 #, fuzzy
 msgid "Request support"
-msgstr "Solicitar soporte"
+msgstr "Yêu cầu hỗ trợ"
 
 #: resources/views/settings/support.php:46
 #, fuzzy
 msgid "Request a feature"
-msgstr "Solicitar una función"
+msgstr "Yêu cầu một tính năng"
 
 #: resources/views/settings/support.php:53
 #, fuzzy
@@ -215,9 +215,9 @@ msgid ""
 "you contact them to request additional translations be added the Bible "
 "Reader."
 msgstr ""
-"El lector de la Biblia usa la Biblia El cerebro por la fe viene por el oído. "
-"Le recomendamos que se ponga en contacto con ellos para solicitar que se "
-"agreguen traducciones adicionales al Lector de la Biblia."
+"Người đọc Kinh Thánh sử dụng Bộ não Kinh Thánh bởi Đức tin đến bằng cách "
+"nghe. Chúng tôi khuyên bạn nên liên hệ với họ để yêu cầu thêm bản dịch được "
+"thêm vào Trình đọc Kinh thánh."
 
 #: resources/views/settings/support.php:57
 #, fuzzy
@@ -226,26 +226,27 @@ msgid ""
 "UI. If you are a translator or you would like more information on how you "
 "can get involved, please contact us using the contact form on our website."
 msgstr ""
-"Confiamos en el apoyo de la comunidad para agregar idiomas adicionales a la "
-"interfaz de usuario del complemento de la Biblia. Si eres traductor o "
-"quieres más información sobre cómo puedes participar, ponte en contacto con "
-"nosotros a través del formulario de contacto de nuestra página web."
+"Chúng tôi dựa vào sự hỗ trợ của cộng đồng để thêm các ngôn ngữ bổ sung vào "
+"giao diện người dùng Plugin Kinh thánh. Nếu bạn là dịch giả hoặc bạn muốn "
+"biết thêm thông tin về cách bạn có thể tham gia, vui lòng liên hệ với chúng "
+"tôi bằng cách sử dụng biểu mẫu liên hệ trên trang web của chúng tôi."
 
 #: resources/views/settings/support.php:62
 #, fuzzy
 msgid "Bible Brains"
-msgstr "Cerebros bíblicos"
+msgstr "Bộ não Kinh Thánh"
 
 #: resources/views/settings/support.php:75
 #: resources/views/settings/support.php:88
 #: resources/views/settings/support.php:106
 msgid "About"
-msgstr "Acerca de"
+msgstr "Giới thiệu"
 
 #: resources/views/settings/support.php:91
 #: resources/views/settings/support.php:113
+#, fuzzy
 msgid "Give"
-msgstr "Give"
+msgstr "Cho"
 
 #: resources/views/settings/support.php:100
 #, fuzzy
@@ -261,176 +262,175 @@ msgid ""
 "to other Bible APIs in subsequent releases.  Additional information is "
 "available in the SRS document on GitHub.\n"
 msgstr ""
-"Poner la palabra en WordPress.  El complemento de la Biblia proporciona un "
-"lector de la Biblia simple en los sitios de WordPress con el texto de la "
-"Biblia al que se accede a través de las API de la Biblia disponibles.  La "
-"localización y el enfoque son una prioridad de este complemento con "
-"configuraciones de administración que permiten la selección del idioma, la "
-"versión de la Biblia, el número de versiones de la Biblia disponibles para "
-"el usuario final y los elementos de diseño (fuentes, colores).  La "
-"simplicidad y la facilidad de uso para el usuario final es la segunda "
-"prioridad con el objetivo de una interfaz intuitiva.  El desarrollo inicial "
-"del plugin se basará en la API de Bible Brain / DBPv4 pero con la intención "
-"de expandirse a otras API de Bible en versiones posteriores.  Hay "
-"información adicional disponible en el documento SRS en GitHub.\n"
+"Đặt Word trong WordPress.  Plugin Kinh Thánh cung cấp một trình đọc Kinh "
+"Thánh đơn giản trong các trang web WordPress với văn bản Kinh Thánh được "
+"truy cập thông qua các API Kinh Thánh có sẵn.  Bản địa hóa và tập trung là "
+"ưu tiên của plugin này với cài đặt quản trị cho phép lựa chọn ngôn ngữ, "
+"phiên bản Kinh thánh, số lượng phiên bản Kinh Thánh có sẵn cho người dùng "
+"cuối và các yếu tố thiết kế (phông chữ, màu sắc).  Đơn giản và dễ sử dụng "
+"cho người dùng cuối là ưu tiên hàng đầu thứ hai với mục tiêu giao diện trực "
+"quan.  Sự phát triển ban đầu của plugin sẽ dựa trên API Bible Brain / DBPv4 "
+"nhưng với ý định mở rộng sang các API Kinh thánh khác trong các bản phát "
+"hành tiếp theo.  Thông tin bổ sung có sẵn trong tài liệu SRS trên GitHub.\n"
 
 #: resources/views/settings/support.php:109
 msgid "GitHub"
-msgstr "GitHub"
+msgstr "Github"
 
 #: resources/views/starter-magic-link/show.php:12
 #, fuzzy
 msgid "Visit subpage"
-msgstr "Ir a la subpágina"
+msgstr "Truy cập trang con"
 
 #: resources/views/starter-magic-link/subpage.php:12
 #, fuzzy
 msgid "Visit home"
-msgstr "Visita a casa"
+msgstr "Thăm nhà"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:100
 #: src/Controllers/Admin/CustomizationFomController.php:73
 #, fuzzy
 msgid "Please complete the required fields."
-msgstr "Por favor, rellene los campos obligatorios."
+msgstr "Vui lòng điền vào các trường bắt buộc."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
 #: src/Controllers/Admin/BibleBrainsFormController.php:157
 #: src/Controllers/Admin/CustomizationFomController.php:86
 #, fuzzy
 msgid "Form could not be submitted."
-msgstr "No se pudo enviar el formulario."
+msgstr "Không thể gửi biểu mẫu."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:134
 #, fuzzy
 msgid "Please enter a key."
-msgstr "Por favor, introduzca una clave."
+msgstr "Vui lòng nhập khóa."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:144
 #, fuzzy
 msgid "Failed to validate key."
-msgstr "No se pudo validar la clave."
+msgstr "Không thể xác thực khóa."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:146
 #, fuzzy
 msgid "Invalid."
-msgstr "No válido."
+msgstr "Không hợp lệ."
 
 #: src/Controllers/Admin/CustomizationFomController.php:31
 msgid "Light"
-msgstr "Claro"
+msgstr "Sáng"
 
 #: src/Controllers/Admin/CustomizationFomController.php:35
 msgid "Dark"
-msgstr "Oscuro"
+msgstr "Tối"
 
 #: src/Middleware/Nonce.php:22
 #, fuzzy
 msgid "Could not verify request."
-msgstr "No se pudo verificar la solicitud."
+msgstr "Không thể xác minh yêu cầu."
 
 #: src/Plugin.php:115
 #, fuzzy
 msgid "The page could not be found."
-msgstr "No se pudo enviar el formulario."
+msgstr "Không thể tìm thấy trang."
 
 #: src/Providers/AdminServiceProvider.php:52
 #, fuzzy
 msgid "Biblical Text Setup"
-msgstr "Configuración del texto bíblico"
+msgstr "Thiết lập văn bản Kinh thánh"
 
 #: src/Providers/AdminServiceProvider.php:56
 msgid "Customization"
-msgstr "Personalización"
+msgstr "Mục tuỳ biến"
 
 #: src/Providers/AdminServiceProvider.php:60
 msgid "Support"
-msgstr "Soporte"
+msgstr "Hỗ trợ"
 
 #: src/Services/Assets.php:21
 msgid "Copy"
-msgstr "Copiar"
+msgstr "Sao chép"
 
 #: src/Services/Assets.php:22
 #, fuzzy
 msgid "Copied successfully."
-msgstr "Copiado correctamente."
+msgstr "Đã sao chép thành công."
 
 #: src/Services/Assets.php:23
 msgid "Language"
-msgstr "Idioma"
+msgstr "Ngôn ngữ"
 
 #: src/Services/Assets.php:24
 msgid "Languages"
-msgstr "Idiomas"
+msgstr "Ngôn ngữ"
 
 #: src/Services/Assets.php:25
 msgid "Link"
-msgstr "Enlace"
+msgstr "Liên kết"
 
 #: src/Services/Assets.php:26
+#, fuzzy
 msgid "Old Testament"
-msgstr "Antiguo Testamento"
+msgstr "Cựu Ước"
 
 #: src/Services/Assets.php:27
 #, fuzzy
 msgid "Media Types"
-msgstr "Tipos de medios"
+msgstr "Các loại phương tiện truyền thông"
 
 #: src/Services/Assets.php:28
+#, fuzzy
 msgid "New Testament"
-msgstr "Nuevo Testamento"
+msgstr "Tân Ước"
 
 #: src/Services/Assets.php:29
 #, fuzzy
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
-"Tenga en cuenta que algunas versiones de la Biblia no son compatibles con "
-"todos los tipos de medios."
+"Lưu ý rằng một số phiên bản kinh thánh không hỗ trợ tất cả các loại phương "
+"tiện."
 
 #: src/Services/Assets.php:30
 msgid "Search"
-msgstr "Buscar"
+msgstr "Tìm kiếm"
 
 #: src/Services/Assets.php:31
 #, fuzzy
 msgid "Select the bible language you would like to make available."
-msgstr "Seleccione los idiomas bíblicos que le gustaría poner a disposición."
+msgstr "Chọn ngôn ngữ kinh thánh bạn muốn cung cấp."
 
 #: src/Services/Assets.php:32
 #, fuzzy
 msgid ""
 "Select the bible version you would like to make available for this language."
-msgstr ""
-"Seleccione las versiones de la Biblia que le gustaría poner a disposición."
+msgstr "Chọn phiên bản kinh thánh bạn muốn cung cấp cho ngôn ngữ này."
 
 #: src/Services/Assets.php:33
 msgid "Selection"
-msgstr "Selección"
+msgstr "Lựa chọn"
 
 #: src/Services/Assets.php:34
 msgid "Translation"
-msgstr "Traducción"
+msgstr "Dịch"
 
 #: src/Services/Assets.php:35
 msgid "Loading"
-msgstr "Cargando"
+msgstr "Đang tải"
 
 #: src/ShortCodes/Scripture.php:66
 #, fuzzy
 msgctxt "shortcode"
 msgid "Invalid media type"
-msgstr "Tipo de medio no válido"
+msgstr "Loại phương tiện không hợp lệ"
 
 #: src/ShortCodes/Scripture.php:86
 msgctxt "shortcode"
 msgid "No results found"
-msgstr "No se encontraron resultados"
+msgstr "Không tìm thấy kết quả"
 
 #: tests/TranslatorTest.php:26
 msgctxt "reader"
 msgid "Hello World"
-msgstr "Hola mundo"
+msgstr "Chào bạn"
 
 #. Plugin URI of the plugin/theme
 #, fuzzy
@@ -440,20 +440,9 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 #. Description of the plugin/theme
 #, fuzzy
 msgid "A bible plugin for WordPress."
-msgstr "Un plugin de la biblia para WordPress."
+msgstr "Một plugin kinh thánh cho WordPress."
 
 #. Author URI of the plugin/theme
 #, fuzzy
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
-
-#~ msgid "Default Language"
-#~ msgstr "Idioma Predeterminado"
-
-#, fuzzy
-#~ msgid "Select   the bible language that will be used by default."
-#~ msgstr "Seleccione el idioma bíblico que se usará de forma predeterminada."
-
-#, fuzzy
-#~ msgid "Bible Versions"
-#~ msgstr "Versiones de la Biblia"
