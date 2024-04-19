@@ -5,7 +5,7 @@ import {$hasText} from "./text.js";
 export const $audio = computed($media, media => findContent('audio') ?? []);
 export const $hasAudio = computed($media, media => Object
     .values(media)
-    .filter(({type}) => type === "audio"))
+    .filter(({key}) => key === "audio").length > 0)
 export const $audioOpen = atom(!$hasText.get())
 
 export const $playAudio = () => {
