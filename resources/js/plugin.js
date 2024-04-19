@@ -17,6 +17,8 @@ import '@spectrum-web-components/dialog/sp-dialog-wrapper.js';
 import '@spectrum-web-components/divider/sp-divider.js';
 import '@spectrum-web-components/icon/sp-icon.js';
 import '@spectrum-web-components/icons-ui/icons/sp-icon-arrow500.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-play.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-replay.js';
 import '@spectrum-web-components/menu/sp-menu.js';
 import '@spectrum-web-components/menu/sp-menu-group.js';
 import '@spectrum-web-components/menu/sp-menu-item.js';
@@ -36,6 +38,7 @@ import "./web-components/content.js"
 import "./web-components/dialog-wrapper.js"
 import "./web-components/verse.js"
 import "./web-components/audio.js"
+import "./web-components/audio-bar.js"
 import "./web-components/video.js"
 import "./web-components/reader.js"
 import "./web-components/player.js"
@@ -46,6 +49,7 @@ import "./web-components/bible-menu.js"
 import "./web-components/book-menu.js"
 import "./web-components/chapter-nav.js"
 import "./web-components/copyright.js"
+import "./web-components/footer.js"
 
 
 import {loaded} from "./helpers.js";

@@ -4,6 +4,8 @@ import {withStores} from "@nanostores/lit";
 import {css, html} from "@spectrum-web-components/base";
 import {$referenceData} from "../stores/reference.js";
 import {$media, findContent} from "../stores/media.js";
+import {$hasText, $text} from "../stores/text.js";
+import {nothing} from "lit";
 
 @customElement('tbp-reader')
 export class Reader extends withStores(TBPElement, [$referenceData, $media]) {
@@ -17,7 +19,7 @@ export class Reader extends withStores(TBPElement, [$referenceData, $media]) {
             css`
                 #reader {
                     --mod-dialog-confirm-padding-grid: 0;
-                    max-height: var(--tbp-reader-height, 75vh);
+                    max-height: var(--tbp-reader-height);
                     max-width: var(--wp--style--global--wide-size, 1200px);
                     margin: var(--tpb-reader-margin, 25px auto);
                     overflow-y: auto;
@@ -28,11 +30,15 @@ export class Reader extends withStores(TBPElement, [$referenceData, $media]) {
     }
 
     render() {
+        if (!$hasText.get()) {
+            return nothing;
+        }
+
         return html`
             <sp-dialog id="reader" no-divider size="md">
                 <tbp-content
                         .reference="${$referenceData.get()}"
-                        .content="${this.content}"
+                        .content="${$text.get()}"
                         type="text"
                         selectable
                 />

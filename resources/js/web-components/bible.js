@@ -8,6 +8,7 @@ import {$fullScreen} from "../stores/full-screen.js";
 import {$chapter} from "../stores/chapter.js"
 import {$message} from "../stores/message.js"
 import {$error} from "../stores/error.js"
+import {__} from "../helpers.js";
 
 @customElement('tbp-bible')
 export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $fullScreen, $message, $error]) {
@@ -17,12 +18,18 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
         return [
             super.styles,
             css`
-                main {
-                    min-height: 80vh;
+                :host {
+                    --tbp-reader-height: var(--mod-tbp-reader-height, calc(100vh - 250px));
                 }
 
+                #loader,
+                main {
+                    height: 100%;
+                    min-height: var(--tbp-reader-height);
+                }
+
+
                 #loader {
-                    min-height: 80vh;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -33,19 +40,8 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                     --mod-toast-max-inline-size: 100%;
                 }
 
-                .copyright {
-                    font-size: 0.6rem;
-                    text-align: center;
-                }
-
                 tbp-bible-menu {
                     margin-left: auto;
-                }
-
-                footer {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 1rem;
                 }
             `
         ];
@@ -108,9 +104,11 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                     ${this.renderHeader()}
 
                     ${loading ? this.renderLoader() : html`
-                        <tbp-reader></tbp-reader>`}
+                        <tbp-reader></tbp-reader>
+                        <tbp-audio-bar></tbp-audio-bar>
+                    `}
 
-                    ${this.renderFooter()}
+                    <tbp-footer></tbp-footer>
 
                 </tbp-dialog-wrapper>
             </sp-overlay>
@@ -154,37 +152,22 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
         return html`
             ${this.renderHeader()}
             ${loading ? this.renderLoader() : html`
-                <tbp-reader></tbp-reader>`}
-            ${this.renderFooter()}
+                <tbp-reader></tbp-reader>
+                <tbp-audio-bar></tbp-audio-bar>
+            `}
+            <tbp-footer></tbp-footer>
         `
     }
 
     renderLoader() {
         return html`
-            <div class="#loader">
+            <div id="loader">
+                <sp-progress-circle
+                        size="m"
+                        label="${__("Loading")}"
+                        indeterminate
+                ></sp-progress-circle>
             </div>
         `
-    }
-
-    renderFooter() {
-        const {loading} = $query.get();
-
-        if (loading) {
-            return nothing;
-        }
-
-        return html`
-            <footer>
-                <tbp-chapter-nav></tbp-chapter-nav>
-                <tbp-copyright></tbp-copyright>
-                <sp-button-group>
-                    <sp-button icon-only variant="secondary" @click=${() => $fullScreen.set(!$fullScreen.get())}>
-                        <iconify-icon icon="${"ic:round-fullscreen"}"
-                                      slot="icon"
-                                      width="18px"
-                                      height="18px"></iconify-icon>
-                    </sp-button>
-                </sp-button-group>
-            </footer>`
     }
 }

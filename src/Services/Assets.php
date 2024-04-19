@@ -3,7 +3,7 @@
 namespace CodeZone\Bible\Services;
 
 use CodeZone\Bible\Illuminate\Support\Str;
-ent tuse CodeZone\Bible\Services\BibleBrains\MediaTypes;
+use CodeZone\Bible\Services\BibleBrains\MediaTypes;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
 use function CodeZone\Bible\plugin_path;
 use function CodeZone\Bible\namespace_string;

@@ -17,6 +17,9 @@ export class ChapterNav extends withStores(TBPElement, [$chapter, $hasPreviousCh
         return [
             super.styles,
             css`
+                sp-button-group {
+                    flex-wrap: nowrap;
+                }
 
             `
         ];
