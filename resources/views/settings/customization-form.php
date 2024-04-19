@@ -27,7 +27,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
 >
     <fieldset>
 
-        <h2><?php esc_html_e( "Theme", 'bible_plugin' ); ?></h2>
+        <h2><?php esc_html_e( "Theme", 'bible-plugin' ); ?></h2>
 
 		<?php $this->insert( 'partials/alerts' ); ?>
 
@@ -99,7 +99,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
     </fieldset>
 
     <fieldset>
-        <h2><?php esc_html_e( "Translations", 'bible_plugin' ); ?></h2>
+        <h2><?php esc_html_e( "Translations", 'bible-plugin' ); ?></h2>
         <div class="tbp-form-group">
             <template x-for="(value, string) in fields.translations">
                 <sp-field-group>

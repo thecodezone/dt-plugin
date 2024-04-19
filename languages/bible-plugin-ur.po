@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
 "POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 15:39-0500\n"
+"PO-Revision-Date: 2024-04-19 17:32-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ur\n"
@@ -31,30 +31,25 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
 
 #: resources/views/hello.php:5
-#, fuzzy
 msgctxt "scripture"
 msgid "Bible"
 msgstr "بائبل"
 
 #: resources/views/hello.php:6
-#, fuzzy
 msgctxt "reader"
 msgid "Next Chapter"
 msgstr "اگلا باب"
 
 #: resources/views/hello.php:7
-#, fuzzy
 msgctxt "reader"
 msgid "Previous Chapter"
 msgstr "پچھلا باب"
 
 #: resources/views/layouts/plugin.php:2
-#, fuzzy
 msgid "Plugin"
 msgstr "پلگ ان"
 
 #: resources/views/layouts/plugin.php:11
-#, fuzzy
 msgid "Copyright "
 msgstr "کاپی "
 
@@ -67,19 +62,16 @@ msgstr "کاپی "
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
 #: src/Providers/AdminServiceProvider.php:44
-#, fuzzy
 msgid "The Bible Plugin"
 msgstr "بائبل پلگ ان"
 
 #: resources/views/layouts/settings.php:75
-#, fuzzy
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr ""
 "اس پلگ ان کے کام کرنے کے لئے آپ کو اپنی بائبل برین اے پی آئی کلید شامل کرنا "
 "ضروری ہے۔"
 
 #: resources/views/layouts/settings.php:84
-#, fuzzy
 msgid "More Info"
 msgstr "مزید معلومات"
 
@@ -88,7 +80,6 @@ msgid "Success!"
 msgstr "کامیابی!"
 
 #: resources/views/partials/alerts.php:9
-#, fuzzy
 msgid "An error has occurred."
 msgstr "ایک نقص واقع ہوا ہے۔"
 
@@ -100,37 +91,30 @@ msgid "Save"
 msgstr "محفوظ کریں"
 
 #: resources/views/settings/customization-form.php:30
-#, fuzzy
 msgid "Theme"
 msgstr "موضوع"
 
 #: resources/views/settings/customization-form.php:38
-#, fuzzy
 msgid "Choose"
 msgstr "چننا"
 
 #: resources/views/settings/customization-form.php:56
-#, fuzzy
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr "اپنے تھیم سے میچ کرنے کے لئے لائٹ موڈ یا ڈارک موڈ کے درمیان سوئچ کریں۔"
 
 #: resources/views/settings/customization-form.php:65
-#, fuzzy
 msgid "Accent Color"
 msgstr "لہجے کا رنگ"
 
 #: resources/views/settings/customization-form.php:75
-#, fuzzy
 msgid "The primary accent color used in the bible reader."
 msgstr "بنیادی لہجے کا رنگ بائبل پڑھنے والے میں استعمال ہوتا ہے۔"
 
 #: resources/views/settings/customization-form.php:82
-#, fuzzy
 msgid "Accent Color Steps"
 msgstr "لہجے کے رنگ کے اقدامات"
 
 #: resources/views/settings/customization-form.php:95
-#, fuzzy
 msgid ""
 "This range of colors could be displayed in the bible reader. The accent "
 "color you chose will be used most often."
@@ -139,54 +123,44 @@ msgstr ""
 "لہجے کا رنگ اکثر استعمال کیا جائے گا۔"
 
 #: resources/views/settings/customization-form.php:102
-#, fuzzy
 msgid "Translations"
 msgstr "ترجمے"
 
 #: resources/views/settings/customization-form.php:111
-#, fuzzy
 msgid "Enter a translation..."
 msgstr "ترجمہ درج کریں..."
 
 #: resources/views/settings/partials/bible-brains-key.php:18
-#, fuzzy
 msgid "Bible Brains API Key verified."
 msgstr "بائبل کے دماغ اے پی آئی کلید کی تصدیق کی گئی۔"
 
 #: resources/views/settings/partials/bible-brains-key.php:37
-#, fuzzy
 msgid "Bible Brain API Key"
 msgstr "بائبل دماغ اے پی آئی کلید"
 
 #: resources/views/settings/partials/bible-brains-key.php:46
-#, fuzzy
 msgid "Enter key..."
 msgstr "کلید درج کریں..."
 
 #: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
-#, fuzzy
 msgid "Validate"
 msgstr "توثیق"
 
 #: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
-#, fuzzy
 msgid "Valid"
 msgstr "ثابت"
 
 #: resources/views/settings/partials/bible-brains-key.php:74
-#, fuzzy
 msgid "Here's how to get your key."
 msgstr "یہاں آپ کی چابی حاصل کرنے کا طریقہ ہے."
 
 #: resources/views/settings/support.php:14
-#, fuzzy
 msgid "FAQ"
 msgstr "سوالات"
 
 #: resources/views/settings/support.php:20
-#, fuzzy
 msgid ""
 "If you encounter an error or bug, please report it to us at our GitHub by "
 "clicking the button below."
@@ -195,13 +169,11 @@ msgstr ""
 "بٹن پر کلک کرکے ہمارے گیٹ ہب پر اس کی اطلاع دیں۔"
 
 #: resources/views/settings/support.php:24
-#, fuzzy
 msgid "Report an error"
 msgstr "ایک نقص کی رپورٹ کریں"
 
 #: resources/views/settings/support.php:31
 #: resources/views/settings/support.php:42
-#, fuzzy
 msgid ""
 "Fill out the support form on our website. You can expect a response within "
 "48 business days."
@@ -210,17 +182,14 @@ msgstr ""
 "کر سکتے ہیں."
 
 #: resources/views/settings/support.php:35
-#, fuzzy
 msgid "Request support"
 msgstr "مدد کی درخواست کریں"
 
 #: resources/views/settings/support.php:46
-#, fuzzy
 msgid "Request a feature"
 msgstr "ایک خصوصیت کی درخواست کریں"
 
 #: resources/views/settings/support.php:53
-#, fuzzy
 msgid ""
 "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
 "you contact them to request additional translations be added the Bible "
@@ -231,7 +200,6 @@ msgstr ""
 "کرنے کے لئے ان سے رابطہ کریں۔"
 
 #: resources/views/settings/support.php:57
-#, fuzzy
 msgid ""
 "We rely on community support to add additional languages to the Bible Plugin "
 "UI. If you are a translator or you would like more information on how you "
@@ -243,7 +211,6 @@ msgstr ""
 "استعمال کرتے ہوئے ہم سے رابطہ کریں."
 
 #: resources/views/settings/support.php:62
-#, fuzzy
 msgid "Bible Brains"
 msgstr "بائبل کے دماغ"
 
@@ -255,12 +222,10 @@ msgstr "  ہمارے بارے میں"
 
 #: resources/views/settings/support.php:91
 #: resources/views/settings/support.php:113
-#, fuzzy
 msgid "Give"
 msgstr "دینا"
 
 #: resources/views/settings/support.php:100
-#, fuzzy
 msgid ""
 "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
 "reader in WordPress sites with the Bible text accessed through available "
@@ -284,75 +249,61 @@ msgstr ""
 "ارادے سے۔  اضافی معلومات گیٹ ہب پر ایس آر ایس دستاویز میں دستیاب ہیں۔\n"
 
 #: resources/views/settings/support.php:109
-#, fuzzy
 msgid "GitHub"
 msgstr "GitHub"
 
 #: resources/views/starter-magic-link/show.php:12
-#, fuzzy
 msgid "Visit subpage"
 msgstr "ملاحظہ کریں ذیلی صفحے"
 
 #: resources/views/starter-magic-link/subpage.php:12
-#, fuzzy
 msgid "Visit home"
 msgstr "گھر کا دورہ کریں"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:100
 #: src/Controllers/Admin/CustomizationFomController.php:73
-#, fuzzy
 msgid "Please complete the required fields."
 msgstr "براہ کرم مطلوبہ فیلڈز کو مکمل کریں۔"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
 #: src/Controllers/Admin/BibleBrainsFormController.php:157
 #: src/Controllers/Admin/CustomizationFomController.php:86
-#, fuzzy
 msgid "Form could not be submitted."
 msgstr "فارم جمع نہیں کرایا جا سکا۔"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:134
-#, fuzzy
 msgid "Please enter a key."
 msgstr "براہ کرم ایک کلید درج کریں۔"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:144
-#, fuzzy
 msgid "Failed to validate key."
 msgstr "کلید کی توثیق کرنے میں ناکام رہا۔"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:146
-#, fuzzy
 msgid "Invalid."
 msgstr "اپاہج."
 
 #: src/Controllers/Admin/CustomizationFomController.php:31
-#, fuzzy
 msgid "Light"
 msgstr "روشنی"
 
 #: src/Controllers/Admin/CustomizationFomController.php:35
-#, fuzzy
 msgid "Dark"
 msgstr "اندھیرا"
 
 #: src/Middleware/Nonce.php:22
-#, fuzzy
 msgid "Could not verify request."
 msgstr "درخواست کی تصدیق نہیں کی جا سکی۔"
 
 #: src/Plugin.php:115
-#, fuzzy
 msgid "The page could not be found."
 msgstr "صفحہ تلاش نہیں کیا جا سکا۔"
 
 #: src/Providers/AdminServiceProvider.php:52
-#, fuzzy
 msgid "Biblical Text Setup"
 msgstr "بائبل کے متن کا سیٹ اپ"
 
 #: src/Providers/AdminServiceProvider.php:56
-#, fuzzy
 msgid "Customization"
 msgstr "اپنی مرضی کے مطابق"
 
@@ -361,128 +312,103 @@ msgid "Support"
 msgstr "معاونت"
 
 #: src/Services/Assets.php:21
-#, fuzzy
 msgctxt "reader"
 msgid "Copy"
 msgstr "نقل"
 
 #: src/Services/Assets.php:22
-#, fuzzy
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "کامیابی سے کاپی کیا."
 
 #: src/Services/Assets.php:23
-#, fuzzy
 msgctxt "reader"
 msgid "Language"
 msgstr "زبان"
 
 #: src/Services/Assets.php:24
-#, fuzzy
-#| msgid "Languages"
 msgctxt "reader"
 msgid "Languages"
 msgstr "زبانیں"
 
 #: src/Services/Assets.php:25
-#, fuzzy
-#| msgid "Link"
 msgctxt "reader"
 msgid "Link"
 msgstr "لنک"
 
 #: src/Services/Assets.php:26
-#, fuzzy
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "پرانا عہد نامہ"
 
 #: src/Services/Assets.php:27
-#, fuzzy
 msgctxt "reader"
 msgid "Media Types"
 msgstr "میڈیا کی اقسام"
 
 #: src/Services/Assets.php:28
-#, fuzzy
 msgctxt "reader"
 msgid "New Testament"
 msgstr "انجیل"
 
 #: src/Services/Assets.php:29
-#, fuzzy
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 "نوٹ کریں کہ بائبل کے کچھ ورژن میڈیا کی تمام اقسام کی حمایت نہیں کرتے ہیں۔"
 
 #: src/Services/Assets.php:30
-#, fuzzy
-#| msgid "Search"
 msgctxt "reader"
 msgid "Search"
 msgstr "تلاش"
 
 #: src/Services/Assets.php:31
-#, fuzzy
 msgid "Select the bible language you would like to make available."
 msgstr "بائبل کی وہ زبان منتخب کریں جسے آپ دستیاب کرانا چاہتے ہیں۔"
 
 #: src/Services/Assets.php:32
-#, fuzzy
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
 "بائبل کا وہ ورژن منتخب کریں جسے آپ اس زبان کے لئے دستیاب کرانا چاہتے ہیں۔"
 
 #: src/Services/Assets.php:33
-#, fuzzy
 msgctxt "reader"
 msgid "Selection"
 msgstr "انتخاب"
 
 #: src/Services/Assets.php:34
-#, fuzzy
 msgctxt "reader"
 msgid "Translation"
 msgstr "ترجمہ"
 
 #: src/Services/Assets.php:35
-#, fuzzy
-#| msgid "Loading"
 msgctxt "reader"
 msgid "Loading"
 msgstr "لوڈ ہو رہا ہے"
 
 #: src/ShortCodes/Scripture.php:66
-#, fuzzy
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "غیر قانونی میڈیا کی قسم"
 
 #: src/ShortCodes/Scripture.php:86
-#, fuzzy
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "کوئی نتیجہ نہیں ملا"
 
 #: tests/TranslatorTest.php:26
-#, fuzzy
 msgctxt "reader"
 msgid "Hello World"
 msgstr "سلام دنيا"
 
 #. Plugin URI of the plugin/theme
-#, fuzzy
 msgid "https://github.com/TheCodeZone/bible-plugin"
 msgstr "https://github.com/TheCodeZone/bible-plugin"
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid "A bible plugin for WordPress."
 msgstr "ورڈپریس کے لئے بائبل پلگ ان."
 
 #. Author URI of the plugin/theme
-#, fuzzy
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"

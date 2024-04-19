@@ -3,11 +3,15 @@
 namespace CodeZone\Bible\Services;
 
 use CodeZone\Bible\Conditions\Plugin as PluginConditional;
+use CodeZone\Bible\Gettext\Loader\PoLoader;
 use CodeZone\Bible\Gettext\Translation;
 use CodeZone\Bible\Gettext\Translations as GettextTranslations;
 use CodeZone\Bible\Illuminate\Support\Collection;
+use CodeZone\Bible\Illuminate\Support\Str;
+use WhiteCube\Lingua\Service;
 use function CodeZone\Bible\container;
 use function CodeZone\Bible\get_plugin_option;
+use function CodeZone\Bible\languages_path;
 use function CodeZone\Bible\collect;
 
 /**
@@ -29,6 +33,71 @@ class Translations {
 		add_filter( "plugin_locale", [ $this, 'plugin_locale' ], 10, 2 );
 	}
 
+	public function paths(): Collection {
+		return collect( glob( languages_path( '*.po' ) ) );
+	}
+
+	public function files(): Collection {
+		return $this->paths()->map( function ( $file ) {
+			return ( new PoLoader() )->loadFile( $file );
+		} );
+	}
+
+	public function languages(): Collection {
+		return $this->files()->map( function ( $file ) {
+			return Str::lower( $file->getLanguage() );
+		} )->push( 'en-us' )
+		   ->push( 'en' );
+	}
+
+	public function browser_languages(): Collection {
+		//phpcs:ignore
+		$language_string = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
+
+		if ( empty( $language_string ) ) {
+			return collect();
+		}
+
+		$lang_parse = explode( ',', $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
+
+		$languages = [];
+		// Loop through each item of the array and split it into a separate array where index 0 is the language and index 1 is the priority
+		foreach ( $lang_parse as $lang ) {
+			$lang_parts = explode( ';', $lang );
+			$languages[$lang_parts[0]] = isset( $lang_parts[1] ) ? str_replace( 'q=', '', $lang_parts[1] ) : 1;
+		}
+
+		// Sort the languages by priority
+		arsort( $languages );
+
+		return collect( array_keys( $languages ) );
+	}
+
+	public function resolve_locale() {
+		$browser_languages = $this->browser_languages();
+
+		if ( ! $browser_languages || ! count( $browser_languages ) ) {
+			return get_locale();
+		}
+
+		$supported_languages = $this->languages();
+
+		// Convert the browser language using Lingua Service
+
+		foreach ( $browser_languages as $browser_lang ) {
+			$converted_lang = Service::createFromW3C( $browser_lang )->toISO_639_1();
+
+			// If browser language is supported in plugin, use that locale
+			if ( $supported_languages->contains( Str::lower( $converted_lang ) ) || $supported_languages->contains( Str::lower( $browser_lang ) ) ){
+				return $converted_lang;
+			}
+		}
+
+		// If browser language isn't set or isn't supported in plugin, use the site's locale
+		return get_locale();
+	}
+
+
 	/**
 	 * Filters the plugin locale.
 	 *
@@ -43,8 +112,10 @@ class Translations {
 	 */
 	public function plugin_locale( $locale, $domain ): string {
 		if ( $domain === 'bible-plugin' ) {
-			return get_locale();
+			return $this->resolve_locale();
 		}
+
+		return $locale;
 	}
 
 	/**

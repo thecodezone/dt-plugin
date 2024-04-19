@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 15:39-0500\n"
+"POT-Creation-Date: 2024-04-19 17:34-0500\n"
+"PO-Revision-Date: 2024-04-19 17:34-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_MX\n"
@@ -30,24 +30,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
 
-#: resources/views/hello.php:5
-#, fuzzy
-msgctxt "scripture"
-msgid "Bible"
-msgstr "Biblia"
-
-#: resources/views/hello.php:6
-#, fuzzy
-msgctxt "reader"
-msgid "Next Chapter"
-msgstr "Siguiente capítulo"
-
-#: resources/views/hello.php:7
-#, fuzzy
-msgctxt "reader"
-msgid "Previous Chapter"
-msgstr "Capítulo anterior"
-
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
 msgstr "Plugin"
@@ -65,12 +47,10 @@ msgstr "Derechos de autor del sitio "
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
 #: src/Providers/AdminServiceProvider.php:44
-#, fuzzy
 msgid "The Bible Plugin"
 msgstr "El complemento de la Biblia"
 
 #: resources/views/layouts/settings.php:75
-#, fuzzy
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr ""
 "Debes agregar tu clave API de Bible Brain para que este plugin funcione."
@@ -103,7 +83,6 @@ msgid "Choose"
 msgstr "Elegir"
 
 #: resources/views/settings/customization-form.php:56
-#, fuzzy
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr ""
 "Cambia entre el modo claro o el modo oscuro para que coincida con tu tema."
@@ -113,17 +92,14 @@ msgid "Accent Color"
 msgstr "Color a Resaltar"
 
 #: resources/views/settings/customization-form.php:75
-#, fuzzy
 msgid "The primary accent color used in the bible reader."
 msgstr "El color de acento primario utilizado en el lector de la Biblia."
 
 #: resources/views/settings/customization-form.php:82
-#, fuzzy
 msgid "Accent Color Steps"
 msgstr "Pasos de color de acento"
 
 #: resources/views/settings/customization-form.php:95
-#, fuzzy
 msgid ""
 "This range of colors could be displayed in the bible reader. The accent "
 "color you chose will be used most often."
@@ -136,22 +112,18 @@ msgid "Translations"
 msgstr "Traducciones"
 
 #: resources/views/settings/customization-form.php:111
-#, fuzzy
 msgid "Enter a translation..."
 msgstr "Introduzca una traducción..."
 
 #: resources/views/settings/partials/bible-brains-key.php:18
-#, fuzzy
 msgid "Bible Brains API Key verified."
 msgstr "Clave API de Bible Brains verificada."
 
 #: resources/views/settings/partials/bible-brains-key.php:37
-#, fuzzy
 msgid "Bible Brain API Key"
 msgstr "Clave API de Bible Brain"
 
 #: resources/views/settings/partials/bible-brains-key.php:46
-#, fuzzy
 msgid "Enter key..."
 msgstr "Introduzca la tecla..."
 
@@ -166,7 +138,6 @@ msgid "Valid"
 msgstr "Válido"
 
 #: resources/views/settings/partials/bible-brains-key.php:74
-#, fuzzy
 msgid "Here's how to get your key."
 msgstr "A continuación, te explicamos cómo obtener tu llave."
 
@@ -175,7 +146,6 @@ msgid "FAQ"
 msgstr "FAQ"
 
 #: resources/views/settings/support.php:20
-#, fuzzy
 msgid ""
 "If you encounter an error or bug, please report it to us at our GitHub by "
 "clicking the button below."
@@ -184,13 +154,11 @@ msgstr ""
 "el botón a continuación."
 
 #: resources/views/settings/support.php:24
-#, fuzzy
 msgid "Report an error"
 msgstr "Notificar un error"
 
 #: resources/views/settings/support.php:31
 #: resources/views/settings/support.php:42
-#, fuzzy
 msgid ""
 "Fill out the support form on our website. You can expect a response within "
 "48 business days."
@@ -199,17 +167,14 @@ msgstr ""
 "respuesta en un plazo de 48 días hábiles."
 
 #: resources/views/settings/support.php:35
-#, fuzzy
 msgid "Request support"
 msgstr "Solicitar soporte"
 
 #: resources/views/settings/support.php:46
-#, fuzzy
 msgid "Request a feature"
 msgstr "Solicitar una función"
 
 #: resources/views/settings/support.php:53
-#, fuzzy
 msgid ""
 "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
 "you contact them to request additional translations be added the Bible "
@@ -220,7 +185,6 @@ msgstr ""
 "agreguen traducciones adicionales al Lector de la Biblia."
 
 #: resources/views/settings/support.php:57
-#, fuzzy
 msgid ""
 "We rely on community support to add additional languages to the Bible Plugin "
 "UI. If you are a translator or you would like more information on how you "
@@ -232,7 +196,6 @@ msgstr ""
 "nosotros a través del formulario de contacto de nuestra página web."
 
 #: resources/views/settings/support.php:62
-#, fuzzy
 msgid "Bible Brains"
 msgstr "Cerebros bíblicos"
 
@@ -248,7 +211,6 @@ msgid "Give"
 msgstr "Give"
 
 #: resources/views/settings/support.php:100
-#, fuzzy
 msgid ""
 "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
 "reader in WordPress sites with the Bible text accessed through available "
@@ -279,40 +241,33 @@ msgid "GitHub"
 msgstr "GitHub"
 
 #: resources/views/starter-magic-link/show.php:12
-#, fuzzy
 msgid "Visit subpage"
 msgstr "Ir a la subpágina"
 
 #: resources/views/starter-magic-link/subpage.php:12
-#, fuzzy
 msgid "Visit home"
 msgstr "Visita a casa"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:100
 #: src/Controllers/Admin/CustomizationFomController.php:73
-#, fuzzy
 msgid "Please complete the required fields."
 msgstr "Por favor, rellene los campos obligatorios."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
 #: src/Controllers/Admin/BibleBrainsFormController.php:157
 #: src/Controllers/Admin/CustomizationFomController.php:86
-#, fuzzy
 msgid "Form could not be submitted."
 msgstr "No se pudo enviar el formulario."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:134
-#, fuzzy
 msgid "Please enter a key."
 msgstr "Por favor, introduzca una clave."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:144
-#, fuzzy
 msgid "Failed to validate key."
 msgstr "No se pudo validar la clave."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:146
-#, fuzzy
 msgid "Invalid."
 msgstr "No válido."
 
@@ -325,17 +280,14 @@ msgid "Dark"
 msgstr "Oscuro"
 
 #: src/Middleware/Nonce.php:22
-#, fuzzy
 msgid "Could not verify request."
 msgstr "No se pudo verificar la solicitud."
 
 #: src/Plugin.php:115
-#, fuzzy
 msgid "The page could not be found."
-msgstr "No se pudo enviar el formulario."
+msgstr "No se pudo encontrar la página."
 
 #: src/Providers/AdminServiceProvider.php:52
-#, fuzzy
 msgid "Biblical Text Setup"
 msgstr "Configuración del texto bíblico"
 
@@ -353,7 +305,6 @@ msgid "Copy"
 msgstr "Copiar"
 
 #: src/Services/Assets.php:22
-#, fuzzy
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "Copiado correctamente."
@@ -379,7 +330,6 @@ msgid "Old Testament"
 msgstr "Antiguo Testamento"
 
 #: src/Services/Assets.php:27
-#, fuzzy
 msgctxt "reader"
 msgid "Media Types"
 msgstr "Tipos de medios"
@@ -390,46 +340,59 @@ msgid "New Testament"
 msgstr "Nuevo Testamento"
 
 #: src/Services/Assets.php:29
-#, fuzzy
+msgctxt "reader"
+msgid "Search"
+msgstr "Buscar"
+
+#: src/Services/Assets.php:30
+msgctxt "reader"
+msgid "Selection"
+msgstr "Selección"
+
+#: src/Services/Assets.php:31
+msgctxt "reader"
+msgid "Translation"
+msgstr "Traducción"
+
+#: src/Services/Assets.php:32
+msgctxt "reader"
+msgid "Loading"
+msgstr "Cargando"
+
+#: src/Services/Assets.php:33
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 "Tenga en cuenta que algunas versiones de la Biblia no son compatibles con "
 "todos los tipos de medios."
 
-#: src/Services/Assets.php:30
-msgctxt "reader"
-msgid "Search"
-msgstr "Buscar"
-
-#: src/Services/Assets.php:31
-#, fuzzy
+#: src/Services/Assets.php:34
 msgid "Select the bible language you would like to make available."
-msgstr "Seleccione los idiomas bíblicos que le gustaría poner a disposición."
+msgstr "Seleccione el idioma bíblico que le gustaría poner a disposición."
 
-#: src/Services/Assets.php:32
-#, fuzzy
+#: src/Services/Assets.php:35
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
-"Seleccione las versiones de la Biblia que le gustaría poner a disposición."
+"Seleccione la versión de la Biblia que le gustaría que estuviera disponible "
+"para este idioma."
 
-#: src/Services/Assets.php:33
-msgctxt "reader"
-msgid "Selection"
-msgstr "Selección"
+#: src/Services/Assets.php:36
+msgid "Add Language"
+msgstr "Agregar Idioma"
 
-#: src/Services/Assets.php:34
-msgctxt "reader"
-msgid "Translation"
-msgstr "Traducción"
+#: src/Services/Assets.php:37
+msgid "Default Language?"
+msgstr "¿Idioma predeterminado?"
 
-#: src/Services/Assets.php:35
-msgctxt "reader"
-msgid "Loading"
-msgstr "Cargando"
+#: src/Services/Assets.php:38
+msgid "Make this the default language."
+msgstr "Haga que este sea el idioma predeterminado."
+
+#: src/Services/Assets.php:39
+msgid "Bible Version"
+msgstr "Versión de la Biblia"
 
 #: src/ShortCodes/Scripture.php:66
-#, fuzzy
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "Tipo de medio no válido"
@@ -445,27 +408,29 @@ msgid "Hello World"
 msgstr "Hola mundo"
 
 #. Plugin URI of the plugin/theme
-#, fuzzy
 msgid "https://github.com/TheCodeZone/bible-plugin"
 msgstr "https://github.com/TheCodeZone/bible-plugin"
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid "A bible plugin for WordPress."
 msgstr "Un plugin de la biblia para WordPress."
 
 #. Author URI of the plugin/theme
-#, fuzzy
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
 
-#~ msgid "Default Language"
-#~ msgstr "Idioma Predeterminado"
+#~ msgctxt "scripture"
+#~ msgid "Bible"
+#~ msgstr "Biblia"
+
+#~ msgctxt "reader"
+#~ msgid "Next Chapter"
+#~ msgstr "Siguiente capítulo"
+
+#~ msgctxt "reader"
+#~ msgid "Previous Chapter"
+#~ msgstr "Capítulo anterior"
 
 #, fuzzy
 #~ msgid "Select   the bible language that will be used by default."
 #~ msgstr "Seleccione el idioma bíblico que se usará de forma predeterminada."
-
-#, fuzzy
-#~ msgid "Bible Versions"
-#~ msgstr "Versiones de la Biblia"

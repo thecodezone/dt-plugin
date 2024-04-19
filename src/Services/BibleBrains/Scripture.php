@@ -99,8 +99,8 @@ class Scripture {
 	 * @throws BibleBrainsException If an invalid media type is specified or if there are any other errors.
 	 */
 	private function query( array $parameters ): array {
+;
 		$parameters = $this->normalize_query( $parameters );
-
 		$language = $this->language->find_or_resolve( $parameters['language'] ?? null );
 		$bible = ( $parameters['bible'] ?? null ) ? $this->bibles->find( $parameters['bible'] )["data"] : null;
 		if ( ! $bible ) {

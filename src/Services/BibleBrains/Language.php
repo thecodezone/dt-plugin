@@ -5,14 +5,23 @@ namespace CodeZone\Bible\Services\BibleBrains;
 use CodeZone\Bible\Illuminate\Support\Arr;
 use CodeZone\Bible\Services\BibleBrains\Api\Languages;
 use CodeZone\Bible\Services\Options;
+use CodeZone\Bible\Services\Translations;
 use WhiteCube\Lingua\Service as Lingua;
 
+/**
+ * Class Language
+ *
+ * Represents a language and provides methods for resolving the language code,
+ * finding supported languages, and resolving the default language.
+ *
+ * @package YourPackage
+ */
 class Language {
 
-	public function __construct( private Options $options, Languages $languages ) {}
+	public function __construct( private Options $options, Languages $languages, private Translations $translations ) {}
 
 	public function locale() {
-		return get_locale();
+		return $this->translations->resolve_locale();
 	}
 
 	public function iso() {
@@ -33,7 +42,7 @@ class Language {
 		$language = $this->find( $code );
 		if ( !$language ) {
 			$language = $this->resolve();
-		}
+		};
 		return $language;
 	}
 
@@ -66,6 +75,9 @@ class Language {
 	}
 
 	public function find( $code ) {
+		if ( !$code ) {
+			return false;
+		}
 		try {
 			$languages = $this->options->get( 'languages', false, true );
 			if ( !is_array( $languages ) ) {

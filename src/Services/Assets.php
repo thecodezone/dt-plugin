@@ -26,13 +26,17 @@ class Assets {
 			'Old Testament'         => _x( 'Old Testament', 'reader', 'bible-plugin' ),
             'Media Types'           => _x( 'Media Types', 'reader', 'bible-plugin' ),
 			'New Testament'         => _x( 'New Testament', 'reader', 'bible-plugin' ),
-			'Note that some bible versions do not support all media types.' => __( 'Note that some bible versions do not support all media types.', 'bible-plugin' ),
 			"Search"                => _x( "Search", 'reader', 'bible-plugin' ),
-			'Select the bible language you would like to make available.' => __( 'Select the bible language you would like to make available.', 'bible-plugin' ),
-            'Select the bible version you would like to make available for this language.' => __( 'Select the bible version you would like to make available for this language.', 'bible-plugin' ),
 			'Selection'             => _x( 'Selection', 'reader', 'bible-plugin' ),
             'Translation'           => _x( 'Translation', 'reader', 'bible-plugin' ),
             "Loading"            => _x( "Loading", 'reader', 'bible-plugin' ),
+			'Note that some bible versions do not support all media types.' => __( 'Note that some bible versions do not support all media types.', 'bible-plugin' ),
+			'Select the bible language you would like to make available.' => __( 'Select the bible language you would like to make available.', 'bible-plugin' ),
+			'Select the bible version you would like to make available for this language.' => __( 'Select the bible version you would like to make available for this language.', 'bible-plugin' ),
+            'Add Language' => __( 'Add Language', 'bible-plugin' ),
+            'Default Language?' => __( 'Default Language?', 'bible-plugin' ),
+            'Make this the default language.' => __( 'Make this the default language.', 'bible-plugin' ),
+            'Bible Version' => __( 'Bible Version', 'bible-plugin' ),
 		];
 	}
 
