@@ -70,7 +70,6 @@ class Scripture {
 	private function normalize_query( $parameters ): array {
 		$parameters = array_merge( [
 			'language'     => null,
-			'fileset'      => null,
 			'bible'        => null,
 			'book'         => null,
 			'chapter'      => null,

@@ -3,7 +3,6 @@ import {computed} from "nanostores"
 import {$chapter} from "./chapter.js";
 import {$verse_start, $verse_end} from "./verse.js";
 import {$book} from "./book.js";
-import {$media_type_key} from "./media-type.js";
 import {reference_from_object} from "../helpers.js";
 
 export const $reference = queryParam('reference', "JHN 1");

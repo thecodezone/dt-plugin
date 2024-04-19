@@ -1,10 +1,7 @@
 import {customElement, property, state, queryAll} from "lit/decorators.js";
 import {html} from "lit";
 import {TBPElement} from "./base.js";
-import {reference_from_content} from "../helpers.js";
-import {css, nothing} from "@spectrum-web-components/base";
-import {__} from "../helpers.js";
-import {reference_from_object} from "../helpers.js";
+import {reference_from_content, find_media_type} from "../helpers.js";
 import {$selection, $clearSelection} from "../stores/selection.js";
 import {withStores} from "@nanostores/lit";
 
@@ -23,7 +20,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
     content = [];
 
     /**
-     * Represents a variable of type string.
+     * The media type to display
      *
      * @typedef {string} TypeString
      */
@@ -87,19 +84,9 @@ export class Content extends withStores(TBPElement, [$selection]) {
      * @returns {string|boolean} - The media type or false if the current type is not recognized.
      */
     get media_type() {
-        switch (this.type) {
-            case "text":
-            case "text_plain":
-            case "text_json":
-            case "text_format":
-                return "text"
-            case "audio":
-                return "audio"
-            case "video_stream":
-                return "video"
-            default:
-                return false
-        }
+        return find_media_type(
+            this.type
+        )
     }
 
     /**
@@ -145,7 +132,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
      * @return {Array|HTMLElement} - The rendered content based on the media type.
      */
     renderContent() {
-        switch (this.media_type) {
+        switch (this.media_type?.key) {
             case "text":
                 return this.content.map((item, idx) => this.renderText(item, idx))
             case "audio":
@@ -164,7 +151,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
      * @return {string} The rendered text.
      */
     renderText(item, idx) {
-        switch (this.media_type) {
+        switch (this.media_type?.key) {
             case "text":
                 return this.renderVerse(item)
             default:

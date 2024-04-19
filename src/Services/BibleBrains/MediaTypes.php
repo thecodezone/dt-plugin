@@ -17,16 +17,10 @@ class MediaTypes {
 	 * Properties include the label, fileset types, and group.
 	 */
 	private $data = [
-		'audio_drama' => [
-			'key'           => 'audio_drama',
-			'label'         => 'Dramatized Audio',
-			'fileset_types' => [ 'audio_drama' ],
-			'group'         => 'dbp-prod'
-		],
 		'audio'       => [
 			'key'           => 'audio',
 			'label'         => 'Audio',
-			'fileset_types' => [ 'audio' ],
+			'fileset_types' => [ 'audio', 'audio_drama' ],
 			'group'         => 'dbp-prod'
 		],
 //      'video'       => [

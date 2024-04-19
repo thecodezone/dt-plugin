@@ -3,6 +3,7 @@ import {$book} from "./book.js";
 import {$visitReference} from "./reference.js";
 
 export const $chapter = atom("1")
+
 export const $chapters = computed($book, book => book.chapters ?? [])
 
 export const $hasChapter = (chapter) => {

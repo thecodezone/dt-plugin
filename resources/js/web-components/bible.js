@@ -8,7 +8,6 @@ import {$fullScreen} from "../stores/full-screen.js";
 import {$chapter} from "../stores/chapter.js"
 import {$message} from "../stores/message.js"
 import {$error} from "../stores/error.js"
-import {$reference} from "../stores/reference.js";
 
 @customElement('tbp-bible')
 export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $fullScreen, $message, $error]) {

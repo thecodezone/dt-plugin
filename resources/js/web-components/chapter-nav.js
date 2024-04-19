@@ -2,7 +2,6 @@ import {customElement, property} from "lit/decorators.js";
 import {TBPElement} from "./base.js";
 import {withStores} from "@nanostores/lit";
 import {css, html, nothing} from "@spectrum-web-components/base";
-import {$query} from "../stores/query.js"
 
 import {
     $chapter,

@@ -3,6 +3,7 @@
 namespace CodeZone\Bible\Services;
 
 use CodeZone\Bible\Illuminate\Support\Str;
+ent tuse CodeZone\Bible\Services\BibleBrains\MediaTypes;
 use function CodeZone\Bible\Kucrut\Vite\enqueue_asset;
 use function CodeZone\Bible\plugin_path;
 use function CodeZone\Bible\namespace_string;
@@ -11,6 +12,9 @@ use const CodeZone\Bible\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 class Assets {
 	private static $enqueued = false;
+
+    public function __construct( private MediaTypes $media_types ) {
+    }
 
 	public function translations() {
 		return [
@@ -110,6 +114,7 @@ class Assets {
 			'apiUrl'       => route_url( 'api' ),
 			'nonce'        => wp_create_nonce( 'bible_plugin_nonce' ),
 			'translations' => $this->translations(),
+            "mediaTypes" => $this->media_types->all(),
 		] );
 
 		wp_enqueue_style( 'plyr', 'https://cdn.plyr.io/3.6.8/plyr.css' );

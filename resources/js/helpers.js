@@ -136,6 +136,12 @@ export const reference_from_content = (items = []) => {
     return `${book} ${firstChapter}`
 }
 
+/**
+ * Returns a user-readable reference string for a given object.
+ *
+ * @param {Object} item - The object to generate the reference for.
+ * @returns {string} - The reference string.
+ */
 export const reference_from_object = (item) => {
     const book = item.book ?? item.book_id ?? "Genesis"
     const chapter = item.chapter ?? 1
@@ -163,7 +169,29 @@ export const apiUrl = (path) => {
     return `${window.$tbp.apiUrl.replace(/\/$/, "").trim()}/${path.replace(/^\/|\/$/g, '').trim()}`
 }
 
+/**
+ * Looks up translation from given key or returns fallback value.
+ *
+ * @param {string} key - The translation key.
+ * @param {string} [fallback=""] - The fallback value.
+ * @returns {string} - The translated value or fallback value.
+ */
 export const __ = (key, fallback = "") => {
     if (!fallback) fallback = key
     return window.$tbp.translations[key] ?? fallback
+}
+
+/**
+ * Finds the media type for a given fileset type.
+ *
+ * @param {string} key - The fileset type to search for.
+ * @returns {Object} - The media type object that matches the given fileset type, or undefined if not found.
+ */
+export const find_media_type = (key) => {
+    return Object.values($tbp.mediaTypes).find((media_type) => {
+        if (media_type.key === key) {
+            return true;
+        }
+        return media_type.fileset_types.includes(key)
+    })
 }
