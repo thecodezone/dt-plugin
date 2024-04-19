@@ -29,12 +29,12 @@ class MediaTypes {
 			'fileset_types' => [ 'audio' ],
 			'group'         => 'dbp-prod'
 		],
-		'video'       => [
-			'key'           => 'video',
-			'label'         => 'Video',
-			'fileset_types' => [ 'video_stream' ],
-			'group'         => 'dbp-vid'
-		],
+//      'video'       => [
+//          'key'           => 'video',
+//          'label'         => 'Video',
+//          'fileset_types' => [ 'video_stream' ],
+//          'group'         => 'dbp-vid'
+//      ],
 		'text'        => [
 			'key'           => 'text',
 			'label'         => 'Text',
@@ -97,5 +97,12 @@ class MediaTypes {
 		}
 
 		return $result;
+	}
+
+	public function exists( string $media_type ): bool {
+		return collect( $this->all() )
+			->contains( function ( $data, $value ) use ( $media_type ) {
+				return $value === $media_type;
+			} );
 	}
 }

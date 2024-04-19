@@ -6,6 +6,7 @@ use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Services\Assets;
 use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
 use CodeZone\Bible\Services\BibleBrains\FileSets;
+use CodeZone\Bible\Services\BibleBrains\MediaTypes;
 use CodeZone\Bible\Services\BibleBrains\Scripture as ScriptureService;
 use function CodeZone\Bible\container;
 use function CodeZone\Bible\view;
@@ -28,7 +29,7 @@ class Scripture {
 	 *
 	 * @return void
 	 */
-	public function __construct( private ScriptureService $scripture, private Assets $assets, private Bibles $bibles ) {
+	public function __construct( private ScriptureService $scripture, private Assets $assets, private MediaTypes $media_types ) {
 		add_shortcode( 'tbp-scripture', [ $this, 'render' ] );
 	}
 
@@ -59,29 +60,41 @@ class Scripture {
 		], cast_bool_values( $attributes ) );
 
 		$error = false;
+		$result = [];
 
-		try {
-			$result = $this->scripture->by_reference( $attributes['reference'], [
-				'language'   => $attributes['language'],
-				'media_type' => $attributes['media'],
-				'bible'      => $attributes['bible'],
-			] ) ?? [];
-
-		} catch ( \Exception $e ) {
-			$error  = $e->getMessage();
-			$result = false;
+		if ( ! $this->media_types->exists( $attributes['media'] ) ) {
+			$error = _x( "Invalid media type", "shortcode", "bible-plugin" );
+		} else {
+			try {
+				$result = $this->scripture->by_reference( $attributes['reference'], [
+					'language'   => $attributes['language'],
+					'bible'      => $attributes['bible'],
+				] ) ?? [];
+			} catch ( \Exception $e ) {
+				$error  = $e->getMessage();
+			}
 		}
 
-
-		if ( ! $error && empty( $result["content"] ) ) {
+		if ( ! $error
+		     && (
+				 empty( $result['media'] )
+		        || empty( $result['media'][$attributes['media']] )
+		        || empty( $result['media'][$attributes['media']]['content'] )
+		        || empty( $result['media'][$attributes['media']]['fileset'] )
+		     )
+		) {
 			$error = _x( "No results found", "shortcode", "bible-plugin" );
 		}
 
+		$media = $result['media'][$attributes['media']] ?? [];
+		$content = $media['content']['data'] ?? [];
+		$fileset = $media['fileset'] ?? [];
+
 		return view( 'shortcodes/scripture', [
 			'error'        => $error,
-			'fileset_type' => $result["fileset"]["type"] ?? '',
+			'fileset_type' => $fileset['type'] ?? "",
 			'attributes'   => $attributes,
-			'content'      => $result['content'] ?? [],
+			'content'      => $content,
 			"reference"    => [
 				"verse_start" => $result["verse_start"] ?? "",
 				"verse_end"   => $result["verse_end"] ?? "",

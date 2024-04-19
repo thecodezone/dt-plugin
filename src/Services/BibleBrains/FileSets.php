@@ -25,23 +25,25 @@ class FileSets {
 	 * @param array $bible The array containing the bible data.
 	 * @param array $book The array containing the book data.
 	 * @param array $fileset_types The array containing the fileset types to search for.
-	 *
-	 * @throws BibleBrainsException Throws an exception if no fileset matching the conditions is found.
 	 */
-	public function pluck( array $bible, array $book, array $fileset_types ): array {
-		$fileset_group = $this->group_from_type( $bible, $fileset_types[0] );
-
-		$filesets = $bible['filesets'][ $fileset_group ] ?? [];
-		$fileset  = Arr::first( $filesets, function ( $fileset ) use ( $fileset_types, $book ) {
-			return in_array( $fileset['type'], $fileset_types )
-			       && ( $fileset["size"] === "C" || Str::contains( $fileset["size"], $book["testament"] ) );
-		}, null );
-
-
-		if ( ! $fileset ) {
-			throw new BibleBrainsException( "Fileset not found" );
+	public function pluck( array $bible, array $book, array $fileset_types ): array|null {
+		foreach ( $fileset_types as $fileset_type ) {
+			$fileset = $this->resolve( $bible, $book, $fileset_type );
+			if ( $fileset ) {
+				return $fileset;
+			}
 		}
 
-		return $fileset;
+		return null;
+	}
+
+	public function resolve( array $bible, array $book, string $fileset_type ): array|null {
+		$fileset_group = $this->group_from_type( $bible, $fileset_type );
+		$filesets = $bible['filesets'][ $fileset_group ] ?? [];
+
+		return Arr::first( $filesets, function ( $fileset ) use ( $fileset_type, $book ) {
+			return $fileset['type'] === $fileset_type
+			       && ( $fileset["size"] === "C" || Str::contains( $fileset["size"], $book["testament"] ) );
+		}, null );
 	}
 }

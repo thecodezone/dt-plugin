@@ -17,22 +17,23 @@ use function CodeZone\Bible\validate;
  */
 class Scripture {
 	/**
-	 * Constructor method for the class.
+	 * Constructs a new instance of the class.
 	 *
-	 * @param Bibles $bibles The instance of the Bibles class.
-	 * @param Reference $reference The instance of the Reference class.
-	 * @param Options $options The instance of the Options class.
-	 * @param MediaTypes $media_types The instance of the MediaTypes class.
+	 * @param Bibles $bibles The Bibles service.
+	 * @param Books $books The Books service.
+	 * @param FileSets $file_sets The FileSets service.
+	 * @param Reference $reference The Reference service.
+	 * @param MediaTypes $media_types The MediaTypes service.
+	 * @param Language $language The Language service.
 	 */
 	public function __construct(
 		private Bibles $bibles,
 		private Books $books,
 		private FileSets $file_sets,
-		private Languages $languages,
 		private Reference $reference,
-		private Options $options,
 		private MediaTypes $media_types,
-		private Language $language
+		private Language $language,
+		private Options $options
 	) {
 	}
 
@@ -68,14 +69,13 @@ class Scripture {
 	 *                          - book: The specific book of the Bible to search in. Defaults to*/
 	private function normalize_query( $parameters ): array {
 		$parameters = array_merge( [
-			'language'    => null,
-			'fileset'     => null,
-			'bible'       => null,
-			'book'        => null,
-			'chapter'     => null,
-			'media_type'  => 'text',
-			'verse_start' => null,
-			'verse_end'   => null,
+			'language'     => null,
+			'fileset'      => null,
+			'bible'        => null,
+			'book'         => null,
+			'chapter'      => null,
+			'verse_start'  => null,
+			'verse_end'    => null,
 		], $parameters );
 ;
 
@@ -102,9 +102,6 @@ class Scripture {
 	private function query( array $parameters ): array {
 		$parameters = $this->normalize_query( $parameters );
 
-
-		$media_type = $this->media_types->find( $parameters['media_type'] );
-		$fileset_types = $media_type['fileset_types'];
 		$language = $this->language->find_or_resolve( $parameters['language'] ?? null );
 		$bible = ( $parameters['bible'] ?? null ) ? $this->bibles->find( $parameters['bible'] )["data"] : null;
 		if ( ! $bible ) {
@@ -116,26 +113,35 @@ class Scripture {
 			throw new BibleBrainsException( esc_attr( "Bible, {$bible['name']}, does not contain {$parameters['book']}." ) );
 		}
 
-		$fileset = $this->file_sets->pluck( $bible, $book, $fileset_types );
-
-		if ( ! $fileset ) {
-			throw new BibleBrainsException( esc_attr( "Bible, {$bible['name']}, does not contain {$parameters["media_type"]} fileset for {$book['book']}." ) );
+		$media_types = $language['media_types'] ?? $this->options->get( 'media_types' );
+		if ( is_string( $media_types ) ) {
+			$media_types = explode( ',', $media_types );
 		}
-		$parameters['fileset'] = $fileset['id'];
-
-		$content = $this->fetch_content( $parameters );
+		$media = [];
+		foreach ( $media_types as $media_type_key ) {
+			try {
+				$media_type = $this->media_types->find( $media_type_key );
+				$fileset = $this->file_sets->pluck( $bible, $book, $media_type['fileset_types'] );
+				if ( $fileset ) {
+					$media[$media_type_key] = [
+						...$media_type,
+						'content' => $this->fetch_content( array_merge( $parameters, [ 'fileset' => $fileset['id'] ] ) ),
+						'fileset' => $fileset,
+					];
+				}
+			} catch ( \Exception $e ) {
+				//Skip invalid media types
+			}
+		}
 
 		return [
 			...$parameters,
-			'media_type' => $media_type,
+			'media'      => $media,
 			'language'   => $language,
 			'bible'      => $bible,
-			'book'       => $book,
-			'fileset'    => $fileset,
-			'content'    => $content['data'] ?? []
+			'book'       => $book
 		];
 	}
-
 
 	/**
 	 * Search for verses in the Bible using the given reference and additional parameters.
@@ -147,7 +153,7 @@ class Scripture {
 	 *                          - bible: The specific Bible to search in. Defaults to null.
 	 *                          - book: The specific book of the Bible to search in. Defaults to null.
 	 *                          - chapter: The specific chapter of the Bible to search in. Defaults to null.
-	 *                          - media_type: The media type to search for. Defaults to 'text'.
+	 *                          - media_types: The media types to search for. Defaults to 'text'.
 	 *                          - verse_start: The starting verbiblese to search from. Defaults to null.
 	 *                          - verse_end: The ending verse to search to. Defaults to null.
 	 *
@@ -176,12 +182,16 @@ class Scripture {
 	 */
 	private function fetch_content( array $parameters = [] ): array {
 
-		return $this->bibles->content(
-			$parameters['fileset'],
-			$parameters['book'],
-			$parameters['chapter'],
-			$parameters['verse_start'],
-			$parameters["verse_end"]
-		);
+		try {
+			return $this->bibles->content(
+				$parameters['fileset'],
+				$parameters['book'],
+				$parameters['chapter'],
+				$parameters['verse_start'],
+				$parameters["verse_end"]
+			);
+		} catch ( \Exception $e ) {
+			return [];
+		}
 	}
 }
