@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:27-0500\n"
-"PO-Revision-Date: 2024-04-19 14:34-0500\n"
+"POT-Creation-Date: 2024-04-19 15:39-0500\n"
+"PO-Revision-Date: 2024-04-19 15:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
@@ -15,9 +15,7 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -58,14 +56,8 @@ msgid "Copyright "
 msgstr "ลิขสิทธิ์ "
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:55
-#: resources/views/layouts/settings.php:61
-#: resources/views/layouts/settings.php:69
-#: resources/views/settings/support.php:66
-#: src/Providers/AdminServiceProvider.php:32
-#: src/Providers/AdminServiceProvider.php:33
-#: src/Providers/AdminServiceProvider.php:43
-#: src/Providers/AdminServiceProvider.php:44
+#: resources/views/layouts/settings.php:55 resources/views/layouts/settings.php:61 resources/views/layouts/settings.php:69 resources/views/settings/support.php:66 src/Providers/AdminServiceProvider.php:32
+#: src/Providers/AdminServiceProvider.php:33 src/Providers/AdminServiceProvider.php:43 src/Providers/AdminServiceProvider.php:44
 #, fuzzy
 msgid "The Bible Plugin"
 msgstr "ปลั๊กอินพระคัมภีร์"
@@ -88,10 +80,7 @@ msgstr "สำเร็จ!"
 msgid "An error has occurred."
 msgstr "เกิดข้อผิดพลาด"
 
-#: resources/views/settings/bible-brains-form.php:53
-#: resources/views/settings/bible-brains-form.php:55
-#: resources/views/settings/customization-form.php:124
-#: resources/views/settings/customization-form.php:126
+#: resources/views/settings/bible-brains-form.php:53 resources/views/settings/bible-brains-form.php:55 resources/views/settings/customization-form.php:124 resources/views/settings/customization-form.php:126
 msgid "Save"
 msgstr "บันทึก"
 
@@ -125,9 +114,7 @@ msgstr "ขั้นตอนสีเน้น"
 
 #: resources/views/settings/customization-form.php:95
 #, fuzzy
-msgid ""
-"This range of colors could be displayed in the bible reader. The accent "
-"color you chose will be used most often."
+msgid "This range of colors could be displayed in the bible reader. The accent color you chose will be used most often."
 msgstr "ช่วงของสีนี้สามารถแสดงในโปรแกรมอ่านพระคัมภีร์ สีเน้นเสียงที่คุณเลือกจะถูกใช้บ่อยที่สุด"
 
 #: resources/views/settings/customization-form.php:102
@@ -154,13 +141,11 @@ msgstr "คีย์ API สมองพระคัมภีร์"
 msgid "Enter key..."
 msgstr "ป้อนคีย์..."
 
-#: resources/views/settings/partials/bible-brains-key.php:53
-#: resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:53 resources/views/settings/partials/bible-brains-key.php:56
 msgid "Validate"
 msgstr "ตรวจสอบ"
 
-#: resources/views/settings/partials/bible-brains-key.php:64
-#: resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:64 resources/views/settings/partials/bible-brains-key.php:67
 msgid "Valid"
 msgstr "ถูกต้อง"
 
@@ -175,25 +160,18 @@ msgstr "คำถามที่ถามบ่อย"
 
 #: resources/views/settings/support.php:20
 #, fuzzy
-msgid ""
-"If you encounter an error or bug, please report it to us at our GitHub by "
-"clicking the button below."
-msgstr ""
-"หากคุณพบข้อผิดพลาดหรือข้อบกพร่อง โปรดรายงานให้เราทราบที่ GitHub ของเราโดยคลิกที่ปุ่มด้านล่าง"
+msgid "If you encounter an error or bug, please report it to us at our GitHub by clicking the button below."
+msgstr "หากคุณพบข้อผิดพลาดหรือข้อบกพร่อง โปรดรายงานให้เราทราบที่ GitHub ของเราโดยคลิกที่ปุ่มด้านล่าง"
 
 #: resources/views/settings/support.php:24
 #, fuzzy
 msgid "Report an error"
 msgstr "รายงานข้อผิดพลาด"
 
-#: resources/views/settings/support.php:31
-#: resources/views/settings/support.php:42
+#: resources/views/settings/support.php:31 resources/views/settings/support.php:42
 #, fuzzy
-msgid ""
-"Fill out the support form on our website. You can expect a response within "
-"48 business days."
-msgstr ""
-"กรอกแบบฟอร์มสนับสนุนบนเว็บไซต์ของเรา คุณสามารถคาดหวังการตอบกลับภายใน 48 วันทําการ"
+msgid "Fill out the support form on our website. You can expect a response within 48 business days."
+msgstr "กรอกแบบฟอร์มสนับสนุนบนเว็บไซต์ของเรา คุณสามารถคาดหวังการตอบกลับภายใน 48 วันทําการ"
 
 #: resources/views/settings/support.php:35
 #, fuzzy
@@ -207,37 +185,26 @@ msgstr "ขอคุณสมบัติ"
 
 #: resources/views/settings/support.php:53
 #, fuzzy
-msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
-"you contact them to request additional translations be added the Bible "
-"Reader."
-msgstr ""
-"ผู้อ่านพระคัมภีร์ใช้ Bible Brains by Faith Comes by Hearing "
-"เราขอแนะนําให้คุณติดต่อพวกเขาเพื่อขอคําแปลเพิ่มเติมเพื่อเพิ่มโปรแกรมอ่านพระคัมภีร์"
+msgid "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them to request additional translations be added the Bible Reader."
+msgstr "ผู้อ่านพระคัมภีร์ใช้ Bible Brains by Faith Comes by Hearing เราขอแนะนําให้คุณติดต่อพวกเขาเพื่อขอคําแปลเพิ่มเติมเพื่อเพิ่มโปรแกรมอ่านพระคัมภีร์"
 
 #: resources/views/settings/support.php:57
 #, fuzzy
 msgid ""
-"We rely on community support to add additional languages to the Bible Plugin "
-"UI. If you are a translator or you would like more information on how you "
-"can get involved, please contact us using the contact form on our website."
-msgstr ""
-"เราพึ่งพาการสนับสนุนจากชุมชนเพื่อเพิ่มภาษาเพิ่มเติมใน UI ปลั๊กอินพระคัมภีร์ "
-"หากคุณเป็นนักแปลหรือต้องการข้อมูลเพิ่มเติมเกี่ยวกับวิธีการมีส่วนร่วมโปรดติดต่อเราโดยใช้แบบฟอร์มการติดต่อบนเว็บไซต์ของเรา"
+"We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would like more information on how you can get involved, please contact us using the "
+"contact form on our website."
+msgstr "เราพึ่งพาการสนับสนุนจากชุมชนเพื่อเพิ่มภาษาเพิ่มเติมใน UI ปลั๊กอินพระคัมภีร์ หากคุณเป็นนักแปลหรือต้องการข้อมูลเพิ่มเติมเกี่ยวกับวิธีการมีส่วนร่วมโปรดติดต่อเราโดยใช้แบบฟอร์มการติดต่อบนเว็บไซต์ของเรา"
 
 #: resources/views/settings/support.php:62
 #, fuzzy
 msgid "Bible Brains"
 msgstr "สมองในพระคัมภีร์"
 
-#: resources/views/settings/support.php:75
-#: resources/views/settings/support.php:88
-#: resources/views/settings/support.php:106
+#: resources/views/settings/support.php:75 resources/views/settings/support.php:88 resources/views/settings/support.php:106
 msgid "About"
 msgstr "เกี่ยวกับ"
 
-#: resources/views/settings/support.php:91
-#: resources/views/settings/support.php:113
+#: resources/views/settings/support.php:91 resources/views/settings/support.php:113
 #, fuzzy
 msgid "Give"
 msgstr "ให้"
@@ -245,24 +212,15 @@ msgstr "ให้"
 #: resources/views/settings/support.php:100
 #, fuzzy
 msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
-"reader in WordPress sites with the Bible text accessed through available "
-"Bible APIs.  Localization and focus is a priority of this plugin with admin "
-"settings allowing for selection of language, Bible version, number of Bible "
-"versions available to the end-user, and design elements (fonts, colors).  "
-"Simplicity and ease of use for the end-user is the second top priority with "
-"the goal of an intuitive interface.  Initial development of the plugin will "
-"be based on the Bible Brain / DBPv4 API but with the intention of expanding "
-"to other Bible APIs in subsequent releases.  Additional information is "
-"available in the SRS document on GitHub.\n"
+"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible text accessed through available Bible APIs.  Localization and focus is a priority of this "
+"plugin with admin settings allowing for selection of language, Bible version, number of Bible versions available to the end-user, and design elements (fonts, colors).  Simplicity and ease of use for the "
+"end-user is the second top priority with the goal of an intuitive interface.  Initial development of the plugin will be based on the Bible Brain / DBPv4 API but with the intention of expanding to other "
+"Bible APIs in subsequent releases.  Additional information is available in the SRS document on GitHub.\n"
 msgstr ""
-"ใส่คําใน WordPress  ปลั๊กอินพระคัมภีร์ให้โปรแกรมอ่านพระคัมภีร์อย่างง่ายในไซต์ WordPress "
-"พร้อมข้อความพระคัมภีร์ที่เข้าถึงได้ผ่าน API พระคัมภีร์ที่มีอยู่  "
-"การแปลเป็นภาษาท้องถิ่นและการโฟกัสเป็นสิ่งสําคัญของปลั๊กอินนี้ด้วยการตั้งค่าผู้ดูแลระบบที่ช่วยให้สามารถเลือกภาษาเวอร์ชันพระคัมภีร์จํานวนเวอร์ชันพระคัมภีร์ที่มีให้สําหรับผู้ใช้ปลายทางและองค์ประกอบการออกแบบ "
-"(แบบอักษรสี)  "
-"ความเรียบง่ายและใช้งานง่ายสําหรับผู้ใช้ปลายทางเป็นสิ่งสําคัญอันดับสองโดยมีเป้าหมายของอินเทอร์เฟซที่ใช้งานง่าย  "
-"การพัฒนาปลั๊กอินเบื้องต้นจะขึ้นอยู่กับ Bible Brain / DBPv4 API แต่มีความตั้งใจที่จะขยายไปยัง "
-"Bible API อื่น ๆ ในรุ่นต่อ ๆ ไป  ข้อมูลเพิ่มเติมมีอยู่ในเอกสาร SRS บน GitHub\n"
+"ใส่คําใน WordPress  ปลั๊กอินพระคัมภีร์ให้โปรแกรมอ่านพระคัมภีร์อย่างง่ายในไซต์ WordPress พร้อมข้อความพระคัมภีร์ที่เข้าถึงได้ผ่าน API พระคัมภีร์ที่มีอยู่  "
+"การแปลเป็นภาษาท้องถิ่นและการโฟกัสเป็นสิ่งสําคัญของปลั๊กอินนี้ด้วยการตั้งค่าผู้ดูแลระบบที่ช่วยให้สามารถเลือกภาษาเวอร์ชันพระคัมภีร์จํานวนเวอร์ชันพระคัมภีร์ที่มีให้สําหรับผู้ใช้ปลายทางและองค์ประกอบการออกแบบ (แบบอักษรสี)  "
+"ความเรียบง่ายและใช้งานง่ายสําหรับผู้ใช้ปลายทางเป็นสิ่งสําคัญอันดับสองโดยมีเป้าหมายของอินเทอร์เฟซที่ใช้งานง่าย  การพัฒนาปลั๊กอินเบื้องต้นจะขึ้นอยู่กับ Bible Brain / DBPv4 API แต่มีความตั้งใจที่จะขยายไปยัง Bible API อื่น ๆ ในรุ่นต่อ ๆ ไป  "
+"ข้อมูลเพิ่มเติมมีอยู่ในเอกสาร SRS บน GitHub\n"
 
 #: resources/views/settings/support.php:109
 #, fuzzy
@@ -279,15 +237,12 @@ msgstr "เยี่ยมชมหน้าย่อย"
 msgid "Visit home"
 msgstr "เยี่ยมบ้าน"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:100
-#: src/Controllers/Admin/CustomizationFomController.php:73
+#: src/Controllers/Admin/BibleBrainsFormController.php:100 src/Controllers/Admin/CustomizationFomController.php:73
 #, fuzzy
 msgid "Please complete the required fields."
 msgstr "กรุณากรอกข้อมูลในช่องที่จําเป็น"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:157
-#: src/Controllers/Admin/CustomizationFomController.php:86
+#: src/Controllers/Admin/BibleBrainsFormController.php:111 src/Controllers/Admin/BibleBrainsFormController.php:157 src/Controllers/Admin/CustomizationFomController.php:86
 #, fuzzy
 msgid "Form could not be submitted."
 msgstr "ไม่สามารถส่งแบบฟอร์มได้"
@@ -339,37 +294,55 @@ msgid "Support"
 msgstr "สนับสนุน"
 
 #: src/Services/Assets.php:21
+#, fuzzy
+#| msgid "Copy"
+msgctxt "reader"
 msgid "Copy"
 msgstr "คัดลอก"
 
 #: src/Services/Assets.php:22
 #, fuzzy
+msgctxt "reader"
 msgid "Copied successfully."
 msgstr "คัดลอกเรียบร้อยแล้ว"
 
 #: src/Services/Assets.php:23
+#, fuzzy
+#| msgid "Language"
+msgctxt "reader"
 msgid "Language"
 msgstr "ภาษา"
 
 #: src/Services/Assets.php:24
+#, fuzzy
+#| msgid "Languages"
+msgctxt "reader"
 msgid "Languages"
 msgstr "ภาษา"
 
 #: src/Services/Assets.php:25
+#, fuzzy
+#| msgid "Link"
+msgctxt "reader"
 msgid "Link"
 msgstr "ลิงค์"
 
 #: src/Services/Assets.php:26
 #, fuzzy
+msgctxt "reader"
 msgid "Old Testament"
 msgstr "พันธสัญญาเดิม"
 
 #: src/Services/Assets.php:27
+#, fuzzy
+#| msgid "Media Types"
+msgctxt "reader"
 msgid "Media Types"
 msgstr "ชนิดของสื่อ"
 
 #: src/Services/Assets.php:28
 #, fuzzy
+msgctxt "reader"
 msgid "New Testament"
 msgstr "พันธสัญญาใหม่"
 
@@ -379,6 +352,9 @@ msgid "Note that some bible versions do not support all media types."
 msgstr "โปรดทราบว่าพระคัมภีร์บางฉบับไม่รองรับสื่อทุกประเภท"
 
 #: src/Services/Assets.php:30
+#, fuzzy
+#| msgid "Search"
+msgctxt "reader"
 msgid "Search"
 msgstr "ค้นหา"
 
@@ -389,19 +365,27 @@ msgstr "เลือกภาษาในพระคัมภีร์ที่
 
 #: src/Services/Assets.php:32
 #, fuzzy
-msgid ""
-"Select the bible version you would like to make available for this language."
+msgid "Select the bible version you would like to make available for this language."
 msgstr "เลือกเวอร์ชันพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งานสําหรับภาษานี้"
 
 #: src/Services/Assets.php:33
+#, fuzzy
+#| msgid "Selection"
+msgctxt "reader"
 msgid "Selection"
 msgstr "เลือก"
 
 #: src/Services/Assets.php:34
+#, fuzzy
+#| msgid "Translation"
+msgctxt "reader"
 msgid "Translation"
 msgstr "การแปล"
 
 #: src/Services/Assets.php:35
+#, fuzzy
+#| msgid "Loading"
+msgctxt "reader"
 msgid "Loading"
 msgstr "กำลังโหลด"
 

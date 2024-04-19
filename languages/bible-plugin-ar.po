@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:27-0500\n"
-"PO-Revision-Date: 2024-04-19 14:36-0500\n"
+"POT-Creation-Date: 2024-04-19 15:39-0500\n"
+"PO-Revision-Date: 2024-04-19 15:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -339,38 +339,54 @@ msgid "Support"
 msgstr "الدعم"
 
 #: src/Services/Assets.php:21
+#, fuzzy
+#| msgid "Copy"
+msgctxt "reader"
 msgid "Copy"
 msgstr "نسخ"
 
 #: src/Services/Assets.php:22
 #, fuzzy
+msgctxt "reader"
 msgid "Copied successfully."
 msgstr "تم نسخها بنجاح."
 
 #: src/Services/Assets.php:23
+#, fuzzy
+#| msgid "Language"
+msgctxt "reader"
 msgid "Language"
 msgstr "اللغة"
 
 #: src/Services/Assets.php:24
+#, fuzzy
+#| msgid "Languages"
+msgctxt "reader"
 msgid "Languages"
 msgstr "اللغات"
 
 #: src/Services/Assets.php:25
+#, fuzzy
+#| msgid "Link"
+msgctxt "reader"
 msgid "Link"
 msgstr "رابط"
 
 #: src/Services/Assets.php:26
 #, fuzzy
+msgctxt "reader"
 msgid "Old Testament"
 msgstr "العهد القديم"
 
 #: src/Services/Assets.php:27
 #, fuzzy
+msgctxt "reader"
 msgid "Media Types"
 msgstr "أنواع الوسائط"
 
 #: src/Services/Assets.php:28
 #, fuzzy
+msgctxt "reader"
 msgid "New Testament"
 msgstr "العهد الجديد"
 
@@ -380,6 +396,9 @@ msgid "Note that some bible versions do not support all media types."
 msgstr "لاحظ أن بعض إصدارات الكتاب المقدس لا تدعم جميع أنواع الوسائط."
 
 #: src/Services/Assets.php:30
+#, fuzzy
+#| msgid "Search"
+msgctxt "reader"
 msgid "Search"
 msgstr "بحث"
 
@@ -395,14 +414,23 @@ msgid ""
 msgstr "حدد نسخة الكتاب المقدس التي ترغب في إتاحتها لهذه اللغة."
 
 #: src/Services/Assets.php:33
+#, fuzzy
+#| msgid "Selection"
+msgctxt "reader"
 msgid "Selection"
 msgstr "الاختيار"
 
 #: src/Services/Assets.php:34
+#, fuzzy
+#| msgid "Translation"
+msgctxt "reader"
 msgid "Translation"
 msgstr "ترجمة"
 
 #: src/Services/Assets.php:35
+#, fuzzy
+#| msgid "Loading"
+msgctxt "reader"
 msgid "Loading"
 msgstr "تحميل"
 

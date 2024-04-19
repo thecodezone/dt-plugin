@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:26-0500\n"
-"PO-Revision-Date: 2024-04-19 14:26-0500\n"
+"POT-Creation-Date: 2024-04-19 15:39-0500\n"
+"PO-Revision-Date: 2024-04-19 15:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_MX\n"
@@ -348,36 +348,44 @@ msgid "Support"
 msgstr "Soporte"
 
 #: src/Services/Assets.php:21
+msgctxt "reader"
 msgid "Copy"
 msgstr "Copiar"
 
 #: src/Services/Assets.php:22
 #, fuzzy
+msgctxt "reader"
 msgid "Copied successfully."
 msgstr "Copiado correctamente."
 
 #: src/Services/Assets.php:23
+msgctxt "reader"
 msgid "Language"
 msgstr "Idioma"
 
 #: src/Services/Assets.php:24
+msgctxt "reader"
 msgid "Languages"
 msgstr "Idiomas"
 
 #: src/Services/Assets.php:25
+msgctxt "reader"
 msgid "Link"
 msgstr "Enlace"
 
 #: src/Services/Assets.php:26
+msgctxt "reader"
 msgid "Old Testament"
 msgstr "Antiguo Testamento"
 
 #: src/Services/Assets.php:27
 #, fuzzy
+msgctxt "reader"
 msgid "Media Types"
 msgstr "Tipos de medios"
 
 #: src/Services/Assets.php:28
+msgctxt "reader"
 msgid "New Testament"
 msgstr "Nuevo Testamento"
 
@@ -389,6 +397,7 @@ msgstr ""
 "todos los tipos de medios."
 
 #: src/Services/Assets.php:30
+msgctxt "reader"
 msgid "Search"
 msgstr "Buscar"
 
@@ -405,14 +414,17 @@ msgstr ""
 "Seleccione las versiones de la Biblia que le gustaría poner a disposición."
 
 #: src/Services/Assets.php:33
+msgctxt "reader"
 msgid "Selection"
 msgstr "Selección"
 
 #: src/Services/Assets.php:34
+msgctxt "reader"
 msgid "Translation"
 msgstr "Traducción"
 
 #: src/Services/Assets.php:35
+msgctxt "reader"
 msgid "Loading"
 msgstr "Cargando"
 

@@ -26,6 +26,25 @@ class Translations {
 	public function __construct() {
 		load_plugin_textdomain( 'bible-plugin', false, 'bible-plugin/languages' );
 		add_filter( 'gettext_with_context', [ $this, 'gettext_with_context' ], 10, 4 );
+		add_filter( "plugin_locale", [ $this, 'plugin_locale' ], 10, 2 );
+	}
+
+	/**
+	 * Filters the plugin locale.
+	 *
+	 * This method is used to set the locale of the plugin to the one set in the WordPress
+	 * settings. This is necessary because the plugin uses the 'bible-plugin' text domain
+	 * for translations, and the locale of the plugin must be set to the one set in the
+	 * WordPress settings in order for the translations to work correctly.
+	 *
+	 * @param string $locale The locale of the plugin.
+	 *
+	 * @return string The locale of the plugin.
+	 */
+	public function plugin_locale( $locale, $domain ): string {
+		if ( $domain === 'bible-plugin' ) {
+			return get_locale();
+		}
 	}
 
 	/**

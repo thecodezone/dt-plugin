@@ -18,21 +18,21 @@ class Assets {
 
 	public function translations() {
 		return [
-			'Copy'                  => __( 'Copy', 'bible-plugin' ),
-			"Copied successfully." => __( "Copied successfully.", "bible-plugin" ),
-            'Language'              => __( 'Language', 'bible-plugin' ),
-			"Languages"             => __( "Languages", "bible-plugin" ),
-			'Link'                  => __( 'Link', 'bible-plugin' ),
-			'Old Testament'         => __( 'Old Testament', 'bible-plugin' ),
-            'Media Types'           => __( 'Media Types', 'bible-plugin' ),
-			'New Testament'         => __( 'New Testament', 'bible-plugin' ),
+			'Copy'                  => _x( 'Copy', 'reader', 'bible-plugin' ),
+			"Copied successfully." => _x( "Copied successfully.", 'reader', 'bible-plugin' ),
+            'Language'              => _x( 'Language', 'reader', 'bible-plugin' ),
+			"Languages"             => _x( "Languages", 'reader', 'bible-plugin' ),
+			'Link'                  => _x( 'Link', 'reader', 'bible-plugin' ),
+			'Old Testament'         => _x( 'Old Testament', 'reader', 'bible-plugin' ),
+            'Media Types'           => _x( 'Media Types', 'reader', 'bible-plugin' ),
+			'New Testament'         => _x( 'New Testament', 'reader', 'bible-plugin' ),
 			'Note that some bible versions do not support all media types.' => __( 'Note that some bible versions do not support all media types.', 'bible-plugin' ),
-			"Search"                => __( "Search", "bible-plugin" ),
+			"Search"                => _x( "Search", 'reader', 'bible-plugin' ),
 			'Select the bible language you would like to make available.' => __( 'Select the bible language you would like to make available.', 'bible-plugin' ),
             'Select the bible version you would like to make available for this language.' => __( 'Select the bible version you would like to make available for this language.', 'bible-plugin' ),
-			'Selection'             => __( 'Selection', 'bible-plugin' ),
-            'Translation'           => __( 'Translation', 'bible-plugin' ),
-            "Loading"            => __( "Loading", "bible-plugin" ),
+			'Selection'             => _x( 'Selection', 'reader', 'bible-plugin' ),
+            'Translation'           => _x( 'Translation', 'reader', 'bible-plugin' ),
+            "Loading"            => _x( "Loading", 'reader', 'bible-plugin' ),
 		];
 	}
 

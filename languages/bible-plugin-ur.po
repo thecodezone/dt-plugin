@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:27-0500\n"
-"PO-Revision-Date: 2024-04-19 14:44-0500\n"
+"POT-Creation-Date: 2024-04-19 15:39-0500\n"
+"PO-Revision-Date: 2024-04-19 15:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ur\n"
@@ -362,39 +362,51 @@ msgstr "معاونت"
 
 #: src/Services/Assets.php:21
 #, fuzzy
+msgctxt "reader"
 msgid "Copy"
 msgstr "نقل"
 
 #: src/Services/Assets.php:22
 #, fuzzy
+msgctxt "reader"
 msgid "Copied successfully."
 msgstr "کامیابی سے کاپی کیا."
 
 #: src/Services/Assets.php:23
 #, fuzzy
+msgctxt "reader"
 msgid "Language"
 msgstr "زبان"
 
 #: src/Services/Assets.php:24
+#, fuzzy
+#| msgid "Languages"
+msgctxt "reader"
 msgid "Languages"
 msgstr "زبانیں"
 
 #: src/Services/Assets.php:25
+#, fuzzy
+#| msgid "Link"
+msgctxt "reader"
 msgid "Link"
 msgstr "لنک"
 
 #: src/Services/Assets.php:26
 #, fuzzy
+msgctxt "reader"
 msgid "Old Testament"
 msgstr "پرانا عہد نامہ"
 
 #: src/Services/Assets.php:27
 #, fuzzy
+msgctxt "reader"
 msgid "Media Types"
 msgstr "میڈیا کی اقسام"
 
 #: src/Services/Assets.php:28
 #, fuzzy
+msgctxt "reader"
 msgid "New Testament"
 msgstr "انجیل"
 
@@ -405,6 +417,9 @@ msgstr ""
 "نوٹ کریں کہ بائبل کے کچھ ورژن میڈیا کی تمام اقسام کی حمایت نہیں کرتے ہیں۔"
 
 #: src/Services/Assets.php:30
+#, fuzzy
+#| msgid "Search"
+msgctxt "reader"
 msgid "Search"
 msgstr "تلاش"
 
@@ -422,15 +437,20 @@ msgstr ""
 
 #: src/Services/Assets.php:33
 #, fuzzy
+msgctxt "reader"
 msgid "Selection"
 msgstr "انتخاب"
 
 #: src/Services/Assets.php:34
 #, fuzzy
+msgctxt "reader"
 msgid "Translation"
 msgstr "ترجمہ"
 
 #: src/Services/Assets.php:35
+#, fuzzy
+#| msgid "Loading"
+msgctxt "reader"
 msgid "Loading"
 msgstr "لوڈ ہو رہا ہے"
 

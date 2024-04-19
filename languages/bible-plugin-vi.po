@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 14:27-0500\n"
-"PO-Revision-Date: 2024-04-19 14:31-0500\n"
+"POT-Creation-Date: 2024-04-19 15:39-0500\n"
+"PO-Revision-Date: 2024-04-19 15:39-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: vi\n"
@@ -347,38 +347,46 @@ msgid "Support"
 msgstr "Hỗ trợ"
 
 #: src/Services/Assets.php:21
+msgctxt "reader"
 msgid "Copy"
 msgstr "Sao chép"
 
 #: src/Services/Assets.php:22
 #, fuzzy
+msgctxt "reader"
 msgid "Copied successfully."
 msgstr "Đã sao chép thành công."
 
 #: src/Services/Assets.php:23
+msgctxt "reader"
 msgid "Language"
 msgstr "Ngôn ngữ"
 
 #: src/Services/Assets.php:24
+msgctxt "reader"
 msgid "Languages"
 msgstr "Ngôn ngữ"
 
 #: src/Services/Assets.php:25
+msgctxt "reader"
 msgid "Link"
 msgstr "Liên kết"
 
 #: src/Services/Assets.php:26
 #, fuzzy
+msgctxt "reader"
 msgid "Old Testament"
 msgstr "Cựu Ước"
 
 #: src/Services/Assets.php:27
 #, fuzzy
+msgctxt "reader"
 msgid "Media Types"
 msgstr "Các loại phương tiện truyền thông"
 
 #: src/Services/Assets.php:28
 #, fuzzy
+msgctxt "reader"
 msgid "New Testament"
 msgstr "Tân Ước"
 
@@ -390,6 +398,7 @@ msgstr ""
 "tiện."
 
 #: src/Services/Assets.php:30
+msgctxt "reader"
 msgid "Search"
 msgstr "Tìm kiếm"
 
@@ -405,14 +414,17 @@ msgid ""
 msgstr "Chọn phiên bản kinh thánh bạn muốn cung cấp cho ngôn ngữ này."
 
 #: src/Services/Assets.php:33
+msgctxt "reader"
 msgid "Selection"
 msgstr "Lựa chọn"
 
 #: src/Services/Assets.php:34
+msgctxt "reader"
 msgid "Translation"
 msgstr "Dịch"
 
 #: src/Services/Assets.php:35
+msgctxt "reader"
 msgid "Loading"
 msgstr "Đang tải"
 
