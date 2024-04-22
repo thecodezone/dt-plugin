@@ -7,12 +7,50 @@ import {createRef, ref} from "lit/directives/ref.js";
 import svg from 'plyr/dist/plyr.svg?raw'
 import {unsafeSVG} from "lit-html/directives/unsafe-svg.js";
 
+/**
+ * Represents a Scripture element that wraps around a video or audio player.
+ * @extends TBPElement
+ * @customElement('tbp-player')
+ */
 @customElement('tbp-player')
 export class Scripture extends TBPElement {
     @property({type: Boolean}) uninitialized = false;
 
+    /**
+     * Variable representing a reference to the root of a data structure.
+     *
+     * @type {Object}
+     * @name rootRef
+     * @function
+     * @description Creates a new reference object.
+     * @returns {Object} A new reference object.
+     */
     rootRef = createRef()
 
+
+    /**
+     * Retrieves the element within the shadow root with the tag 'video' or 'audio'.
+     *
+     * @return {Element} The DOM element found within the shadow root.
+     */
+    get el() {
+        return this.shadowRoot.querySelector('video,audio')
+    }
+
+    /**
+     * Checks if the element has autoplay attribute.
+     *
+     * @return {boolean} - True if the element has autoplay attribute, false otherwise.
+     */
+    get autoplay() {
+        return this.el && this.el.hasAttribute('autoplay')
+    }
+
+    /**
+     * Retrieves the styles for the player.
+     *
+     * @return {Array} Array of CSS styles for the player.
+     */
     static get styles() {
         return [
             unsafeCSS(plyrStyles),
@@ -29,21 +67,33 @@ export class Scripture extends TBPElement {
         ]
     }
 
-    get el() {
-        return this.shadowRoot.querySelector('video,audio')
-    }
-
+    /**
+     * Initializes the component by adding an event listener and calling the
+     * superclass's `connectedCallback` method.
+     *
+     * @return {void}
+     */
     connectedCallback() {
         this.addEventListener('tpb-player:initialize', this.init.bind(this))
         super.connectedCallback();
     }
 
+    /**
+     * Executes the initialization logic if the component is not uninitialized.
+     *
+     * @param {Object} _changedProperties - The object containing the properties which have been changed.
+     * @return {void}
+     */
     firstUpdated(_changedProperties) {
         if (!this.uninitialized) {
             this.init()
         }
     }
 
+    /**
+     * Render the HTML representation of the player component.
+     * @return {string} The HTML string representing the player component.
+     */
     render() {
         return html`
             <div class="player__wrapper">
@@ -56,6 +106,14 @@ export class Scripture extends TBPElement {
             </div>`
     }
 
+    /**
+     * Initializes the Plyr player.
+     *
+     * @method init
+     * @memberof ClassName
+     *
+     * @returns {void} Nothing is returned.
+     */
     init() {
         if (!this.el) {
             return
@@ -63,6 +121,8 @@ export class Scripture extends TBPElement {
         this.plyr = new Plyr(
             this.el
         )
-        this.plyr.play()
+        if (this.autoplay) {
+            this.plyr.play()
+        }
     }
 }

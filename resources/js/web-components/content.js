@@ -53,6 +53,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
     @property({type: Boolean})
     selectable = false
 
+    @property({type: Boolean}) autoplay = false;
 
     //Without the query
     get pageUrl() {
@@ -186,6 +187,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
         return html`
             <tbp-audio
                     .content="${this.content}"
+                    ?autoplay="${this.autoplay}"
             />
         `
     }
@@ -199,6 +201,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
         return html`
             <tbp-video
                     .content="${this.content}"
+                    ?autoplay="${this.autoplay}"
             />
         `
     }

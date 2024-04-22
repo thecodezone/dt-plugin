@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 17:31-0500\n"
+"POT-Creation-Date: 2024-04-22 11:33-0500\n"
+"PO-Revision-Date: 2024-04-22 11:33-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -29,21 +29,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
-
-#: resources/views/hello.php:5
-msgctxt "scripture"
-msgid "Bible"
-msgstr "الكتاب المقدس"
-
-#: resources/views/hello.php:6
-msgctxt "reader"
-msgid "Next Chapter"
-msgstr "الفصل التالي"
-
-#: resources/views/hello.php:7
-msgctxt "reader"
-msgid "Previous Chapter"
-msgstr "الفصل السابق"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
@@ -306,49 +291,45 @@ msgstr "تخصيص"
 msgid "Support"
 msgstr "الدعم"
 
-#: src/Services/Assets.php:21
+#: src/Services/Assets.php:22
 msgctxt "reader"
 msgid "Copy"
 msgstr "نسخ"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:23
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "تم نسخها بنجاح."
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Language"
 msgstr "اللغة"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Languages"
 msgstr "اللغات"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Link"
 msgstr "رابط"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "العهد القديم"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Media Types"
 msgstr "أنواع الوسائط"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "New Testament"
 msgstr "العهد الجديد"
-
-#: src/Services/Assets.php:29
-msgid "Note that some bible versions do not support all media types."
-msgstr "لاحظ أن بعض إصدارات الكتاب المقدس لا تدعم جميع أنواع الوسائط."
 
 #: src/Services/Assets.php:30
 msgctxt "reader"
@@ -356,28 +337,58 @@ msgid "Search"
 msgstr "بحث"
 
 #: src/Services/Assets.php:31
-msgid "Select the bible language you would like to make available."
-msgstr "حدد لغة الكتاب المقدس التي ترغب في إتاحتها."
-
-#: src/Services/Assets.php:32
-msgid ""
-"Select the bible version you would like to make available for this language."
-msgstr "حدد نسخة الكتاب المقدس التي ترغب في إتاحتها لهذه اللغة."
-
-#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Selection"
 msgstr "الاختيار"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Translation"
 msgstr "ترجمة"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Loading"
 msgstr "تحميل"
+
+#: src/Services/Assets.php:34
+msgctxt "reader"
+msgid "Text"
+msgstr "نص"
+
+#: src/Services/Assets.php:35
+msgctxt "reader"
+msgid "Selected"
+msgstr "محدد"
+
+#: src/Services/Assets.php:38
+msgid "Note that some bible versions do not support all media types."
+msgstr "لاحظ أن بعض إصدارات الكتاب المقدس لا تدعم جميع أنواع الوسائط."
+
+#: src/Services/Assets.php:39
+msgid "Select the bible language you would like to make available."
+msgstr "حدد لغة الكتاب المقدس التي ترغب في إتاحتها."
+
+#: src/Services/Assets.php:40
+msgid ""
+"Select the bible version you would like to make available for this language."
+msgstr "حدد نسخة الكتاب المقدس التي ترغب في إتاحتها لهذه اللغة."
+
+#: src/Services/Assets.php:41
+msgid "Add Language"
+msgstr "إضافة لغة"
+
+#: src/Services/Assets.php:42
+msgid "Default Language?"
+msgstr "اللغة الافتراضية؟"
+
+#: src/Services/Assets.php:43
+msgid "Make this the default language."
+msgstr "اجعل هذه اللغة الافتراضية."
+
+#: src/Services/Assets.php:44
+msgid "Bible Version"
+msgstr "نسخة الكتاب المقدس"
 
 #: src/ShortCodes/Scripture.php:66
 msgctxt "shortcode"
@@ -405,3 +416,15 @@ msgstr "مكون إضافي للكتاب المقدس ل WordPress."
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgctxt "scripture"
+#~ msgid "Bible"
+#~ msgstr "الكتاب المقدس"
+
+#~ msgctxt "reader"
+#~ msgid "Next Chapter"
+#~ msgstr "الفصل التالي"
+
+#~ msgctxt "reader"
+#~ msgid "Previous Chapter"
+#~ msgstr "الفصل السابق"

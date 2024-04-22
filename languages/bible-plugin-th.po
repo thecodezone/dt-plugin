@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 17:29-0500\n"
+"POT-Creation-Date: 2024-04-22 11:36-0500\n"
+"PO-Revision-Date: 2024-04-22 11:36-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
@@ -27,21 +27,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
-
-#: resources/views/hello.php:5
-msgctxt "scripture"
-msgid "Bible"
-msgstr "ไบเบิล"
-
-#: resources/views/hello.php:6
-msgctxt "reader"
-msgid "Next Chapter"
-msgstr "บทต่อไป"
-
-#: resources/views/hello.php:7
-msgctxt "reader"
-msgid "Previous Chapter"
-msgstr "บทก่อนหน้า"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
@@ -166,7 +151,9 @@ msgid "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommen
 msgstr "ผู้อ่านพระคัมภีร์ใช้ Bible Brains by Faith Comes by Hearing เราขอแนะนําให้คุณติดต่อพวกเขาเพื่อขอคําแปลเพิ่มเติมเพื่อเพิ่มโปรแกรมอ่านพระคัมภีร์"
 
 #: resources/views/settings/support.php:57
-msgid "We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would like more information on how you can get involved, please contact us using the contact form on our website."
+msgid ""
+"We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would like more information on how you can get involved, please contact us using the "
+"contact form on our website."
 msgstr "เราพึ่งพาการสนับสนุนจากชุมชนเพื่อเพิ่มภาษาเพิ่มเติมใน UI ปลั๊กอินพระคัมภีร์ หากคุณเป็นนักแปลหรือต้องการข้อมูลเพิ่มเติมเกี่ยวกับวิธีการมีส่วนร่วมโปรดติดต่อเราโดยใช้แบบฟอร์มการติดต่อบนเว็บไซต์ของเรา"
 
 #: resources/views/settings/support.php:62
@@ -183,14 +170,15 @@ msgstr "ให้"
 
 #: resources/views/settings/support.php:100
 msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible text accessed through available Bible APIs.  Localization and focus is a priority of this plugin with admin settings "
-"allowing for selection of language, Bible version, number of Bible versions available to the end-user, and design elements (fonts, colors).  Simplicity and ease of use for the end-user is the second top priority with the goal of an "
-"intuitive interface.  Initial development of the plugin will be based on the Bible Brain / DBPv4 API but with the intention of expanding to other Bible APIs in subsequent releases.  Additional information is available in the SRS "
-"document on GitHub.\n"
+"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible text accessed through available Bible APIs.  Localization and focus is a priority of this "
+"plugin with admin settings allowing for selection of language, Bible version, number of Bible versions available to the end-user, and design elements (fonts, colors).  Simplicity and ease of use for the "
+"end-user is the second top priority with the goal of an intuitive interface.  Initial development of the plugin will be based on the Bible Brain / DBPv4 API but with the intention of expanding to other "
+"Bible APIs in subsequent releases.  Additional information is available in the SRS document on GitHub.\n"
 msgstr ""
 "ใส่คําใน WordPress  ปลั๊กอินพระคัมภีร์ให้โปรแกรมอ่านพระคัมภีร์อย่างง่ายในไซต์ WordPress พร้อมข้อความพระคัมภีร์ที่เข้าถึงได้ผ่าน API พระคัมภีร์ที่มีอยู่  "
 "การแปลเป็นภาษาท้องถิ่นและการโฟกัสเป็นสิ่งสําคัญของปลั๊กอินนี้ด้วยการตั้งค่าผู้ดูแลระบบที่ช่วยให้สามารถเลือกภาษาเวอร์ชันพระคัมภีร์จํานวนเวอร์ชันพระคัมภีร์ที่มีให้สําหรับผู้ใช้ปลายทางและองค์ประกอบการออกแบบ (แบบอักษรสี)  "
-"ความเรียบง่ายและใช้งานง่ายสําหรับผู้ใช้ปลายทางเป็นสิ่งสําคัญอันดับสองโดยมีเป้าหมายของอินเทอร์เฟซที่ใช้งานง่าย  การพัฒนาปลั๊กอินเบื้องต้นจะขึ้นอยู่กับ Bible Brain / DBPv4 API แต่มีความตั้งใจที่จะขยายไปยัง Bible API อื่น ๆ ในรุ่นต่อ ๆ ไป  ข้อมูลเพิ่มเติมมีอยู่ในเอกสาร SRS บน GitHub\n"
+"ความเรียบง่ายและใช้งานง่ายสําหรับผู้ใช้ปลายทางเป็นสิ่งสําคัญอันดับสองโดยมีเป้าหมายของอินเทอร์เฟซที่ใช้งานง่าย  การพัฒนาปลั๊กอินเบื้องต้นจะขึ้นอยู่กับ Bible Brain / DBPv4 API แต่มีความตั้งใจที่จะขยายไปยัง Bible API อื่น ๆ ในรุ่นต่อ ๆ ไป  "
+"ข้อมูลเพิ่มเติมมีอยู่ในเอกสาร SRS บน GitHub\n"
 
 #: resources/views/settings/support.php:109
 msgid "GitHub"
@@ -252,49 +240,45 @@ msgstr "การปรับแต่ง"
 msgid "Support"
 msgstr "สนับสนุน"
 
-#: src/Services/Assets.php:21
+#: src/Services/Assets.php:22
 msgctxt "reader"
 msgid "Copy"
 msgstr "คัดลอก"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:23
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "คัดลอกเรียบร้อยแล้ว"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Language"
 msgstr "ภาษา"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Languages"
 msgstr "ภาษา"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Link"
 msgstr "ลิงค์"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "พันธสัญญาเดิม"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Media Types"
 msgstr "ชนิดของสื่อ"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "New Testament"
 msgstr "พันธสัญญาใหม่"
-
-#: src/Services/Assets.php:29
-msgid "Note that some bible versions do not support all media types."
-msgstr "โปรดทราบว่าพระคัมภีร์บางฉบับไม่รองรับสื่อทุกประเภท"
 
 #: src/Services/Assets.php:30
 msgctxt "reader"
@@ -302,27 +286,57 @@ msgid "Search"
 msgstr "ค้นหา"
 
 #: src/Services/Assets.php:31
-msgid "Select the bible language you would like to make available."
-msgstr "เลือกภาษาในพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งาน"
-
-#: src/Services/Assets.php:32
-msgid "Select the bible version you would like to make available for this language."
-msgstr "เลือกเวอร์ชันพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งานสําหรับภาษานี้"
-
-#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Selection"
 msgstr "เลือก"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Translation"
 msgstr "การแปล"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Loading"
 msgstr "กำลังโหลด"
+
+#: src/Services/Assets.php:34
+msgctxt "reader"
+msgid "Text"
+msgstr "ข้อความ"
+
+#: src/Services/Assets.php:35
+msgctxt "reader"
+msgid "Selected"
+msgstr "เลือก"
+
+#: src/Services/Assets.php:38
+msgid "Note that some bible versions do not support all media types."
+msgstr "โปรดทราบว่าพระคัมภีร์บางฉบับไม่รองรับสื่อทุกประเภท"
+
+#: src/Services/Assets.php:39
+msgid "Select the bible language you would like to make available."
+msgstr "เลือกภาษาในพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งาน"
+
+#: src/Services/Assets.php:40
+msgid "Select the bible version you would like to make available for this language."
+msgstr "เลือกเวอร์ชันพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งานสําหรับภาษานี้"
+
+#: src/Services/Assets.php:41
+msgid "Add Language"
+msgstr "เพิ่มภาษา"
+
+#: src/Services/Assets.php:42
+msgid "Default Language?"
+msgstr "ภาษาเริ่มต้น?"
+
+#: src/Services/Assets.php:43
+msgid "Make this the default language."
+msgstr "ทําให้เป็นภาษาเริ่มต้น"
+
+#: src/Services/Assets.php:44
+msgid "Bible Version"
+msgstr "ฉบับพระคัมภีร์"
 
 #: src/ShortCodes/Scripture.php:66
 msgctxt "shortcode"
@@ -350,3 +364,15 @@ msgstr "ปลั๊กอินพระคัมภีร์สําหรั
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgctxt "scripture"
+#~ msgid "Bible"
+#~ msgstr "ไบเบิล"
+
+#~ msgctxt "reader"
+#~ msgid "Next Chapter"
+#~ msgstr "บทต่อไป"
+
+#~ msgctxt "reader"
+#~ msgid "Previous Chapter"
+#~ msgstr "บทก่อนหน้า"

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 17:32-0500\n"
+"POT-Creation-Date: 2024-04-22 11:36-0500\n"
+"PO-Revision-Date: 2024-04-22 11:36-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ur\n"
@@ -29,21 +29,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
-
-#: resources/views/hello.php:5
-msgctxt "scripture"
-msgid "Bible"
-msgstr "بائبل"
-
-#: resources/views/hello.php:6
-msgctxt "reader"
-msgid "Next Chapter"
-msgstr "اگلا باب"
-
-#: resources/views/hello.php:7
-msgctxt "reader"
-msgid "Previous Chapter"
-msgstr "پچھلا باب"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
@@ -311,50 +296,45 @@ msgstr "اپنی مرضی کے مطابق"
 msgid "Support"
 msgstr "معاونت"
 
-#: src/Services/Assets.php:21
+#: src/Services/Assets.php:22
 msgctxt "reader"
 msgid "Copy"
 msgstr "نقل"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:23
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "کامیابی سے کاپی کیا."
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Language"
 msgstr "زبان"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Languages"
 msgstr "زبانیں"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Link"
 msgstr "لنک"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "پرانا عہد نامہ"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Media Types"
 msgstr "میڈیا کی اقسام"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "New Testament"
 msgstr "انجیل"
-
-#: src/Services/Assets.php:29
-msgid "Note that some bible versions do not support all media types."
-msgstr ""
-"نوٹ کریں کہ بائبل کے کچھ ورژن میڈیا کی تمام اقسام کی حمایت نہیں کرتے ہیں۔"
 
 #: src/Services/Assets.php:30
 msgctxt "reader"
@@ -362,29 +342,60 @@ msgid "Search"
 msgstr "تلاش"
 
 #: src/Services/Assets.php:31
+msgctxt "reader"
+msgid "Selection"
+msgstr "انتخاب"
+
+#: src/Services/Assets.php:32
+msgctxt "reader"
+msgid "Translation"
+msgstr "ترجمہ"
+
+#: src/Services/Assets.php:33
+msgctxt "reader"
+msgid "Loading"
+msgstr "لوڈ ہو رہا ہے"
+
+#: src/Services/Assets.php:34
+msgctxt "reader"
+msgid "Text"
+msgstr "متن"
+
+#: src/Services/Assets.php:35
+msgctxt "reader"
+msgid "Selected"
+msgstr "منتخب"
+
+#: src/Services/Assets.php:38
+msgid "Note that some bible versions do not support all media types."
+msgstr ""
+"نوٹ کریں کہ بائبل کے کچھ ورژن میڈیا کی تمام اقسام کی حمایت نہیں کرتے ہیں۔"
+
+#: src/Services/Assets.php:39
 msgid "Select the bible language you would like to make available."
 msgstr "بائبل کی وہ زبان منتخب کریں جسے آپ دستیاب کرانا چاہتے ہیں۔"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:40
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
 "بائبل کا وہ ورژن منتخب کریں جسے آپ اس زبان کے لئے دستیاب کرانا چاہتے ہیں۔"
 
-#: src/Services/Assets.php:33
-msgctxt "reader"
-msgid "Selection"
-msgstr "انتخاب"
+#: src/Services/Assets.php:41
+msgid "Add Language"
+msgstr "زبان شامل کریں"
 
-#: src/Services/Assets.php:34
-msgctxt "reader"
-msgid "Translation"
-msgstr "ترجمہ"
+#: src/Services/Assets.php:42
+msgid "Default Language?"
+msgstr "طے شدہ زبان؟"
 
-#: src/Services/Assets.php:35
-msgctxt "reader"
-msgid "Loading"
-msgstr "لوڈ ہو رہا ہے"
+#: src/Services/Assets.php:43
+msgid "Make this the default language."
+msgstr "اسے پہلے سے طے شدہ زبان بنائیں۔"
+
+#: src/Services/Assets.php:44
+msgid "Bible Version"
+msgstr "بائبل ورژن"
 
 #: src/ShortCodes/Scripture.php:66
 msgctxt "shortcode"
@@ -412,3 +423,15 @@ msgstr "ورڈپریس کے لئے بائبل پلگ ان."
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgctxt "scripture"
+#~ msgid "Bible"
+#~ msgstr "بائبل"
+
+#~ msgctxt "reader"
+#~ msgid "Next Chapter"
+#~ msgstr "اگلا باب"
+
+#~ msgctxt "reader"
+#~ msgid "Previous Chapter"
+#~ msgstr "پچھلا باب"

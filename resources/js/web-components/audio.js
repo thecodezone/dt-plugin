@@ -6,6 +6,7 @@ import {TBPElement} from "./base.js";
 @customElement('tbp-audio')
 export class Audio extends TBPElement {
     @property({type: Array}) content = [];
+    @property({type: Boolean}) autoplay = false;
 
     render() {
         if (!this.content.length) {
@@ -14,14 +15,18 @@ export class Audio extends TBPElement {
 
         return html`
             <tbp-player>
-                <audio controls preload>
+                <audio
+                        controls
+                        preload
+                        ?autoplay="${this.autoplay}"
+                >
                     ${this.content.map((item) => {
                         return html`
                             <source src="${item.path}">`;
                     })}
                 </audio>
             </tbp-player>
-            
+
         `;
     }
 }

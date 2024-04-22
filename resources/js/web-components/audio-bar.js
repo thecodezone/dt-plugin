@@ -57,6 +57,7 @@ export class AudioBar extends withStores(TBPElement, [$media, $hasAudio, $audioO
                             .reference="${$referenceData.get()}"
                             .content="${$audio.get()}"
                             type="audio"
+                            autoplay
                             selectable
                     ></tbp-content>
                 </div>

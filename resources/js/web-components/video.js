@@ -10,6 +10,8 @@ export class Video extends TBPElement {
 
     @property({type: Boolean, attribute: false}) error = false;
 
+    @property({type: Boolean}) autoplay = false;
+
     playerRef = createRef();
 
     videoRef = createRef();
@@ -61,7 +63,7 @@ export class Video extends TBPElement {
                     ${ref(this.playerRef)}>
                 <video ${ref(this.videoRef)}
                        controls
-                       autoplay
+                       ?autoplay="${this.autoplay}"
                        poster="${this.thumbnail}"></video>
             </tbp-player>`;
 

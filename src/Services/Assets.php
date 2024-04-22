@@ -18,8 +18,9 @@ class Assets {
 
 	public function translations() {
 		return [
+            // Reader
 			'Copy'                  => _x( 'Copy', 'reader', 'bible-plugin' ),
-			"Copied successfully." => _x( "Copied successfully.", 'reader', 'bible-plugin' ),
+			"Copied successfully."  => _x( "Copied successfully.", 'reader', 'bible-plugin' ),
             'Language'              => _x( 'Language', 'reader', 'bible-plugin' ),
 			"Languages"             => _x( "Languages", 'reader', 'bible-plugin' ),
 			'Link'                  => _x( 'Link', 'reader', 'bible-plugin' ),
@@ -29,7 +30,11 @@ class Assets {
 			"Search"                => _x( "Search", 'reader', 'bible-plugin' ),
 			'Selection'             => _x( 'Selection', 'reader', 'bible-plugin' ),
             'Translation'           => _x( 'Translation', 'reader', 'bible-plugin' ),
-            "Loading"            => _x( "Loading", 'reader', 'bible-plugin' ),
+            "Loading"               => _x( "Loading", 'reader', 'bible-plugin' ),
+			'Text'                  => _x( 'Text', 'reader', 'bible-plugin' ),
+            'Selected'              => _x( 'Selected', 'reader', 'bible-plugin' ),
+
+			//Admin
 			'Note that some bible versions do not support all media types.' => __( 'Note that some bible versions do not support all media types.', 'bible-plugin' ),
 			'Select the bible language you would like to make available.' => __( 'Select the bible language you would like to make available.', 'bible-plugin' ),
 			'Select the bible version you would like to make available for this language.' => __( 'Select the bible version you would like to make available for this language.', 'bible-plugin' ),

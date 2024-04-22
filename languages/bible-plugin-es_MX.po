@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 17:34-0500\n"
-"PO-Revision-Date: 2024-04-19 17:34-0500\n"
+"POT-Creation-Date: 2024-04-22 11:34-0500\n"
+"PO-Revision-Date: 2024-04-22 11:34-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_MX\n"
@@ -299,96 +299,106 @@ msgstr "Personalización"
 msgid "Support"
 msgstr "Soporte"
 
-#: src/Services/Assets.php:21
+#: src/Services/Assets.php:22
 msgctxt "reader"
 msgid "Copy"
 msgstr "Copiar"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:23
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "Copiado correctamente."
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Language"
 msgstr "Idioma"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Languages"
 msgstr "Idiomas"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Link"
 msgstr "Enlace"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "Antiguo Testamento"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Media Types"
 msgstr "Tipos de medios"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "New Testament"
 msgstr "Nuevo Testamento"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "Search"
 msgstr "Buscar"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Selection"
 msgstr "Selección"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Translation"
 msgstr "Traducción"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Loading"
 msgstr "Cargando"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:34
+msgctxt "reader"
+msgid "Text"
+msgstr "Texto"
+
+#: src/Services/Assets.php:35
+msgctxt "reader"
+msgid "Selected"
+msgstr "Seleccionado"
+
+#: src/Services/Assets.php:38
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 "Tenga en cuenta que algunas versiones de la Biblia no son compatibles con "
 "todos los tipos de medios."
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:39
 msgid "Select the bible language you would like to make available."
 msgstr "Seleccione el idioma bíblico que le gustaría poner a disposición."
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:40
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
 "Seleccione la versión de la Biblia que le gustaría que estuviera disponible "
 "para este idioma."
 
-#: src/Services/Assets.php:36
+#: src/Services/Assets.php:41
 msgid "Add Language"
 msgstr "Agregar Idioma"
 
-#: src/Services/Assets.php:37
+#: src/Services/Assets.php:42
 msgid "Default Language?"
 msgstr "¿Idioma predeterminado?"
 
-#: src/Services/Assets.php:38
+#: src/Services/Assets.php:43
 msgid "Make this the default language."
 msgstr "Haga que este sea el idioma predeterminado."
 
-#: src/Services/Assets.php:39
+#: src/Services/Assets.php:44
 msgid "Bible Version"
 msgstr "Versión de la Biblia"
 

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 17:33-0500\n"
+"POT-Creation-Date: 2024-04-22 11:35-0500\n"
+"PO-Revision-Date: 2024-04-22 11:35-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hi\n"
@@ -15,8 +15,9 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;"
-"esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;"
+"esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;"
+"__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -28,21 +29,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
-
-#: resources/views/hello.php:5
-msgctxt "scripture"
-msgid "Bible"
-msgstr "बाइबिल"
-
-#: resources/views/hello.php:6
-msgctxt "reader"
-msgid "Next Chapter"
-msgstr "अगला अध्याय"
-
-#: resources/views/hello.php:7
-msgctxt "reader"
-msgid "Previous Chapter"
-msgstr "पिछला अध्याय"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
@@ -76,8 +62,10 @@ msgstr "सफलता!"
 msgid "An error has occurred."
 msgstr "कोई त्रुटि उत्पन्न हुई."
 
-#: resources/views/settings/bible-brains-form.php:53 resources/views/settings/bible-brains-form.php:55
-#: resources/views/settings/customization-form.php:124 resources/views/settings/customization-form.php:126
+#: resources/views/settings/bible-brains-form.php:53
+#: resources/views/settings/bible-brains-form.php:55
+#: resources/views/settings/customization-form.php:124
+#: resources/views/settings/customization-form.php:126
 msgid "Save"
 msgstr "सेव करें"
 
@@ -107,11 +95,11 @@ msgstr "एक्सेंट कलर स्टेप्स"
 
 #: resources/views/settings/customization-form.php:95
 msgid ""
-"This range of colors could be displayed in the bible reader. The accent color you chose will be used most "
-"often."
+"This range of colors could be displayed in the bible reader. The accent color you chose "
+"will be used most often."
 msgstr ""
-"रंगों की इस श्रेणी को बाइबल रीडर में प्रदर्शित किया जा सकता है। आपके द्वारा चुना गया उच्चारण रंग सबसे अधिक बार उपयोग किया "
-"जाएगा।"
+"रंगों की इस श्रेणी को बाइबल रीडर में प्रदर्शित किया जा सकता है। आपके द्वारा चुना गया उच्चारण रंग सबसे अधिक "
+"बार उपयोग किया जाएगा।"
 
 #: resources/views/settings/customization-form.php:102
 msgid "Translations"
@@ -152,16 +140,20 @@ msgid "FAQ"
 msgstr "सामान्य प्रश्न"
 
 #: resources/views/settings/support.php:20
-msgid "If you encounter an error or bug, please report it to us at our GitHub by clicking the button below."
+msgid ""
+"If you encounter an error or bug, please report it to us at our GitHub by clicking the "
+"button below."
 msgstr ""
-"यदि आपको कोई त्रुटि या बग मिलता है, तो कृपया नीचे दिए गए बटन पर क्लिक करके हमारे GitHub पर हमें इसकी रिपोर्ट करें।"
+"यदि आपको कोई त्रुटि या बग मिलता है, तो कृपया नीचे दिए गए बटन पर क्लिक करके हमारे GitHub पर हमें इसकी "
+"रिपोर्ट करें।"
 
 #: resources/views/settings/support.php:24
 msgid "Report an error"
 msgstr "त्रुटि की रिपोर्ट करें"
 
 #: resources/views/settings/support.php:31 resources/views/settings/support.php:42
-msgid "Fill out the support form on our website. You can expect a response within 48 business days."
+msgid ""
+"Fill out the support form on our website. You can expect a response within 48 business days."
 msgstr "हमारी वेबसाइट पर सहायता फ़ॉर्म भरें। आप 48 कार्य दिवसों में प्रतिक्रिया की उम्मीद कर सकते हैं."
 
 #: resources/views/settings/support.php:35
@@ -174,21 +166,21 @@ msgstr "एक सुविधा का अनुरोध करें"
 
 #: resources/views/settings/support.php:53
 msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them to request "
-"additional translations be added the Bible Reader."
+"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them "
+"to request additional translations be added the Bible Reader."
 msgstr ""
-"बाइबल पाठक विश्वास द्वारा बाइबल दिमाग का उपयोग करता है सुनवाई से आता है। हम अनुशंसा करते हैं कि आप अतिरिक्त अनुवादों को "
-"बाइबल रीडर में जोड़ने का अनुरोध करने के लिए उनसे संपर्क करें।"
+"बाइबल पाठक विश्वास द्वारा बाइबल दिमाग का उपयोग करता है सुनवाई से आता है। हम अनुशंसा करते हैं कि आप "
+"अतिरिक्त अनुवादों को बाइबल रीडर में जोड़ने का अनुरोध करने के लिए उनसे संपर्क करें।"
 
 #: resources/views/settings/support.php:57
 msgid ""
-"We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator "
-"or you would like more information on how you can get involved, please contact us using the contact form "
-"on our website."
+"We rely on community support to add additional languages to the Bible Plugin UI. If you are "
+"a translator or you would like more information on how you can get involved, please contact "
+"us using the contact form on our website."
 msgstr ""
-"हम बाइबल प्लगइन UI में अतिरिक्त भाषाएँ जोड़ने के लिए सामुदायिक सहायता पर भरोसा करते हैं। यदि आप एक अनुवादक हैं या आप इस "
-"बारे में अधिक जानकारी चाहते हैं कि आप कैसे शामिल हो सकते हैं, तो कृपया हमारी वेबसाइट पर संपर्क फ़ॉर्म का उपयोग करके हमसे संपर्क "
-"करें।"
+"हम बाइबल प्लगइन UI में अतिरिक्त भाषाएँ जोड़ने के लिए सामुदायिक सहायता पर भरोसा करते हैं। यदि आप एक "
+"अनुवादक हैं या आप इस बारे में अधिक जानकारी चाहते हैं कि आप कैसे शामिल हो सकते हैं, तो कृपया हमारी वेबसाइट "
+"पर संपर्क फ़ॉर्म का उपयोग करके हमसे संपर्क करें।"
 
 #: resources/views/settings/support.php:62
 msgid "Bible Brains"
@@ -205,20 +197,23 @@ msgstr "देना"
 
 #: resources/views/settings/support.php:100
 msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with "
-"the Bible text accessed through available Bible APIs.  Localization and focus is a priority of this plugin "
-"with admin settings allowing for selection of language, Bible version, number of Bible versions available "
-"to the end-user, and design elements (fonts, colors).  Simplicity and ease of use for the end-user is the "
-"second top priority with the goal of an intuitive interface.  Initial development of the plugin will be "
-"based on the Bible Brain / DBPv4 API but with the intention of expanding to other Bible APIs in subsequent "
-"releases.  Additional information is available in the SRS document on GitHub.\n"
+"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in "
+"WordPress sites with the Bible text accessed through available Bible APIs.  Localization "
+"and focus is a priority of this plugin with admin settings allowing for selection of "
+"language, Bible version, number of Bible versions available to the end-user, and design "
+"elements (fonts, colors).  Simplicity and ease of use for the end-user is the second top "
+"priority with the goal of an intuitive interface.  Initial development of the plugin will "
+"be based on the Bible Brain / DBPv4 API but with the intention of expanding to other Bible "
+"APIs in subsequent releases.  Additional information is available in the SRS document on "
+"GitHub.\n"
 msgstr ""
-"वर्डप्रेस में शब्द डालना।  बाइबिल प्लगइन उपलब्ध बाइबिल एपीआई के माध्यम से एक्सेस किए गए बाइबिल पाठ के साथ वर्डप्रेस साइटों में "
-"एक सरल बाइबिल रीडर प्रदान करता है।  स्थानीयकरण और फोकस इस प्लगइन की प्राथमिकता है जिसमें भाषा के चयन की अनुमति "
-"व्यवस्थापक सेटिंग्स, बाइबिल संस्करण, अंतिम उपयोगकर्ता के लिए उपलब्ध बाइबिल संस्करणों की संख्या और डिजाइन तत्वों (फोंट, रंग) के "
-"चयन की अनुमति है।  अंतिम उपयोगकर्ता के लिए सादगी और उपयोग में आसानी एक सहज ज्ञान युक्त अंतरफलक के लक्ष्य के साथ दूसरी "
-"सर्वोच्च प्राथमिकता है।  प्लगइन का प्रारंभिक विकास बाइबिल ब्रेन / डीबीपीवी 4 एपीआई पर आधारित होगा, लेकिन बाद के रिलीज "
-"में अन्य बाइबिल एपीआई तक विस्तार करने के इरादे से।  अतिरिक्त जानकारी GitHub पर SRS दस्तावेज़ में उपलब्ध है।\n"
+"वर्डप्रेस में शब्द डालना।  बाइबिल प्लगइन उपलब्ध बाइबिल एपीआई के माध्यम से एक्सेस किए गए बाइबिल पाठ के साथ "
+"वर्डप्रेस साइटों में एक सरल बाइबिल रीडर प्रदान करता है।  स्थानीयकरण और फोकस इस प्लगइन की प्राथमिकता है "
+"जिसमें भाषा के चयन की अनुमति व्यवस्थापक सेटिंग्स, बाइबिल संस्करण, अंतिम उपयोगकर्ता के लिए उपलब्ध बाइबिल "
+"संस्करणों की संख्या और डिजाइन तत्वों (फोंट, रंग) के चयन की अनुमति है।  अंतिम उपयोगकर्ता के लिए सादगी और "
+"उपयोग में आसानी एक सहज ज्ञान युक्त अंतरफलक के लक्ष्य के साथ दूसरी सर्वोच्च प्राथमिकता है।  प्लगइन का "
+"प्रारंभिक विकास बाइबिल ब्रेन / डीबीपीवी 4 एपीआई पर आधारित होगा, लेकिन बाद के रिलीज में अन्य बाइबिल "
+"एपीआई तक विस्तार करने के इरादे से।  अतिरिक्त जानकारी GitHub पर SRS दस्तावेज़ में उपलब्ध है।\n"
 
 #: resources/views/settings/support.php:109
 msgid "GitHub"
@@ -283,49 +278,45 @@ msgstr "अनुकूलन"
 msgid "Support"
 msgstr "मदद"
 
-#: src/Services/Assets.php:21
+#: src/Services/Assets.php:22
 msgctxt "reader"
 msgid "Copy"
 msgstr "प्रतिलिपि"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:23
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "सफलतापूर्वक कॉपी किया गया।"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Language"
 msgstr "भाषा"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Languages"
 msgstr "बोली"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Link"
 msgstr "लिंक"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "पुराना नियम"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Media Types"
 msgstr "मीडिया प्रकार"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "New Testament"
 msgstr "नए करार"
-
-#: src/Services/Assets.php:29
-msgid "Note that some bible versions do not support all media types."
-msgstr "ध्यान दें कि कुछ बाइबिल संस्करण सभी प्रकार के मीडिया का समर्थन नहीं करते हैं।"
 
 #: src/Services/Assets.php:30
 msgctxt "reader"
@@ -333,27 +324,57 @@ msgid "Search"
 msgstr "ढूँढ"
 
 #: src/Services/Assets.php:31
-msgid "Select the bible language you would like to make available."
-msgstr "उस बाइबिल भाषा का चयन करें जिसे आप उपलब्ध कराना चाहते हैं।"
-
-#: src/Services/Assets.php:32
-msgid "Select the bible version you would like to make available for this language."
-msgstr "उस बाइबिल संस्करण का चयन करें जिसे आप इस भाषा के लिए उपलब्ध कराना चाहते हैं।"
-
-#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Selection"
 msgstr "संग्रह"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Translation"
 msgstr "अनुवाद"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Loading"
 msgstr "लोड"
+
+#: src/Services/Assets.php:34
+msgctxt "reader"
+msgid "Text"
+msgstr "टेक्स्ट"
+
+#: src/Services/Assets.php:35
+msgctxt "reader"
+msgid "Selected"
+msgstr "चयनित"
+
+#: src/Services/Assets.php:38
+msgid "Note that some bible versions do not support all media types."
+msgstr "ध्यान दें कि कुछ बाइबिल संस्करण सभी प्रकार के मीडिया का समर्थन नहीं करते हैं।"
+
+#: src/Services/Assets.php:39
+msgid "Select the bible language you would like to make available."
+msgstr "उस बाइबिल भाषा का चयन करें जिसे आप उपलब्ध कराना चाहते हैं।"
+
+#: src/Services/Assets.php:40
+msgid "Select the bible version you would like to make available for this language."
+msgstr "उस बाइबिल संस्करण का चयन करें जिसे आप इस भाषा के लिए उपलब्ध कराना चाहते हैं।"
+
+#: src/Services/Assets.php:41
+msgid "Add Language"
+msgstr "भाषा जोड़ें"
+
+#: src/Services/Assets.php:42
+msgid "Default Language?"
+msgstr "डिफ़ॉल्ट भाषा?"
+
+#: src/Services/Assets.php:43
+msgid "Make this the default language."
+msgstr "इसे डिफ़ॉल्ट भाषा बनाएँ."
+
+#: src/Services/Assets.php:44
+msgid "Bible Version"
+msgstr "बाइबिल संस्करण"
 
 #: src/ShortCodes/Scripture.php:66
 msgctxt "shortcode"
@@ -381,3 +402,15 @@ msgstr "वर्डप्रेस के लिए एक बाइबिल �
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgctxt "scripture"
+#~ msgid "Bible"
+#~ msgstr "बाइबिल"
+
+#~ msgctxt "reader"
+#~ msgid "Next Chapter"
+#~ msgstr "अगला अध्याय"
+
+#~ msgctxt "reader"
+#~ msgid "Previous Chapter"
+#~ msgstr "पिछला अध्याय"

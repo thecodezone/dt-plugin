@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-19 15:39-0500\n"
-"PO-Revision-Date: 2024-04-19 17:26-0500\n"
+"POT-Creation-Date: 2024-04-22 11:36-0500\n"
+"PO-Revision-Date: 2024-04-22 11:37-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: vi\n"
@@ -29,21 +29,6 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
-
-#: resources/views/hello.php:5
-msgctxt "scripture"
-msgid "Bible"
-msgstr "Kinh Thánh"
-
-#: resources/views/hello.php:6
-msgctxt "reader"
-msgid "Next Chapter"
-msgstr "Chương tiếp theo"
-
-#: resources/views/hello.php:7
-msgctxt "reader"
-msgid "Previous Chapter"
-msgstr "Chương trước"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
@@ -311,51 +296,45 @@ msgstr "Mục tuỳ biến"
 msgid "Support"
 msgstr "Hỗ trợ"
 
-#: src/Services/Assets.php:21
+#: src/Services/Assets.php:22
 msgctxt "reader"
 msgid "Copy"
 msgstr "Sao chép"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:23
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "Đã sao chép thành công."
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Languages"
 msgstr "Ngôn ngữ"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Link"
 msgstr "Liên kết"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "Cựu Ước"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Media Types"
 msgstr "Các loại phương tiện truyền thông"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "New Testament"
 msgstr "Tân Ước"
-
-#: src/Services/Assets.php:29
-msgid "Note that some bible versions do not support all media types."
-msgstr ""
-"Lưu ý rằng một số phiên bản kinh thánh không hỗ trợ tất cả các loại phương "
-"tiện."
 
 #: src/Services/Assets.php:30
 msgctxt "reader"
@@ -363,28 +342,60 @@ msgid "Search"
 msgstr "Tìm kiếm"
 
 #: src/Services/Assets.php:31
-msgid "Select the bible language you would like to make available."
-msgstr "Chọn ngôn ngữ kinh thánh bạn muốn cung cấp."
-
-#: src/Services/Assets.php:32
-msgid ""
-"Select the bible version you would like to make available for this language."
-msgstr "Chọn phiên bản kinh thánh bạn muốn cung cấp cho ngôn ngữ này."
-
-#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Selection"
 msgstr "Lựa chọn"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Translation"
 msgstr "Dịch"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Loading"
 msgstr "Đang tải"
+
+#: src/Services/Assets.php:34
+msgctxt "reader"
+msgid "Text"
+msgstr "Văn bản"
+
+#: src/Services/Assets.php:35
+msgctxt "reader"
+msgid "Selected"
+msgstr "Đã chọn"
+
+#: src/Services/Assets.php:38
+msgid "Note that some bible versions do not support all media types."
+msgstr ""
+"Lưu ý rằng một số phiên bản kinh thánh không hỗ trợ tất cả các loại phương "
+"tiện."
+
+#: src/Services/Assets.php:39
+msgid "Select the bible language you would like to make available."
+msgstr "Chọn ngôn ngữ kinh thánh bạn muốn cung cấp."
+
+#: src/Services/Assets.php:40
+msgid ""
+"Select the bible version you would like to make available for this language."
+msgstr "Chọn phiên bản kinh thánh bạn muốn cung cấp cho ngôn ngữ này."
+
+#: src/Services/Assets.php:41
+msgid "Add Language"
+msgstr "Thêm ngôn ngữ"
+
+#: src/Services/Assets.php:42
+msgid "Default Language?"
+msgstr "Ngôn ngữ mặc định?"
+
+#: src/Services/Assets.php:43
+msgid "Make this the default language."
+msgstr "Đặt ngôn ngữ này làm ngôn ngữ mặc định."
+
+#: src/Services/Assets.php:44
+msgid "Bible Version"
+msgstr "Phiên bản Kinh Thánh"
 
 #: src/ShortCodes/Scripture.php:66
 msgctxt "shortcode"
@@ -412,3 +423,15 @@ msgstr "Một plugin kinh thánh cho WordPress."
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgctxt "scripture"
+#~ msgid "Bible"
+#~ msgstr "Kinh Thánh"
+
+#~ msgctxt "reader"
+#~ msgid "Next Chapter"
+#~ msgstr "Chương tiếp theo"
+
+#~ msgctxt "reader"
+#~ msgid "Previous Chapter"
+#~ msgstr "Chương trước"
