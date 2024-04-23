@@ -12,6 +12,7 @@ export const form = (props = {}) => {
         submitting: false,
         action: "",
         refresh: false,
+        redirect: "",
         ...props,
 
         /**
@@ -107,7 +108,9 @@ export const form = (props = {}) => {
             this.submitting = false
             this.toggleAlerts()
             this.submissionSucceeded()
-            if (this.refresh) {
+            if (this.redirect) {
+                setTimeout(() => window.location.href = this.redirect, 1000)
+            } else if (this.refresh) {
                 setTimeout(() => location.reload(), 1000)
             }
         },
