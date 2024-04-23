@@ -46,6 +46,11 @@ class Plugin {
 		$this->container  = $container;
 		self::$home_route = apply_filters( namespace_string( 'route' ), self::$home_route );
 		$this->provider   = $container->make( PluginServiceProvider::class );
+		register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activated' ] );
+	}
+
+	public function activated() {
+		flush_rewrite_rules();
 	}
 
 	/**
