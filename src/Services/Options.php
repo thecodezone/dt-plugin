@@ -83,7 +83,7 @@ class Options {
 	 * @return mixed The value of the option if found, otherwise returns the default value.
 	 */
 	public function get( string $key, mixed $default = null, $required = false ) {
-		if ( $default !== null ) {
+		if ( $default === null ) {
 			$default = $this->get_default( $key );
 		}
 
