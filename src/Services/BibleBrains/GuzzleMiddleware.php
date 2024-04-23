@@ -12,14 +12,6 @@ class GuzzleMiddleware {
 	protected string $key;
 
 
-	public function __construct() {
-		$this->key = get_plugin_option( 'bible_brains_key', defined( 'TBP_BIBLE_BRAINS_KEY' ) ? TBP_BIBLE_BRAINS_KEY : '', true );
-		if ( empty( $this->key ) ) {
-			throw new \Exception( 'Bible Brains API key is not set' );
-		}
-	}
-
-
 	public function __invoke( callable $handler ) {
 		return function ( RequestInterface $request, array $options ) use ( $handler ) {
 			$newUri = UriResolver::resolve( new Uri( $this->base_url ), $request->getUri() );
