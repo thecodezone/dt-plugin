@@ -66,9 +66,7 @@ export class ColorSteps extends LitElement {
             let l = hslColor.l + ((i - midStep + 1) / (this.range.length - midStep)) * (lightest.l - hslColor.l);
             colorSteps[this.range[i]] = new TinyColor({...hslColor, l: l}).toRgbString();
         }
-
-        console.log(colorSteps)
-
+        
         this.value = colorSteps;
     }
 }

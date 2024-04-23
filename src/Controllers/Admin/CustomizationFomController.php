@@ -46,8 +46,8 @@ class CustomizationFomController {
 		}
 		$translations = array_intersect_key( $translations, array_flip( Arr::pluck( $translation_options, 'value' ) ) );
 		$fields       = [
-			'color_scheme' => get_plugin_option( 'color_scheme', false, true ),
-			'colors'       => get_plugin_option( 'colors', false, true ),
+			'color_scheme' => get_plugin_option( 'color_scheme', null, true ),
+			'colors'       => get_plugin_option( 'colors', null, true ),
 			'translations' => $translations
 		];
 
