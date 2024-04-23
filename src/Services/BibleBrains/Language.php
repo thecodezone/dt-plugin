@@ -48,7 +48,7 @@ class Language {
 
 	public function supported( $code ) {
 		try {
-			$languages = $this->options->get( 'languages', false, true );
+			$languages = $this->options->get( 'languages', null, true );
 		} catch ( \Exception $e ) {
 			return false;
 		}
@@ -61,7 +61,7 @@ class Language {
 	}
 
 	public function default() {
-		$language = $this->options->get( 'languages', false, true );
+		$language = $this->options->get( 'languages', null, true );
 		if ( !is_array( $language ) ) {
 			return $this->options->get_default( 'languages' );
 		}
@@ -79,7 +79,7 @@ class Language {
 			return false;
 		}
 		try {
-			$languages = $this->options->get( 'languages', false, true );
+			$languages = $this->options->get( 'languages', null, true );
 			if ( !is_array( $languages ) ) {
 				return false;
 			}
