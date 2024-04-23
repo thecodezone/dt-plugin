@@ -23,13 +23,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-require_once plugin_dir_path( __FILE__ ) . '/includes/class-tgm-plugin-activation.php';
-require_once plugin_dir_path( __FILE__ ) . '/vendor-scoped/scoper-autoload.php';
-require_once plugin_dir_path( __FILE__ ) . '/vendor-scoped/autoload.php';
-require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-tgm-plugin-activation.php';
+require_once plugin_dir_path( __FILE__ ) . 'vendor-scoped/scoper-autoload.php';
+require_once plugin_dir_path( __FILE__ ) . 'vendor-scoped/autoload.php';
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable( __DIR__ );
-$dotenv->load();
+if ( file_exists( plugin_dir_path( __FILE__ ) . '/.env' ) ) {
+	$dotenv = Dotenv::createImmutable( __DIR__ );
+	$dotenv->load();
+}
+
 
 $container = new Container();
 $container->singleton( Container::class, function ( $container ) {
