@@ -12,7 +12,7 @@ export class SelectionManager extends TBPElement {
     lastSelected
 
     @state()
-    mouseDownCoordinates
+    mouseDownCoordinates = {x: 0, y: 0}
 
     @state()
     contextClick = false
