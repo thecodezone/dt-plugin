@@ -50,6 +50,7 @@ import "./web-components/book-menu.js"
 import "./web-components/chapter-nav.js"
 import "./web-components/copyright.js"
 import "./web-components/footer.js"
+import "./web-components/header.js"
 
 
 import {loaded} from "./helpers.js";

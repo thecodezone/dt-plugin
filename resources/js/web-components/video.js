@@ -36,7 +36,6 @@ export class Video extends TBPElement {
 
             if (isHls && Hls.isSupported()) {
                 const hls = new Hls();
-                console.log(this.content)
                 this.content.forEach(({path}) => {
                     //hls.loadSource("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8")
                     console.log(path)

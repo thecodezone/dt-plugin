@@ -121,8 +121,10 @@ export class Scripture extends TBPElement {
         this.plyr = new Plyr(
             this.el
         )
-        if (this.autoplay) {
-            this.plyr.play()
-        }
+        setTimeout(() => {
+            if (this.autoplay) {
+                this.plyr.play()
+            }
+        })
     }
 }

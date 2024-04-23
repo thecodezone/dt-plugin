@@ -14,6 +14,9 @@ export class SelectionManager extends TBPElement {
     @state()
     mouseDownCoordinates
 
+    @state()
+    contextClick = false
+
     get selectables() {
         return this.querySelectorAll('[selectable]');
     }
@@ -32,6 +35,7 @@ export class SelectionManager extends TBPElement {
         // Define the listeners in the constructor
         this.onMouseDown = this.mouseDownListener.bind(this);
         this.onMouseUp = this.mouseUpListener.bind(this);
+        this.onContextMenu = this.contextMenuListener.bind(this);
     }
 
     connectedCallback() {
@@ -42,6 +46,7 @@ export class SelectionManager extends TBPElement {
             for (let selectable of this.selectables) {
                 selectable.addEventListener('mousedown', this.onMouseDown);
                 selectable.addEventListener('mouseup', this.onMouseUp);
+                selectable.addEventListener('contextmenu', this.onContextMenu);
             }
         });
     }
@@ -50,6 +55,7 @@ export class SelectionManager extends TBPElement {
         for (let selectable of this.selectables) {
             selectable.removeEventListener('mousedown', this.onMouseDown);
             selectable.removeEventListener('mouseup', this.onMouseUp);
+            selectable.removeEventListener('contextmenu', this.onContextMenu);
         }
     }
 
@@ -59,7 +65,39 @@ export class SelectionManager extends TBPElement {
         `
     }
 
+    contextMenuListener(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.contextClick = true;
+
+        if (!e.target.selected) {
+            this.selectables.forEach((el, idx) => {
+                el.selected = el === e.target;
+            })
+
+            this.dispatchSelection();
+        }
+
+
+        setTimeout(() => {
+            this.dispatchEvent(new CustomEvent('context', {
+                detail: {
+                    selectable: e.target,
+                    selectables: Array.from(this.selectables),
+                    selected: Array.from(this.selected),
+                    unselected: Array.from(this.unselected)
+                }
+            }));
+        })
+
+
+        return false;
+    }
+
     mouseDownListener(e) {
+        if (e.button) {
+            return;
+        }
         const selectables = Array.from(this.selectables)
         if (selectables.indexOf(e.target) !== -1) {
             this.firstSelected = e.target;
@@ -68,6 +106,9 @@ export class SelectionManager extends TBPElement {
     }
 
     mouseUpListener(e) {
+        if (e.button) {
+            return;
+        }
         const selectables = Array.from(this.selectables)
         let selectedIndex = selectables.indexOf(e.target);
         const mouseUpCoordinates = {x: e.clientX, y: e.clientY}
@@ -94,13 +135,14 @@ export class SelectionManager extends TBPElement {
             }
 
             let range = document.createRange();
-            let selection = this.shadowRoot.getSelection();
-
-            // Select contents from the starting verse's start to the ending verse's end
             range.setStartBefore(selectables[firstIndex]);
             range.setEndAfter(selectables[lastIndex]);
 
-            selection.removeAllRanges();
+            if (this.shadowRoot.hasOwnProperty('getSelection') && typeof this.shadowRoot.getSelection === 'function') {
+                this.shadowRoot.getSelection().removeAllRanges();
+            } else {
+                window.getSelection().removeAllRanges();
+            }
 
             selectables.forEach((el, idx) => {
                 el.selected = range.intersectsNode(el);

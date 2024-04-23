@@ -37,11 +37,11 @@ class Cache {
 	 *
 	 * @param string $key The key of the value to set.
 	 * @param mixed $value The value to set for the given key.
-	 * @param int $expiration The expiration time for the value in seconds. Default value is one week (60 * 60 * 24 * 7).
+	 * @param int $expiration The expiration time for the value in seconds. Default value is one hour (60 * 60).
 	 *
 	 * @return bool True if the value was successfully set, false otherwise.
 	 */
-	public function set( string $key, $value, int $expiration = 60 * 60 * 24 * 7 ) {
+	public function set( string $key, $value, int $expiration = 60 * 60 ) {
 		return set_transient( $this->scope_key( $key ), $value, $expiration );
 	}
 

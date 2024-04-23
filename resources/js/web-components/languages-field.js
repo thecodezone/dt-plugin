@@ -191,12 +191,20 @@ export class LanguagesField extends TBPElement {
     }
 
     onMediaTypeChange(e, idx) {
-        const mediaTypes = this.value[idx].media_types.split(',');
-        if (e.target.checked) {
-            mediaTypes.push(e.target.value);
-        } else {
-            mediaTypes.splice(mediaTypes.indexOf(e.target.value), 1);
+        if (!e.target.getAttribute('value')) {
+            return;
         }
+        let mediaTypes = this.value[idx].media_types
+            .split(',')
+            .filter((value, index, self) => !!value);
+        if (e.target.checked) {
+            mediaTypes.push(e.target.getAttribute('value'));
+        } else {
+            mediaTypes.splice(mediaTypes.indexOf(e.target.getAttribute('value')), 1);
+        }
+        console.log('mediaTypes', mediaTypes)
+        mediaTypes = mediaTypes.filter((value, index, self) => !!value);
+        console.log('mediaTypes', mediaTypes)
         this.value[idx].media_types = mediaTypes.join(',');
     }
 

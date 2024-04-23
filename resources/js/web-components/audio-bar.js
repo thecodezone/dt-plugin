@@ -61,8 +61,6 @@ export class AudioBar extends withStores(TBPElement, [$media, $hasAudio, $audioO
                             selectable
                     ></tbp-content>
                 </div>
-
-
             </sp-action-bar>
         `
     }

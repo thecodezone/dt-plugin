@@ -3,6 +3,8 @@ import {reference_from_object} from "../helpers.js";
 
 export const $selection = atom([])
 
+export const $selectionOpen = atom(false)
+
 export const $shareUrl = computed($selection, (selection) => {
     const pageUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`
     if (!selection.length) {
@@ -24,9 +26,14 @@ export const $shareText = computed($selection, (selection) => {
     }).join("\n")
 })
 
+export const $openSelection = () => {
+    $selectionOpen.set(true)
+}
+
 export const $clearSelection = () => {
     $selection.get().forEach(({selectable}) => {
         selectable.selected = false
     })
     $selection.set([])
+    $selectionOpen.set(false)
 }

@@ -39,10 +39,6 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                 #error {
                     --mod-toast-max-inline-size: 100%;
                 }
-
-                tbp-bible-menu {
-                    margin-left: auto;
-                }
             `
         ];
     }
@@ -101,7 +97,7 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                         no-divider
                         headline-visibility="hidden"
                 >
-                    ${this.renderHeader()}
+                    <tbp-header></tbp-header>
 
                     ${loading ? this.renderLoader() : html`
                         <tbp-reader></tbp-reader>
@@ -115,42 +111,11 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
         `
     }
 
-    renderHeader() {
-        const {loading} = $query.get();
-
-        return html`
-            <sp-top-nav size="m">
-                <sp-top-nav-item size="m"><strong>${loading ? html`
-                    <sp-progress-circle
-                            size="s"
-                            label="Loading bible..."
-                            indeterminate
-                    ></sp-progress-circle>` : $bookName.get() + " " + $chapter.get()}</strong></sp-top-nav-item>
-                ${this.renderMessage()}
-                <tbp-bible-menu></tbp-bible-menu>
-            </sp-top-nav>`
-    }
-
-    renderMessage() {
-        if (!$message.get()) {
-            return nothing;
-        }
-        return html`
-            <div id="message">
-                <sp-toast open variant="positive"
-                          timeout="6000"
-                          .key="${$message.get()}" size="s">
-                    ${$message.get()}
-                </sp-toast>
-            </div>
-        `
-    }
-
     renderInPage() {
         const {loading} = $query.get();
 
         return html`
-            ${this.renderHeader()}
+            <tbp-header></tbp-header>
             ${loading ? this.renderLoader() : html`
                 <tbp-reader></tbp-reader>
                 <tbp-audio-bar></tbp-audio-bar>

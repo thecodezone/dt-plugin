@@ -2,7 +2,7 @@ import {customElement, property, state, queryAll} from "lit/decorators.js";
 import {html} from "lit";
 import {TBPElement} from "./base.js";
 import {reference_from_content, find_media_type} from "../helpers.js";
-import {$selection, $clearSelection} from "../stores/selection.js";
+import {$selection, $selectionOpen} from "../stores/selection.js";
 import {withStores} from "@nanostores/lit";
 
 /**
@@ -10,7 +10,7 @@ import {withStores} from "@nanostores/lit";
  * Extends the TBPElement class.
  */
 @customElement('tbp-content')
-export class Content extends withStores(TBPElement, [$selection]) {
+export class Content extends withStores(TBPElement, [$selection, $selectionOpen]) {
     /**
      * Represents an array of content.
      *
@@ -100,6 +100,7 @@ export class Content extends withStores(TBPElement, [$selection]) {
             return html`
                 <tbp-selection-manager
                         @selection="${this.handleSelection.bind(this)}"
+                        @context="${this.handleContextMenu.bind(this)}"
                 >
                     ${this.renderSections()}
                 </tbp-selection-manager>
@@ -208,15 +209,21 @@ export class Content extends withStores(TBPElement, [$selection]) {
 
 
     handleSelection(e) {
-        $selection.set(e.detail.selected.map((selectable) => {
-            return {
-                selectable: selectable,
-                text: selectable.shadowRoot.textContent.replace(/[\r\n]+/gm, ' ').trim().replace(/\s\s+/g, ' '),
-                book: this.reference.book,
-                chapter: this.reference.chapter,
-                verse_start: parseInt(selectable.verse),
-                verse_end: parseInt(selectable.verse),
-            }
-        }))
+        $selection.set(e.detail.selected.map((selectable) => this.mapSelectable(selectable)))
+    }
+
+    handleContextMenu(e) {
+        $selectionOpen.set(true)
+    }
+
+    mapSelectable(selectable) {
+        return {
+            selectable: selectable,
+            text: selectable.shadowRoot.textContent.replace(/[\r\n]+/gm, ' ').trim().replace(/\s\s+/g, ' '),
+            book: this.reference.book,
+            chapter: this.reference.chapter,
+            verse_start: parseInt(selectable.verse),
+            verse_end: parseInt(selectable.verse),
+        }
     }
 }
