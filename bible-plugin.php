@@ -22,6 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+register_activation_hook( __FILE__, function () {
+	flush_rewrite_rules();
+} );
+
+register_deactivation_hook( __FILE__, function () {
+	flush_rewrite_rules();
+} );
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-tgm-plugin-activation.php';
 require_once plugin_dir_path( __FILE__ ) . 'vendor-scoped/scoper-autoload.php';
