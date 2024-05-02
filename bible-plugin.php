@@ -23,11 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 register_activation_hook( __FILE__, function () {
-	flush_rewrite_rules();
+	flush_rewrite_rules( true );
 } );
 
 register_deactivation_hook( __FILE__, function () {
-	flush_rewrite_rules();
+	flush_rewrite_rules( true );
 } );
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-tgm-plugin-activation.php';
