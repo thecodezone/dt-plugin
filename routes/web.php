@@ -23,31 +23,25 @@ use CodeZone\Bible\Controllers\BibleController;
 use CodeZone\Bible\Plugin;
 
 
-$r->condition( 'plugin', function ( $r ) {
-	$r->group( Plugin::$home_route, function ( Routes $r ) {
-	} );
+$r->group( 'api', function ( Routes $r ) {
+	$r->get( '/languages', [ LanguageController::class, 'index' ] );
+	$r->get( '/languages/options', [ LanguageController::class, 'options' ] );
+	$r->get( '/languages/{id}', [ LanguageController::class, 'show' ] );
 
-	$r->group( Plugin::$home_route . '/api', function ( Routes $r ) {
-		$r->get( '/languages', [ LanguageController::class, 'index' ] );
-		$r->get( '/languages/options', [ LanguageController::class, 'options' ] );
-		$r->get( '/languages/{id}', [ LanguageController::class, 'show' ] );
+	$r->get( '/bibles', [ BibleController::class, 'index' ] );
+	$r->get( '/bibles/media-types', [ BibleMediaTypesController::class, 'index' ] );
+	$r->get( '/bibles/media-types/options', [ BibleMediaTypesController::class, 'options' ] );
+	$r->get( '/bibles/options', [ BibleController::class, 'options' ] );
+	$r->get( '/bibles/{id}', [ BibleController::class, 'show' ] );
 
-		$r->get( '/bibles', [ BibleController::class, 'index' ] );
-		$r->get( '/bibles/media-types', [ BibleMediaTypesController::class, 'index' ] );
-		$r->get( '/bibles/media-types/options', [ BibleMediaTypesController::class, 'options' ] );
-		$r->get( '/bibles/options', [ BibleController::class, 'options' ] );
-		$r->get( '/bibles/{id}', [ BibleController::class, 'show' ] );
+	$r->get( '/scripture', [ ScriptureController::class, 'index' ] );
 
-		$r->get( '/scripture', [ ScriptureController::class, 'index' ] );
-
-		$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin_nonce' ], function ( Routes $r ) {
-			$r->post( '/bible-brains/key', [ BibleBrainsFormController::class, 'validate' ] );
-			$r->post( '/bible-brains', [ BibleBrainsFormController::class, 'submit' ] );
-			$r->post( '/customization', [ CustomizationFomController::class, 'submit' ] );
-		} );
+	$r->middleware( [ 'can:manage_options', 'nonce:bible_plugin_nonce' ], function ( Routes $r ) {
+		$r->post( '/bible-brains/key', [ BibleBrainsFormController::class, 'validate' ] );
+		$r->post( '/bible-brains', [ BibleBrainsFormController::class, 'submit' ] );
+		$r->post( '/customization', [ CustomizationFomController::class, 'submit' ] );
 	} );
 } );
-
 
 $r->condition( 'backend', function ( Routes $r ) {
 	$r->middleware( 'can:manage_options', function ( Routes $r ) {

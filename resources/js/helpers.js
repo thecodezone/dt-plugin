@@ -165,8 +165,13 @@ export const reference_from_object = (item) => {
  * @param {string} path - The path to be appended to the base API URL.
  * @returns {string} - The full URL.
  */
-export const apiUrl = (path) => {
-    return `${window.$tbp.apiUrl.replace(/\/$/, "").trim()}/${path.replace(/^\/|\/$/g, '').trim()}`
+export const apiUrl = (path, params = {}) => {
+    const url = `${window.$tbp.apiUrl.replace(/\/$/, "").trim()}/${path.replace(/^\/|\/$/g, '').trim()}`
+    if (url.includes('?')) {
+        return `${url}&${new URLSearchParams(params).toString()}`
+    } else {
+        return `${url}?${new URLSearchParams(params).toString()}`
+    }
 }
 
 /**

@@ -100,7 +100,7 @@ export class LanguagesField extends TBPElement {
                                                 searchLabel="${__('Search')}"
                                                 value="${bibles}"
                                                 @change="${(e) => this.value[idx].bibles = e.target.value}"
-                                                optionsUrl="${apiUrl('bibles/options?language_code=' + encodeURIComponent(value))}"
+                                                optionsUrl="${apiUrl('bibles/options', {language_code: value})}"
                                                 required
                                                 searchable
                                                 prefetch

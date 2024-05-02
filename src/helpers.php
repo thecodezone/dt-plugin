@@ -35,7 +35,11 @@ function plugin_url( string $path = '' ): string {
 }
 
 function route_url( string $path ): string {
-	return '/' . plugin()::$home_route . '/' . ltrim( $path, '/' );
+	if ( empty( get_option( 'permalink_structure' ) ) ) {
+		return site_url() . '?' . http_build_query( [ 'bible-plugin' => true, 'bible-plugin-route' => $path ] );
+	} else {
+		return '/' . plugin()::$home_route . '/' . ltrim( $path, '/' );
+	}
 }
 
 /**
@@ -49,7 +53,7 @@ function plugin_path( string $path = '' ): string {
 	return '/' . implode( '/', [
 			trim( Str::remove( '/src', plugin_dir_path( __FILE__ ) ), '/' ),
 			trim( $path, '/' ),
-    ] );
+		] );
 }
 
 /**

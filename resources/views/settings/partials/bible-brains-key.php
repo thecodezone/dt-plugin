@@ -1,4 +1,7 @@
 <?php
+
+use function CodeZone\Bible\route_url;
+
 /**
  * Bible Brains Key Form
  *
@@ -10,20 +13,20 @@
  */
 ?>
 <form method="post"
-    x-data="br_bible_brains_key_form(<?php echo esc_attr(
-        wp_json_encode(
-            array_merge(
-                [
+      x-data="br_bible_brains_key_form(<?php echo esc_attr(
+	      wp_json_encode(
+		      array_merge(
+			      [
 				      'fields'          => $fields,
 				      'success_message' => __( 'Bible Brains API Key verified.', 'bible-plugin' ),
-				      'redirect'    => esc_url( "/wp-admin/admin.php?page=bible-plugin" ),
+				      'redirect'        => esc_url( "/wp-admin/admin.php?page=bible-plugin" ),
 				      'url'             => esc_url( '/wp-admin/admin.php?page=bible-plugin&tab=bible' ),
-				      'action'          => esc_url( '/the-bible-plugin/api/bible-brains/key' ),
+				      'action'          => esc_url( route_url( 'api/bible-brains/key' ) ),
 				      'error'           => $error ?? '',
 			      ]
-            )
-        )
-    ); ?>)"
+		      )
+	      )
+      ); ?>)"
 >
 
     <fieldset>

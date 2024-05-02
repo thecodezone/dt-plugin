@@ -9,7 +9,14 @@ import {$language, $languageId, $languageIso} from "./language.js";
 import {$error} from "./error.js";
 import {apiUrl} from "../helpers.js";
 
-export const $query = fetchState([apiUrl('scripture'), '?reference=', $reference]);
+let endpoint = apiUrl('scripture')
+if (!endpoint.includes('?')) {
+    endpoint += '?'
+} else {
+    endpoint += '&'
+}
+
+export const $query = fetchState([endpoint, 'reference=', $reference]);
 $query.listen(({loading, data}) => {
     if (loading) {
         return;
