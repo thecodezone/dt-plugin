@@ -13,7 +13,8 @@ window.br_bible_brains_key_form = (props) => {
         ...props,
 
         get verified() {
-            return this.dirty_bible_brains_key === this.fields.bible_brains_key
+            return this.fields.bible_brains_key
+                && (this.dirty_bible_brains_key === this.fields.bible_brains_key)
         },
 
         submission() {
