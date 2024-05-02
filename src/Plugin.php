@@ -46,11 +46,6 @@ class Plugin {
 		$this->container  = $container;
 		self::$home_route = apply_filters( namespace_string( 'route' ), self::$home_route );
 		$this->provider   = $container->make( PluginServiceProvider::class );
-		register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activated' ] );
-	}
-
-	public function activated() {
-		flush_rewrite_rules();
 	}
 
 	/**
@@ -60,10 +55,22 @@ class Plugin {
 	public function init() {
 		static::$instance = $this;
 		$this->provider->register();
+
+		register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
+		register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
 		add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_action( 'init', [ $this, 'rewrite_rules' ] );
 		add_action( 'query_vars', [ $this, 'query_vars' ] );
 		add_action( 'template_redirect', [ $this, 'template_redirect' ] );
+	}
+
+	public function activation_hook() {
+		$this->rewrite_rules();
+		flush_rewrite_rules();
+	}
+
+	public function deactivation_hook() {
+		flush_rewrite_rules();
 	}
 
 	/**
