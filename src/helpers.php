@@ -30,13 +30,48 @@ function container(): Illuminate\Container\Container {
 	return plugin()->container;
 }
 
+/**
+ * Returns the URL of a plugin file or directory, relative to the plugin base URL.
+ *
+ * @param string $path The path of the file or directory relative to the plugin base URL. Defaults to an empty string.
+ *
+ * @return string The full URL of the file or directory, relative to the plugin base URL.
+ */
 function plugin_url( string $path = '' ): string {
 	return plugins_url( 'bible-plugin' ) . '/' . ltrim( $path, '/' );
 }
 
+/**
+ * Checks if the route rewrite rule exists in the WordPress rewrite rules.
+ *
+ * @return bool Whether the route rewrite rule exists in the rewrite rules.
+ * @global WP_Rewrite $wp_rewrite The main WordPress rewrite rules object.
+ *
+ */
+function has_route_rewrite(): bool {
+	global $wp_rewrite;
+
+	if ( ! is_array( $wp_rewrite->rules ) ) {
+		return false;
+	}
+
+	return array_key_exists( plugin()->route_rewrite(), $wp_rewrite->rules );
+}
+
+/**
+ * Returns the URL of a route.
+ *
+ * If the route rewriting is enabled, it will return the URL of the route relative to the home
+ * route of the plugin. If the route rewriting is not enabled, it will return the URL of the
+ * route appended with query parameters indicating that it is a route of the plugin.
+ *
+ * @param string $path The path of the route.
+ *
+ * @return string The URL of the route.
+ */
 function route_url( string $path ): string {
-	if ( empty( get_option( 'permalink_structure' ) ) ) {
-		return site_url() . '?' . http_build_query( [ 'bible-plugin' => true, 'bible-plugin-route' => $path ] );
+	if ( ! has_route_rewrite() ) {
+		return site_url() . '?' . http_build_query( [ 'bible-plugin' => $path ] );
 	} else {
 		return '/' . plugin()::$home_route . '/' . ltrim( $path, '/' );
 	}

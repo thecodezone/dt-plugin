@@ -81,6 +81,10 @@ class Plugin {
 		$this->provider->boot();
 	}
 
+	public function route_rewrite(): string {
+		return '^' . self::$home_route . '/(.+)/?';
+	}
+
 	/**
 	 * Rewrite rules method.
 	 *
@@ -92,7 +96,7 @@ class Plugin {
 	 * @return void
 	 */
 	public function rewrite_rules(): void {
-		add_rewrite_rule( '^' . self::$home_route . '/(.+)/?', 'index.php?bible-plugin=true&route=$matches[1]', 'top' );
+		add_rewrite_rule( $this->route_rewrite(), 'index.php?bible-plugin=$matches[1]', 'top' );
 	}
 
 	/**
@@ -104,7 +108,6 @@ class Plugin {
 	 */
 	public function query_vars( array $vars ): array {
 		$vars[] = 'bible-plugin';
-		$vars[] = 'bible-plugin-route';
 
 		return $vars;
 	}
@@ -119,7 +122,7 @@ class Plugin {
 		if ( ! get_query_var( 'bible-plugin' ) ) {
 			return;
 		}
-
+		
 		$response = apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
 			->run();
 

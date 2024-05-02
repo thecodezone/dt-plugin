@@ -16,7 +16,7 @@ class RouterServiceProvider extends ServiceProvider {
 	public function register(): void {
 		Router::register( [
 			'container'   => $this->container,
-			'route_param' => 'bible-plugin-route',
+			'route_param' => 'bible-plugin',
 		] );
 
 		add_filter( Router\namespace_string( "routes" ), [ $this, 'include_route_file' ], 1 );
