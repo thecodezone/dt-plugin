@@ -104,8 +104,6 @@ export class OverlayPicker extends LitElement {
 
     handleOptionChange() {
         this.options.forEach(option => {
-            console.log(option)
-            console.log(option[this.optionsValueKey])
             this.option_history[option[this.optionsValueKey]] = option
         })
         this.refreshSelectedOptions()
@@ -267,7 +265,7 @@ export class OverlayPicker extends LitElement {
         }
 
         if (this.abortController) {
-            this.abortController.abort()
+            this.abortController.abort("Fetching new data")
         }
         this.abortController = new AbortController()
 
