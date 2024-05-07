@@ -18,6 +18,8 @@ import '@spectrum-web-components/theme/src/themes.js';
 
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-add.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-delete.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-key.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-link-out-light.js';
 import '@spectrum-web-components/badge/sp-badge.js';
 import '@spectrum-web-components/button/sp-button.js';
 import '@spectrum-web-components/button-group/sp-button-group.js';
@@ -29,7 +31,6 @@ import '@spectrum-web-components/field-group/sp-field-group.js';
 import '@spectrum-web-components/field-label/sp-field-label.js';
 import '@spectrum-web-components/action-button/sp-action-button.js';
 import '@spectrum-web-components/help-text/sp-help-text.js';
-import '@spectrum-web-components/icons-workflow/icons/sp-icon-key.js';
 import '@spectrum-web-components/infield-button/sp-infield-button.js';
 import '@spectrum-web-components/link/sp-link.js';
 import '@spectrum-web-components/tabs/sp-tab.js';
