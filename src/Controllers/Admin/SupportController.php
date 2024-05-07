@@ -16,14 +16,4 @@ class SupportController {
 
 		return view( "settings/support", compact( 'tab' ) );
 	}
-
-	/**
-	 * Submit the general settings admin tab form
-	 */
-	public function update( Request $request, Response $response ) {
-
-		// Add the settings update code here
-
-		return new RedirectResponse( 302, admin_url( 'admin.php?page=bible-plugin&tab=general&updated=true' ) );
-	}
 }

@@ -26,6 +26,7 @@ $has_api_key  = ! ! get_plugin_option( 'bible_brains_key', false );
 $color_scheme = get_plugin_option( 'color_scheme' );
 $colors       = get_plugin_option( 'colors' );
 $accent_steps = $colors['accent_steps'] ?? [];
+$right        = $right ?? '';
 ?>
 
 <style>
@@ -35,10 +36,6 @@ $accent_steps = $colors['accent_steps'] ?? [];
     }
 
     <?php endif; ?>
-</style>
-
-<style>
-
 </style>
 <sp-theme scale="medium" color="<?php esc_attr_e( $color_scheme ); ?>" style="
 <?php if ( ! empty( $accent_steps['600'] ) ): ?>
@@ -108,15 +105,25 @@ $accent_steps = $colors['accent_steps'] ?? [];
 			<?php endforeach; ?>
         </sp-tabs>
 
-        <div id="poststuff">
-            <div id="post-body" class="metabox-holder columns-2">
-                <div id="post-body-content">
-					<?php echo $this->section( 'content' ) ?>
+		<?php if ( $right ): ?>
+            <div id="poststuff">
+                <div id="post-body" class="metabox-holder columns-2">
+                    <div id="post-body-content">
+						<?php echo $this->section( 'content' ) ?>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="postbox-container-1" class="postbox-container">
-			<?php echo $this->section( 'right' ) ?>
-        </div>
+            <div id="postbox-container-1" class="postbox-container">
+				<?php echo $this->section( 'right' ) ?>
+            </div>
+		<?php else: ?>
+            <div id="poststuff">
+                <div id="post-body" class="metabox-holder columns-1">
+                    <div id="post-body-content">
+						<?php echo $this->section( 'content' ) ?>
+                    </div>
+                </div>
+            </div>
+		<?php endif; ?>
 </sp-theme>

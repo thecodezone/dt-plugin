@@ -51,6 +51,7 @@ $r->condition( 'backend', function ( Routes $r ) {
 				'show',
 			] );
 			$r->get( '?page=bible-plugin&tab=bible_brains_key', [ BibleBrainsFormController::class, 'add_key' ] );
+			$r->get( '?page=bible-plugin&tab=support', [ SupportController::class, 'show' ] );
 			$r->get( '?page=bible-plugin&tab=bible', [
 				BibleBrainsFormController::class,
 				'show',
