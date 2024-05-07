@@ -37,9 +37,18 @@ class FileSets {
 		return null;
 	}
 
+	/**
+	 * Resolves the fileset for the given bible, book, and fileset type.
+	 *
+	 * @param array $bible The array containing the bible data.
+	 * @param array $book The array containing the book data.
+	 * @param string $fileset_type The type of fileset to resolve.
+	 *
+	 * @return array|null The resolved fileset. Returns null if no fileset is found.
+	 */
 	public function resolve( array $bible, array $book, string $fileset_type ): array|null {
 		$fileset_group = $this->group_from_type( $bible, $fileset_type );
-		$filesets = $bible['filesets'][ $fileset_group ] ?? [];
+		$filesets      = $bible['filesets'][ $fileset_group ] ?? [];
 
 		return Arr::first( $filesets, function ( $fileset ) use ( $fileset_type, $book ) {
 			return $fileset['type'] === $fileset_type

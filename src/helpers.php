@@ -340,6 +340,13 @@ function set_plugin_option( $option, $value ): bool {
 	return $options->set( $option, $value );
 }
 
+/**
+ * Cast an array of strings to boolean values
+ *
+ * @param array $map The map containing values to be casted.
+ *
+ * @return array The map with boolean values casted.
+ */
 function cast_bool_values( $map ): array {
 	return array_map( function ( $value ) {
 		if ( $value === "true" ) {

@@ -17,7 +17,7 @@ class MediaTypes {
 	 * Properties include the label, fileset types, and group.
 	 */
 	private $data = [
-		'audio'       => [
+		'audio' => [
 			'key'           => 'audio',
 			'label'         => 'Audio',
 			'fileset_types' => [ 'audio', 'audio_drama' ],
@@ -29,7 +29,7 @@ class MediaTypes {
 //          'fileset_types' => [ 'video_stream' ],
 //          'group'         => 'dbp-vid'
 //      ],
-		'text'        => [
+		'text'  => [
 			'key'           => 'text',
 			'label'         => 'Text',
 			'fileset_types' => [ "text_format", "text_plain" ],
@@ -93,6 +93,13 @@ class MediaTypes {
 		return $result;
 	}
 
+	/**
+	 * Check if a given media type exists in the collection.
+	 *
+	 * @param string $media_type The media type to check for existence.
+	 *
+	 * @return bool True if the media type exists, false otherwise.
+	 */
 	public function exists( string $media_type ): bool {
 		return collect( $this->all() )
 			->contains( function ( $data, $value ) use ( $media_type ) {

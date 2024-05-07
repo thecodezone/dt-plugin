@@ -9,17 +9,17 @@ use DT_Magic_Url_Base;
 use function CodeZone\Bible\container;
 
 /**
- * Check if the current path is a magic link path.
+ * Class MagicLink
+ *
+ * Represents a middleware that checks the magic link before calling the next middleware.
  */
 class MagicLink implements Middleware {
 	protected DT_Magic_Url_Base $magic_link;
 
 	/**
-	 * Construct a new instance of the class.
+	 * Class constructor.
 	 *
-	 * @param DT_Magic_Url_Base|string $magic_link The magic link instance or the class name.
-	 *
-	 * @return void
+	 * @param string|object $magic_link The magic link or name of the magic link service.
 	 */
 	public function __construct( $magic_link ) {
 		if ( is_string( $magic_link ) ) {
@@ -28,6 +28,15 @@ class MagicLink implements Middleware {
 		$this->magic_link = $magic_link;
 	}
 
+	/**
+	 * Handle the request by checking the magic link and calling the next middleware.
+	 *
+	 * @param Request $request The HTTP request object.
+	 * @param Response $response The HTTP response object.
+	 * @param callable $next The next middleware closure.
+	 *
+	 * @return Response The modified HTTP response object.
+	 */
 	public function handle( Request $request, Response $response, callable $next ) {
 		if ( ! $this->magic_link || ! $this->magic_link->check_parts_match() ) {
 			$response->setStatusCode( 404 );

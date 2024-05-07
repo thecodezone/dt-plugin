@@ -2,7 +2,6 @@
 
 namespace CodeZone\Bible\Services;
 
-use CodeZone\Bible\Conditions\Plugin as PluginConditional;
 use CodeZone\Bible\Gettext\Loader\PoLoader;
 use CodeZone\Bible\Gettext\Translation;
 use CodeZone\Bible\Gettext\Translations as GettextTranslations;
@@ -20,6 +19,12 @@ use function CodeZone\Bible\collect;
  * This class provides methods for translation-related operations.
  */
 class Translations {
+	/**
+	 * @var array $custom_translation_contexts The array of custom translation contexts
+	 *
+	 * This array stores the custom translation contexts.
+	 * @see https://developer.wordpress.org/reference/functions/gettext_with_context/
+	 */
 	protected $custom_translation_contexts = [
 		'reader',
 		'scripture',
@@ -27,29 +32,55 @@ class Translations {
 	];
 
 
+	/**
+	 * Constructs a new instance of the class.
+	 *
+	 * Loads the plugin text domain for "bible-plugin" to enable translation support.
+	 * Registers the "gettext_with_context" and "plugin_locale" filters.
+	 */
 	public function __construct() {
 		load_plugin_textdomain( 'bible-plugin', false, 'bible-plugin/languages' );
 		add_filter( 'gettext_with_context', [ $this, 'gettext_with_context' ], 10, 4 );
 		add_filter( "plugin_locale", [ $this, 'plugin_locale' ], 10, 2 );
 	}
 
+	/**
+	 * Retrieves a collection of paths to language files.
+	 *
+	 * @return Collection The collection of language file paths.
+	 */
 	public function paths(): Collection {
 		return collect( glob( languages_path( '*.po' ) ) );
 	}
 
+	/**
+	 * Retrieves a collection of files.
+	 *
+	 * @return Collection The collection of files.
+	 */
 	public function files(): Collection {
 		return $this->paths()->map( function ( $file ) {
 			return ( new PoLoader() )->loadFile( $file );
 		} );
 	}
 
+	/**
+	 * Retrieves the languages from the files in the collection.
+	 *
+	 * @return Collection A collection of languages.
+	 */
 	public function languages(): Collection {
 		return $this->files()->map( function ( $file ) {
 			return Str::lower( $file->getLanguage() );
 		} )->push( 'en-us' )
-		   ->push( 'en' );
+		            ->push( 'en' );
 	}
 
+	/**
+	 * Retrieves the browser languages from the `Accept-Language` header in the HTTP request.
+	 *
+	 * @return Collection List of browser languages in descending order of priority.
+	 */
 	public function browser_languages(): Collection {
 		//phpcs:ignore
 		$language_string = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
@@ -63,8 +94,8 @@ class Translations {
 		$languages = [];
 		// Loop through each item of the array and split it into a separate array where index 0 is the language and index 1 is the priority
 		foreach ( $lang_parse as $lang ) {
-			$lang_parts = explode( ';', $lang );
-			$languages[$lang_parts[0]] = isset( $lang_parts[1] ) ? str_replace( 'q=', '', $lang_parts[1] ) : 1;
+			$lang_parts                  = explode( ';', $lang );
+			$languages[ $lang_parts[0] ] = isset( $lang_parts[1] ) ? str_replace( 'q=', '', $lang_parts[1] ) : 1;
 		}
 
 		// Sort the languages by priority
@@ -73,6 +104,13 @@ class Translations {
 		return collect( array_keys( $languages ) );
 	}
 
+	/**
+	 * Resolves the locale based on the browser language and supported languages.
+	 * If the browser language is supported, the converted language will be used.
+	 * Otherwise, the site's locale will be used.
+	 *
+	 * @return string The resolved locale.
+	 */
 	public function resolve_locale() {
 		$browser_languages = $this->browser_languages();
 
@@ -88,7 +126,7 @@ class Translations {
 			$converted_lang = Service::createFromW3C( $browser_lang )->toISO_639_1();
 
 			// If browser language is supported in plugin, use that locale
-			if ( $supported_languages->contains( Str::lower( $converted_lang ) ) || $supported_languages->contains( Str::lower( $browser_lang ) ) ){
+			if ( $supported_languages->contains( Str::lower( $converted_lang ) ) || $supported_languages->contains( Str::lower( $browser_lang ) ) ) {
 				return $converted_lang;
 			}
 		}
@@ -177,6 +215,11 @@ class Translations {
 		} )->unique()->values()->sort();
 	}
 
+	/**
+	 * Retrieves an array of options.
+	 *
+	 * @return array An array of options with each option having a 'value' and 'itemText' property.
+	 */
 	public function options(): array {
 		return $this->strings()->map( function ( $string ) {
 			return [

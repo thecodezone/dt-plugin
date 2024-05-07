@@ -4,6 +4,11 @@ namespace CodeZone\Bible\Conditions;
 
 use CodeZone\Bible\CodeZone\Router\Conditions\Condition;
 
+/**
+ * Class Frontend
+ *
+ * @implements Condition
+ */
 class Frontend implements Condition {
 
 	/**

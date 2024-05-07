@@ -7,6 +7,9 @@ use CodeZone\Bible\Illuminate\Http\Request;
 use CodeZone\Bible\Illuminate\Support\Str;
 use CodeZone\Bible\Plugin as Main;
 
+/**
+ * Represents a plugin condition.
+ */
 class Plugin implements Condition {
 
 	/**
