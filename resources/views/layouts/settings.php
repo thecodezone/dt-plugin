@@ -91,10 +91,11 @@ $accent_steps = $colors['accent_steps'] ?? [];
 
         <sp-tabs size="l" emphasized selected="<?php echo esc_attr( $tab ) ?>">
 			<?php foreach ( $nav as $index => $item ): ?>
+				<?php $link = ! empty( $item['href'] ) ? $item['href'] : admin_url( 'admin.php?page=bible-plugin&tab=' . $item['tab'] ) ?>
                 <sp-tab label="<?php echo esc_html( $item['label'] ) ?>"
-                        href="<?php echo esc_url( admin_url( 'admin.php?page=bible-plugin&tab=' . $item['tab'] ) ) ?>"
+                        href='<?php echo esc_url( $link ) ?>'
                         value="<?php echo esc_attr( $item['tab'] ) ?>"
-                        onclick="window.location.href = '<?php echo esc_url( admin_url( 'admin.php?page=bible-plugin&tab=' . $item['tab'] ) ) ?>'"
+                        onclick="window.location.href = '<?php echo esc_url( $link ); ?>';"
                 ></sp-tab>
 			<?php endforeach; ?>
         </sp-tabs>

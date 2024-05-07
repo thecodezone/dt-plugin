@@ -58,7 +58,8 @@ class AdminServiceProvider extends ServiceProvider {
 			];
 			$menu[] = [
 				'label' => __( 'Support', 'bible-plugin' ),
-				'tab'   => 'support'
+				'tab'   => 'support',
+				'href'  => 'https://support.thebibleplugin.com/'
 			];
 
 			return $menu;

@@ -56,7 +56,6 @@ $r->condition( 'backend', function ( Routes $r ) {
 				'show',
 			] );
 			$r->get( '?page=bible-plugin&tab=customization', [ CustomizationFomController::class, 'show' ] );
-			$r->get( '?page=bible-plugin&tab=support', [ SupportController::class, 'show' ] );
 		} );
 	} );
 } );
