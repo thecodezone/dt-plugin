@@ -31,6 +31,20 @@ class Scripture {
 	 */
 	public function __construct( private ScriptureService $scripture, private Assets $assets, private MediaTypes $media_types ) {
 		add_shortcode( 'tbp-scripture', [ $this, 'render' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+	}
+
+	/**
+	 * Enqueues the scripts and styles for the shortcode.
+	 *
+	 * @return void
+	 */
+	public function enqueue_scripts() {
+		if ( ! has_shortcode( get_the_content(), 'tbp-scripture' ) ) {
+			return;
+		}
+
+		$this->assets->wp_enqueue_scripts();
 	}
 
 	/**
@@ -44,8 +58,6 @@ class Scripture {
 	 * @throws BibleBrainsException
 	 */
 	public function render( $attributes ) {
-		$this->assets->enqueue();
-
 		if ( ! $attributes ) {
 			$attributes = [];
 		}
@@ -59,7 +71,7 @@ class Scripture {
 			"bible"        => "",
 		], cast_bool_values( $attributes ) );
 
-		$error = false;
+		$error  = false;
 		$result = [];
 
 		if ( ! $this->media_types->exists( $attributes['media'] ) ) {
@@ -67,26 +79,26 @@ class Scripture {
 		} else {
 			try {
 				$result = $this->scripture->by_reference( $attributes['reference'], [
-					'language'   => $attributes['language'],
-					'bible'      => $attributes['bible'],
+					'language' => $attributes['language'],
+					'bible'    => $attributes['bible'],
 				] ) ?? [];
 			} catch ( \Exception $e ) {
-				$error  = $e->getMessage();
+				$error = $e->getMessage();
 			}
 		}
 
 		if ( ! $error
 		     && (
-				 empty( $result['media'] )
-		        || empty( $result['media'][$attributes['media']] )
-		        || empty( $result['media'][$attributes['media']]['content'] )
-		        || empty( $result['media'][$attributes['media']]['fileset'] )
+			     empty( $result['media'] )
+			     || empty( $result['media'][ $attributes['media'] ] )
+			     || empty( $result['media'][ $attributes['media'] ]['content'] )
+			     || empty( $result['media'][ $attributes['media'] ]['fileset'] )
 		     )
 		) {
 			$error = _x( "No results found", "shortcode", "bible-plugin" );
 		}
 
-		$media = $result['media'][$attributes['media']] ?? [];
+		$media   = $result['media'][ $attributes['media'] ] ?? [];
 		$content = $media['content']['data'] ?? [];
 		$fileset = $media['fileset'] ?? [];
 

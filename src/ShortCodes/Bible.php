@@ -26,6 +26,20 @@ class Bible {
 	 */
 	public function __construct( private Assets $assets ) {
 		add_shortcode( 'tbp-bible', [ $this, 'render' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+	}
+
+	/**
+	 * Enqueues the scripts and styles for the shortcode.
+	 *
+	 * @return void
+	 */
+	public function enqueue_scripts() {
+		if ( ! has_shortcode( get_the_content(), 'tbp-bible' ) ) {
+			return;
+		}
+
+		$this->assets->wp_enqueue_scripts();
 	}
 
 	/**
@@ -36,8 +50,6 @@ class Bible {
 	 * @return string The rendered Bible shortcode view.
 	 */
 	public function render( $attributes ) {
-		$this->assets->enqueue();
-
 		if ( ! $attributes ) {
 			$attributes = [];
 		}
