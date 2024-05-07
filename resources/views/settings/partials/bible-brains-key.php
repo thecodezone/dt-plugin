@@ -73,8 +73,8 @@ use function CodeZone\Bible\route_url;
                 </div>
 
                 <sp-help-text size="s">
-                    <sp-link href="https://scripture.api.bible/docs">
-						<?php esc_html_e( "Here's how to get your key.", 'bible-plugin' ); ?>
+                    <sp-link href="https://4.dbt.io/api_key/request">
+						<?php esc_html_e( "Request a key.", 'bible-plugin' ); ?>
                     </sp-link>
                 </sp-help-text>
             </sp-field-group>

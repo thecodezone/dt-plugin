@@ -42,18 +42,18 @@ class BibleBrainsFormController {
 		}
 
 		//Languages
-		$languages             = get_plugin_option( 'languages' );
+		$languages = get_plugin_option( 'languages' );
 		if ( ! is_array( $languages ) ) {
 			$languages = [];
 		}
 
-		$fields = compact( 'bible_brains_key', 'languages' );
+		$fields             = compact( 'bible_brains_key', 'languages' );
 		$media_type_options = $media_type_service->options();
 
 		return view( "settings/bible-brains-form", [
-			'tab'                       => $tab,
-			'fields'                    => $fields,
-			'media_type_options'        => $media_type_options,
+			'tab'                => $tab,
+			'fields'             => $fields,
+			'media_type_options' => $media_type_options,
 		] );
 	}
 
@@ -92,7 +92,7 @@ class BibleBrainsFormController {
 	 */
 	public function submit( Request $request, Response $response, Bibles $bibles ) {
 		$errors = validate( $request->post(), [
-			'languages'   => 'required',
+			'languages' => 'required',
 		] );
 
 		if ( $errors ) {
@@ -137,6 +137,7 @@ class BibleBrainsFormController {
 		}
 
 		$key = $request->input( 'bible_brains_key' );
+
 		try {
 			$bibles->find( 'ENGESV', [ 'key' => $key, 'cache' => false ] );
 		} catch ( BibleBrainsException $e ) {
