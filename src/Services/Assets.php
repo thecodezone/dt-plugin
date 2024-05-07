@@ -112,8 +112,8 @@ class Assets {
 			[
 				'handle'    => 'bible-plugin',
 				'css-media' => 'all', // Optional.
-				'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
-				'in-footer' => true, // Optional. Defaults to false.
+				'css-only'  => false, // Optional.
+				'in-footer' => false, // Optional.
 			]
 		);
 
