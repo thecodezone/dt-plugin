@@ -11,6 +11,8 @@ use CodeZone\Bible\Providers\PluginServiceProvider;
  * Handle any setup and bootstrapping here.
  */
 class Plugin {
+	public const QUERY_VAR = 'bible-plugin';
+
 	/**
 	 * The route for the plugin's home page
 	 * @var string
@@ -64,11 +66,23 @@ class Plugin {
 		add_action( 'template_redirect', [ $this, 'template_redirect' ] );
 	}
 
+	/**
+	 * Activate the plugin.
+	 *
+	 * This method is a hook that is triggered when the plugin is activated.
+	 * It calls the `rewrite_rules()` method to add or modify rewrite rules
+	 * and then flushes the rewrite rules to update them.
+	 */
 	public function activation_hook() {
 		$this->rewrite_rules();
 		flush_rewrite_rules();
 	}
 
+	/**
+	 * Flush rewrite rules after deactivating the plugin.
+	 *
+	 * @return void
+	 */
 	public function deactivation_hook() {
 		flush_rewrite_rules();
 	}
@@ -79,10 +93,6 @@ class Plugin {
 	 */
 	public function wp_loaded(): void {
 		$this->provider->boot();
-	}
-
-	public function route_rewrite(): string {
-		return '^' . self::$home_route . '/(.+)/?';
 	}
 
 	/**
@@ -96,7 +106,14 @@ class Plugin {
 	 * @return void
 	 */
 	public function rewrite_rules(): void {
-		add_rewrite_rule( $this->route_rewrite(), 'index.php?bible-plugin=$matches[1]', 'top' );
+		add_rewrite_rule(
+			'^' . self::$home_route . '/?$',
+			'index.php?' . self::QUERY_VAR . '=/', 'top'
+		);
+		add_rewrite_rule(
+			'^' . self::$home_route . '/(.+)/?',
+			'index.php?' . self::QUERY_VAR . '=$matches[1]', 'top'
+		);
 	}
 
 	/**
@@ -107,7 +124,7 @@ class Plugin {
 	 * @return array
 	 */
 	public function query_vars( array $vars ): array {
-		$vars[] = 'bible-plugin';
+		$vars[] = self::QUERY_VAR;
 
 		return $vars;
 	}
@@ -119,10 +136,10 @@ class Plugin {
 	 * @throws \Exception
 	 */
 	public function template_redirect(): void {
-		if ( ! get_query_var( 'bible-plugin' ) ) {
+		if ( ! get_query_var( self::QUERY_VAR ) ) {
 			return;
 		}
-		
+
 		$response = apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
 			->run();
 

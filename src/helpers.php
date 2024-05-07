@@ -55,7 +55,7 @@ function has_route_rewrite(): bool {
 		return false;
 	}
 
-	return array_key_exists( plugin()->route_rewrite(), $wp_rewrite->rules );
+	return array_key_exists( 'index.php?' . plugin()::QUERY_VAR . '=$matches[1]', $wp_rewrite->rules );
 }
 
 /**
