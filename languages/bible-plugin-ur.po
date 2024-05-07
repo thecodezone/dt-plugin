@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-22 11:36-0500\n"
-"PO-Revision-Date: 2024-04-22 11:36-0500\n"
+"POT-Creation-Date: 2024-05-07 15:18-0500\n"
+"PO-Revision-Date: 2024-05-07 15:18-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ur\n"
@@ -42,7 +42,6 @@ msgstr "کاپی "
 #: resources/views/layouts/settings.php:55
 #: resources/views/layouts/settings.php:61
 #: resources/views/layouts/settings.php:69
-#: resources/views/settings/support.php:66
 #: src/Providers/AdminServiceProvider.php:32
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
@@ -115,127 +114,31 @@ msgstr "ترجمے"
 msgid "Enter a translation..."
 msgstr "ترجمہ درج کریں..."
 
-#: resources/views/settings/partials/bible-brains-key.php:18
+#: resources/views/settings/partials/bible-brains-key.php:21
 msgid "Bible Brains API Key verified."
 msgstr "بائبل کے دماغ اے پی آئی کلید کی تصدیق کی گئی۔"
 
-#: resources/views/settings/partials/bible-brains-key.php:37
+#: resources/views/settings/partials/bible-brains-key.php:40
 msgid "Bible Brain API Key"
 msgstr "بائبل دماغ اے پی آئی کلید"
 
-#: resources/views/settings/partials/bible-brains-key.php:46
+#: resources/views/settings/partials/bible-brains-key.php:49
 msgid "Enter key..."
 msgstr "کلید درج کریں..."
 
-#: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:59
 msgid "Validate"
 msgstr "توثیق"
 
-#: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:70
 msgid "Valid"
 msgstr "ثابت"
 
-#: resources/views/settings/partials/bible-brains-key.php:74
-msgid "Here's how to get your key."
-msgstr "یہاں آپ کی چابی حاصل کرنے کا طریقہ ہے."
-
-#: resources/views/settings/support.php:14
-msgid "FAQ"
-msgstr "سوالات"
-
-#: resources/views/settings/support.php:20
-msgid ""
-"If you encounter an error or bug, please report it to us at our GitHub by "
-"clicking the button below."
-msgstr ""
-"اگر آپ کو کسی غلطی یا بگ کا سامنا کرنا پڑتا ہے تو ، براہ کرم نیچے دیئے گئے "
-"بٹن پر کلک کرکے ہمارے گیٹ ہب پر اس کی اطلاع دیں۔"
-
-#: resources/views/settings/support.php:24
-msgid "Report an error"
-msgstr "ایک نقص کی رپورٹ کریں"
-
-#: resources/views/settings/support.php:31
-#: resources/views/settings/support.php:42
-msgid ""
-"Fill out the support form on our website. You can expect a response within "
-"48 business days."
-msgstr ""
-"ہماری ویب سائٹ پر سپورٹ فارم بھریں. آپ 48 کاروباری دنوں کے اندر جواب کی توقع "
-"کر سکتے ہیں."
-
-#: resources/views/settings/support.php:35
-msgid "Request support"
-msgstr "مدد کی درخواست کریں"
-
-#: resources/views/settings/support.php:46
-msgid "Request a feature"
-msgstr "ایک خصوصیت کی درخواست کریں"
-
-#: resources/views/settings/support.php:53
-msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
-"you contact them to request additional translations be added the Bible "
-"Reader."
-msgstr ""
-"بائبل پڑھنے والا بائبل کے دماغ کو ایمان کے ذریعہ سننے سے آتا ہے استعمال کرتا "
-"ہے۔ ہم مشورہ دیتے ہیں کہ آپ بائبل ریڈر میں اضافی ترجمے شامل کرنے کی درخواست "
-"کرنے کے لئے ان سے رابطہ کریں۔"
-
-#: resources/views/settings/support.php:57
-msgid ""
-"We rely on community support to add additional languages to the Bible Plugin "
-"UI. If you are a translator or you would like more information on how you "
-"can get involved, please contact us using the contact form on our website."
-msgstr ""
-"ہم بائبل پلگ ان یو آئی میں اضافی زبانوں کو شامل کرنے کے لئے کمیونٹی سپورٹ پر "
-"انحصار کرتے ہیں۔ اگر آپ مترجم ہیں یا آپ اس بارے میں مزید معلومات چاہتے ہیں "
-"کہ آپ کس طرح شامل ہوسکتے ہیں تو، براہ کرم ہماری ویب سائٹ پر رابطہ فارم کا "
-"استعمال کرتے ہوئے ہم سے رابطہ کریں."
-
-#: resources/views/settings/support.php:62
-msgid "Bible Brains"
-msgstr "بائبل کے دماغ"
-
-#: resources/views/settings/support.php:75
-#: resources/views/settings/support.php:88
-#: resources/views/settings/support.php:106
-msgid "About"
-msgstr "  ہمارے بارے میں"
-
-#: resources/views/settings/support.php:91
-#: resources/views/settings/support.php:113
-msgid "Give"
-msgstr "دینا"
-
-#: resources/views/settings/support.php:100
-msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
-"reader in WordPress sites with the Bible text accessed through available "
-"Bible APIs.  Localization and focus is a priority of this plugin with admin "
-"settings allowing for selection of language, Bible version, number of Bible "
-"versions available to the end-user, and design elements (fonts, colors).  "
-"Simplicity and ease of use for the end-user is the second top priority with "
-"the goal of an intuitive interface.  Initial development of the plugin will "
-"be based on the Bible Brain / DBPv4 API but with the intention of expanding "
-"to other Bible APIs in subsequent releases.  Additional information is "
-"available in the SRS document on GitHub.\n"
-msgstr ""
-"ورڈ کو ورڈپریس میں ڈالنا۔  بائبل پلگ ان ورڈپریس سائٹوں میں ایک سادہ بائبل "
-"ریڈر فراہم کرتا ہے جس میں بائبل کے متن تک دستیاب بائبل اے پی آئی کے ذریعہ "
-"رسائی حاصل ہوتی ہے۔  لوکلائزیشن اور فوکس اس پلگ ان کی ترجیح ہے جس میں ایڈمن "
-"سیٹنگز زبان ، بائبل ورژن ، آخری صارف کے لئے دستیاب بائبل ورژن کی تعداد ، اور "
-"ڈیزائن عناصر (فونٹ ، رنگ) کے انتخاب کی اجازت دیتی ہیں۔  اختتامی صارف کے لئے "
-"سادگی اور استعمال میں آسانی ایک بدیہی انٹرفیس کے مقصد کے ساتھ دوسری اولین "
-"ترجیح ہے۔  پلگ ان کی ابتدائی ترقی بائبل برین / ڈی بی پی وی 4 اے پی آئی پر "
-"مبنی ہوگی لیکن بعد میں ریلیز میں دیگر بائبل اے پی آئی میں توسیع کرنے کے "
-"ارادے سے۔  اضافی معلومات گیٹ ہب پر ایس آر ایس دستاویز میں دستیاب ہیں۔\n"
-
-#: resources/views/settings/support.php:109
-msgid "GitHub"
-msgstr "GitHub"
+#: resources/views/settings/partials/bible-brains-key.php:77
+msgid "request a key"
+msgstr "کلید کی درخواست کریں"
 
 #: resources/views/starter-magic-link/show.php:12
 msgid "Visit subpage"
@@ -251,7 +154,7 @@ msgid "Please complete the required fields."
 msgstr "براہ کرم مطلوبہ فیلڈز کو مکمل کریں۔"
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:157
+#: src/Controllers/Admin/BibleBrainsFormController.php:158
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "فارم جمع نہیں کرایا جا سکا۔"
@@ -260,11 +163,11 @@ msgstr "فارم جمع نہیں کرایا جا سکا۔"
 msgid "Please enter a key."
 msgstr "براہ کرم ایک کلید درج کریں۔"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
 msgid "Failed to validate key."
 msgstr "کلید کی توثیق کرنے میں ناکام رہا۔"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:147
 msgid "Invalid."
 msgstr "اپاہج."
 
@@ -276,11 +179,11 @@ msgstr "روشنی"
 msgid "Dark"
 msgstr "اندھیرا"
 
-#: src/Middleware/Nonce.php:22
+#: src/Middleware/Nonce.php:46
 msgid "Could not verify request."
 msgstr "درخواست کی تصدیق نہیں کی جا سکی۔"
 
-#: src/Plugin.php:115
+#: src/Plugin.php:147
 msgid "The page could not be found."
 msgstr "صفحہ تلاش نہیں کیا جا سکا۔"
 
@@ -397,12 +300,12 @@ msgstr "اسے پہلے سے طے شدہ زبان بنائیں۔"
 msgid "Bible Version"
 msgstr "بائبل ورژن"
 
-#: src/ShortCodes/Scripture.php:66
+#: src/ShortCodes/Scripture.php:78
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "غیر قانونی میڈیا کی قسم"
 
-#: src/ShortCodes/Scripture.php:86
+#: src/ShortCodes/Scripture.php:98
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "کوئی نتیجہ نہیں ملا"
@@ -420,9 +323,94 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 msgid "A bible plugin for WordPress."
 msgstr "ورڈپریس کے لئے بائبل پلگ ان."
 
+#. Author of the plugin/theme
+msgid "Reaching Asia"
+msgstr "ایشیا ء تک پہنچنا"
+
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgid "Here's how to get your key."
+#~ msgstr "یہاں آپ کی چابی حاصل کرنے کا طریقہ ہے."
+
+#~ msgid "FAQ"
+#~ msgstr "سوالات"
+
+#~ msgid ""
+#~ "If you encounter an error or bug, please report it to us at our GitHub by "
+#~ "clicking the button below."
+#~ msgstr ""
+#~ "اگر آپ کو کسی غلطی یا بگ کا سامنا کرنا پڑتا ہے تو ، براہ کرم نیچے دیئے "
+#~ "گئے بٹن پر کلک کرکے ہمارے گیٹ ہب پر اس کی اطلاع دیں۔"
+
+#~ msgid "Report an error"
+#~ msgstr "ایک نقص کی رپورٹ کریں"
+
+#~ msgid ""
+#~ "Fill out the support form on our website. You can expect a response "
+#~ "within 48 business days."
+#~ msgstr ""
+#~ "ہماری ویب سائٹ پر سپورٹ فارم بھریں. آپ 48 کاروباری دنوں کے اندر جواب کی "
+#~ "توقع کر سکتے ہیں."
+
+#~ msgid "Request support"
+#~ msgstr "مدد کی درخواست کریں"
+
+#~ msgid ""
+#~ "The bible reader uses Bible Brains by Faith Comes by Hearing. We "
+#~ "recommend you contact them to request additional translations be added "
+#~ "the Bible Reader."
+#~ msgstr ""
+#~ "بائبل پڑھنے والا بائبل کے دماغ کو ایمان کے ذریعہ سننے سے آتا ہے استعمال "
+#~ "کرتا ہے۔ ہم مشورہ دیتے ہیں کہ آپ بائبل ریڈر میں اضافی ترجمے شامل کرنے کی "
+#~ "درخواست کرنے کے لئے ان سے رابطہ کریں۔"
+
+#~ msgid ""
+#~ "We rely on community support to add additional languages to the Bible "
+#~ "Plugin UI. If you are a translator or you would like more information on "
+#~ "how you can get involved, please contact us using the contact form on our "
+#~ "website."
+#~ msgstr ""
+#~ "ہم بائبل پلگ ان یو آئی میں اضافی زبانوں کو شامل کرنے کے لئے کمیونٹی سپورٹ "
+#~ "پر انحصار کرتے ہیں۔ اگر آپ مترجم ہیں یا آپ اس بارے میں مزید معلومات چاہتے "
+#~ "ہیں کہ آپ کس طرح شامل ہوسکتے ہیں تو، براہ کرم ہماری ویب سائٹ پر رابطہ "
+#~ "فارم کا استعمال کرتے ہوئے ہم سے رابطہ کریں."
+
+#~ msgid "Bible Brains"
+#~ msgstr "بائبل کے دماغ"
+
+#~ msgid "About"
+#~ msgstr "  ہمارے بارے میں"
+
+#~ msgid "Give"
+#~ msgstr "دینا"
+
+#~ msgid ""
+#~ "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
+#~ "reader in WordPress sites with the Bible text accessed through available "
+#~ "Bible APIs.  Localization and focus is a priority of this plugin with "
+#~ "admin settings allowing for selection of language, Bible version, number "
+#~ "of Bible versions available to the end-user, and design elements (fonts, "
+#~ "colors).  Simplicity and ease of use for the end-user is the second top "
+#~ "priority with the goal of an intuitive interface.  Initial development of "
+#~ "the plugin will be based on the Bible Brain / DBPv4 API but with the "
+#~ "intention of expanding to other Bible APIs in subsequent releases.  "
+#~ "Additional information is available in the SRS document on GitHub.\n"
+#~ msgstr ""
+#~ "ورڈ کو ورڈپریس میں ڈالنا۔  بائبل پلگ ان ورڈپریس سائٹوں میں ایک سادہ بائبل "
+#~ "ریڈر فراہم کرتا ہے جس میں بائبل کے متن تک دستیاب بائبل اے پی آئی کے ذریعہ "
+#~ "رسائی حاصل ہوتی ہے۔  لوکلائزیشن اور فوکس اس پلگ ان کی ترجیح ہے جس میں "
+#~ "ایڈمن سیٹنگز زبان ، بائبل ورژن ، آخری صارف کے لئے دستیاب بائبل ورژن کی "
+#~ "تعداد ، اور ڈیزائن عناصر (فونٹ ، رنگ) کے انتخاب کی اجازت دیتی ہیں۔  "
+#~ "اختتامی صارف کے لئے سادگی اور استعمال میں آسانی ایک بدیہی انٹرفیس کے مقصد "
+#~ "کے ساتھ دوسری اولین ترجیح ہے۔  پلگ ان کی ابتدائی ترقی بائبل برین / ڈی بی "
+#~ "پی وی 4 اے پی آئی پر مبنی ہوگی لیکن بعد میں ریلیز میں دیگر بائبل اے پی "
+#~ "آئی میں توسیع کرنے کے ارادے سے۔  اضافی معلومات گیٹ ہب پر ایس آر ایس "
+#~ "دستاویز میں دستیاب ہیں۔\n"
+
+#~ msgid "GitHub"
+#~ msgstr "GitHub"
 
 #~ msgctxt "scripture"
 #~ msgid "Bible"

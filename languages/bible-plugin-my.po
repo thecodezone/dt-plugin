@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-22 11:35-0500\n"
-"PO-Revision-Date: 2024-04-22 11:35-0500\n"
+"POT-Creation-Date: 2024-05-07 15:17-0500\n"
+"PO-Revision-Date: 2024-05-07 15:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: my\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;"
+"esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -39,7 +39,7 @@ msgstr "မူဝါဒ "
 
 #. Plugin Name of the plugin/theme
 #: resources/views/layouts/settings.php:55 resources/views/layouts/settings.php:61 resources/views/layouts/settings.php:69
-#: resources/views/settings/support.php:66 src/Providers/AdminServiceProvider.php:32 src/Providers/AdminServiceProvider.php:33
+#: src/Providers/AdminServiceProvider.php:32 src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43 src/Providers/AdminServiceProvider.php:44
 msgid "The Bible Plugin"
 msgstr "သမ္မာကျမ်းစာ ပလက်ဂျင်း"
@@ -101,101 +101,29 @@ msgstr "ဘာသာပြန်ကျမ်းများ"
 msgid "Enter a translation..."
 msgstr "ဘာသာပြန်ကျမ်းထဲ ဝင်ပါ......"
 
-#: resources/views/settings/partials/bible-brains-key.php:18
+#: resources/views/settings/partials/bible-brains-key.php:21
 msgid "Bible Brains API Key verified."
 msgstr "သမ္မာကျမ်းစာ ဦးနှောက် API Key အတည်ပြုခဲ့သည်။"
 
-#: resources/views/settings/partials/bible-brains-key.php:37
+#: resources/views/settings/partials/bible-brains-key.php:40
 msgid "Bible Brain API Key"
 msgstr "သမ္မာကျမ်းစာ ဦးနှောက် API သော့"
 
-#: resources/views/settings/partials/bible-brains-key.php:46
+#: resources/views/settings/partials/bible-brains-key.php:49
 msgid "Enter key..."
 msgstr "သော့ထဲထည့်ပါ......"
 
-#: resources/views/settings/partials/bible-brains-key.php:53 resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:56 resources/views/settings/partials/bible-brains-key.php:59
 msgid "Validate"
 msgstr "အတည်ပြုသည်"
 
-#: resources/views/settings/partials/bible-brains-key.php:64 resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:67 resources/views/settings/partials/bible-brains-key.php:70
 msgid "Valid"
 msgstr "၁၂ ။"
 
-#: resources/views/settings/partials/bible-brains-key.php:74
-msgid "Here's how to get your key."
-msgstr "ဒီမှာ ခင်ဗျားရဲ့ သော့ကို ဘယ်လိုရနိုင်မလဲဆိုတာပါ။"
-
-#: resources/views/settings/support.php:14
-msgid "FAQ"
-msgstr "မကြာခဏမေးလေ့ရှိသောမေးခွန်းများ"
-
-#: resources/views/settings/support.php:20
-msgid "If you encounter an error or bug, please report it to us at our GitHub by clicking the button below."
-msgstr "အမှား ဒါမှမဟုတ် ပိုးမွှားတစ်ကောင်နဲ့ ရင်ဆိုင်ရမယ်ဆိုရင် အောက်မှာဖော်ပြထားတဲ့ ခလုတ်ကိုနှိပ်ပြီး ကျွန်တော်တို့ရဲ့ ဂစ်ဟပ်မှာ သတင်းပို့ပေးပါ။"
-
-#: resources/views/settings/support.php:24
-msgid "Report an error"
-msgstr "အမှားတစ်ခုကို မှတ်တမ်းတင်ပါ"
-
-#: resources/views/settings/support.php:31 resources/views/settings/support.php:42
-msgid "Fill out the support form on our website. You can expect a response within 48 business days."
-msgstr "ကျွန်တော်တို့ရဲ့ ဝက်ဘ်ဆိုက်မှာ ထောက်ပံ့မှု ပုံစံကို ဖြည့်ပါ။ စီးပွားရေးနေ့ ၄၈ ရက်အတွင်း တုံ့ပြန်မှုတစ်ခုကို သင်မျှော်လင့်နိုင်ပါတယ်။"
-
-#: resources/views/settings/support.php:35
-msgid "Request support"
-msgstr "ထောက်ပံ့ရန် တောင်းဆိုချက်"
-
-#: resources/views/settings/support.php:46
-msgid "Request a feature"
-msgstr "အသွင်အပြင်တစ်ခု တောင်းဆိုပါ"
-
-#: resources/views/settings/support.php:53
-msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them to request additional translations be "
-"added the Bible Reader."
-msgstr ""
-"သမ္မာကျမ်းစာဖတ်ရှုသူက သမ္မာကျမ်းစာဦးနှောက်ကို ကြားနာခြင်းအားဖြင့် ယုံကြည်ခြင်းဖြင့် သမ္မာကျမ်းစာဦးနှောက်ကို အသုံးပြုသည်။ နောက်ထပ်ဘာသာပြန်ကျမ်းတွေ ထပ်ဖြည့်ပေးဖို့ သူတို့ကို ဆက်သွယ်ဖို့ "
-"ကျွန်တော်တို့ အကြံပြုပါတယ်။"
-
-#: resources/views/settings/support.php:57
-msgid ""
-"We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would like more "
-"information on how you can get involved, please contact us using the contact form on our website."
-msgstr ""
-"ကျမ်းစာ ပလက်ဂျင်း ယူအိုင်မှာ နောက်ထပ်ဘာသာစကားတွေ ထပ်ဖြည့်စွက်ဖို့ ရပ်ရွာထောက်ပံ့မှုကို အားကိုးကြတယ်။ အကယ်၍ သင်သည် ဘာသာပြန်သူတစ်ဦးဖြစ်မည်ဆိုလျှင် သို့မဟုတ် မည်သို့ပါဝင်နိုင်ပုံနှင့်စပ်လျဉ်း၍ "
-"ပိုမိုသိလိုပါက ကျွန်ုပ်တို့၏ ဝက်ဘ်ဆိုက်ပေါ်ရှိ ဆက်သွယ်ရေးပုံစံကို အသုံးပြု၍ ဆက်သွယ်ပါ။"
-
-#: resources/views/settings/support.php:62
-msgid "Bible Brains"
-msgstr "သမ္မာကျမ်းစာဦးနှောက်"
-
-#: resources/views/settings/support.php:75 resources/views/settings/support.php:88 resources/views/settings/support.php:106
-msgid "About"
-msgstr "အကွောငျး"
-
-#: resources/views/settings/support.php:91 resources/views/settings/support.php:113
-msgid "Give"
-msgstr "ပေးကမ်းခြင်း"
-
-#: resources/views/settings/support.php:100
-msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible text accessed "
-"through available Bible APIs.  Localization and focus is a priority of this plugin with admin settings allowing for selection of "
-"language, Bible version, number of Bible versions available to the end-user, and design elements (fonts, colors).  Simplicity and "
-"ease of use for the end-user is the second top priority with the goal of an intuitive interface.  Initial development of the "
-"plugin will be based on the Bible Brain / DBPv4 API but with the intention of expanding to other Bible APIs in subsequent "
-"releases.  Additional information is available in the SRS document on GitHub.\n"
-msgstr ""
-"နှုတ်ကဝေါ်ပရက်စ်တွင် နှုတ်ကပါဝင်ခြင်း။  ဝေါ့ပရက်စ်ဆိုက်တွေမှာ ရိုးရှင်းတဲ့ ကျမ်းစာဖတ်ရှုသူတစ်ယောက်ကို သမ္မာကျမ်းစာအာပီအိုင်အက်စ်ကနေ ရရှိနိုင်ပါတယ်။  ပြန်လည်သုံးစွဲခြင်းနှင့် အာရုံစိုက်ခြင်းတို့သည် "
-"ဘာသာစကားရွေးချယ်မှု၊ ကျမ်းစာဘာသာပြန်ကျမ်း၊ နောက်ဆုံးအသုံးပြုသူအတွက် ရရှိနိုင်သည့် ကျမ်းစာဘာသာပြန်ကျမ်းအရေအတွက်နှင့် ဒီဇိုင်းဒြပ်စင်များ (ဖောင့်၊ အရောင်များ) ရွေးချယ်ခွင့်ပြုသည့် "
-"စီမံခန့်ခွဲမှုများဖြင့် ဤပလက်ဂျင်း၏ ဦးစားပေးဖြစ်သည်။  နောက်ဆုံးအသုံးပြုသူအတွက် ရိုးရှင်းမှုနှင့် အလွယ်တကူအသုံးပြုခြင်းတို့သည် စူးစမ်းသိမြင်နိုင်သော အင်တာဖေ့စ်၏ ရည်မှန်းချက်ဖြင့် "
-"ဒုတိယအမြင့်ဆုံးဦးစားပေးအရာဖြစ်သည်။  ပလော်ဂျင် ၏ ကနဦး ဖွံ့ဖြိုး တိုးတက် မှု သည် သမ္မာကျမ်း စာ ဦးနှောက် / ဒီဘီပီ၄ အေပီအိုင် ပေါ် အခြေခံ လိမ့်မည် ဖြစ် သော်လည်း နောက်ဆက်တွဲ ထုတ် လွှင့် "
-"မှု များ တွင် အခြား အေပီအိုင်အက်စ် သို့ တိုး ချဲ့ ရန် ရည်ရွယ် ချက် နှင့်အတူ ဖြစ် ပါ လိမ့်မည် ။  နောက်ထပ် သတင်း အချက်အလက် များ ကို ဂစ်ဟပ် တွင် အက်စ်အာအက်စ် စာရွက်စာတမ်း တွင် ရရှိ နိုင် "
-"ပါ သည် ။\n"
-
-#: resources/views/settings/support.php:109
-msgid "GitHub"
-msgstr "ဂိသ်ဟပ်"
+#: resources/views/settings/partials/bible-brains-key.php:77
+msgid "request a key"
+msgstr "သော့တစ်ချက် တောင်းဆိုပါ"
 
 #: resources/views/starter-magic-link/show.php:12
 msgid "Visit subpage"
@@ -209,7 +137,7 @@ msgstr "အိမ်သို့ လည်ပတ်ရန် လည်"
 msgid "Please complete the required fields."
 msgstr "ကျေးဇူးပြု၍ လိုအပ်သောလယ်ကွင်းများကို ပြီးအောင်လုပ်ပါ။"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:111 src/Controllers/Admin/BibleBrainsFormController.php:157
+#: src/Controllers/Admin/BibleBrainsFormController.php:111 src/Controllers/Admin/BibleBrainsFormController.php:158
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "ပုံစံကို တင်သွင်းလို့မရဘူး။"
@@ -218,11 +146,11 @@ msgstr "ပုံစံကို တင်သွင်းလို့မရဘ�
 msgid "Please enter a key."
 msgstr "ကျေးဇူးပြု၍ သော့တစ်ချက်ကို ဝင်ကြည့်ပါ။"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
 msgid "Failed to validate key."
 msgstr "သော့ချက်ကို အကဲဖြတ်ရန် ပျက်ကွက်ခဲ့သည်။"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:147
 msgid "Invalid."
 msgstr "၁၉ ။"
 
@@ -234,11 +162,11 @@ msgstr "အလင်းရောင်"
 msgid "Dark"
 msgstr "အမှောင်"
 
-#: src/Middleware/Nonce.php:22
+#: src/Middleware/Nonce.php:46
 msgid "Could not verify request."
 msgstr "တောင်းဆိုချက်ကို အတည်မပြုနိုင်ပါ။"
 
-#: src/Plugin.php:115
+#: src/Plugin.php:147
 msgid "The page could not be found."
 msgstr "စာမျက်နှာကို မတွေ့ရပါ။"
 
@@ -352,12 +280,12 @@ msgstr "ဒါကို စံထားတဲ့ဘာသာစကား ဖြ�
 msgid "Bible Version"
 msgstr "သမ္မာကျမ်း စာ ဘာသာ ပြန် ကျမ်း"
 
-#: src/ShortCodes/Scripture.php:66
+#: src/ShortCodes/Scripture.php:78
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "မမှန်ကန်တဲ့ မီဒီယာ အမျိုးအစား"
 
-#: src/ShortCodes/Scripture.php:86
+#: src/ShortCodes/Scripture.php:98
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "မည်သည့်ရလဒ်ကိုမျှ မတွေ့ရ"
@@ -375,9 +303,73 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 msgid "A bible plugin for WordPress."
 msgstr "WordPress အတွက် ကျမ်းစာ ပလက်ဂျက်။"
 
+#. Author of the plugin/theme
+msgid "Reaching Asia"
+msgstr "အာရှတိုက်သို့ ရောက်ရှိ"
+
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgid "Here's how to get your key."
+#~ msgstr "ဒီမှာ ခင်ဗျားရဲ့ သော့ကို ဘယ်လိုရနိုင်မလဲဆိုတာပါ။"
+
+#~ msgid "FAQ"
+#~ msgstr "မကြာခဏမေးလေ့ရှိသောမေးခွန်းများ"
+
+#~ msgid "If you encounter an error or bug, please report it to us at our GitHub by clicking the button below."
+#~ msgstr "အမှား ဒါမှမဟုတ် ပိုးမွှားတစ်ကောင်နဲ့ ရင်ဆိုင်ရမယ်ဆိုရင် အောက်မှာဖော်ပြထားတဲ့ ခလုတ်ကိုနှိပ်ပြီး ကျွန်တော်တို့ရဲ့ ဂစ်ဟပ်မှာ သတင်းပို့ပေးပါ။"
+
+#~ msgid "Report an error"
+#~ msgstr "အမှားတစ်ခုကို မှတ်တမ်းတင်ပါ"
+
+#~ msgid "Fill out the support form on our website. You can expect a response within 48 business days."
+#~ msgstr "ကျွန်တော်တို့ရဲ့ ဝက်ဘ်ဆိုက်မှာ ထောက်ပံ့မှု ပုံစံကို ဖြည့်ပါ။ စီးပွားရေးနေ့ ၄၈ ရက်အတွင်း တုံ့ပြန်မှုတစ်ခုကို သင်မျှော်လင့်နိုင်ပါတယ်။"
+
+#~ msgid "Request support"
+#~ msgstr "ထောက်ပံ့ရန် တောင်းဆိုချက်"
+
+#~ msgid ""
+#~ "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them to request additional "
+#~ "translations be added the Bible Reader."
+#~ msgstr ""
+#~ "သမ္မာကျမ်းစာဖတ်ရှုသူက သမ္မာကျမ်းစာဦးနှောက်ကို ကြားနာခြင်းအားဖြင့် ယုံကြည်ခြင်းဖြင့် သမ္မာကျမ်းစာဦးနှောက်ကို အသုံးပြုသည်။ နောက်ထပ်ဘာသာပြန်ကျမ်းတွေ "
+#~ "ထပ်ဖြည့်ပေးဖို့ သူတို့ကို ဆက်သွယ်ဖို့ ကျွန်တော်တို့ အကြံပြုပါတယ်။"
+
+#~ msgid ""
+#~ "We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would "
+#~ "like more information on how you can get involved, please contact us using the contact form on our website."
+#~ msgstr ""
+#~ "ကျမ်းစာ ပလက်ဂျင်း ယူအိုင်မှာ နောက်ထပ်ဘာသာစကားတွေ ထပ်ဖြည့်စွက်ဖို့ ရပ်ရွာထောက်ပံ့မှုကို အားကိုးကြတယ်။ အကယ်၍ သင်သည် ဘာသာပြန်သူတစ်ဦးဖြစ်မည်ဆိုလျှင် သို့မဟုတ် "
+#~ "မည်သို့ပါဝင်နိုင်ပုံနှင့်စပ်လျဉ်း၍ ပိုမိုသိလိုပါက ကျွန်ုပ်တို့၏ ဝက်ဘ်ဆိုက်ပေါ်ရှိ ဆက်သွယ်ရေးပုံစံကို အသုံးပြု၍ ဆက်သွယ်ပါ။"
+
+#~ msgid "Bible Brains"
+#~ msgstr "သမ္မာကျမ်းစာဦးနှောက်"
+
+#~ msgid "About"
+#~ msgstr "အကွောငျး"
+
+#~ msgid "Give"
+#~ msgstr "ပေးကမ်းခြင်း"
+
+#~ msgid ""
+#~ "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible "
+#~ "text accessed through available Bible APIs.  Localization and focus is a priority of this plugin with admin settings "
+#~ "allowing for selection of language, Bible version, number of Bible versions available to the end-user, and design "
+#~ "elements (fonts, colors).  Simplicity and ease of use for the end-user is the second top priority with the goal of an "
+#~ "intuitive interface.  Initial development of the plugin will be based on the Bible Brain / DBPv4 API but with the "
+#~ "intention of expanding to other Bible APIs in subsequent releases.  Additional information is available in the SRS "
+#~ "document on GitHub.\n"
+#~ msgstr ""
+#~ "နှုတ်ကဝေါ်ပရက်စ်တွင် နှုတ်ကပါဝင်ခြင်း။  ဝေါ့ပရက်စ်ဆိုက်တွေမှာ ရိုးရှင်းတဲ့ ကျမ်းစာဖတ်ရှုသူတစ်ယောက်ကို သမ္မာကျမ်းစာအာပီအိုင်အက်စ်ကနေ ရရှိနိုင်ပါတယ်။  ပြန်လည်သုံးစွဲခြင်းနှင့် "
+#~ "အာရုံစိုက်ခြင်းတို့သည် ဘာသာစကားရွေးချယ်မှု၊ ကျမ်းစာဘာသာပြန်ကျမ်း၊ နောက်ဆုံးအသုံးပြုသူအတွက် ရရှိနိုင်သည့် ကျမ်းစာဘာသာပြန်ကျမ်းအရေအတွက်နှင့် ဒီဇိုင်းဒြပ်စင်များ "
+#~ "(ဖောင့်၊ အရောင်များ) ရွေးချယ်ခွင့်ပြုသည့် စီမံခန့်ခွဲမှုများဖြင့် ဤပလက်ဂျင်း၏ ဦးစားပေးဖြစ်သည်။  နောက်ဆုံးအသုံးပြုသူအတွက် ရိုးရှင်းမှုနှင့် အလွယ်တကူအသုံးပြုခြင်းတို့သည် "
+#~ "စူးစမ်းသိမြင်နိုင်သော အင်တာဖေ့စ်၏ ရည်မှန်းချက်ဖြင့် ဒုတိယအမြင့်ဆုံးဦးစားပေးအရာဖြစ်သည်။  ပလော်ဂျင် ၏ ကနဦး ဖွံ့ဖြိုး တိုးတက် မှု သည် သမ္မာကျမ်း စာ ဦးနှောက် / "
+#~ "ဒီဘီပီ၄ အေပီအိုင် ပေါ် အခြေခံ လိမ့်မည် ဖြစ် သော်လည်း နောက်ဆက်တွဲ ထုတ် လွှင့် မှု များ တွင် အခြား အေပီအိုင်အက်စ် သို့ တိုး ချဲ့ ရန် ရည်ရွယ် ချက် နှင့်အတူ ဖြစ် ပါ လိမ့်မည် ။  "
+#~ "နောက်ထပ် သတင်း အချက်အလက် များ ကို ဂစ်ဟပ် တွင် အက်စ်အာအက်စ် စာရွက်စာတမ်း တွင် ရရှိ နိုင် ပါ သည် ။\n"
+
+#~ msgid "GitHub"
+#~ msgstr "ဂိသ်ဟပ်"
 
 #~ msgctxt "scripture"
 #~ msgid "Bible"

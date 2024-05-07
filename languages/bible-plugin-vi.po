@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-22 11:36-0500\n"
-"PO-Revision-Date: 2024-04-22 11:37-0500\n"
+"POT-Creation-Date: 2024-05-07 15:18-0500\n"
+"PO-Revision-Date: 2024-05-07 15:19-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: vi\n"
@@ -42,7 +42,6 @@ msgstr "Bản quyền "
 #: resources/views/layouts/settings.php:55
 #: resources/views/layouts/settings.php:61
 #: resources/views/layouts/settings.php:69
-#: resources/views/settings/support.php:66
 #: src/Providers/AdminServiceProvider.php:32
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
@@ -114,128 +113,31 @@ msgstr "Bản dịch"
 msgid "Enter a translation..."
 msgstr "Nhập bản dịch..."
 
-#: resources/views/settings/partials/bible-brains-key.php:18
+#: resources/views/settings/partials/bible-brains-key.php:21
 msgid "Bible Brains API Key verified."
 msgstr "Khóa API của Bộ não Kinh thánh đã được xác minh."
 
-#: resources/views/settings/partials/bible-brains-key.php:37
+#: resources/views/settings/partials/bible-brains-key.php:40
 msgid "Bible Brain API Key"
 msgstr "Khóa API não Kinh thánh"
 
-#: resources/views/settings/partials/bible-brains-key.php:46
+#: resources/views/settings/partials/bible-brains-key.php:49
 msgid "Enter key..."
 msgstr "Nhập khóa..."
 
-#: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:59
 msgid "Validate"
 msgstr "Xác nhận"
 
-#: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:70
 msgid "Valid"
 msgstr "Hợp lệ"
 
-#: resources/views/settings/partials/bible-brains-key.php:74
-msgid "Here's how to get your key."
-msgstr "Đây là cách lấy chìa khóa của bạn."
-
-#: resources/views/settings/support.php:14
-msgid "FAQ"
-msgstr "Câu hỏi thường gặp"
-
-#: resources/views/settings/support.php:20
-msgid ""
-"If you encounter an error or bug, please report it to us at our GitHub by "
-"clicking the button below."
-msgstr ""
-"Nếu bạn gặp lỗi hoặc lỗi, vui lòng báo cáo cho chúng tôi tại GitHub của "
-"chúng tôi bằng cách nhấp vào nút bên dưới."
-
-#: resources/views/settings/support.php:24
-msgid "Report an error"
-msgstr "Báo cáo lỗi"
-
-#: resources/views/settings/support.php:31
-#: resources/views/settings/support.php:42
-msgid ""
-"Fill out the support form on our website. You can expect a response within "
-"48 business days."
-msgstr ""
-"Điền vào mẫu hỗ trợ trên trang web của chúng tôi. Bạn có thể nhận được phản "
-"hồi trong vòng 48 ngày làm việc."
-
-#: resources/views/settings/support.php:35
-msgid "Request support"
-msgstr "Yêu cầu hỗ trợ"
-
-#: resources/views/settings/support.php:46
-msgid "Request a feature"
-msgstr "Yêu cầu một tính năng"
-
-#: resources/views/settings/support.php:53
-msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
-"you contact them to request additional translations be added the Bible "
-"Reader."
-msgstr ""
-"Người đọc Kinh Thánh sử dụng Bộ não Kinh Thánh bởi Đức tin đến bằng cách "
-"nghe. Chúng tôi khuyên bạn nên liên hệ với họ để yêu cầu thêm bản dịch được "
-"thêm vào Trình đọc Kinh thánh."
-
-#: resources/views/settings/support.php:57
-msgid ""
-"We rely on community support to add additional languages to the Bible Plugin "
-"UI. If you are a translator or you would like more information on how you "
-"can get involved, please contact us using the contact form on our website."
-msgstr ""
-"Chúng tôi dựa vào sự hỗ trợ của cộng đồng để thêm các ngôn ngữ bổ sung vào "
-"giao diện người dùng Plugin Kinh thánh. Nếu bạn là dịch giả hoặc bạn muốn "
-"biết thêm thông tin về cách bạn có thể tham gia, vui lòng liên hệ với chúng "
-"tôi bằng cách sử dụng biểu mẫu liên hệ trên trang web của chúng tôi."
-
-#: resources/views/settings/support.php:62
-msgid "Bible Brains"
-msgstr "Bộ não Kinh Thánh"
-
-#: resources/views/settings/support.php:75
-#: resources/views/settings/support.php:88
-#: resources/views/settings/support.php:106
-msgid "About"
-msgstr "Giới thiệu"
-
-#: resources/views/settings/support.php:91
-#: resources/views/settings/support.php:113
-msgid "Give"
-msgstr "Cho"
-
-#: resources/views/settings/support.php:100
-msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
-"reader in WordPress sites with the Bible text accessed through available "
-"Bible APIs.  Localization and focus is a priority of this plugin with admin "
-"settings allowing for selection of language, Bible version, number of Bible "
-"versions available to the end-user, and design elements (fonts, colors).  "
-"Simplicity and ease of use for the end-user is the second top priority with "
-"the goal of an intuitive interface.  Initial development of the plugin will "
-"be based on the Bible Brain / DBPv4 API but with the intention of expanding "
-"to other Bible APIs in subsequent releases.  Additional information is "
-"available in the SRS document on GitHub.\n"
-msgstr ""
-"Đặt Word trong WordPress.  Plugin Kinh Thánh cung cấp một trình đọc Kinh "
-"Thánh đơn giản trong các trang web WordPress với văn bản Kinh Thánh được "
-"truy cập thông qua các API Kinh Thánh có sẵn.  Bản địa hóa và tập trung là "
-"ưu tiên của plugin này với cài đặt quản trị cho phép lựa chọn ngôn ngữ, "
-"phiên bản Kinh thánh, số lượng phiên bản Kinh Thánh có sẵn cho người dùng "
-"cuối và các yếu tố thiết kế (phông chữ, màu sắc).  Đơn giản và dễ sử dụng "
-"cho người dùng cuối là ưu tiên hàng đầu thứ hai với mục tiêu giao diện trực "
-"quan.  Sự phát triển ban đầu của plugin sẽ dựa trên API Bible Brain / DBPv4 "
-"nhưng với ý định mở rộng sang các API Kinh thánh khác trong các bản phát "
-"hành tiếp theo.  Thông tin bổ sung có sẵn trong tài liệu SRS trên GitHub.\n"
-
-#: resources/views/settings/support.php:109
-msgid "GitHub"
-msgstr "Github"
+#: resources/views/settings/partials/bible-brains-key.php:77
+msgid "request a key"
+msgstr "Yêu cầu khóa"
 
 #: resources/views/starter-magic-link/show.php:12
 msgid "Visit subpage"
@@ -251,7 +153,7 @@ msgid "Please complete the required fields."
 msgstr "Vui lòng điền vào các trường bắt buộc."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:157
+#: src/Controllers/Admin/BibleBrainsFormController.php:158
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "Không thể gửi biểu mẫu."
@@ -260,11 +162,11 @@ msgstr "Không thể gửi biểu mẫu."
 msgid "Please enter a key."
 msgstr "Vui lòng nhập khóa."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
 msgid "Failed to validate key."
 msgstr "Không thể xác thực khóa."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:147
 msgid "Invalid."
 msgstr "Không hợp lệ."
 
@@ -276,11 +178,11 @@ msgstr "Sáng"
 msgid "Dark"
 msgstr "Tối"
 
-#: src/Middleware/Nonce.php:22
+#: src/Middleware/Nonce.php:46
 msgid "Could not verify request."
 msgstr "Không thể xác minh yêu cầu."
 
-#: src/Plugin.php:115
+#: src/Plugin.php:147
 msgid "The page could not be found."
 msgstr "Không thể tìm thấy trang."
 
@@ -397,12 +299,12 @@ msgstr "Đặt ngôn ngữ này làm ngôn ngữ mặc định."
 msgid "Bible Version"
 msgstr "Phiên bản Kinh Thánh"
 
-#: src/ShortCodes/Scripture.php:66
+#: src/ShortCodes/Scripture.php:78
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "Loại phương tiện không hợp lệ"
 
-#: src/ShortCodes/Scripture.php:86
+#: src/ShortCodes/Scripture.php:98
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "Không tìm thấy kết quả"
@@ -420,9 +322,96 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 msgid "A bible plugin for WordPress."
 msgstr "Một plugin kinh thánh cho WordPress."
 
+#. Author of the plugin/theme
+msgid "Reaching Asia"
+msgstr "Tiếp cận châu Á"
+
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgid "Here's how to get your key."
+#~ msgstr "Đây là cách lấy chìa khóa của bạn."
+
+#~ msgid "FAQ"
+#~ msgstr "Câu hỏi thường gặp"
+
+#~ msgid ""
+#~ "If you encounter an error or bug, please report it to us at our GitHub by "
+#~ "clicking the button below."
+#~ msgstr ""
+#~ "Nếu bạn gặp lỗi hoặc lỗi, vui lòng báo cáo cho chúng tôi tại GitHub của "
+#~ "chúng tôi bằng cách nhấp vào nút bên dưới."
+
+#~ msgid "Report an error"
+#~ msgstr "Báo cáo lỗi"
+
+#~ msgid ""
+#~ "Fill out the support form on our website. You can expect a response "
+#~ "within 48 business days."
+#~ msgstr ""
+#~ "Điền vào mẫu hỗ trợ trên trang web của chúng tôi. Bạn có thể nhận được "
+#~ "phản hồi trong vòng 48 ngày làm việc."
+
+#~ msgid "Request support"
+#~ msgstr "Yêu cầu hỗ trợ"
+
+#~ msgid ""
+#~ "The bible reader uses Bible Brains by Faith Comes by Hearing. We "
+#~ "recommend you contact them to request additional translations be added "
+#~ "the Bible Reader."
+#~ msgstr ""
+#~ "Người đọc Kinh Thánh sử dụng Bộ não Kinh Thánh bởi Đức tin đến bằng cách "
+#~ "nghe. Chúng tôi khuyên bạn nên liên hệ với họ để yêu cầu thêm bản dịch "
+#~ "được thêm vào Trình đọc Kinh thánh."
+
+#~ msgid ""
+#~ "We rely on community support to add additional languages to the Bible "
+#~ "Plugin UI. If you are a translator or you would like more information on "
+#~ "how you can get involved, please contact us using the contact form on our "
+#~ "website."
+#~ msgstr ""
+#~ "Chúng tôi dựa vào sự hỗ trợ của cộng đồng để thêm các ngôn ngữ bổ sung "
+#~ "vào giao diện người dùng Plugin Kinh thánh. Nếu bạn là dịch giả hoặc bạn "
+#~ "muốn biết thêm thông tin về cách bạn có thể tham gia, vui lòng liên hệ "
+#~ "với chúng tôi bằng cách sử dụng biểu mẫu liên hệ trên trang web của chúng "
+#~ "tôi."
+
+#~ msgid "Bible Brains"
+#~ msgstr "Bộ não Kinh Thánh"
+
+#~ msgid "About"
+#~ msgstr "Giới thiệu"
+
+#~ msgid "Give"
+#~ msgstr "Cho"
+
+#~ msgid ""
+#~ "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
+#~ "reader in WordPress sites with the Bible text accessed through available "
+#~ "Bible APIs.  Localization and focus is a priority of this plugin with "
+#~ "admin settings allowing for selection of language, Bible version, number "
+#~ "of Bible versions available to the end-user, and design elements (fonts, "
+#~ "colors).  Simplicity and ease of use for the end-user is the second top "
+#~ "priority with the goal of an intuitive interface.  Initial development of "
+#~ "the plugin will be based on the Bible Brain / DBPv4 API but with the "
+#~ "intention of expanding to other Bible APIs in subsequent releases.  "
+#~ "Additional information is available in the SRS document on GitHub.\n"
+#~ msgstr ""
+#~ "Đặt Word trong WordPress.  Plugin Kinh Thánh cung cấp một trình đọc Kinh "
+#~ "Thánh đơn giản trong các trang web WordPress với văn bản Kinh Thánh được "
+#~ "truy cập thông qua các API Kinh Thánh có sẵn.  Bản địa hóa và tập trung "
+#~ "là ưu tiên của plugin này với cài đặt quản trị cho phép lựa chọn ngôn "
+#~ "ngữ, phiên bản Kinh thánh, số lượng phiên bản Kinh Thánh có sẵn cho người "
+#~ "dùng cuối và các yếu tố thiết kế (phông chữ, màu sắc).  Đơn giản và dễ sử "
+#~ "dụng cho người dùng cuối là ưu tiên hàng đầu thứ hai với mục tiêu giao "
+#~ "diện trực quan.  Sự phát triển ban đầu của plugin sẽ dựa trên API Bible "
+#~ "Brain / DBPv4 nhưng với ý định mở rộng sang các API Kinh thánh khác trong "
+#~ "các bản phát hành tiếp theo.  Thông tin bổ sung có sẵn trong tài liệu SRS "
+#~ "trên GitHub.\n"
+
+#~ msgid "GitHub"
+#~ msgstr "Github"
 
 #~ msgctxt "scripture"
 #~ msgid "Bible"

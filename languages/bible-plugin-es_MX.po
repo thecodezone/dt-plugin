@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-22 11:34-0500\n"
-"PO-Revision-Date: 2024-04-22 11:34-0500\n"
+"POT-Creation-Date: 2024-05-07 15:17-0500\n"
+"PO-Revision-Date: 2024-05-07 15:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_MX\n"
@@ -42,7 +42,6 @@ msgstr "Derechos de autor del sitio "
 #: resources/views/layouts/settings.php:55
 #: resources/views/layouts/settings.php:61
 #: resources/views/layouts/settings.php:69
-#: resources/views/settings/support.php:66
 #: src/Providers/AdminServiceProvider.php:32
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
@@ -115,130 +114,33 @@ msgstr "Traducciones"
 msgid "Enter a translation..."
 msgstr "Introduzca una traducción..."
 
-#: resources/views/settings/partials/bible-brains-key.php:18
+#: resources/views/settings/partials/bible-brains-key.php:21
 msgid "Bible Brains API Key verified."
 msgstr "Clave API de Bible Brains verificada."
 
-#: resources/views/settings/partials/bible-brains-key.php:37
+#: resources/views/settings/partials/bible-brains-key.php:40
 msgid "Bible Brain API Key"
 msgstr "Clave API de Bible Brain"
 
-#: resources/views/settings/partials/bible-brains-key.php:46
+#: resources/views/settings/partials/bible-brains-key.php:49
 msgid "Enter key..."
 msgstr "Introduzca la tecla..."
 
-#: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:59
 msgid "Validate"
 msgstr "Validar"
 
-#: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:70
 msgid "Valid"
 msgstr "Válido"
 
-#: resources/views/settings/partials/bible-brains-key.php:74
-msgid "Here's how to get your key."
-msgstr "A continuación, te explicamos cómo obtener tu llave."
-
-#: resources/views/settings/support.php:14
-msgid "FAQ"
-msgstr "FAQ"
-
-#: resources/views/settings/support.php:20
-msgid ""
-"If you encounter an error or bug, please report it to us at our GitHub by "
-"clicking the button below."
-msgstr ""
-"Si encuentra un error o fallo, infórmenos en nuestro GitHub haciendo clic en "
-"el botón a continuación."
-
-#: resources/views/settings/support.php:24
-msgid "Report an error"
-msgstr "Notificar un error"
-
-#: resources/views/settings/support.php:31
-#: resources/views/settings/support.php:42
-msgid ""
-"Fill out the support form on our website. You can expect a response within "
-"48 business days."
-msgstr ""
-"Complete el formulario de soporte en nuestro sitio web. Puede esperar una "
-"respuesta en un plazo de 48 días hábiles."
-
-#: resources/views/settings/support.php:35
-msgid "Request support"
-msgstr "Solicitar soporte"
-
-#: resources/views/settings/support.php:46
-msgid "Request a feature"
+#: resources/views/settings/partials/bible-brains-key.php:77
+#, fuzzy
+#| msgid "Request a feature"
+msgid "request a key"
 msgstr "Solicitar una función"
-
-#: resources/views/settings/support.php:53
-msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
-"you contact them to request additional translations be added the Bible "
-"Reader."
-msgstr ""
-"El lector de la Biblia usa la Biblia El cerebro por la fe viene por el oído. "
-"Le recomendamos que se ponga en contacto con ellos para solicitar que se "
-"agreguen traducciones adicionales al Lector de la Biblia."
-
-#: resources/views/settings/support.php:57
-msgid ""
-"We rely on community support to add additional languages to the Bible Plugin "
-"UI. If you are a translator or you would like more information on how you "
-"can get involved, please contact us using the contact form on our website."
-msgstr ""
-"Confiamos en el apoyo de la comunidad para agregar idiomas adicionales a la "
-"interfaz de usuario del complemento de la Biblia. Si eres traductor o "
-"quieres más información sobre cómo puedes participar, ponte en contacto con "
-"nosotros a través del formulario de contacto de nuestra página web."
-
-#: resources/views/settings/support.php:62
-msgid "Bible Brains"
-msgstr "Cerebros bíblicos"
-
-#: resources/views/settings/support.php:75
-#: resources/views/settings/support.php:88
-#: resources/views/settings/support.php:106
-msgid "About"
-msgstr "Acerca de"
-
-#: resources/views/settings/support.php:91
-#: resources/views/settings/support.php:113
-msgid "Give"
-msgstr "Give"
-
-#: resources/views/settings/support.php:100
-msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
-"reader in WordPress sites with the Bible text accessed through available "
-"Bible APIs.  Localization and focus is a priority of this plugin with admin "
-"settings allowing for selection of language, Bible version, number of Bible "
-"versions available to the end-user, and design elements (fonts, colors).  "
-"Simplicity and ease of use for the end-user is the second top priority with "
-"the goal of an intuitive interface.  Initial development of the plugin will "
-"be based on the Bible Brain / DBPv4 API but with the intention of expanding "
-"to other Bible APIs in subsequent releases.  Additional information is "
-"available in the SRS document on GitHub.\n"
-msgstr ""
-"Poner la palabra en WordPress.  El complemento de la Biblia proporciona un "
-"lector de la Biblia simple en los sitios de WordPress con el texto de la "
-"Biblia al que se accede a través de las API de la Biblia disponibles.  La "
-"localización y el enfoque son una prioridad de este complemento con "
-"configuraciones de administración que permiten la selección del idioma, la "
-"versión de la Biblia, el número de versiones de la Biblia disponibles para "
-"el usuario final y los elementos de diseño (fuentes, colores).  La "
-"simplicidad y la facilidad de uso para el usuario final es la segunda "
-"prioridad con el objetivo de una interfaz intuitiva.  El desarrollo inicial "
-"del plugin se basará en la API de Bible Brain / DBPv4 pero con la intención "
-"de expandirse a otras API de Bible en versiones posteriores.  Hay "
-"información adicional disponible en el documento SRS en GitHub.\n"
-
-#: resources/views/settings/support.php:109
-msgid "GitHub"
-msgstr "GitHub"
 
 #: resources/views/starter-magic-link/show.php:12
 msgid "Visit subpage"
@@ -254,7 +156,7 @@ msgid "Please complete the required fields."
 msgstr "Por favor, rellene los campos obligatorios."
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:157
+#: src/Controllers/Admin/BibleBrainsFormController.php:158
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "No se pudo enviar el formulario."
@@ -263,11 +165,11 @@ msgstr "No se pudo enviar el formulario."
 msgid "Please enter a key."
 msgstr "Por favor, introduzca una clave."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
 msgid "Failed to validate key."
 msgstr "No se pudo validar la clave."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:147
 msgid "Invalid."
 msgstr "No válido."
 
@@ -279,11 +181,11 @@ msgstr "Claro"
 msgid "Dark"
 msgstr "Oscuro"
 
-#: src/Middleware/Nonce.php:22
+#: src/Middleware/Nonce.php:46
 msgid "Could not verify request."
 msgstr "No se pudo verificar la solicitud."
 
-#: src/Plugin.php:115
+#: src/Plugin.php:147
 msgid "The page could not be found."
 msgstr "No se pudo encontrar la página."
 
@@ -402,12 +304,12 @@ msgstr "Haga que este sea el idioma predeterminado."
 msgid "Bible Version"
 msgstr "Versión de la Biblia"
 
-#: src/ShortCodes/Scripture.php:66
+#: src/ShortCodes/Scripture.php:78
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "Tipo de medio no válido"
 
-#: src/ShortCodes/Scripture.php:86
+#: src/ShortCodes/Scripture.php:98
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "No se encontraron resultados"
@@ -425,9 +327,96 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 msgid "A bible plugin for WordPress."
 msgstr "Un plugin de la biblia para WordPress."
 
+#. Author of the plugin/theme
+msgid "Reaching Asia"
+msgstr ""
+
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgid "Here's how to get your key."
+#~ msgstr "A continuación, te explicamos cómo obtener tu llave."
+
+#~ msgid "FAQ"
+#~ msgstr "FAQ"
+
+#~ msgid ""
+#~ "If you encounter an error or bug, please report it to us at our GitHub by "
+#~ "clicking the button below."
+#~ msgstr ""
+#~ "Si encuentra un error o fallo, infórmenos en nuestro GitHub haciendo clic "
+#~ "en el botón a continuación."
+
+#~ msgid "Report an error"
+#~ msgstr "Notificar un error"
+
+#~ msgid ""
+#~ "Fill out the support form on our website. You can expect a response "
+#~ "within 48 business days."
+#~ msgstr ""
+#~ "Complete el formulario de soporte en nuestro sitio web. Puede esperar una "
+#~ "respuesta en un plazo de 48 días hábiles."
+
+#~ msgid "Request support"
+#~ msgstr "Solicitar soporte"
+
+#~ msgid ""
+#~ "The bible reader uses Bible Brains by Faith Comes by Hearing. We "
+#~ "recommend you contact them to request additional translations be added "
+#~ "the Bible Reader."
+#~ msgstr ""
+#~ "El lector de la Biblia usa la Biblia El cerebro por la fe viene por el "
+#~ "oído. Le recomendamos que se ponga en contacto con ellos para solicitar "
+#~ "que se agreguen traducciones adicionales al Lector de la Biblia."
+
+#~ msgid ""
+#~ "We rely on community support to add additional languages to the Bible "
+#~ "Plugin UI. If you are a translator or you would like more information on "
+#~ "how you can get involved, please contact us using the contact form on our "
+#~ "website."
+#~ msgstr ""
+#~ "Confiamos en el apoyo de la comunidad para agregar idiomas adicionales a "
+#~ "la interfaz de usuario del complemento de la Biblia. Si eres traductor o "
+#~ "quieres más información sobre cómo puedes participar, ponte en contacto "
+#~ "con nosotros a través del formulario de contacto de nuestra página web."
+
+#~ msgid "Bible Brains"
+#~ msgstr "Cerebros bíblicos"
+
+#~ msgid "About"
+#~ msgstr "Acerca de"
+
+#~ msgid "Give"
+#~ msgstr "Give"
+
+#~ msgid ""
+#~ "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
+#~ "reader in WordPress sites with the Bible text accessed through available "
+#~ "Bible APIs.  Localization and focus is a priority of this plugin with "
+#~ "admin settings allowing for selection of language, Bible version, number "
+#~ "of Bible versions available to the end-user, and design elements (fonts, "
+#~ "colors).  Simplicity and ease of use for the end-user is the second top "
+#~ "priority with the goal of an intuitive interface.  Initial development of "
+#~ "the plugin will be based on the Bible Brain / DBPv4 API but with the "
+#~ "intention of expanding to other Bible APIs in subsequent releases.  "
+#~ "Additional information is available in the SRS document on GitHub.\n"
+#~ msgstr ""
+#~ "Poner la palabra en WordPress.  El complemento de la Biblia proporciona "
+#~ "un lector de la Biblia simple en los sitios de WordPress con el texto de "
+#~ "la Biblia al que se accede a través de las API de la Biblia disponibles.  "
+#~ "La localización y el enfoque son una prioridad de este complemento con "
+#~ "configuraciones de administración que permiten la selección del idioma, "
+#~ "la versión de la Biblia, el número de versiones de la Biblia disponibles "
+#~ "para el usuario final y los elementos de diseño (fuentes, colores).  La "
+#~ "simplicidad y la facilidad de uso para el usuario final es la segunda "
+#~ "prioridad con el objetivo de una interfaz intuitiva.  El desarrollo "
+#~ "inicial del plugin se basará en la API de Bible Brain / DBPv4 pero con la "
+#~ "intención de expandirse a otras API de Bible en versiones posteriores.  "
+#~ "Hay información adicional disponible en el documento SRS en GitHub.\n"
+
+#~ msgid "GitHub"
+#~ msgstr "GitHub"
 
 #~ msgctxt "scripture"
 #~ msgid "Bible"

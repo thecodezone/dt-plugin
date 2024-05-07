@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-22 11:32-0500\n"
+"POT-Creation-Date: 2024-05-07 15:19-0500\n"
 "PO-Revision-Date: 2024-01-24 21:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -42,7 +42,6 @@ msgstr ""
 #: resources/views/layouts/settings.php:55
 #: resources/views/layouts/settings.php:61
 #: resources/views/layouts/settings.php:69
-#: resources/views/settings/support.php:66
 #: src/Providers/AdminServiceProvider.php:32
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
@@ -112,107 +111,30 @@ msgstr ""
 msgid "Enter a translation..."
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:18
+#: resources/views/settings/partials/bible-brains-key.php:21
 msgid "Bible Brains API Key verified."
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:37
+#: resources/views/settings/partials/bible-brains-key.php:40
 msgid "Bible Brain API Key"
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:46
+#: resources/views/settings/partials/bible-brains-key.php:49
 msgid "Enter key..."
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:53
 #: resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:59
 msgid "Validate"
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:64
 #: resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:70
 msgid "Valid"
 msgstr ""
 
-#: resources/views/settings/partials/bible-brains-key.php:74
-msgid "Here's how to get your key."
-msgstr ""
-
-#: resources/views/settings/support.php:14
-msgid "FAQ"
-msgstr ""
-
-#: resources/views/settings/support.php:20
-msgid ""
-"If you encounter an error or bug, please report it to us at our GitHub by "
-"clicking the button below."
-msgstr ""
-
-#: resources/views/settings/support.php:24
-msgid "Report an error"
-msgstr ""
-
-#: resources/views/settings/support.php:31
-#: resources/views/settings/support.php:42
-msgid ""
-"Fill out the support form on our website. You can expect a response within "
-"48 business days."
-msgstr ""
-
-#: resources/views/settings/support.php:35
-msgid "Request support"
-msgstr ""
-
-#: resources/views/settings/support.php:46
-msgid "Request a feature"
-msgstr ""
-
-#: resources/views/settings/support.php:53
-msgid ""
-"The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend "
-"you contact them to request additional translations be added the Bible "
-"Reader."
-msgstr ""
-
-#: resources/views/settings/support.php:57
-msgid ""
-"We rely on community support to add additional languages to the Bible "
-"Plugin UI. If you are a translator or you would like more information on "
-"how you can get involved, please contact us using the contact form on our "
-"website."
-msgstr ""
-
-#: resources/views/settings/support.php:62
-msgid "Bible Brains"
-msgstr ""
-
-#: resources/views/settings/support.php:75
-#: resources/views/settings/support.php:88
-#: resources/views/settings/support.php:106
-msgid "About"
-msgstr ""
-
-#: resources/views/settings/support.php:91
-#: resources/views/settings/support.php:113
-msgid "Give"
-msgstr ""
-
-#: resources/views/settings/support.php:100
-msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible "
-"reader in WordPress sites with the Bible text accessed through available "
-"Bible APIs.  Localization and focus is a priority of this plugin with "
-"admin settings allowing for selection of language, Bible version, number "
-"of Bible versions available to the end-user, and design elements (fonts, "
-"colors).  Simplicity and ease of use for the end-user is the second top "
-"priority with the goal of an intuitive interface.  Initial development of "
-"the plugin will be based on the Bible Brain / DBPv4 API but with the "
-"intention of expanding to other Bible APIs in subsequent releases.  "
-"Additional information is available in the SRS document on GitHub.\n"
-msgstr ""
-
-#: resources/views/settings/support.php:109
-msgid "GitHub"
+#: resources/views/settings/partials/bible-brains-key.php:77
+msgid "request a key"
 msgstr ""
 
 #: resources/views/starter-magic-link/show.php:12
@@ -229,7 +151,7 @@ msgid "Please complete the required fields."
 msgstr ""
 
 #: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:157
+#: src/Controllers/Admin/BibleBrainsFormController.php:158
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr ""
@@ -238,11 +160,11 @@ msgstr ""
 msgid "Please enter a key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
 msgid "Failed to validate key."
 msgstr ""
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:147
 msgid "Invalid."
 msgstr ""
 
@@ -254,11 +176,11 @@ msgstr ""
 msgid "Dark"
 msgstr ""
 
-#: src/Middleware/Nonce.php:22
+#: src/Middleware/Nonce.php:46
 msgid "Could not verify request."
 msgstr ""
 
-#: src/Plugin.php:115
+#: src/Plugin.php:147
 msgid "The page could not be found."
 msgstr ""
 
@@ -374,12 +296,12 @@ msgstr ""
 msgid "Bible Version"
 msgstr ""
 
-#: src/ShortCodes/Scripture.php:66
+#: src/ShortCodes/Scripture.php:78
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr ""
 
-#: src/ShortCodes/Scripture.php:86
+#: src/ShortCodes/Scripture.php:98
 msgctxt "shortcode"
 msgid "No results found"
 msgstr ""
@@ -395,6 +317,10 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "A bible plugin for WordPress."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Reaching Asia"
 msgstr ""
 
 #. Author URI of the plugin/theme

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-04-22 11:36-0500\n"
-"PO-Revision-Date: 2024-04-22 11:36-0500\n"
+"POT-Creation-Date: 2024-05-07 15:18-0500\n"
+"PO-Revision-Date: 2024-05-07 15:18-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
@@ -37,8 +37,8 @@ msgid "Copyright "
 msgstr "ลิขสิทธิ์ "
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:55 resources/views/layouts/settings.php:61 resources/views/layouts/settings.php:69 resources/views/settings/support.php:66 src/Providers/AdminServiceProvider.php:32
-#: src/Providers/AdminServiceProvider.php:33 src/Providers/AdminServiceProvider.php:43 src/Providers/AdminServiceProvider.php:44
+#: resources/views/layouts/settings.php:55 resources/views/layouts/settings.php:61 resources/views/layouts/settings.php:69 src/Providers/AdminServiceProvider.php:32 src/Providers/AdminServiceProvider.php:33
+#: src/Providers/AdminServiceProvider.php:43 src/Providers/AdminServiceProvider.php:44
 msgid "The Bible Plugin"
 msgstr "ปลั๊กอินพระคัมภีร์"
 
@@ -98,91 +98,29 @@ msgstr "Translations"
 msgid "Enter a translation..."
 msgstr "ป้อนคําแปล..."
 
-#: resources/views/settings/partials/bible-brains-key.php:18
+#: resources/views/settings/partials/bible-brains-key.php:21
 msgid "Bible Brains API Key verified."
 msgstr "ยืนยันคีย์ API ของ Bible Brains แล้ว"
 
-#: resources/views/settings/partials/bible-brains-key.php:37
+#: resources/views/settings/partials/bible-brains-key.php:40
 msgid "Bible Brain API Key"
 msgstr "คีย์ API สมองพระคัมภีร์"
 
-#: resources/views/settings/partials/bible-brains-key.php:46
+#: resources/views/settings/partials/bible-brains-key.php:49
 msgid "Enter key..."
 msgstr "ป้อนคีย์..."
 
-#: resources/views/settings/partials/bible-brains-key.php:53 resources/views/settings/partials/bible-brains-key.php:56
+#: resources/views/settings/partials/bible-brains-key.php:56 resources/views/settings/partials/bible-brains-key.php:59
 msgid "Validate"
 msgstr "ตรวจสอบ"
 
-#: resources/views/settings/partials/bible-brains-key.php:64 resources/views/settings/partials/bible-brains-key.php:67
+#: resources/views/settings/partials/bible-brains-key.php:67 resources/views/settings/partials/bible-brains-key.php:70
 msgid "Valid"
 msgstr "ถูกต้อง"
 
-#: resources/views/settings/partials/bible-brains-key.php:74
-msgid "Here's how to get your key."
-msgstr "วิธีรับกุญแจมีดังนี้"
-
-#: resources/views/settings/support.php:14
-msgid "FAQ"
-msgstr "คำถามที่ถามบ่อย"
-
-#: resources/views/settings/support.php:20
-msgid "If you encounter an error or bug, please report it to us at our GitHub by clicking the button below."
-msgstr "หากคุณพบข้อผิดพลาดหรือข้อบกพร่อง โปรดรายงานให้เราทราบที่ GitHub ของเราโดยคลิกที่ปุ่มด้านล่าง"
-
-#: resources/views/settings/support.php:24
-msgid "Report an error"
-msgstr "รายงานข้อผิดพลาด"
-
-#: resources/views/settings/support.php:31 resources/views/settings/support.php:42
-msgid "Fill out the support form on our website. You can expect a response within 48 business days."
-msgstr "กรอกแบบฟอร์มสนับสนุนบนเว็บไซต์ของเรา คุณสามารถคาดหวังการตอบกลับภายใน 48 วันทําการ"
-
-#: resources/views/settings/support.php:35
-msgid "Request support"
-msgstr "ขอรับการสนับสนุน"
-
-#: resources/views/settings/support.php:46
-msgid "Request a feature"
-msgstr "ขอคุณสมบัติ"
-
-#: resources/views/settings/support.php:53
-msgid "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them to request additional translations be added the Bible Reader."
-msgstr "ผู้อ่านพระคัมภีร์ใช้ Bible Brains by Faith Comes by Hearing เราขอแนะนําให้คุณติดต่อพวกเขาเพื่อขอคําแปลเพิ่มเติมเพื่อเพิ่มโปรแกรมอ่านพระคัมภีร์"
-
-#: resources/views/settings/support.php:57
-msgid ""
-"We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would like more information on how you can get involved, please contact us using the "
-"contact form on our website."
-msgstr "เราพึ่งพาการสนับสนุนจากชุมชนเพื่อเพิ่มภาษาเพิ่มเติมใน UI ปลั๊กอินพระคัมภีร์ หากคุณเป็นนักแปลหรือต้องการข้อมูลเพิ่มเติมเกี่ยวกับวิธีการมีส่วนร่วมโปรดติดต่อเราโดยใช้แบบฟอร์มการติดต่อบนเว็บไซต์ของเรา"
-
-#: resources/views/settings/support.php:62
-msgid "Bible Brains"
-msgstr "สมองในพระคัมภีร์"
-
-#: resources/views/settings/support.php:75 resources/views/settings/support.php:88 resources/views/settings/support.php:106
-msgid "About"
-msgstr "เกี่ยวกับ"
-
-#: resources/views/settings/support.php:91 resources/views/settings/support.php:113
-msgid "Give"
-msgstr "ให้"
-
-#: resources/views/settings/support.php:100
-msgid ""
-"Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible text accessed through available Bible APIs.  Localization and focus is a priority of this "
-"plugin with admin settings allowing for selection of language, Bible version, number of Bible versions available to the end-user, and design elements (fonts, colors).  Simplicity and ease of use for the "
-"end-user is the second top priority with the goal of an intuitive interface.  Initial development of the plugin will be based on the Bible Brain / DBPv4 API but with the intention of expanding to other "
-"Bible APIs in subsequent releases.  Additional information is available in the SRS document on GitHub.\n"
-msgstr ""
-"ใส่คําใน WordPress  ปลั๊กอินพระคัมภีร์ให้โปรแกรมอ่านพระคัมภีร์อย่างง่ายในไซต์ WordPress พร้อมข้อความพระคัมภีร์ที่เข้าถึงได้ผ่าน API พระคัมภีร์ที่มีอยู่  "
-"การแปลเป็นภาษาท้องถิ่นและการโฟกัสเป็นสิ่งสําคัญของปลั๊กอินนี้ด้วยการตั้งค่าผู้ดูแลระบบที่ช่วยให้สามารถเลือกภาษาเวอร์ชันพระคัมภีร์จํานวนเวอร์ชันพระคัมภีร์ที่มีให้สําหรับผู้ใช้ปลายทางและองค์ประกอบการออกแบบ (แบบอักษรสี)  "
-"ความเรียบง่ายและใช้งานง่ายสําหรับผู้ใช้ปลายทางเป็นสิ่งสําคัญอันดับสองโดยมีเป้าหมายของอินเทอร์เฟซที่ใช้งานง่าย  การพัฒนาปลั๊กอินเบื้องต้นจะขึ้นอยู่กับ Bible Brain / DBPv4 API แต่มีความตั้งใจที่จะขยายไปยัง Bible API อื่น ๆ ในรุ่นต่อ ๆ ไป  "
-"ข้อมูลเพิ่มเติมมีอยู่ในเอกสาร SRS บน GitHub\n"
-
-#: resources/views/settings/support.php:109
-msgid "GitHub"
-msgstr "จีทฮับ"
+#: resources/views/settings/partials/bible-brains-key.php:77
+msgid "request a key"
+msgstr "ขอกุญแจ"
 
 #: resources/views/starter-magic-link/show.php:12
 msgid "Visit subpage"
@@ -196,7 +134,7 @@ msgstr "เยี่ยมบ้าน"
 msgid "Please complete the required fields."
 msgstr "กรุณากรอกข้อมูลในช่องที่จําเป็น"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:111 src/Controllers/Admin/BibleBrainsFormController.php:157 src/Controllers/Admin/CustomizationFomController.php:86
+#: src/Controllers/Admin/BibleBrainsFormController.php:111 src/Controllers/Admin/BibleBrainsFormController.php:158 src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "ไม่สามารถส่งแบบฟอร์มได้"
 
@@ -204,11 +142,11 @@ msgstr "ไม่สามารถส่งแบบฟอร์มได้"
 msgid "Please enter a key."
 msgstr "กรุณาใส่กุญแจ"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:144
+#: src/Controllers/Admin/BibleBrainsFormController.php:145
 msgid "Failed to validate key."
 msgstr "ไม่สามารถตรวจสอบคีย์ได้"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:146
+#: src/Controllers/Admin/BibleBrainsFormController.php:147
 msgid "Invalid."
 msgstr "ไม่ถูกต้อง "
 
@@ -220,11 +158,11 @@ msgstr "สว่าง"
 msgid "Dark"
 msgstr "เข้ม"
 
-#: src/Middleware/Nonce.php:22
+#: src/Middleware/Nonce.php:46
 msgid "Could not verify request."
 msgstr "ไม่สามารถตรวจสอบคําขอได้"
 
-#: src/Plugin.php:115
+#: src/Plugin.php:147
 msgid "The page could not be found."
 msgstr "ไม่พบหน้า"
 
@@ -338,12 +276,12 @@ msgstr "ทําให้เป็นภาษาเริ่มต้น"
 msgid "Bible Version"
 msgstr "ฉบับพระคัมภีร์"
 
-#: src/ShortCodes/Scripture.php:66
+#: src/ShortCodes/Scripture.php:78
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "ชนิดสื่อไม่ถูกต้อง"
 
-#: src/ShortCodes/Scripture.php:86
+#: src/ShortCodes/Scripture.php:98
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "ไม่พบผลลัพธ์"
@@ -361,9 +299,62 @@ msgstr "https://github.com/TheCodeZone/bible-plugin"
 msgid "A bible plugin for WordPress."
 msgstr "ปลั๊กอินพระคัมภีร์สําหรับ WordPress"
 
+#. Author of the plugin/theme
+msgid "Reaching Asia"
+msgstr "เข้าถึงเอเชีย"
+
 #. Author URI of the plugin/theme
 msgid "https://github.com/TheCodeZone"
 msgstr "https://github.com/TheCodeZone"
+
+#~ msgid "Here's how to get your key."
+#~ msgstr "วิธีรับกุญแจมีดังนี้"
+
+#~ msgid "FAQ"
+#~ msgstr "คำถามที่ถามบ่อย"
+
+#~ msgid "If you encounter an error or bug, please report it to us at our GitHub by clicking the button below."
+#~ msgstr "หากคุณพบข้อผิดพลาดหรือข้อบกพร่อง โปรดรายงานให้เราทราบที่ GitHub ของเราโดยคลิกที่ปุ่มด้านล่าง"
+
+#~ msgid "Report an error"
+#~ msgstr "รายงานข้อผิดพลาด"
+
+#~ msgid "Fill out the support form on our website. You can expect a response within 48 business days."
+#~ msgstr "กรอกแบบฟอร์มสนับสนุนบนเว็บไซต์ของเรา คุณสามารถคาดหวังการตอบกลับภายใน 48 วันทําการ"
+
+#~ msgid "Request support"
+#~ msgstr "ขอรับการสนับสนุน"
+
+#~ msgid "The bible reader uses Bible Brains by Faith Comes by Hearing. We recommend you contact them to request additional translations be added the Bible Reader."
+#~ msgstr "ผู้อ่านพระคัมภีร์ใช้ Bible Brains by Faith Comes by Hearing เราขอแนะนําให้คุณติดต่อพวกเขาเพื่อขอคําแปลเพิ่มเติมเพื่อเพิ่มโปรแกรมอ่านพระคัมภีร์"
+
+#~ msgid ""
+#~ "We rely on community support to add additional languages to the Bible Plugin UI. If you are a translator or you would like more information on how you can get involved, please contact us using the "
+#~ "contact form on our website."
+#~ msgstr "เราพึ่งพาการสนับสนุนจากชุมชนเพื่อเพิ่มภาษาเพิ่มเติมใน UI ปลั๊กอินพระคัมภีร์ หากคุณเป็นนักแปลหรือต้องการข้อมูลเพิ่มเติมเกี่ยวกับวิธีการมีส่วนร่วมโปรดติดต่อเราโดยใช้แบบฟอร์มการติดต่อบนเว็บไซต์ของเรา"
+
+#~ msgid "Bible Brains"
+#~ msgstr "สมองในพระคัมภีร์"
+
+#~ msgid "About"
+#~ msgstr "เกี่ยวกับ"
+
+#~ msgid "Give"
+#~ msgstr "ให้"
+
+#~ msgid ""
+#~ "Putting the Word in WordPress.  The Bible Plugin provides a simple Bible reader in WordPress sites with the Bible text accessed through available Bible APIs.  Localization and focus is a priority of this "
+#~ "plugin with admin settings allowing for selection of language, Bible version, number of Bible versions available to the end-user, and design elements (fonts, colors).  Simplicity and ease of use for the "
+#~ "end-user is the second top priority with the goal of an intuitive interface.  Initial development of the plugin will be based on the Bible Brain / DBPv4 API but with the intention of expanding to other "
+#~ "Bible APIs in subsequent releases.  Additional information is available in the SRS document on GitHub.\n"
+#~ msgstr ""
+#~ "ใส่คําใน WordPress  ปลั๊กอินพระคัมภีร์ให้โปรแกรมอ่านพระคัมภีร์อย่างง่ายในไซต์ WordPress พร้อมข้อความพระคัมภีร์ที่เข้าถึงได้ผ่าน API พระคัมภีร์ที่มีอยู่  "
+#~ "การแปลเป็นภาษาท้องถิ่นและการโฟกัสเป็นสิ่งสําคัญของปลั๊กอินนี้ด้วยการตั้งค่าผู้ดูแลระบบที่ช่วยให้สามารถเลือกภาษาเวอร์ชันพระคัมภีร์จํานวนเวอร์ชันพระคัมภีร์ที่มีให้สําหรับผู้ใช้ปลายทางและองค์ประกอบการออกแบบ (แบบอักษรสี)  "
+#~ "ความเรียบง่ายและใช้งานง่ายสําหรับผู้ใช้ปลายทางเป็นสิ่งสําคัญอันดับสองโดยมีเป้าหมายของอินเทอร์เฟซที่ใช้งานง่าย  การพัฒนาปลั๊กอินเบื้องต้นจะขึ้นอยู่กับ Bible Brain / DBPv4 API แต่มีความตั้งใจที่จะขยายไปยัง Bible API อื่น ๆ ในรุ่นต่อ ๆ ไป  "
+#~ "ข้อมูลเพิ่มเติมมีอยู่ในเอกสาร SRS บน GitHub\n"
+
+#~ msgid "GitHub"
+#~ msgstr "จีทฮับ"
 
 #~ msgctxt "scripture"
 #~ msgid "Bible"
