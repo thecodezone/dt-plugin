@@ -11,4 +11,6 @@
 $this->layout( 'layouts/shortcode', [ 'error' => $error ?? false ] );
 ?>
 
-<tbp-bible></tbp-bible>
+<tbp-bible
+        reference="<?php echo $attributes['reference']; ?>"
+></tbp-bible>

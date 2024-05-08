@@ -8,11 +8,12 @@ import {$fullScreen} from "../stores/full-screen.js";
 import {$chapter} from "../stores/chapter.js"
 import {$message} from "../stores/message.js"
 import {$error} from "../stores/error.js"
+import {$reference} from "../stores/reference.js";
 import {__} from "../helpers.js";
 
 @customElement('tbp-bible')
 export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, $fullScreen, $message, $error]) {
-    @property({type: String}) version = 'tbp';
+    @property({type: String}) reference = 'JHN 1'
 
     static get styles() {
         return [
@@ -44,6 +45,7 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
     }
 
     firstUpdated(_changedProperties) {
+        $reference.set(this.reference);
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 $fullScreen.set(false);

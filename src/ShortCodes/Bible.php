@@ -2,14 +2,10 @@
 
 namespace CodeZone\Bible\ShortCodes;
 
-use CodeZone\Bible\Exceptions\BibleBrainsException;
 use CodeZone\Bible\Services\Assets;
-use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
-use CodeZone\Bible\Services\BibleBrains\FileSets;
-use CodeZone\Bible\Services\BibleBrains\Scripture as ScriptureService;
-use function CodeZone\Bible\container;
 use function CodeZone\Bible\view;
 use function CodeZone\Bible\cast_bool_values;
+use function CodeZone\Bible\request;
 
 /**
  * Class Bible
@@ -53,8 +49,15 @@ class Bible {
 		if ( ! $attributes ) {
 			$attributes = [];
 		}
+		
+		$attributes = shortcode_atts( [
+			'reference' => 'John 1',
+		], cast_bool_values( $attributes ) );
 
-		$attributes = shortcode_atts( [], cast_bool_values( $attributes ?? [] ) );
+		if ( request()->has( 'reference' ) ) {
+			$attributes['reference'] = request()->get( 'reference' );
+		}
+
 
 		return view( 'shortcodes/bible', [
 			'attributes' => $attributes
