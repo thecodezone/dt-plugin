@@ -10,6 +10,30 @@
  * @return array
  */
 function customize_php_scoper_config( array $config ): array {
+	$replacements = [
+		[
+			'in'      => 'symfony/polyfill-php80/PhpToken.php',
+			'needle'  => '\Stringable',
+			'replace' => '\CodeZone\Bible\Stringable'
+		]
+	];
+
+	$config['patchers'] = array_merge( $config['patchers'] ?? [], [
+		function ( string $filePath, string $prefix, string $content ) use ( $replacements ): string {
+			foreach ( $replacements as $config ) {
+				if ( strpos( $filePath, $config['in'] ) !== false ) {
+					$content = str_replace( $config['needle'], $config['replace'], $content );
+				}
+			}
+
+			return $content;
+		},
+	] );
+
+	$config['exclude-files'] = array_merge( $config['exclude-files'] ?? [], [
+		'vendor/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+	] );
+
 	$config['expose-functions'] = array_merge( $config['expose-functions'] ?? [], [
 		'abort',
 		'abort_if',

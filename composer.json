@@ -27,6 +27,7 @@
     ]
   },
   "require": {
+    "php": "^7.4||^8.0",
     "ext-json": "*",
     "ext-gettext": "*",
     "composer-plugin-api": "^1.0 || ^2.0",
@@ -41,6 +42,9 @@
     "phpunit/phpunit": "^9"
   },
   "extra": {
+    "composer-runtime-api": {
+      "platform_check": false
+    },
     "wpify-scoper": {
       "prefix": "CodeZone\\Bible",
       "folder": "vendor-scoped",
@@ -57,6 +61,10 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "bamarni/composer-bin-plugin": true,
       "wpify/scoper": true
-    }
+    },
+    "platform": {
+      "php": "7.4.27"
+    },
+    "platform-check": false
   }
 }
