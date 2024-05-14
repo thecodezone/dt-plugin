@@ -103,12 +103,36 @@ class Reference {
 	private static function parse_string( string $reference ) {
 		$reference = self::normalize( $reference );
 
-		[ $book, $chapter_and_verse ] = array_pad( explode( ' ', $reference ?? "", 2 ), 2, null );
-		[ $chapter, $verses ] = array_pad( explode( ':', $chapter_and_verse ?? "", 2 ), 2, null );
+		//Extract the verse from the string reference
+		if ( Str::contains( $reference, ":" ) ) {
+			[ $reference_without_verses, $verses ] = array_pad( explode( ':', $reference ?? "", 2 ), 2, null );
+		} else {
+			$reference_without_verses = $reference;
+			$verses                   = null;
+		}
+
+		$reference_without_verses = explode( ' ', $reference_without_verses ?? "" );
+
+		//Convert to an array
 		$verses = array_pad( explode( '-', $verses ?? "", 2 ), 2, null );
+
+		//If there is only one verse, set the end verse to the start verse
 		if ( ! $verses[1] ) {
 			$verses[1] = $verses[0];
 		}
+
+		$chapter = "";
+
+		//Extract the chapter from the string reference
+		foreach ( $reference_without_verses as $i => $part ) {
+			if ( $i && is_numeric( $part ) ) {
+				$chapter = $part;
+				unset( $reference_without_verses[ $i ] );
+			}
+		}
+
+		//Assume the book is the remaining parts of the string reference are the book
+		$book = implode( ' ', $reference_without_verses );
 
 		$parsed = [
 			'book'        => $book,

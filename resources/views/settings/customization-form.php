@@ -7,6 +7,9 @@
  * @var string $error
  * @var string $translation_options
  */
+
+use function CodeZone\Bible\route_url;
+
 $this->layout( 'layouts/settings', compact( 'tab' ) );
 ?>
 <form x-data="br_form(<?php echo esc_attr(
@@ -16,7 +19,7 @@ $this->layout( 'layouts/settings', compact( 'tab' ) );
 				'refresh'              => true,
 				'fields'               => $fields,
 				'nonce'                => $nonce,
-				'action'               => esc_url( '/the-bible-plugin/api/customization' ),
+				'action'               => esc_url( route_url( "api/customization" ) ),
 				'error'                => $error ?? '',
 				'color_scheme_options' => $color_scheme_options
 			]

@@ -14,6 +14,9 @@
  * @var $bible_options_endpoint string
  * @var $search_label string
  */
+
+use function CodeZone\Bible\route_url;
+
 $this->layout( 'layouts/settings', compact( 'tab' ) );
 
 $this->insert( 'settings/partials/bible-brains-key', [
@@ -24,14 +27,14 @@ $this->insert( 'settings/partials/bible-brains-key', [
 <form method="post"
       id="bible-brains-form"
       @submit="submit"
-    x-data="br_form(<?php echo esc_attr(
-        wp_json_encode(
-            [
+      x-data="br_form(<?php echo esc_attr(
+	      wp_json_encode(
+		      [
 			      'fields' => $fields,
-                  'action' => "/the-bible-plugin/api/bible-brains",
-            ]
-        )
-    ); ?>)"
+			      'action' => esc_url( route_url( "api/bible-brains" ) ),
+		      ]
+	      )
+      ); ?>)"
 >
 
     <sp-divider size="s"></sp-divider>
