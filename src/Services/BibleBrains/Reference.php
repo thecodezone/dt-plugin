@@ -89,7 +89,7 @@ class Reference {
 	 *
 	 * @return array The parsed array.
 	 */
-	private static function parse_array( array $references ) {
+	public static function parse_array( array $references ) {
 		return static::normalize_array( $references );
 	}
 
@@ -100,7 +100,7 @@ class Reference {
 	 *
 	 * @return array The normalized array representation of the parsed string reference.
 	 */
-	private static function parse_string( string $reference ) {
+	public static function parse_string( string $reference ) {
 		$reference = self::normalize( $reference );
 
 		//Extract the verse from the string reference
@@ -121,7 +121,7 @@ class Reference {
 			$verses[1] = $verses[0];
 		}
 
-		$chapter = "";
+		$chapter = "1";
 
 		//Extract the chapter from the string reference
 		foreach ( $reference_without_verses as $i => $part ) {
