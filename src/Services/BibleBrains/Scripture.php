@@ -69,14 +69,13 @@ class Scripture {
 	 *                          - book: The specific book of the Bible to search in. Defaults to*/
 	private function normalize_query( $parameters ): array {
 		$parameters = array_merge( [
-			'language'     => null,
-			'bible'        => null,
-			'book'         => null,
-			'chapter'      => null,
-			'verse_start'  => null,
-			'verse_end'    => null,
-		], $parameters );
-;
+			'language'    => null,
+			'bible'       => null,
+			'book'        => null,
+			'chapter'     => null,
+			'verse_start' => null,
+			'verse_end'   => null,
+		], $parameters );;
 
 		return array_merge( $parameters, $this->reference->parse( $parameters ) );
 	}
@@ -99,18 +98,18 @@ class Scripture {
 	 * @throws BibleBrainsException If an invalid media type is specified or if there are any other errors.
 	 */
 	private function query( array $parameters ): array {
-;
 		$parameters = $this->normalize_query( $parameters );
-		$language = $this->language->find_or_resolve( $parameters['language'] ?? null );
-		$bible = ( $parameters['bible'] ?? null ) ? $this->bibles->find( $parameters['bible'] )["data"] : null;
+		$language   = $this->language->find_or_resolve( $parameters['language'] ?? null );
+		$bible      = ( $parameters['bible'] ?? null ) ? $this->bibles->find( $parameters['bible'] )["data"] : null;
 		if ( ! $bible ) {
 			$bible = $this->bibles->find_or_default( $language['bibles'], $language['value'] )["data"];
 		}
 		$book = $this->books->pluck( $parameters['book'], $bible['books'] );
-
 		if ( ! $book ) {
 			throw new BibleBrainsException( esc_attr( "Bible, {$bible['name']}, does not contain {$parameters['book']}." ) );
 		}
+
+		$parameters['book'] = $book['book_id'];
 
 		$media_types = $language['media_types'] ?? $this->options->get( 'media_types' );
 		if ( is_string( $media_types ) ) {
@@ -120,9 +119,9 @@ class Scripture {
 		foreach ( $media_types as $media_type_key ) {
 			try {
 				$media_type = $this->media_types->find( $media_type_key );
-				$fileset = $this->file_sets->pluck( $bible, $book, $media_type['fileset_types'] );
+				$fileset    = $this->file_sets->pluck( $bible, $book, $media_type['fileset_types'] );
 				if ( $fileset ) {
-					$media[$media_type_key] = [
+					$media[ $media_type_key ] = [
 						...$media_type,
 						'content' => $this->fetch_content( array_merge( $parameters, [ 'fileset' => $fileset['id'] ] ) ),
 						'fileset' => $fileset,
@@ -135,10 +134,10 @@ class Scripture {
 
 		return [
 			...$parameters,
-			'media'      => $media,
-			'language'   => $language,
-			'bible'      => $bible,
-			'book'       => $book
+			'media'    => $media,
+			'language' => $language,
+			'bible'    => $bible,
+			'book'     => $book
 		];
 	}
 
