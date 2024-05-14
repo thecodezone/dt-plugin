@@ -5,7 +5,7 @@
  * Description: A bible plugin for WordPress.
  * Text Domain: bible-plugin
  * Domain Path: /languages
- * Version:  1.0.0-alpha
+ * Version:  1.0.0-beta3
  * Author: Reaching Asia
  * Author URI: https://github.com/TheCodeZone
  * GitHub Plugin URI: https://github.com/TheCodeZone/bible-plugin
