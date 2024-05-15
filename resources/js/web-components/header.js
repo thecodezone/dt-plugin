@@ -24,6 +24,13 @@ export class Header extends withStores(TBPElement, [$query, $bookName, $chapter,
                 tbp-bible-menu {
                     margin-left: auto;
                 }
+
+                #message {
+                    position: fixed;
+                    right: var(--spectrum-global-dimension-size-400);
+                    bottom: var(--spectrum-global-dimension-size-400);
+                    z-index: var(--tbp-message-z-index, 10000);
+                }
             `
         ];
     }
