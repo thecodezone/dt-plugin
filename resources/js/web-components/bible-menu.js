@@ -21,6 +21,10 @@ export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $sele
                     overflow-y: hidden;
                 }
 
+                @media screen and (max-width: 600px) {
+                    --spectrum-actionbutton-font-size: 10px;
+                }
+
                 sp-action-group {
                     margin-inline-start: auto;
                     flex-wrap: nowrap;
@@ -30,6 +34,22 @@ export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $sele
 
                 sp-divider {
                     background-color: var(--spectrum-global-color-gray-300);
+                }
+
+                .book-menu--mobile {
+                    display: none;
+                }
+
+                @media screen and (max-width: 600px) {
+                    .book-menu--mobile {
+                        display: initial;
+                    }
+                }
+
+                @media screen and (max-width: 600px) {
+                    .book-menu--desktop {
+                        display: none;
+                    }
                 }
             `
         ]
@@ -67,8 +87,13 @@ export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $sele
                             ></sp-divider>
                         `
                         : nothing}
-                <tbp-book-menu label="${__("Old Testament")}" .books=${$otBooks.get()}></tbp-book-menu>
-                <tbp-book-menu label="${__("New Testament")}" .books=${$ntBooks.get()}></tbp-book-menu>
+                <tbp-book-menu label="${__("Books")}"
+                               .books=${$otBooks.get().concat($ntBooks.get())}
+                               class="book-menu--mobile"></tbp-book-menu>
+                <tbp-book-menu label="${__("Old Testament")}" .books=${$otBooks.get()}
+                               class="book-menu--desktop"></tbp-book-menu>
+                <tbp-book-menu label="${__("New Testament")}" .books=${$ntBooks.get()}
+                               class="book-menu--desktop"></tbp-book-menu>
             </sp-action-group>
         `;
     }
