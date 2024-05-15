@@ -17,6 +17,8 @@ export class SelectionManager extends TBPElement {
     @state()
     contextClick = false
 
+    selectionTimeout = null;
+
     get selectables() {
         return this.querySelectorAll('[selectable]');
     }
@@ -33,8 +35,7 @@ export class SelectionManager extends TBPElement {
         super();
 
         // Define the listeners in the constructor
-        this.onMouseDown = this.mouseDownListener.bind(this);
-        this.onMouseUp = this.mouseUpListener.bind(this);
+        this.onSelectionChange = this.selectionChangeListener.bind(this);
         this.onContextMenu = this.contextMenuListener.bind(this);
     }
 
@@ -42,21 +43,21 @@ export class SelectionManager extends TBPElement {
         super.connectedCallback();
         $clearSelection()
 
-        setTimeout(() => {
-            for (let selectable of this.selectables) {
-                selectable.addEventListener('mousedown', this.onMouseDown);
-                selectable.addEventListener('mouseup', this.onMouseUp);
-                selectable.addEventListener('contextmenu', this.onContextMenu);
-            }
-        });
+        document.addEventListener('selectionchange', this.onSelectionChange)
+    }
+
+
+    selectionChangeListener() {
+        const selection = window.getSelection();
+        for (let selectable of this.selectables) {
+            selectable.selected = selection.containsNode(selectable, true);
+        }
+        this.dispatchSelection()
     }
 
     disconnectedCallback() {
-        for (let selectable of this.selectables) {
-            selectable.removeEventListener('mousedown', this.onMouseDown);
-            selectable.removeEventListener('mouseup', this.onMouseUp);
-            selectable.removeEventListener('contextmenu', this.onContextMenu);
-        }
+        document.removeEventListener('selectionchange', this.onSelectionChange)
+        super.disconnectedCallback();
     }
 
     render() {
@@ -92,66 +93,6 @@ export class SelectionManager extends TBPElement {
 
 
         return false;
-    }
-
-    mouseDownListener(e) {
-        if (e.button) {
-            return;
-        }
-        const selectables = Array.from(this.selectables)
-        if (selectables.indexOf(e.target) !== -1) {
-            this.firstSelected = e.target;
-            this.mouseDownCoordinates = {x: e.clientX, y: e.clientY}
-        }
-    }
-
-    mouseUpListener(e) {
-        if (e.button) {
-            return;
-        }
-        const selectables = Array.from(this.selectables)
-        let selectedIndex = selectables.indexOf(e.target);
-        const mouseUpCoordinates = {x: e.clientX, y: e.clientY}
-        const distance = Math.sqrt(
-            Math.pow(mouseUpCoordinates.x - this.mouseDownCoordinates.x, 2) +
-            Math.pow(mouseUpCoordinates.y - this.mouseDownCoordinates.y, 2)
-        )
-        if (distance < 10) {
-            this.firstSelected = null;
-            selectables.forEach((el, idx) => {
-                el.selected = false;
-            })
-            this.dispatchSelection()
-            return;
-        }
-
-        if (this.firstSelected && selectedIndex !== -1) {
-            let firstIndex = selectables.indexOf(this.firstSelected);
-            let lastIndex = selectedIndex;
-
-            // If selection is backward, swap first and last index
-            if (firstIndex > lastIndex) {
-                [firstIndex, lastIndex] = [lastIndex, firstIndex];
-            }
-
-            let range = document.createRange();
-            range.setStartBefore(selectables[firstIndex]);
-            range.setEndAfter(selectables[lastIndex]);
-
-            if (this.shadowRoot.hasOwnProperty('getSelection') && typeof this.shadowRoot.getSelection === 'function') {
-                this.shadowRoot.getSelection().removeAllRanges();
-            } else {
-                window.getSelection().removeAllRanges();
-            }
-
-            selectables.forEach((el, idx) => {
-                el.selected = range.intersectsNode(el);
-            })
-
-            this.firstSelected = null;
-
-            this.dispatchSelection()
-        }
     }
 
     dispatchSelection() {

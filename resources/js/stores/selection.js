@@ -6,18 +6,26 @@ export const $selection = atom([])
 export const $selectionOpen = atom(false)
 
 export const $shareUrl = computed($selection, (selection) => {
-    const pageUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+    const pageUrl = new URL(window.location.href);
     if (!selection.length) {
-        return pageUrl
+        return pageUrl.toString();
     }
-    const first = selection[0]
-    const last = selection[selection.length - 1]
-    return `${pageUrl}?reference=${encodeURIComponent(reference_from_object({
+    const first = selection[0];
+    const last = selection[selection.length - 1];
+
+// new reference
+    const newReference = encodeURIComponent(reference_from_object({
         book: first.book,
         chapter: first.chapter,
         verse_start: first.verse_start,
         verse_end: last.verse_end
-    }))}`
+    }));
+
+// updating the 'reference' query parameter
+    pageUrl.searchParams.set('reference', newReference);
+
+// returning the updated URL
+    return pageUrl.toString();
 });
 
 export const $shareText = computed($selection, (selection) => {

@@ -15,24 +15,8 @@ export class Scripture extends TBPElement {
     tapTimeout = null;
     selectionChangeListener = null;
 
-    static get styles() {
-        return [
-            super.styles,
-            css`
-                .verse__reference {
-                    color: var(--tpb-verse-reference-color, var(--spectrum-neutral-visual-color, gray));
-                    font-weight: var(--tbp-verse-reference-font-weight, normal);
-                }
-
-                .verse {
-                    line-height: var(--tbp-verse-line-height, 2);
-                    padding: .5em 0;
-                }
-
-                .verse--selected {
-                    background-color: var(--tbp-verse-selected-background-color, var(--spectrum-yellow-background-color-default, yellow));
-                }
-            `];
+    createRenderRoot() {
+        return this;
     }
 
     get classMap() {

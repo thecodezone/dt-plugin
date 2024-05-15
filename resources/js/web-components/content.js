@@ -4,6 +4,7 @@ import {TBPElement} from "./base.js";
 import {reference_from_content, find_media_type} from "../helpers.js";
 import {$selection, $selectionOpen} from "../stores/selection.js";
 import {withStores} from "@nanostores/lit";
+import {css} from "@spectrum-web-components/base";
 
 /**
  * Represents a custom element called "tbp-content".
@@ -11,6 +12,23 @@ import {withStores} from "@nanostores/lit";
  */
 @customElement('tbp-content')
 export class Content extends withStores(TBPElement, [$selection, $selectionOpen]) {
+
+    static get styles() {
+        return [
+            super.styles,
+            css`
+                .verse__reference {
+                    color: var(--tpb-verse-reference-color, var(--spectrum-neutral-visual-color, gray));
+                    font-weight: var(--tbp-verse-reference-font-weight, normal);
+                }
+
+                .verse {
+                    line-height: var(--tbp-verse-line-height, 2);
+                    padding: .5em 0;
+                }
+            `];
+    }
+
     /**
      * Represents an array of content.
      *
@@ -219,7 +237,7 @@ export class Content extends withStores(TBPElement, [$selection, $selectionOpen]
     mapSelectable(selectable) {
         return {
             selectable: selectable,
-            text: selectable.shadowRoot.textContent.replace(/[\r\n]+/gm, ' ').trim().replace(/\s\s+/g, ' '),
+            text: selectable.textContent.replace(/[\r\n]+/gm, ' ').trim().replace(/\s\s+/g, ' '),
             book: this.reference.book,
             chapter: this.reference.chapter,
             verse_start: parseInt(selectable.verse),
