@@ -19,6 +19,7 @@ class Assets {
 	public function translations() {
 		return [
 			// Reader
+			"Books"                                                                        => _x( "Books", 'reader', 'bible-plugin' ),
 			'Copy'                                                                         => _x( 'Copy', 'reader', 'bible-plugin' ),
 			"Copied successfully."                                                         => _x( "Copied successfully.", 'reader', 'bible-plugin' ),
 			'Language'                                                                     => _x( 'Language', 'reader', 'bible-plugin' ),

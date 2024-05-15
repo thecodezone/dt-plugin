@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-07 15:19-0500\n"
+"POT-Creation-Date: 2024-05-15 14:54-0500\n"
 "PO-Revision-Date: 2024-01-24 21:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -29,6 +29,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-7: vendor-scoped\n"
 "X-Poedit-SearchPathExcluded-8: includes\n"
 "X-Poedit-SearchPathExcluded-9: bible-plugin.php\n"
+"X-Poedit-SearchPathExcluded-10: tests\n"
 
 #: resources/views/layouts/plugin.php:2
 msgid "Plugin"
@@ -39,9 +40,9 @@ msgid "Copyright "
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:55
-#: resources/views/layouts/settings.php:61
-#: resources/views/layouts/settings.php:69
+#: resources/views/layouts/settings.php:52
+#: resources/views/layouts/settings.php:58
+#: resources/views/layouts/settings.php:66
 #: src/Providers/AdminServiceProvider.php:32
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
@@ -49,12 +50,12 @@ msgstr ""
 msgid "The Bible Plugin"
 msgstr ""
 
-#: resources/views/layouts/settings.php:75
+#: resources/views/layouts/settings.php:72
 msgid ""
 "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr ""
 
-#: resources/views/layouts/settings.php:84
+#: resources/views/layouts/settings.php:81
 msgid "More Info"
 msgstr ""
 
@@ -66,48 +67,48 @@ msgstr ""
 msgid "An error has occurred."
 msgstr ""
 
-#: resources/views/settings/bible-brains-form.php:53
-#: resources/views/settings/bible-brains-form.php:55
-#: resources/views/settings/customization-form.php:124
-#: resources/views/settings/customization-form.php:126
+#: resources/views/settings/bible-brains-form.php:56
+#: resources/views/settings/bible-brains-form.php:58
+#: resources/views/settings/customization-form.php:127
+#: resources/views/settings/customization-form.php:129
 msgid "Save"
 msgstr ""
 
-#: resources/views/settings/customization-form.php:30
+#: resources/views/settings/customization-form.php:33
 msgid "Theme"
 msgstr ""
 
-#: resources/views/settings/customization-form.php:38
+#: resources/views/settings/customization-form.php:41
 msgid "Choose"
 msgstr ""
 
-#: resources/views/settings/customization-form.php:56
+#: resources/views/settings/customization-form.php:59
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr ""
 
-#: resources/views/settings/customization-form.php:65
+#: resources/views/settings/customization-form.php:68
 msgid "Accent Color"
 msgstr ""
 
-#: resources/views/settings/customization-form.php:75
+#: resources/views/settings/customization-form.php:78
 msgid "The primary accent color used in the bible reader."
 msgstr ""
 
-#: resources/views/settings/customization-form.php:82
+#: resources/views/settings/customization-form.php:85
 msgid "Accent Color Steps"
 msgstr ""
 
-#: resources/views/settings/customization-form.php:95
+#: resources/views/settings/customization-form.php:98
 msgid ""
 "This range of colors could be displayed in the bible reader. The accent "
 "color you chose will be used most often."
 msgstr ""
 
-#: resources/views/settings/customization-form.php:102
+#: resources/views/settings/customization-form.php:105
 msgid "Translations"
 msgstr ""
 
-#: resources/views/settings/customization-form.php:111
+#: resources/views/settings/customization-form.php:114
 msgid "Enter a translation..."
 msgstr ""
 
@@ -198,101 +199,106 @@ msgstr ""
 
 #: src/Services/Assets.php:22
 msgctxt "reader"
-msgid "Copy"
+msgid "Books"
 msgstr ""
 
 #: src/Services/Assets.php:23
 msgctxt "reader"
-msgid "Copied successfully."
+msgid "Copy"
 msgstr ""
 
 #: src/Services/Assets.php:24
 msgctxt "reader"
-msgid "Language"
+msgid "Copied successfully."
 msgstr ""
 
 #: src/Services/Assets.php:25
 msgctxt "reader"
-msgid "Languages"
+msgid "Language"
 msgstr ""
 
 #: src/Services/Assets.php:26
 msgctxt "reader"
-msgid "Link"
+msgid "Languages"
 msgstr ""
 
 #: src/Services/Assets.php:27
 msgctxt "reader"
-msgid "Old Testament"
+msgid "Link"
 msgstr ""
 
 #: src/Services/Assets.php:28
 msgctxt "reader"
-msgid "Media Types"
+msgid "Old Testament"
 msgstr ""
 
 #: src/Services/Assets.php:29
 msgctxt "reader"
-msgid "New Testament"
+msgid "Media Types"
 msgstr ""
 
 #: src/Services/Assets.php:30
 msgctxt "reader"
-msgid "Search"
+msgid "New Testament"
 msgstr ""
 
 #: src/Services/Assets.php:31
 msgctxt "reader"
-msgid "Selection"
+msgid "Search"
 msgstr ""
 
 #: src/Services/Assets.php:32
 msgctxt "reader"
-msgid "Translation"
+msgid "Selection"
 msgstr ""
 
 #: src/Services/Assets.php:33
 msgctxt "reader"
-msgid "Loading"
+msgid "Translation"
 msgstr ""
 
 #: src/Services/Assets.php:34
 msgctxt "reader"
-msgid "Text"
+msgid "Loading"
 msgstr ""
 
 #: src/Services/Assets.php:35
 msgctxt "reader"
+msgid "Text"
+msgstr ""
+
+#: src/Services/Assets.php:36
+msgctxt "reader"
 msgid "Selected"
 msgstr ""
 
-#: src/Services/Assets.php:38
+#: src/Services/Assets.php:39
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 
-#: src/Services/Assets.php:39
+#: src/Services/Assets.php:40
 msgid "Select the bible language you would like to make available."
 msgstr ""
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:41
 msgid ""
 "Select the bible version you would like to make available for this "
 "language."
 msgstr ""
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:42
 msgid "Add Language"
 msgstr ""
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:43
 msgid "Default Language?"
 msgstr ""
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:44
 msgid "Make this the default language."
 msgstr ""
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:45
 msgid "Bible Version"
 msgstr ""
 
@@ -306,13 +312,8 @@ msgctxt "shortcode"
 msgid "No results found"
 msgstr ""
 
-#: tests/TranslatorTest.php:26
-msgctxt "reader"
-msgid "Hello World"
-msgstr ""
-
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/TheCodeZone/bible-plugin"
+msgid "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -324,5 +325,5 @@ msgid "Reaching Asia"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://github.com/TheCodeZone"
+msgid "https://reachingasia.com"
 msgstr ""

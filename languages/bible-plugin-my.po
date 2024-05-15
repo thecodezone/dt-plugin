@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-07 15:17-0500\n"
-"PO-Revision-Date: 2024-05-07 15:17-0500\n"
+"POT-Creation-Date: 2024-05-15 14:58-0500\n"
+"PO-Revision-Date: 2024-05-15 14:58-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -38,17 +38,17 @@ msgid "Copyright "
 msgstr "မူဝါဒ "
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:55 resources/views/layouts/settings.php:61 resources/views/layouts/settings.php:69
+#: resources/views/layouts/settings.php:52 resources/views/layouts/settings.php:58 resources/views/layouts/settings.php:66
 #: src/Providers/AdminServiceProvider.php:32 src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43 src/Providers/AdminServiceProvider.php:44
 msgid "The Bible Plugin"
 msgstr "သမ္မာကျမ်းစာ ပလက်ဂျင်း"
 
-#: resources/views/layouts/settings.php:75
+#: resources/views/layouts/settings.php:72
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr "သင်၏သမ္မာကျမ်းစာ ဦးနှောက် API သော့ကို ဒီပလက်ဂျင်အလုပ်လုပ်နိုင်ဖို့ ကျမ်းစာဦးနှောက် API သော့ကို ထည့်ပေးရမယ်။"
 
-#: resources/views/layouts/settings.php:84
+#: resources/views/layouts/settings.php:81
 msgid "More Info"
 msgstr "ပိုသောသတင်းအချက်အလက်"
 
@@ -60,44 +60,44 @@ msgstr "အောင်မြင်ခြင်း!"
 msgid "An error has occurred."
 msgstr "အမှားတစ်ခု ဖြစ်ပွားခဲ့တယ်။"
 
-#: resources/views/settings/bible-brains-form.php:53 resources/views/settings/bible-brains-form.php:55
-#: resources/views/settings/customization-form.php:124 resources/views/settings/customization-form.php:126
+#: resources/views/settings/bible-brains-form.php:56 resources/views/settings/bible-brains-form.php:58
+#: resources/views/settings/customization-form.php:127 resources/views/settings/customization-form.php:129
 msgid "Save"
 msgstr "သိမ်းဆည်းသည်"
 
-#: resources/views/settings/customization-form.php:30
+#: resources/views/settings/customization-form.php:33
 msgid "Theme"
 msgstr "သီအိုတာ"
 
-#: resources/views/settings/customization-form.php:38
+#: resources/views/settings/customization-form.php:41
 msgid "Choose"
 msgstr "ရွေးချယ်ပါ"
 
-#: resources/views/settings/customization-form.php:56
+#: resources/views/settings/customization-form.php:59
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr "သင့် အဓိကအကြောင်းနဲ့ ကိုက်ညီဖို့ အလင်းနည်း ဒါမှမဟုတ် မှောင်တဲ့နည်းကို ပြောင်းပါ။"
 
-#: resources/views/settings/customization-form.php:65
+#: resources/views/settings/customization-form.php:68
 msgid "Accent Color"
 msgstr "အသံအရောင်"
 
-#: resources/views/settings/customization-form.php:75
+#: resources/views/settings/customization-form.php:78
 msgid "The primary accent color used in the bible reader."
 msgstr "ကျမ်းစာဖတ်ရှုသူတွေမှာ အသုံးပြုထားတဲ့ အဓိကလေသံအရောင်ပါ။"
 
-#: resources/views/settings/customization-form.php:82
+#: resources/views/settings/customization-form.php:85
 msgid "Accent Color Steps"
 msgstr "အသံအရောင် အဆင့်ဆင့်"
 
-#: resources/views/settings/customization-form.php:95
+#: resources/views/settings/customization-form.php:98
 msgid "This range of colors could be displayed in the bible reader. The accent color you chose will be used most often."
 msgstr "ဒီအရောင်မျိုးစုံကို ကျမ်းစာဖတ်ရှုသူတွေမှာ ပြသနိုင်ပါတယ်။ သင်ရွေးချယ်ခဲ့သော လေသံအရောင်ကို အများအားဖြင့် အသုံးပြုလေ့ရှိသည်။"
 
-#: resources/views/settings/customization-form.php:102
+#: resources/views/settings/customization-form.php:105
 msgid "Translations"
 msgstr "ဘာသာပြန်ကျမ်းများ"
 
-#: resources/views/settings/customization-form.php:111
+#: resources/views/settings/customization-form.php:114
 msgid "Enter a translation..."
 msgstr "ဘာသာပြန်ကျမ်းထဲ ဝင်ပါ......"
 
@@ -184,99 +184,104 @@ msgstr "အထောက်အပံ့လက်မှတ်"
 
 #: src/Services/Assets.php:22
 msgctxt "reader"
+msgid "Books"
+msgstr "စာအုပ်"
+
+#: src/Services/Assets.php:23
+msgctxt "reader"
 msgid "Copy"
 msgstr "မိတ္တူကူးယူပါ"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "အောင်မြင်စွာ ကူးယူခဲ့လေသည်။"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Language"
 msgstr "ဘာသာစကား"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Languages"
 msgstr "ဘာသာစကားများ"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Link"
 msgstr "လင့်ခ်"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "ဓမ္မဟောင်းကျမ်း"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "Media Types"
 msgstr "မီဒီယာအမျိုးအစားများ"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "New Testament"
 msgstr "ဓမ္မသစ်ကျမ်း"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Search"
 msgstr "ရှာတွေ့သည်"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Selection"
 msgstr "ရွေးချယ်ချက်"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Translation"
 msgstr "ဘာသာပြန်ခြင်း"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:34
 msgctxt "reader"
 msgid "Loading"
 msgstr "လုပ်ဆောင်နေဆဲ"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:35
 msgctxt "reader"
 msgid "Text"
 msgstr "စာသား"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:36
 msgctxt "reader"
 msgid "Selected"
 msgstr "ရွေးချယ်ထားသော"
 
-#: src/Services/Assets.php:38
+#: src/Services/Assets.php:39
 msgid "Note that some bible versions do not support all media types."
 msgstr "ကျမ်းစာ ဘာသာ ပြန် ကျမ်း တချို့ က မီဒီယာ အမျိုးအစား အားလုံး ကို မ ထောက်ခံ ကြောင်း သတိပြု ပါ ။"
 
-#: src/Services/Assets.php:39
+#: src/Services/Assets.php:40
 msgid "Select the bible language you would like to make available."
 msgstr "သင်ရရှိလိုသည့် ကျမ်းစာဘာသာစကားကို ရွေးချယ်ပါ။"
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:41
 msgid "Select the bible version you would like to make available for this language."
 msgstr "ဤဘာသာစကားအတွက် သင်ရရှိလိုသည့် ကျမ်းစာဘာသာပြန်ကျမ်းကို ရွေးချယ်ပါ။"
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:42
 msgid "Add Language"
 msgstr "ဘာသာစကားကို ပေါင်းထည့်ပါ"
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:43
 msgid "Default Language?"
 msgstr "စံပြဘာသာစကား"
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:44
 msgid "Make this the default language."
 msgstr "ဒါကို စံထားတဲ့ဘာသာစကား ဖြစ်စေပါ။"
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:45
 msgid "Bible Version"
 msgstr "သမ္မာကျမ်း စာ ဘာသာ ပြန် ကျမ်း"
 
@@ -296,8 +301,8 @@ msgid "Hello World"
 msgstr "မင်္ဂလာပါကမ္ဘာလောက"
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/TheCodeZone/bible-plugin"
-msgstr "https://github.com/TheCodeZone/bible-plugin"
+msgid "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
+msgstr "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
 
 #. Description of the plugin/theme
 msgid "A bible plugin for WordPress."
@@ -308,8 +313,11 @@ msgid "Reaching Asia"
 msgstr "အာရှတိုက်သို့ ရောက်ရှိ"
 
 #. Author URI of the plugin/theme
-msgid "https://github.com/TheCodeZone"
-msgstr "https://github.com/TheCodeZone"
+msgid "https://reachingasia.com"
+msgstr "https://reachingasia.com"
+
+#~ msgid "https://github.com/TheCodeZone"
+#~ msgstr "https://github.com/TheCodeZone"
 
 #~ msgid "Here's how to get your key."
 #~ msgstr "ဒီမှာ ခင်ဗျားရဲ့ သော့ကို ဘယ်လိုရနိုင်မလဲဆိုတာပါ။"

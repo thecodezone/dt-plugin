@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-07 15:18-0500\n"
-"PO-Revision-Date: 2024-05-07 15:18-0500\n"
+"POT-Creation-Date: 2024-05-15 14:58-0500\n"
+"PO-Revision-Date: 2024-05-15 14:58-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -37,16 +37,16 @@ msgid "Copyright "
 msgstr "ลิขสิทธิ์ "
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:55 resources/views/layouts/settings.php:61 resources/views/layouts/settings.php:69 src/Providers/AdminServiceProvider.php:32 src/Providers/AdminServiceProvider.php:33
+#: resources/views/layouts/settings.php:52 resources/views/layouts/settings.php:58 resources/views/layouts/settings.php:66 src/Providers/AdminServiceProvider.php:32 src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43 src/Providers/AdminServiceProvider.php:44
 msgid "The Bible Plugin"
 msgstr "ปลั๊กอินพระคัมภีร์"
 
-#: resources/views/layouts/settings.php:75
+#: resources/views/layouts/settings.php:72
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr "คุณต้องเพิ่มคีย์ API ของ Bible Brain เพื่อให้ปลั๊กอินนี้ทํางานได้"
 
-#: resources/views/layouts/settings.php:84
+#: resources/views/layouts/settings.php:81
 msgid "More Info"
 msgstr "ข้อมูลเพิ่มเติม"
 
@@ -58,43 +58,43 @@ msgstr "สำเร็จ!"
 msgid "An error has occurred."
 msgstr "เกิดข้อผิดพลาด"
 
-#: resources/views/settings/bible-brains-form.php:53 resources/views/settings/bible-brains-form.php:55 resources/views/settings/customization-form.php:124 resources/views/settings/customization-form.php:126
+#: resources/views/settings/bible-brains-form.php:56 resources/views/settings/bible-brains-form.php:58 resources/views/settings/customization-form.php:127 resources/views/settings/customization-form.php:129
 msgid "Save"
 msgstr "บันทึก"
 
-#: resources/views/settings/customization-form.php:30
+#: resources/views/settings/customization-form.php:33
 msgid "Theme"
 msgstr "ธีม"
 
-#: resources/views/settings/customization-form.php:38
+#: resources/views/settings/customization-form.php:41
 msgid "Choose"
 msgstr "ตกลง"
 
-#: resources/views/settings/customization-form.php:56
+#: resources/views/settings/customization-form.php:59
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr "สลับระหว่างโหมดสว่างหรือโหมดมืดเพื่อให้เข้ากับธีมของคุณ"
 
-#: resources/views/settings/customization-form.php:65
+#: resources/views/settings/customization-form.php:68
 msgid "Accent Color"
 msgstr "เน้นสี"
 
-#: resources/views/settings/customization-form.php:75
+#: resources/views/settings/customization-form.php:78
 msgid "The primary accent color used in the bible reader."
 msgstr "สีเน้นเสียงหลักที่ใช้ในเครื่องอ่านพระคัมภีร์"
 
-#: resources/views/settings/customization-form.php:82
+#: resources/views/settings/customization-form.php:85
 msgid "Accent Color Steps"
 msgstr "ขั้นตอนสีเน้น"
 
-#: resources/views/settings/customization-form.php:95
+#: resources/views/settings/customization-form.php:98
 msgid "This range of colors could be displayed in the bible reader. The accent color you chose will be used most often."
 msgstr "ช่วงของสีนี้สามารถแสดงในโปรแกรมอ่านพระคัมภีร์ สีเน้นเสียงที่คุณเลือกจะถูกใช้บ่อยที่สุด"
 
-#: resources/views/settings/customization-form.php:102
+#: resources/views/settings/customization-form.php:105
 msgid "Translations"
 msgstr "Translations"
 
-#: resources/views/settings/customization-form.php:111
+#: resources/views/settings/customization-form.php:114
 msgid "Enter a translation..."
 msgstr "ป้อนคําแปล..."
 
@@ -180,99 +180,104 @@ msgstr "สนับสนุน"
 
 #: src/Services/Assets.php:22
 msgctxt "reader"
+msgid "Books"
+msgstr "รายชื่อ"
+
+#: src/Services/Assets.php:23
+msgctxt "reader"
 msgid "Copy"
 msgstr "คัดลอก"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "คัดลอกเรียบร้อยแล้ว"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Language"
 msgstr "ภาษา"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Languages"
 msgstr "ภาษา"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Link"
 msgstr "ลิงค์"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "พันธสัญญาเดิม"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "Media Types"
 msgstr "ชนิดของสื่อ"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "New Testament"
 msgstr "พันธสัญญาใหม่"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Search"
 msgstr "ค้นหา"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Selection"
 msgstr "เลือก"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Translation"
 msgstr "การแปล"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:34
 msgctxt "reader"
 msgid "Loading"
 msgstr "กำลังโหลด"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:35
 msgctxt "reader"
 msgid "Text"
 msgstr "ข้อความ"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:36
 msgctxt "reader"
 msgid "Selected"
 msgstr "เลือก"
 
-#: src/Services/Assets.php:38
+#: src/Services/Assets.php:39
 msgid "Note that some bible versions do not support all media types."
 msgstr "โปรดทราบว่าพระคัมภีร์บางฉบับไม่รองรับสื่อทุกประเภท"
 
-#: src/Services/Assets.php:39
+#: src/Services/Assets.php:40
 msgid "Select the bible language you would like to make available."
 msgstr "เลือกภาษาในพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งาน"
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:41
 msgid "Select the bible version you would like to make available for this language."
 msgstr "เลือกเวอร์ชันพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งานสําหรับภาษานี้"
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:42
 msgid "Add Language"
 msgstr "เพิ่มภาษา"
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:43
 msgid "Default Language?"
 msgstr "ภาษาเริ่มต้น?"
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:44
 msgid "Make this the default language."
 msgstr "ทําให้เป็นภาษาเริ่มต้น"
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:45
 msgid "Bible Version"
 msgstr "ฉบับพระคัมภีร์"
 
@@ -292,8 +297,8 @@ msgid "Hello World"
 msgstr "หวัดดีชาวโลก"
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/TheCodeZone/bible-plugin"
-msgstr "https://github.com/TheCodeZone/bible-plugin"
+msgid "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
+msgstr "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
 
 #. Description of the plugin/theme
 msgid "A bible plugin for WordPress."
@@ -304,8 +309,11 @@ msgid "Reaching Asia"
 msgstr "เข้าถึงเอเชีย"
 
 #. Author URI of the plugin/theme
-msgid "https://github.com/TheCodeZone"
-msgstr "https://github.com/TheCodeZone"
+msgid "https://reachingasia.com"
+msgstr "https://reachingasia.com"
+
+#~ msgid "https://github.com/TheCodeZone"
+#~ msgstr "https://github.com/TheCodeZone"
 
 #~ msgid "Here's how to get your key."
 #~ msgstr "วิธีรับกุญแจมีดังนี้"

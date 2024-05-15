@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: The Bible Plugin
- * Plugin URI: https://github.com/TheCodeZone/bible-plugin
+ * Plugin URI: https://github.com/Reaching-Asia-Inc/The-Bible-Plugin
  * Description: A bible plugin for WordPress.
  * Text Domain: bible-plugin
  * Domain Path: /languages
  * Version:  1.0.0-beta3
  * Author: Reaching Asia
- * Author URI: https://github.com/TheCodeZone
- * GitHub Plugin URI: https://github.com/TheCodeZone/bible-plugin
+ * Author URI: https://reachingasia.com
+ * GitHub Plugin URI: https://github.com/Reaching-Asia-Inc/The-Bible-Plugin
  * Requires at least: 4.7.0
  * (Requires 4.7+ because of the integration of the REST API at 4.7 and the security requirements of this milestone version.)
  * Tested up to: 5.6

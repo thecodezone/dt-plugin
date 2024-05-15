@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-07 15:18-0500\n"
-"PO-Revision-Date: 2024-05-07 15:18-0500\n"
+"POT-Creation-Date: 2024-05-15 14:59-0500\n"
+"PO-Revision-Date: 2024-05-15 14:59-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -39,9 +39,9 @@ msgid "Copyright "
 msgstr "کاپی "
 
 #. Plugin Name of the plugin/theme
-#: resources/views/layouts/settings.php:55
-#: resources/views/layouts/settings.php:61
-#: resources/views/layouts/settings.php:69
+#: resources/views/layouts/settings.php:52
+#: resources/views/layouts/settings.php:58
+#: resources/views/layouts/settings.php:66
 #: src/Providers/AdminServiceProvider.php:32
 #: src/Providers/AdminServiceProvider.php:33
 #: src/Providers/AdminServiceProvider.php:43
@@ -49,13 +49,13 @@ msgstr "کاپی "
 msgid "The Bible Plugin"
 msgstr "بائبل پلگ ان"
 
-#: resources/views/layouts/settings.php:75
+#: resources/views/layouts/settings.php:72
 msgid "You must add your Bible Brain API Key in order for this plugin to work."
 msgstr ""
 "اس پلگ ان کے کام کرنے کے لئے آپ کو اپنی بائبل برین اے پی آئی کلید شامل کرنا "
 "ضروری ہے۔"
 
-#: resources/views/layouts/settings.php:84
+#: resources/views/layouts/settings.php:81
 msgid "More Info"
 msgstr "مزید معلومات"
 
@@ -67,38 +67,38 @@ msgstr "کامیابی!"
 msgid "An error has occurred."
 msgstr "ایک نقص واقع ہوا ہے۔"
 
-#: resources/views/settings/bible-brains-form.php:53
-#: resources/views/settings/bible-brains-form.php:55
-#: resources/views/settings/customization-form.php:124
-#: resources/views/settings/customization-form.php:126
+#: resources/views/settings/bible-brains-form.php:56
+#: resources/views/settings/bible-brains-form.php:58
+#: resources/views/settings/customization-form.php:127
+#: resources/views/settings/customization-form.php:129
 msgid "Save"
 msgstr "محفوظ کریں"
 
-#: resources/views/settings/customization-form.php:30
+#: resources/views/settings/customization-form.php:33
 msgid "Theme"
 msgstr "موضوع"
 
-#: resources/views/settings/customization-form.php:38
+#: resources/views/settings/customization-form.php:41
 msgid "Choose"
 msgstr "چننا"
 
-#: resources/views/settings/customization-form.php:56
+#: resources/views/settings/customization-form.php:59
 msgid "Switch between light mode or dark mode to match your theme."
 msgstr "اپنے تھیم سے میچ کرنے کے لئے لائٹ موڈ یا ڈارک موڈ کے درمیان سوئچ کریں۔"
 
-#: resources/views/settings/customization-form.php:65
+#: resources/views/settings/customization-form.php:68
 msgid "Accent Color"
 msgstr "لہجے کا رنگ"
 
-#: resources/views/settings/customization-form.php:75
+#: resources/views/settings/customization-form.php:78
 msgid "The primary accent color used in the bible reader."
 msgstr "بنیادی لہجے کا رنگ بائبل پڑھنے والے میں استعمال ہوتا ہے۔"
 
-#: resources/views/settings/customization-form.php:82
+#: resources/views/settings/customization-form.php:85
 msgid "Accent Color Steps"
 msgstr "لہجے کے رنگ کے اقدامات"
 
-#: resources/views/settings/customization-form.php:95
+#: resources/views/settings/customization-form.php:98
 msgid ""
 "This range of colors could be displayed in the bible reader. The accent "
 "color you chose will be used most often."
@@ -106,11 +106,11 @@ msgstr ""
 "رنگوں کی اس رینج کو بائبل کے قارئین میں دکھایا جا سکتا ہے۔ آپ کے منتخب کردہ "
 "لہجے کا رنگ اکثر استعمال کیا جائے گا۔"
 
-#: resources/views/settings/customization-form.php:102
+#: resources/views/settings/customization-form.php:105
 msgid "Translations"
 msgstr "ترجمے"
 
-#: resources/views/settings/customization-form.php:111
+#: resources/views/settings/customization-form.php:114
 msgid "Enter a translation..."
 msgstr "ترجمہ درج کریں..."
 
@@ -201,102 +201,107 @@ msgstr "معاونت"
 
 #: src/Services/Assets.php:22
 msgctxt "reader"
+msgid "Books"
+msgstr "کتابیں"
+
+#: src/Services/Assets.php:23
+msgctxt "reader"
 msgid "Copy"
 msgstr "نقل"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "کامیابی سے کاپی کیا."
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Language"
 msgstr "زبان"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Languages"
 msgstr "زبانیں"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Link"
 msgstr "لنک"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "پرانا عہد نامہ"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "Media Types"
 msgstr "میڈیا کی اقسام"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "New Testament"
 msgstr "انجیل"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Search"
 msgstr "تلاش"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "Selection"
 msgstr "انتخاب"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Translation"
 msgstr "ترجمہ"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:34
 msgctxt "reader"
 msgid "Loading"
 msgstr "لوڈ ہو رہا ہے"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:35
 msgctxt "reader"
 msgid "Text"
 msgstr "متن"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:36
 msgctxt "reader"
 msgid "Selected"
 msgstr "منتخب"
 
-#: src/Services/Assets.php:38
+#: src/Services/Assets.php:39
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 "نوٹ کریں کہ بائبل کے کچھ ورژن میڈیا کی تمام اقسام کی حمایت نہیں کرتے ہیں۔"
 
-#: src/Services/Assets.php:39
+#: src/Services/Assets.php:40
 msgid "Select the bible language you would like to make available."
 msgstr "بائبل کی وہ زبان منتخب کریں جسے آپ دستیاب کرانا چاہتے ہیں۔"
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:41
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
 "بائبل کا وہ ورژن منتخب کریں جسے آپ اس زبان کے لئے دستیاب کرانا چاہتے ہیں۔"
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:42
 msgid "Add Language"
 msgstr "زبان شامل کریں"
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:43
 msgid "Default Language?"
 msgstr "طے شدہ زبان؟"
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:44
 msgid "Make this the default language."
 msgstr "اسے پہلے سے طے شدہ زبان بنائیں۔"
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:45
 msgid "Bible Version"
 msgstr "بائبل ورژن"
 
@@ -316,8 +321,8 @@ msgid "Hello World"
 msgstr "سلام دنيا"
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/TheCodeZone/bible-plugin"
-msgstr "https://github.com/TheCodeZone/bible-plugin"
+msgid "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
+msgstr "https://github.com/Reaching-Asia-Inc/The-Bible-Plugin"
 
 #. Description of the plugin/theme
 msgid "A bible plugin for WordPress."
@@ -328,8 +333,11 @@ msgid "Reaching Asia"
 msgstr "ایشیا ء تک پہنچنا"
 
 #. Author URI of the plugin/theme
-msgid "https://github.com/TheCodeZone"
-msgstr "https://github.com/TheCodeZone"
+msgid "https://reachingasia.com"
+msgstr "https://reachingasia.com"
+
+#~ msgid "https://github.com/TheCodeZone"
+#~ msgstr "https://github.com/TheCodeZone"
 
 #~ msgid "Here's how to get your key."
 #~ msgstr "یہاں آپ کی چابی حاصل کرنے کا طریقہ ہے."
