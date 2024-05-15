@@ -55,7 +55,10 @@ export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $sele
                             >
                                 ${$audioOpen.get() ? html`
                                     <sp-icon-replay slot="icon"></sp-icon-replay>` : html`
-                                    <sp-icon-play slot="icon"></sp-icon-play>`}
+                                    <iconify-icon icon="${"hugeicons:audio-book-03"}"
+                                                  slot="icon"
+                                                  width="18px"
+                                                  height="18px"></iconify-icon>`}
                             </sp-button>
                             <sp-divider
                                     size="s"
