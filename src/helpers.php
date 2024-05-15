@@ -154,7 +154,7 @@ function views_path( string $path = '' ): string {
  *
  * @return string|Engine The rendered view if a view name is provided, otherwise the view engine object.
  */
-function view( string $view = "", array $args = [] ): string|Engine {
+function view( string $view = "", array $args = [] ) {
 	$engine = container()->make( Engine::class );
 	if ( ! $view ) {
 		return $engine;
@@ -172,7 +172,7 @@ function view( string $view = "", array $args = [] ): string|Engine {
  * @return mixed If $template is not specified, an instance of the Template service is returned.
  *               If $template is specified, the rendered template is returned.
  */
-function template( string $template = "", array $args = [] ): mixed {
+function template( string $template = "", array $args = [] ) {
 	$service = container()->make( Template::class );
 	if ( ! $template ) {
 		return $service;
@@ -234,7 +234,7 @@ function validate( array $data, array $rules, array $messages = [] ): array {
  *
  * @return bool Returns true if the option was successfully set, false otherwise.
  */
-function set_option( string $option_name, mixed $value ): bool {
+function set_option( string $option_name, $value ): bool {
 	if ( get_plugin_option( $option_name ) === false ) {
 		return add_option( $option_name, $value );
 	} else {
@@ -251,7 +251,7 @@ function set_option( string $option_name, mixed $value ): bool {
  *
  * @throws \Exception If there is a database error before starting the transaction.
  */
-function transaction( $callback ): bool|string {
+function transaction( $callback ) {
 	global $wpdb;
 	if ( $wpdb->last_error ) {
 		return $wpdb->last_error;

@@ -14,13 +14,22 @@ use function CodeZone\Bible\request;
  */
 class Bible {
 	/**
+	 * The assets service.
+	 *
+	 * @var Assets
+	 */
+	protected $assets;
+	
+	/**
 	 * Constructs a new instance of the class.
 	 *
 	 * Adds a shortcode callback to handle the 'tbp-bible' shortcode.
 	 *
 	 * @return void
 	 */
-	public function __construct( private Assets $assets ) {
+	public function __construct( Assets $assets ) {
+		$this->assets = $assets;
+
 		add_shortcode( 'tbp-bible', [ $this, 'render' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
@@ -49,7 +58,7 @@ class Bible {
 		if ( ! $attributes ) {
 			$attributes = [];
 		}
-		
+
 		$attributes = shortcode_atts( [
 			'reference' => 'John 1',
 		], cast_bool_values( $attributes ) );

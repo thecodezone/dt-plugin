@@ -11,6 +11,14 @@ use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
  * Books service class for interacting with the Bible Brains books.
  */
 class Books {
+
+	/**
+	 * The Bible Brains bible service
+	 *
+	 * @var Bibles
+	 */
+	private $bibles;
+
 	private $old_testament = [
 		'GEN' => 'Genesis',
 		'EXO' => 'Exodus',
@@ -87,7 +95,8 @@ class Books {
 		return array_key_exists( $abbr, $this->old_testament ) ? 'OT' : 'NT';
 	}
 
-	public function __construct( protected Bibles $bibles ) {
+	public function __construct( Bibles $bibles ) {
+		$this->bibles = $bibles;
 	}
 
 	/**
@@ -100,7 +109,7 @@ class Books {
 	 * @return array The array containing all the books from the specified bible version.
 	 * @throws BibleBrainsException
 	 */
-	public function all( string|array $bible = 'ENGESV' ): array {
+	public function all( $bible = 'ENGESV' ): array {
 		if ( is_array( $bible ) ) {
 			return $bible['books'];
 		}
@@ -149,7 +158,7 @@ class Books {
 	 * @return string|array Returns the normalized book if found, otherwise returns the original book.
 	 * @throws BibleBrainsException
 	 */
-	public function normalize( string $book, string|array $bible = 'ENGESV' ) {
+	public function normalize( string $book, $bible = 'ENGESV' ) {
 		$data = $this->find( $book, $bible );
 
 		if ( ! $data ) {

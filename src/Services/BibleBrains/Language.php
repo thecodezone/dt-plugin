@@ -17,6 +17,26 @@ use WhiteCube\Lingua\Service as Lingua;
  * @package YourPackage
  */
 class Language {
+	/**
+	 * The options object.
+	 *
+	 * @var Options
+	 */
+	protected $options;
+
+	/**
+	 * The languages object.
+	 *
+	 * @var Languages
+	 */
+	protected $languages;
+
+	/**
+	 * The translations object.
+	 *
+	 * @var Translations
+	 */
+	protected $translations;
 
 	/**
 	 * Constructor.
@@ -25,7 +45,10 @@ class Language {
 	 * @param Languages $languages The languages object.
 	 * @param Translations $translations The translations object.
 	 */
-	public function __construct( private Options $options, Languages $languages, private Translations $translations ) {
+	public function __construct( Options $options, Languages $languages, Translations $translations ) {
+		$this->options      = $options;
+		$this->languages    = $languages;
+		$this->translations = $translations;
 	}
 
 	/**

@@ -24,6 +24,9 @@
   "scripts": {
     "pre-install-cmd": [
       "./setup-scoper.sh"
+    ],
+    "post-install-cmd": [
+      "node patch-scoper-autoload.js"
     ]
   },
   "require": {

@@ -68,7 +68,7 @@ class MiddlewareServiceProvider extends ServiceProvider {
 		 * Parse named signature to instantiate any middleware that takes arguments.
 		 * Signature format: "name:signature"
 		 */
-		add_filter( Router\namespace_string( 'middleware_factory' ), function ( Middleware|null $middleware, $attributes ) {
+		add_filter( Router\namespace_string( 'middleware_factory' ), function ( $middleware, $attributes ) {
 			$classname = $attributes['className'] ?? null;
 			$name      = $attributes['name'] ?? null;
 			$signature = $attributes['signature'] ?? null;

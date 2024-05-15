@@ -51,7 +51,7 @@ abstract class TestCase extends WP_UnitTestCase {
 	 *
 	 * @return mixed The response from the request.
 	 */
-	public function request( $method, $uri, array $parameters = [], $headers = [], array $cookies = [], array $files = [], array $server = [], $content = null ): mixed {
+	public function request( $method, $uri, array $parameters = [], $headers = [], array $cookies = [], array $files = [], array $server = [], $content = null ) {
 		$initial_request = container()->make( Request::class );
 		$request         = Request::create( $uri, $method, $parameters, $cookies, $files, $server, $content );
 		foreach ( $headers as $key => $value ) {
@@ -74,7 +74,7 @@ abstract class TestCase extends WP_UnitTestCase {
 		} );
 		$stack    = apply_filters( namespace_string( 'middleware' ), container()->make( Stack::class ) );
 		$response = $stack->run();
-
+		
 		container()->bind( Request::class, function () use ( $initial_request ) {
 			return $initial_request;
 		} );

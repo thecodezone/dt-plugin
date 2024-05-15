@@ -20,7 +20,7 @@ class LanguageTest extends TestCase {
 	 * @test
 	 */
 	public function it_can_fetch_a_language() {
-		$response = $this->get( 'bible/api/languages/6414' );
+		$response = $this->get( 'api/languages/6414' );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
 		$this->assertEquals( '6414', $result['data']['id'] );
@@ -49,7 +49,7 @@ class LanguageTest extends TestCase {
 	 * @test
 	 */
 	public function it_can_fetch_language_options() {
-		$response = $this->get( 'bible/api/languages/options', [ 'limit' => 2 ] );
+		$response = $this->get( 'api/languages/options', [ 'limit' => 2 ] );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
 		$this->assertEquals( 2, count( $result['data'] ) );
