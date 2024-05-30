@@ -23,7 +23,7 @@ class BibleTest extends TestCase {
 	 * @test
 	 */
 	public function it_can_fetch_a_bible() {
-		$response = $this->get( 'bible/api/bibles/ENGESV' );
+		$response = $this->get( 'api/bibles/ENGESV' );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
 		$this->assertEquals( 'ENGESV', $result['data']['abbr'] );
@@ -34,7 +34,7 @@ class BibleTest extends TestCase {
 	 * @test
 	 */
 	public function it_can_fetch_language_options() {
-		$response = $this->get( 'bible/api/bibles/options', [ 'limit' => 2 ] );
+		$response = $this->get( 'api/bibles/options', [ 'limit' => 2 ] );
 		$this->assertEquals( 200, $response->status() );
 		$result = json_decode( $response->getContent(), true );
 		$this->assertEquals( 2, count( $result['data'] ) );
