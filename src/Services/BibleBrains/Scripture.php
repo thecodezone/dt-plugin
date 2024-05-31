@@ -17,6 +17,55 @@ use function CodeZone\Bible\validate;
  */
 class Scripture {
 	/**
+	 * The Bibles service.
+	 *
+	 * @var Bibles
+	 */
+	private $bibles;
+
+	/**
+	 * The Books service.
+	 *
+	 * @var Books
+	 */
+	private $books;
+
+	/**
+	 * The FileSets service.
+	 *
+	 * @var FileSets
+	 */
+	private $file_sets;
+
+	/**
+	 * The Reference service.
+	 *
+	 * @var Reference
+	 */
+	private $reference;
+
+	/**
+	 * The MediaTypes service.
+	 *
+	 * @var MediaTypes
+	 */
+	private $media_types;
+
+	/**
+	 * The Language service.
+	 *
+	 * @var Language
+	 */
+	private $language;
+
+	/**
+	 * The Options service.
+	 *
+	 * @var Options
+	 */
+	private $options;
+
+	/**
 	 * Constructs a new instance of the class.
 	 *
 	 * @param Bibles $bibles The Bibles service.
@@ -27,14 +76,21 @@ class Scripture {
 	 * @param Language $language The Language service.
 	 */
 	public function __construct(
-		private Bibles $bibles,
-		private Books $books,
-		private FileSets $file_sets,
-		private Reference $reference,
-		private MediaTypes $media_types,
-		private Language $language,
-		private Options $options
+		Bibles $bibles,
+		Books $books,
+		FileSets $file_sets,
+		Reference $reference,
+		MediaTypes $media_types,
+		Language $language,
+		Options $options
 	) {
+		$this->bibles      = $bibles;
+		$this->books       = $books;
+		$this->file_sets   = $file_sets;
+		$this->reference   = $reference;
+		$this->media_types = $media_types;
+		$this->language    = $language;
+		$this->options     = $options;
 	}
 
 	/**
@@ -121,24 +177,33 @@ class Scripture {
 				$media_type = $this->media_types->find( $media_type_key );
 				$fileset    = $this->file_sets->pluck( $bible, $book, $media_type['fileset_types'] );
 				if ( $fileset ) {
-					$media[ $media_type_key ] = [
-						...$media_type,
-						'content' => $this->fetch_content( array_merge( $parameters, [ 'fileset' => $fileset['id'] ] ) ),
-						'fileset' => $fileset,
-					];
+					$media[ $media_type_key ] = array_merge(
+						$media_type,
+						[
+							'content' => $this->fetch_content(
+								array_merge(
+									$parameters,
+									[ 'fileset' => $fileset['id'] ]
+								)
+							),
+							'fileset' => $fileset,
+						]
+					);
 				}
 			} catch ( \Exception $e ) {
 				//Skip invalid media types
 			}
 		}
 
-		return [
-			...$parameters,
-			'media'    => $media,
-			'language' => $language,
-			'bible'    => $bible,
-			'book'     => $book
-		];
+		return array_merge(
+			$parameters,
+			[
+				'media'    => $media,
+				'language' => $language,
+				'bible'    => $bible,
+				'book'     => $book
+			]
+		);
 	}
 
 	/**

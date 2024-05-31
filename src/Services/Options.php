@@ -27,10 +27,10 @@ class Options {
 			'bible_brains_key' => defined( 'TBP_BIBLE_BRAINS_KEY' ) ? TBP_BIBLE_BRAINS_KEY : '',
 			'languages'        => [
 				[
-					'bibles' => 'ENGESV',
+					'bibles'      => 'ENGESV',
 					'media_types' => 'text,audio-video',
-					'itemText' => 'English',
-					'value' => 'eng'
+					'itemText'    => 'English',
+					'value'       => 'eng'
 				]
 			],
 			'language'         => '6414',
@@ -82,7 +82,7 @@ class Options {
 	 *
 	 * @return mixed The value of the option if found, otherwise returns the default value.
 	 */
-	public function get( string $key, mixed $default = null, $required = false ) {
+	public function get( string $key, $default = null, $required = false ) {
 		if ( $default === null ) {
 			$default = $this->get_default( $key );
 		}
@@ -110,7 +110,7 @@ class Options {
 	 *
 	 * @return bool Returns true if the option was set successfully, otherwise returns false.
 	 */
-	public function set( string $key, mixed $value ): bool {
+	public function set( string $key, $value ): bool {
 		$key = $this->scope_key( $key );
 
 		return set_option( $key, $value );

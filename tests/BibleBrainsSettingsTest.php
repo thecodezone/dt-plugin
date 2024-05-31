@@ -55,18 +55,20 @@ class BibleBrainsSettingsTest extends TestCase
         ]);
         wp_set_current_user($user);
 
-        $response = $this->post('api/bible-brains', [
-            'bible_plugin_languages'   => 'eng',
-            'bible_plugin_language'    => 'eng',
-            'bible_plugin_bibles'      => 'ENGKJV',
-            'bible_plugin_bible'       => 'ENGKJV',
-            'bible_plugin_media_types' => 'audio,video,text',
-        ], [
-            'X-WP-Nonce' => 'fake_nonce',
-        ]);
+		$response = $this->post( 'api/bible-brains', [
+			'languages' => [
+				[
+					'itemText'    => 'English',
+					'value'       => 'eng',
+					'bibles'      => 'ENGKJV',
+					'media_types' => 'audio,video,text',
+					'is_default'  => true
+				]
+			]
+		] );
 
-        $this->assertEquals(403, $response->getStatusCode());
-    }
+		$this->assertEquals( 403, $response->getStatusCode() );
+	}
 
     /**
      * Test that the BibleBrains settings page validates the submission.
@@ -79,15 +81,10 @@ class BibleBrainsSettingsTest extends TestCase
         ]);
         wp_set_current_user($user);
 
-        $response = $this->post('api/bible-brains', [
-            'languages'   => null,
-            'language'    => 'eng',
-            'bibles'      => 'ENGKJV',
-            'bible'       => 'ENGKJV',
-            'media_types' => 'audio,video,text',
-            ], [
-            'X-WP-Nonce' => wp_create_nonce('bible_plugin_nonce'),
-        ]);
+		$response = $this->post( 'api/bible-brains', [
+		], [
+			'X-WP-Nonce' => wp_create_nonce( 'bible_plugin_nonce' ),
+		] );
 
         $data = json_decode($response->getContent(), true);
         $this->assertEquals(400, $response->getStatusCode());
@@ -109,19 +106,20 @@ class BibleBrainsSettingsTest extends TestCase
         wp_set_current_user($user);
 
         $payload = [
-            'languages'        => [
+            'languages' => [
                 [
-                    'bibles' => 'ENGESV',
-                    'media_types' => 'text,audio-video',
-                    'itemText' => 'English',
-                    'value' => 'eng'
+                    'itemText'    => 'English',
+                    'value'       => 'eng',
+                    'bibles'      => 'ENGKJV',
+                    'media_types' => 'audio,video,text',
+                    'is_default'  => true
                 ]
-            ],
+            ]
         ];
 
-        $response = $this->post('api/bible-brains', $payload, [
-            'X-WP-Nonce' => wp_create_nonce('bible_plugin_nonce'),
-        ]);
+		$response = $this->post( 'api/bible-brains', $payload, [
+			'X-WP-Nonce' => wp_create_nonce( 'bible_plugin_nonce' )
+		] );
 
         $this->assertEquals(200, $response->getStatusCode());
 
@@ -145,42 +143,42 @@ class BibleBrainsSettingsTest extends TestCase
             'bible_brains_key' => 'fake_key'
         ];
 
-        $response = $this->post('api/bible-brains/key', $payload, [
-            'X-WP-Nonce' => wp_create_nonce('bible_plugin_nonce'),
-        ]);
+		$response = $this->post( 'api/bible-brains/key', $payload, [
+			'X-WP-Nonce' => wp_create_nonce( 'bible_plugin_nonce' ),
+		] );
 
-        $this->assertEquals(401, $response->getStatusCode());
+		$this->assertEquals( 401, $response->getStatusCode() );
 
-        $data = json_decode($response->getContent(), true);
+		$data = json_decode( $response->getContent(), true );
 
-        $this->assertArrayHasKey('errors', $data);
-        $this->assertArrayHasKey('bible_brains_key', $data['errors']);
-    }
+		$this->assertArrayHasKey( 'errors', $data );
+		$this->assertArrayHasKey( 'bible_brains_key', $data['errors'] );
+	}
 
-    /**
-     * @test
-     */
-    public function it_handles_api_key_success()
-    {
-        $user = $this->factory()->user->create([
-            'role' => 'administrator',
-        ]);
-        wp_set_current_user($user);
+	/**
+	 * @test
+	 */
+	public function it_handles_api_key_success() {
+		$user = $this->factory()->user->create( [
+			'role' => 'administrator',
+		] );
 
-        $payload = [
-            'bible_brains_key' => TBP_BIBLE_BRAINS_KEY
-        ];
+		wp_set_current_user( $user );
 
-        $response = $this->post('api/bible-brains/key', $payload, [
-            'X-WP-Nonce' => wp_create_nonce('bible_plugin_nonce'),
-        ]);
+		$payload = [
+			'bible_brains_key' => TBP_BIBLE_BRAINS_KEY
+		];
 
-        $this->assertEquals(200, $response->getStatusCode());
+		$response = $this->post( 'api/bible-brains/key', $payload, [
+			'X-WP-Nonce' => wp_create_nonce( 'bible_plugin_nonce' ),
+		] );
 
-        $data = json_decode($response->getContent(), true);
+		$this->assertEquals( 200, $response->getStatusCode() );
 
-        $this->assertArrayHasKey('success', $data);
-        $this->assertArrayNotHasKey('errors', $data);
-        $this->assertArrayNotHasKey('error', $data);
-    }
+		$data = json_decode( $response->getContent(), true );
+
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertArrayNotHasKey( 'errors', $data );
+		$this->assertArrayNotHasKey( 'error', $data );
+	}
 }

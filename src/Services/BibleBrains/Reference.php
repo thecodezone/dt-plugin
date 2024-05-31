@@ -37,7 +37,7 @@ class Reference {
 	 *
 	 * @return array The parsed result as an array.
 	 */
-	public static function parse( mixed $reference ): array {
+	public static function parse( $reference ): array {
 		if ( is_array( $reference ) ) {
 			return self::parse_array( $reference );
 		}
@@ -63,13 +63,13 @@ class Reference {
 			$array
 		);
 
-		$array = Arr::map( $array, function ( $value ) {
+		$array = array_map( function ( $value ) {
 			if ( is_string( $value ) ) {
 				return trim( $value );
 			}
 
 			return $value;
-		} );
+		}, $array );
 
 		if ( isset( $array['verse'] ) && ! $array['verse_start'] ) {
 			$array['verse_start'] = $array['verse'];

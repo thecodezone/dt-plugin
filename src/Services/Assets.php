@@ -12,8 +12,10 @@ use const CodeZone\Bible\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 class Assets {
 	private static $enqueued = false;
+	private MediaTypes $media_types;
 
-	public function __construct( private MediaTypes $media_types ) {
+	public function __construct( MediaTypes $media_types ) {
+		$this->media_types = $media_types;
 	}
 
 	public function translations() {

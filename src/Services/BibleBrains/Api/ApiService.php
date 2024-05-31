@@ -81,9 +81,9 @@ abstract class ApiService {
 		return array_values( $records->map( function ( $record ) {
 			return $this->map_option( $record );
 		} )->filter( function ( $option ) {
-                return ! empty( $option['value'] )
-                && ! empty( $option['itemText'] );
-            } )->toArray() );
+			return ! empty( $option['value'] )
+			       && ! empty( $option['itemText'] );
+		} )->toArray() );
 	}
 
 	/**
@@ -137,7 +137,7 @@ abstract class ApiService {
 		$data        = collect( $response->collect()->get( 'data' ) );
 		$total_pages = $response->collect()->get( 'meta' )['pagination']['total_pages'] ?? 0;
 		while ( $total_pages > $page ) {
-			$page++;
+			$page ++;
 			$data->push( ...$this->all( array_merge( $params, [ 'page' => $page ] ) )->collect()->get( 'data' ) );
 		}
 
@@ -200,7 +200,7 @@ abstract class ApiService {
 	 * @return Response The resource found.
 	 * @throws BibleBrainsException If the request is unsuccessful and returns an error.
 	 */
-	public function find( array|string|int $id, $params = [] ) {
+	public function find( $id, $params = [] ) {
 		if ( is_array( $id ) ) {
 			return $this->find_many( $id );
 		}

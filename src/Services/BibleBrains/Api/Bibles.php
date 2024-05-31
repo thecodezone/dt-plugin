@@ -31,7 +31,7 @@ class Bibles extends ApiService {
 	 *               If the search is unsuccessful and default data
 	 * @throws BibleBrainsException
 	 */
-	public function find_or_default( string|null $code = null, string|int|null $language_id = null, array $query = [] ): array {
+	public function find_or_default( $code = null, $language_id = null, array $query = [] ): array {
 		if ( empty( $code ) && empty( $language_id ) ) {
 			throw new BibleBrainsException( esc_html( 'Either a bible ID or a language ID must be provided.' ) );
 		}
@@ -64,9 +64,9 @@ class Bibles extends ApiService {
 		return array_values( $records->map( function ( $record ) {
 			return $this->map_option( $record );
 		} )->filter( function ( $option ) {
-                return ! empty( $option['value'] )
-                && ! empty( $option['itemText'] );
-            } )->toArray() );
+			return ! empty( $option['value'] )
+			       && ! empty( $option['itemText'] );
+		} )->toArray() );
 	}
 
 	/**

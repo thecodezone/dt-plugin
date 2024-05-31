@@ -23,13 +23,38 @@ use function CodeZone\Bible\cast_bool_values;
  */
 class Scripture {
 	/**
+	 * The scripture service.
+	 *
+	 * @var ScriptureService
+	 */
+	protected $scripture;
+
+	/**
+	 * The assets service.
+	 *
+	 * @var Assets
+	 */
+	protected $assets;
+
+	/**
+	 * The media types service.
+	 *
+	 * @var MediaTypes
+	 */
+	protected $media_types;
+
+	/**
 	 * The __construct method is the constructor of a class. It is used to initialize an object when it is created.
 	 * In this case, the constructor registers a shortcode in WordPress using the `add_shortcode` function.
 	 * The registered shortcode is 'tbp_scripture' and it is mapped to the `render` method of the current object.
 	 *
 	 * @return void
 	 */
-	public function __construct( private ScriptureService $scripture, private Assets $assets, private MediaTypes $media_types ) {
+	public function __construct( ScriptureService $scripture, Assets $assets, MediaTypes $media_types ) {
+		$this->scripture   = $scripture;
+		$this->assets      = $assets;
+		$this->media_types = $media_types;
+
 		add_shortcode( 'tbp-scripture', [ $this, 'render' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
