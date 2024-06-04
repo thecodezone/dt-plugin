@@ -200,3 +200,39 @@ export const find_media_type = (key) => {
         return media_type.fileset_types.includes(key)
     })
 }
+
+function is_shadow(node) {
+  if (!node) return false;
+
+  for (; node; node = node.parentNode) {
+    if (node.toString() === "[object ShadowRoot]") {
+      return true;
+    }
+  }
+  return false;
+}
+
+export const shadow_host = ( element ) => {
+  let host = element.getRootNode().host;
+
+  while (is_shadow(host)) {
+    host = host.getRootNode().host;
+  }
+
+  return host.parentNode;
+}
+
+export const is_mobile = () => {
+  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return regex.test(navigator.userAgent);
+}
+
+export const is_safari = () => {
+  const regex = /Safari/i;
+  return regex.test(navigator.userAgent);
+}
+
+export const is_chrome = () => {
+  const regex = /Chrome/i;
+  return regex.test(navigator.userAgent);
+}

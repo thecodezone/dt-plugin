@@ -1,7 +1,7 @@
 import {customElement, property, state, queryAll} from "lit/decorators.js";
 import {html} from "lit";
 import {TBPElement} from "./base.js";
-import {reference_from_content, find_media_type} from "../helpers.js";
+import {reference_from_content, find_media_type, is_mobile, is_safari} from "../helpers.js";
 import {$selection, $selectionOpen} from "../stores/selection.js";
 import {withStores} from "@nanostores/lit";
 import {css} from "@spectrum-web-components/base";
@@ -17,15 +17,28 @@ export class Content extends withStores(TBPElement, [$selection, $selectionOpen]
         return [
             super.styles,
             css`
-                .verse__reference {
-                    color: var(--tpb-verse-reference-color, var(--spectrum-neutral-visual-color, gray));
-                    font-weight: var(--tbp-verse-reference-font-weight, normal);
-                }
+              .verse__reference {
+                color: var(--tpb-verse-reference-color, var(--spectrum-neutral-visual-color, gray));
+                font-weight: var(--tbp-verse-reference-font-weight, normal);
+              }
 
-                .verse {
-                    line-height: var(--tbp-verse-line-height, 2);
-                    padding: .5em 0;
-                }
+              .verse {
+                line-height: var(--tbp-verse-line-height, 2);
+                padding: .5em 0;
+              }
+
+              .verse:hover:not(.verse--selected) {
+                background-color: var(--tbp-verse-hover-background-color, var(--spectrum-transparent-black-200));
+              }
+
+              .verse--selected {
+                background-color: var(--tbp-verse-selected-background-color, var(--spectrum-accent-color-600));
+                color: var(--tbp-verse-selected-color, var(--spectrum-alias-text-color-overbackground));
+              }
+
+              .verse--selected .verse__reference {
+                color: var(--tbp-verse-selected-reference-color, var(--spectrum-alias-text-color-overbackground));
+              }
             `];
     }
 
@@ -72,6 +85,7 @@ export class Content extends withStores(TBPElement, [$selection, $selectionOpen]
     selectable = false
 
     @property({type: Boolean}) autoplay = false;
+
 
     //Without the query
     get pageUrl() {

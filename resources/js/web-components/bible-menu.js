@@ -3,14 +3,15 @@ import {TBPElement} from "./base.js";
 import {html, nothing} from "lit";
 import {withStores} from "@nanostores/lit";
 import {$ntBooks, $otBooks} from "../stores/book.js";
-import {$selection} from "../stores/selection.js";
+import {$hasSelection} from "../stores/selection.js";
+import {$canShare} from "../stores/share.js";
 import {$hasAudio, $audioOpen, $playAudio} from "../stores/audio.js";
 
 import {__} from "../helpers.js"
 import {css} from "@spectrum-web-components/base";
 
 @customElement('tbp-bible-menu')
-export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $selection, $hasAudio, $audioOpen]) {
+export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $hasAudio, $audioOpen, $hasSelection, $canShare]) {
 
     static get styles() {
         return [
@@ -58,14 +59,21 @@ export class BibleMenu extends withStores(TBPElement, [$otBooks, $ntBooks, $sele
     render() {
         return html`
             <sp-action-group style="margin-inline-start: auto;">
-                ${$selection.get().length ? html`
-                    <tbp-selection-button></tbp-selection-button>
+                ${$canShare.get() ? html`
+                    <tbp-share-button></tbp-share-button>
                     <sp-divider
-                            size="s"
-                            style="align-self: stretch; height: auto;"
-                            vertical
+                      size="s"
+                      style="align-self: stretch; height: auto;"
+                      vertical
                     ></sp-divider>
-                ` : nothing}
+                ` : html`
+                     <tbp-selection-button></tbp-selection-button>
+                     <sp-divider
+                       size="s"
+                       style="align-self: stretch; height: auto;"
+                       vertical
+                     ></sp-divider>
+                ` }
                 ${$hasAudio.get() ? html`
                             <sp-button
                                     variant="accent"

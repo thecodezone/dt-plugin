@@ -1,110 +1,192 @@
 import {html} from "lit";
 import {customElement, queryAll, state} from "lit/decorators.js";
 import {TBPElement} from "./base.js";
-import {$clearSelection} from "../stores/selection.js";
+import {is_mobile, is_safari, shadow_host} from "../helpers.js";
+import {$clearSelection, $selectables} from "../stores/selection.js";
+import {css} from "@spectrum-web-components/base";
 
 @customElement('tbp-selection-manager')
 export class SelectionManager extends TBPElement {
-    @state()
-    firstSelected
+  @state()
+  mouseDownCoordinates = {x: 0, y: 0}
 
-    @state()
-    lastSelected
+  @state()
+  contextClick = false
 
-    @state()
-    mouseDownCoordinates = {x: 0, y: 0}
+  selectionTimeout = null;
 
-    @state()
-    contextClick = false
+  downSelectable = null;
 
-    selectionTimeout = null;
+  get rootComponenet() {
+    return document.querySelector('sp-theme') ?? this;
+  }
 
-    get selectables() {
-        return this.querySelectorAll('[selectable]');
+  get hasShadowRootSelection() {
+    if (!this.rootComponenet.shadowRoot.getSelection) {
+      return false;
     }
 
-    get unselected() {
-        return this.querySelectorAll('[selectable][unselected]');
+    return !!this.rootComponenet.shadowRoot.getSelection().toString();
+  }
+
+  get selection() {
+    if (this.hasShadowRootSelection) {
+      return this.rootComponenet.shadowRoot.getSelection();
     }
 
-    get selected() {
-        return this.querySelectorAll('[selected]');
-    }
+    return window.getSelection();
+  }
 
-    constructor() {
-        super();
+  get selectables() {
+    const selectables = this.querySelectorAll('[selectable]');
+    $selectables.set(Array.from(selectables));
+    return selectables;
+  }
 
-        // Define the listeners in the constructor
-        this.onSelectionChange = this.selectionChangeListener.bind(this);
-        this.onContextMenu = this.contextMenuListener.bind(this);
-    }
+  get firstSelectedSelectable() {
+    return this.selected[0];
+  }
 
-    connectedCallback() {
-        super.connectedCallback();
-        $clearSelection()
+  get lastSelectedSelectable() {
+    const idx = this.selected.length - 1;
+    return this.selected[idx];
+  }
 
-        document.addEventListener('selectionchange', this.onSelectionChange)
-    }
+  get unselected() {
+    return this.querySelectorAll('[selectable][unselected]');
+  }
 
+  get selected() {
+    return this.querySelectorAll('[selected]');
+  }
 
-    selectionChangeListener() {
-        const selection = window.getSelection();
-        for (let selectable of this.selectables) {
-            selectable.selected = selection.containsNode(selectable, true);
+  get groups() {
+    const groups = [];
+    let currentGroup = 0
+    this.selectables.forEach((selectable) => {
+      if (selectable.selected) {
+        if (!groups[currentGroup]) {
+          groups[currentGroup] = []
         }
-        this.dispatchSelection()
-    }
-
-    disconnectedCallback() {
-        document.removeEventListener('selectionchange', this.onSelectionChange)
-        super.disconnectedCallback();
-    }
-
-    render() {
-        return html`
-            <slot></slot>
-        `
-    }
-
-    contextMenuListener(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.contextClick = true;
-
-        if (!e.target.selected) {
-            this.selectables.forEach((el, idx) => {
-                el.selected = el === e.target;
-            })
-
-            this.dispatchSelection();
+        groups[currentGroup].push(selectable);
+      } else {
+        if (groups[currentGroup]) {
+          currentGroup++;
         }
+      }
+    });
+    return groups;
+  }
 
+  constructor() {
+    super();
 
-        setTimeout(() => {
-            this.dispatchEvent(new CustomEvent('context', {
-                detail: {
-                    selectable: e.target,
-                    selectables: Array.from(this.selectables),
-                    selected: Array.from(this.selected),
-                    unselected: Array.from(this.unselected)
-                }
-            }));
-        })
+    this.onSelectableClick = this.selectableClickListener.bind(this);
+    this.onSelectableClickUp = this.selectableClickUpListener.bind(this);
+  }
 
+  connectedCallback() {
+    super.connectedCallback();
+    $clearSelection()
 
-        return false;
+    this.selectables.forEach((selectable) => {
+      selectable.addEventListener('pointerdown', this.onSelectableClick);
+      selectable.addEventListener('pointerup', this.onSelectableClickUp);
+    });
+  }
+
+  selectableClickListener(e) {
+    this.downSelectable = e.currentTarget;
+    const selectable = e.currentTarget;
+    const newValue = !selectable.selected;
+
+    selectable.selected = newValue;
+
+    this.finalizeSelection(selectable);
+  }
+
+  selectableClickUpListener(e) {
+    const downSelectable = this.downSelectable;
+    this.downSelectable = null;
+    const selectable = e.currentTarget;
+
+    if (downSelectable === selectable) {
+      return;
     }
 
-    dispatchSelection() {
-        setTimeout(() => {
-            this.dispatchEvent(new CustomEvent('selection', {
-                detail: {
-                    selectables: Array.from(this.selectables),
-                    selected: Array.from(this.selected),
-                    unselected: Array.from(this.unselected)
-                }
-            }));
-        })
-
+    if (!selectable) {
+      return;
     }
+
+    if (selectable.selected) {
+      return;
+    }
+
+    selectable.selected = true;
+    this.finalizeSelection(selectable);
+  }
+
+  finalizeSelection(selectable) {
+    setTimeout(() => {
+      if (selectable.selected) {
+        //We added a new value, fill in any selections between the first and last selected
+        const firstSelected = this.firstSelectedSelectable;
+        const lastSelected = this.lastSelectedSelectable;
+        let foundFirst = false;
+        let foundLast = false;
+        this.selectables.forEach((el) => {
+          if (el === firstSelected) {
+            foundFirst = true;
+          }
+          el.selected = foundFirst && !foundLast;
+          if (el === lastSelected) {
+            foundLast = true;
+          }
+        });
+      } else {
+        //We removed a selection, remove extra groups
+        this.groups.forEach((group, idx) => {
+          if (idx) {
+            group.forEach((el) => {
+              el.selected = false;
+            });
+          }
+        });
+      }
+
+      try {
+        window.getSelection().empty();
+      } catch (e) {
+      }
+
+      this.dispatchSelection();
+    }, 1);
+  }
+
+  disconnectedCallback() {
+    this.forEach((selectable) => {
+      selectable.removeEventListener('click', this.onSelectableClick);
+    });
+    super.disconnectedCallback();
+  }
+
+  render() {
+    return html`
+      <slot></slot>
+    `
+  }
+
+  dispatchSelection() {
+    setTimeout(() => {
+      this.dispatchEvent(new CustomEvent('selection', {
+        detail: {
+          selectedText: this.selection.toString(),
+          selectables: Array.from(this.selectables),
+          selected: Array.from(this.selected),
+          unselected: Array.from(this.unselected)
+        }
+      }));
+    })
+
+  }
 }

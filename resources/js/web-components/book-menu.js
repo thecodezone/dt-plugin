@@ -84,7 +84,6 @@ export class BookMenu extends withStores(TBPElement, []) {
     }
 
     renderChapterMenu(book) {
-        console.log(book);
         return html`
             <div class="book-menu__chapter-menu">
                 ${book.chapters.map(chapter => this.renderChapter(book, chapter))}

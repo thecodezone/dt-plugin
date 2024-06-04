@@ -19,6 +19,7 @@ import '@spectrum-web-components/icon/sp-icon.js';
 import '@spectrum-web-components/icons-ui/icons/sp-icon-arrow500.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-play.js';
 import '@spectrum-web-components/icons-workflow/icons/sp-icon-replay.js';
+import '@spectrum-web-components/icons-workflow/icons/sp-icon-share.js';
 import '@spectrum-web-components/menu/sp-menu.js';
 import '@spectrum-web-components/menu/sp-menu-group.js';
 import '@spectrum-web-components/menu/sp-menu-item.js';
@@ -44,6 +45,7 @@ import "./web-components/reader.js"
 import "./web-components/player.js"
 import "./web-components/selection-button.js"
 import "./web-components/selection-manager.js"
+import "./web-components/share-button.js"
 import "./web-components/bible.js"
 import "./web-components/bible-menu.js"
 import "./web-components/book-menu.js"

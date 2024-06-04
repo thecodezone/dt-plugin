@@ -9,8 +9,6 @@ let FILE = path.join(process.cwd(), 'vendor-scoped/scoper-autoload.php');  // ad
 // Read our file content in 'utf-8'.
 let fileContent = fs.readFileSync(FILE, 'utf-8');
 
-console.log(fileContent.indexOf(STRINGABLE))
-console.log(fileContent.indexOf(PHPTOKEN))
 // Check if the "Stringable" line is before the "PhpToken" line.
 if (fileContent.indexOf(STRINGABLE) > fileContent.indexOf(PHPTOKEN)) {
     // If it isn't, we replace the "Stringable" line with "" (effectively removing the line).

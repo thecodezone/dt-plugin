@@ -17,10 +17,18 @@ if (!endpoint.includes('?')) {
 }
 
 export const $query = fetchState([endpoint, 'reference=', $reference]);
-$query.listen(({loading, data}) => {
+$query.listen((response) => {
+    const {loading, data, error} = response;
+
     if (loading) {
         return;
     }
+
+    if (error) {
+        $error.set(error.message)
+        return;
+    }
+
     if (data.error) {
         $error.set(data.error)
         return;
