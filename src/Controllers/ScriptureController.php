@@ -32,23 +32,19 @@ class ScriptureController
      */
     public function index(Request $request, Response $response, Scripture $scripture)
     {
-        $errors = validate($request->all(), [
-            'reference' => 'required|string'
-        ]);
 
-        if ($errors) {
-            return $response->setStatusCode(400)->setContent($errors);
-        }
 
         try {
-            $result = $scripture->by_reference($request->get('reference'));
-        } catch (\Exception $e) {
-            return $response->setStatusCode(500)->setContent([
-                'error' => $e->getMessage()
+            $errors = validate($request->all(), [
+                'reference' => 'required|string'
             ]);
-        }
 
-        try {
+            if ($errors) {
+                return $response->setStatusCode(400)->setContent($errors);
+            }
+
+            $result = $scripture->by_reference($request->get('reference'));
+
             return $response->setContent($result);
         } catch (\Exception $e) {
             return $response->setStatusCode(500)->setContent([
