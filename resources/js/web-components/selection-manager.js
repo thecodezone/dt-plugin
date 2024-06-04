@@ -106,6 +106,7 @@ export class SelectionManager extends TBPElement {
   }
 
   selectableClickUpListener(e) {
+    window.getSelection().empty();
     const downSelectable = this.downSelectable;
     this.downSelectable = null;
     const selectable = e.currentTarget;
@@ -152,11 +153,6 @@ export class SelectionManager extends TBPElement {
             });
           }
         });
-      }
-
-      try {
-        window.getSelection().empty();
-      } catch (e) {
       }
 
       this.dispatchSelection();
