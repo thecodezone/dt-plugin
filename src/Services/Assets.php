@@ -36,6 +36,7 @@ class Assets {
 			"Loading"                                                                      => _x( "Loading", 'reader', 'bible-plugin' ),
 			'Text'                                                                         => _x( 'Text', 'reader', 'bible-plugin' ),
 			'Selected'                                                                     => _x( 'Selected', 'reader', 'bible-plugin' ),
+            'Share'                                                                        => _x( 'Share', 'reader', 'bible-plugin' ),
 
 			//Admin
 			'Note that some bible versions do not support all media types.'                => __( 'Note that some bible versions do not support all media types.', 'bible-plugin' ),

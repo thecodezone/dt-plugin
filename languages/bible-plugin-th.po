@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-15 14:58-0500\n"
-"PO-Revision-Date: 2024-05-15 14:58-0500\n"
+"POT-Creation-Date: 2024-06-04 21:48-0500\n"
+"PO-Revision-Date: 2024-06-04 21:48-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.3\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -134,19 +134,19 @@ msgstr "เยี่ยมบ้าน"
 msgid "Please complete the required fields."
 msgstr "กรุณากรอกข้อมูลในช่องที่จําเป็น"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:111 src/Controllers/Admin/BibleBrainsFormController.php:158 src/Controllers/Admin/CustomizationFomController.php:86
+#: src/Controllers/Admin/BibleBrainsFormController.php:114 src/Controllers/Admin/BibleBrainsFormController.php:161 src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "ไม่สามารถส่งแบบฟอร์มได้"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:134
+#: src/Controllers/Admin/BibleBrainsFormController.php:137
 msgid "Please enter a key."
 msgstr "กรุณาใส่กุญแจ"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:145
+#: src/Controllers/Admin/BibleBrainsFormController.php:148
 msgid "Failed to validate key."
 msgstr "ไม่สามารถตรวจสอบคีย์ได้"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:147
+#: src/Controllers/Admin/BibleBrainsFormController.php:150
 msgid "Invalid."
 msgstr "ไม่ถูกต้อง "
 
@@ -162,7 +162,7 @@ msgstr "เข้ม"
 msgid "Could not verify request."
 msgstr "ไม่สามารถตรวจสอบคําขอได้"
 
-#: src/Plugin.php:147
+#: src/Plugin.php:150
 msgid "The page could not be found."
 msgstr "ไม่พบหน้า"
 
@@ -178,115 +178,120 @@ msgstr "การปรับแต่ง"
 msgid "Support"
 msgstr "สนับสนุน"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Books"
 msgstr "รายชื่อ"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Copy"
 msgstr "คัดลอก"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "คัดลอกเรียบร้อยแล้ว"
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Language"
 msgstr "ภาษา"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Languages"
 msgstr "ภาษา"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "Link"
 msgstr "ลิงค์"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "พันธสัญญาเดิม"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Media Types"
 msgstr "ชนิดของสื่อ"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "New Testament"
 msgstr "พันธสัญญาใหม่"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Search"
 msgstr "ค้นหา"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:34
 msgctxt "reader"
 msgid "Selection"
 msgstr "เลือก"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:35
 msgctxt "reader"
 msgid "Translation"
 msgstr "การแปล"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:36
 msgctxt "reader"
 msgid "Loading"
 msgstr "กำลังโหลด"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:37
 msgctxt "reader"
 msgid "Text"
 msgstr "ข้อความ"
 
-#: src/Services/Assets.php:36
+#: src/Services/Assets.php:38
 msgctxt "reader"
 msgid "Selected"
 msgstr "เลือก"
 
 #: src/Services/Assets.php:39
+msgctxt "reader"
+msgid "Share"
+msgstr "แชร์"
+
+#: src/Services/Assets.php:42
 msgid "Note that some bible versions do not support all media types."
 msgstr "โปรดทราบว่าพระคัมภีร์บางฉบับไม่รองรับสื่อทุกประเภท"
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:43
 msgid "Select the bible language you would like to make available."
 msgstr "เลือกภาษาในพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งาน"
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:44
 msgid "Select the bible version you would like to make available for this language."
 msgstr "เลือกเวอร์ชันพระคัมภีร์ที่คุณต้องการให้พร้อมใช้งานสําหรับภาษานี้"
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:45
 msgid "Add Language"
 msgstr "เพิ่มภาษา"
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:46
 msgid "Default Language?"
 msgstr "ภาษาเริ่มต้น?"
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:47
 msgid "Make this the default language."
 msgstr "ทําให้เป็นภาษาเริ่มต้น"
 
-#: src/Services/Assets.php:45
+#: src/Services/Assets.php:48
 msgid "Bible Version"
 msgstr "ฉบับพระคัมภีร์"
 
-#: src/ShortCodes/Scripture.php:78
+#: src/ShortCodes/Scripture.php:103
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "ชนิดสื่อไม่ถูกต้อง"
 
-#: src/ShortCodes/Scripture.php:98
+#: src/ShortCodes/Scripture.php:123
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "ไม่พบผลลัพธ์"

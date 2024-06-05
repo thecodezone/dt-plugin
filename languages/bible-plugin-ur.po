@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-15 14:59-0500\n"
-"PO-Revision-Date: 2024-05-15 14:59-0500\n"
+"POT-Creation-Date: 2024-06-04 21:45-0500\n"
+"PO-Revision-Date: 2024-06-04 21:46-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.3\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -153,21 +153,21 @@ msgstr "گھر کا دورہ کریں"
 msgid "Please complete the required fields."
 msgstr "براہ کرم مطلوبہ فیلڈز کو مکمل کریں۔"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:158
+#: src/Controllers/Admin/BibleBrainsFormController.php:114
+#: src/Controllers/Admin/BibleBrainsFormController.php:161
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "فارم جمع نہیں کرایا جا سکا۔"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:134
+#: src/Controllers/Admin/BibleBrainsFormController.php:137
 msgid "Please enter a key."
 msgstr "براہ کرم ایک کلید درج کریں۔"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:145
+#: src/Controllers/Admin/BibleBrainsFormController.php:148
 msgid "Failed to validate key."
 msgstr "کلید کی توثیق کرنے میں ناکام رہا۔"
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:147
+#: src/Controllers/Admin/BibleBrainsFormController.php:150
 msgid "Invalid."
 msgstr "اپاہج."
 
@@ -183,7 +183,7 @@ msgstr "اندھیرا"
 msgid "Could not verify request."
 msgstr "درخواست کی تصدیق نہیں کی جا سکی۔"
 
-#: src/Plugin.php:147
+#: src/Plugin.php:150
 msgid "The page could not be found."
 msgstr "صفحہ تلاش نہیں کیا جا سکا۔"
 
@@ -199,118 +199,123 @@ msgstr "اپنی مرضی کے مطابق"
 msgid "Support"
 msgstr "معاونت"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Books"
 msgstr "کتابیں"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Copy"
 msgstr "نقل"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "کامیابی سے کاپی کیا."
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Language"
 msgstr "زبان"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Languages"
 msgstr "زبانیں"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "Link"
 msgstr "لنک"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "پرانا عہد نامہ"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Media Types"
 msgstr "میڈیا کی اقسام"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "New Testament"
 msgstr "انجیل"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Search"
 msgstr "تلاش"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:34
 msgctxt "reader"
 msgid "Selection"
 msgstr "انتخاب"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:35
 msgctxt "reader"
 msgid "Translation"
 msgstr "ترجمہ"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:36
 msgctxt "reader"
 msgid "Loading"
 msgstr "لوڈ ہو رہا ہے"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:37
 msgctxt "reader"
 msgid "Text"
 msgstr "متن"
 
-#: src/Services/Assets.php:36
+#: src/Services/Assets.php:38
 msgctxt "reader"
 msgid "Selected"
 msgstr "منتخب"
 
 #: src/Services/Assets.php:39
+msgctxt "reader"
+msgid "Share"
+msgstr "اشتراک"
+
+#: src/Services/Assets.php:42
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 "نوٹ کریں کہ بائبل کے کچھ ورژن میڈیا کی تمام اقسام کی حمایت نہیں کرتے ہیں۔"
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:43
 msgid "Select the bible language you would like to make available."
 msgstr "بائبل کی وہ زبان منتخب کریں جسے آپ دستیاب کرانا چاہتے ہیں۔"
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:44
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
 "بائبل کا وہ ورژن منتخب کریں جسے آپ اس زبان کے لئے دستیاب کرانا چاہتے ہیں۔"
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:45
 msgid "Add Language"
 msgstr "زبان شامل کریں"
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:46
 msgid "Default Language?"
 msgstr "طے شدہ زبان؟"
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:47
 msgid "Make this the default language."
 msgstr "اسے پہلے سے طے شدہ زبان بنائیں۔"
 
-#: src/Services/Assets.php:45
+#: src/Services/Assets.php:48
 msgid "Bible Version"
 msgstr "بائبل ورژن"
 
-#: src/ShortCodes/Scripture.php:78
+#: src/ShortCodes/Scripture.php:103
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "غیر قانونی میڈیا کی قسم"
 
-#: src/ShortCodes/Scripture.php:98
+#: src/ShortCodes/Scripture.php:123
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "کوئی نتیجہ نہیں ملا"

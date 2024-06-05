@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Bible Plugin\n"
-"POT-Creation-Date: 2024-05-15 14:56-0500\n"
-"PO-Revision-Date: 2024-05-15 14:57-0500\n"
+"POT-Creation-Date: 2024-06-04 21:48-0500\n"
+"PO-Revision-Date: 2024-06-04 21:48-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_MX\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.3\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: bible-plugin.php\n"
@@ -153,21 +153,21 @@ msgstr "Visita a casa"
 msgid "Please complete the required fields."
 msgstr "Por favor, rellene los campos obligatorios."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:111
-#: src/Controllers/Admin/BibleBrainsFormController.php:158
+#: src/Controllers/Admin/BibleBrainsFormController.php:114
+#: src/Controllers/Admin/BibleBrainsFormController.php:161
 #: src/Controllers/Admin/CustomizationFomController.php:86
 msgid "Form could not be submitted."
 msgstr "No se pudo enviar el formulario."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:134
+#: src/Controllers/Admin/BibleBrainsFormController.php:137
 msgid "Please enter a key."
 msgstr "Por favor, introduzca una clave."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:145
+#: src/Controllers/Admin/BibleBrainsFormController.php:148
 msgid "Failed to validate key."
 msgstr "No se pudo validar la clave."
 
-#: src/Controllers/Admin/BibleBrainsFormController.php:147
+#: src/Controllers/Admin/BibleBrainsFormController.php:150
 msgid "Invalid."
 msgstr "No válido."
 
@@ -183,7 +183,7 @@ msgstr "Oscuro"
 msgid "Could not verify request."
 msgstr "No se pudo verificar la solicitud."
 
-#: src/Plugin.php:147
+#: src/Plugin.php:150
 msgid "The page could not be found."
 msgstr "No se pudo encontrar la página."
 
@@ -199,120 +199,125 @@ msgstr "Personalización"
 msgid "Support"
 msgstr "Soporte"
 
-#: src/Services/Assets.php:22
+#: src/Services/Assets.php:24
 msgctxt "reader"
 msgid "Books"
 msgstr "Libros"
 
-#: src/Services/Assets.php:23
+#: src/Services/Assets.php:25
 msgctxt "reader"
 msgid "Copy"
 msgstr "Copiar"
 
-#: src/Services/Assets.php:24
+#: src/Services/Assets.php:26
 msgctxt "reader"
 msgid "Copied successfully."
 msgstr "Copiado correctamente."
 
-#: src/Services/Assets.php:25
+#: src/Services/Assets.php:27
 msgctxt "reader"
 msgid "Language"
 msgstr "Idioma"
 
-#: src/Services/Assets.php:26
+#: src/Services/Assets.php:28
 msgctxt "reader"
 msgid "Languages"
 msgstr "Idiomas"
 
-#: src/Services/Assets.php:27
+#: src/Services/Assets.php:29
 msgctxt "reader"
 msgid "Link"
 msgstr "Enlace"
 
-#: src/Services/Assets.php:28
+#: src/Services/Assets.php:30
 msgctxt "reader"
 msgid "Old Testament"
 msgstr "Antiguo Testamento"
 
-#: src/Services/Assets.php:29
+#: src/Services/Assets.php:31
 msgctxt "reader"
 msgid "Media Types"
 msgstr "Tipos de medios"
 
-#: src/Services/Assets.php:30
+#: src/Services/Assets.php:32
 msgctxt "reader"
 msgid "New Testament"
 msgstr "Nuevo Testamento"
 
-#: src/Services/Assets.php:31
+#: src/Services/Assets.php:33
 msgctxt "reader"
 msgid "Search"
 msgstr "Buscar"
 
-#: src/Services/Assets.php:32
+#: src/Services/Assets.php:34
 msgctxt "reader"
 msgid "Selection"
 msgstr "Selección"
 
-#: src/Services/Assets.php:33
+#: src/Services/Assets.php:35
 msgctxt "reader"
 msgid "Translation"
 msgstr "Traducción"
 
-#: src/Services/Assets.php:34
+#: src/Services/Assets.php:36
 msgctxt "reader"
 msgid "Loading"
 msgstr "Cargando"
 
-#: src/Services/Assets.php:35
+#: src/Services/Assets.php:37
 msgctxt "reader"
 msgid "Text"
 msgstr "Texto"
 
-#: src/Services/Assets.php:36
+#: src/Services/Assets.php:38
 msgctxt "reader"
 msgid "Selected"
 msgstr "Seleccionado"
 
 #: src/Services/Assets.php:39
+msgctxt "reader"
+msgid "Share"
+msgstr "Compartir"
+
+#: src/Services/Assets.php:42
 msgid "Note that some bible versions do not support all media types."
 msgstr ""
 "Tenga en cuenta que algunas versiones de la Biblia no son compatibles con "
 "todos los tipos de medios."
 
-#: src/Services/Assets.php:40
+#: src/Services/Assets.php:43
 msgid "Select the bible language you would like to make available."
 msgstr "Seleccione el idioma bíblico que le gustaría poner a disposición."
 
-#: src/Services/Assets.php:41
+#: src/Services/Assets.php:44
 msgid ""
 "Select the bible version you would like to make available for this language."
 msgstr ""
 "Seleccione la versión de la Biblia que le gustaría que estuviera disponible "
 "para este idioma."
 
-#: src/Services/Assets.php:42
+#: src/Services/Assets.php:45
 msgid "Add Language"
 msgstr "Agregar Idioma"
 
-#: src/Services/Assets.php:43
+#: src/Services/Assets.php:46
 msgid "Default Language?"
 msgstr "¿Idioma predeterminado?"
 
-#: src/Services/Assets.php:44
+#: src/Services/Assets.php:47
 msgid "Make this the default language."
 msgstr "Haga que este sea el idioma predeterminado."
 
-#: src/Services/Assets.php:45
+#: src/Services/Assets.php:48
 msgid "Bible Version"
 msgstr "Versión de la Biblia"
 
-#: src/ShortCodes/Scripture.php:78
+#: src/ShortCodes/Scripture.php:103
 msgctxt "shortcode"
 msgid "Invalid media type"
 msgstr "Tipo de medio no válido"
 
-#: src/ShortCodes/Scripture.php:98
+#: src/ShortCodes/Scripture.php:123
 msgctxt "shortcode"
 msgid "No results found"
 msgstr "No se encontraron resultados"
