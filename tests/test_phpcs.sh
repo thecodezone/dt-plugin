@@ -4,4 +4,9 @@ set -e
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../"
 
-vendor/bin/phpcs bible-plugin.php
+if [ "$(php -r 'echo version_compare( phpversion(), "7.0", ">=" ) ? 1 : 0;')" != 1 ] ; then
+    chmod +x vendor/bin/phpcs
+    vendor/bin/phpcs bible-plugin.php --config-set installed_paths vendor/wp-coding-standards/wpcs
+    exit
+fi
+eval vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs

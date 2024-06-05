@@ -26,6 +26,8 @@
     <exclude-pattern>includes/admin/libraries/plugin-update-checker/*</exclude-pattern>
     <exclude-pattern>.history/*</exclude-pattern>
     <exclude-pattern>node_modules/*</exclude-pattern>
+    <exclude-pattern>includes/*</exclude-pattern>
+    <exclude-pattern>resources/*</exclude-pattern>
 
     <arg name="extensions" value="php,inc,lib"/>
     <arg value="n"/>
@@ -235,8 +237,5 @@
     <!-- <rule ref="PEAR.NamingConventions.ValidVariableName"/> -->
     <!-- <rule ref="PSR2.Files.ClosingTag"/> -->
     <!-- <rule ref="Squiz.PHP.ForbiddenFunctions"/> -->
-
-    <exclude-pattern>includes/*</exclude-pattern>
-    <exclude-pattern>resources/*</exclude-pattern>
 
 </ruleset>

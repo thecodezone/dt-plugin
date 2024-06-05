@@ -2,13 +2,6 @@
 
 namespace Tests;
 
-use CodeZone\Bible\Exceptions\BibleBrainsException;
-use CodeZone\Bible\GuzzleHttp\Psr7\Response as Psr7Response;
-use CodeZone\Bible\Illuminate\Http\Client\RequestException;
-use CodeZone\Bible\Illuminate\Http\Client\Response;
-use CodeZone\Bible\Illuminate\Http\Request;
-use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
-use function CodeZone\Bible\container;
 use function CodeZone\Bible\get_plugin_option;
 
 require "vendor-scoped/autoload.php";

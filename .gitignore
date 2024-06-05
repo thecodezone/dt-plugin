@@ -7,3 +7,5 @@ tmp-*
 dist/*
 mysite.sql.gz
 .env
+phpunit.xml
+.secrets

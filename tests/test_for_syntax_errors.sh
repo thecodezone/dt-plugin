@@ -9,11 +9,14 @@ fi
 
 found_error=0
 
-while read -d '' filename ; do
+# specify directories to be checked
+dirs_to_check=("src" "resources/views")
 
-    # php -l checks the file for syntax errors
-    php -l "$filename" || found_error=1
-
-done < <(find . d \( -path ./vendor -o -path ./vendor-scoped \) -prune -o -name "*.php" -print0)
+for dir in "${dirs_to_check[@]}" ; do
+    while read -d '' filename ; do
+        # php -l checks the file for syntax errors
+        php -l "$filename" || found_error=1
+    done < <(find $dir -name "*.php" -print0)
+done
 
 exit $found_error

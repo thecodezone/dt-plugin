@@ -12,11 +12,6 @@
 set -x
 set -e
 
-if [ "$GITHUB_REPOSITORY" = "" ] ; then
-    echo "GITHUB_REPOSITORY env variable not set" >&2
-    exit 1
-fi
-
 tmpdir=$(mktemp -d)
 
 cd "$tmpdir"
@@ -26,9 +21,9 @@ php wp-cli.phar --info
 chmod +x wp-cli.phar
 
 # Set up basic Wordpress installation:
-./wp-cli.phar core download
-./wp-cli.phar config create --force --dbname=testdb --dbuser=user --dbhost=127.0.0.0 --dbpass=password
-./wp-cli.phar core install --url=localhost --title=test --admin_user=admin --admin_email=example@example.com
+./wp-cli.phar core download  --allow-root
+./wp-cli.phar config create --force --dbname=testdb --dbuser=user --dbhost=127.0.0.0 --dbpass=password --allow-root
+./wp-cli.phar core install --url=localhost --title=test --admin_user=admin --admin_email=example@example.com --allow-root
 
 # Install plugin
-./wp-cli.phar plugin install --activate "https://github.com/$GITHUB_REPOSITORY/archive/$GITHUB_SHA.zip"
+./wp-cli.phar plugin install --allow-root --activate $GITHUB_WORKSPACE/bible-plugin.zip
