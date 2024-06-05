@@ -9,8 +9,6 @@ use CodeZone\Bible\Services\BibleBrains\Api\Languages;
 use CodeZone\Bible\Services\Cache;
 use function CodeZone\Bible\container;
 
-require "vendor-scoped/autoload.php";
-
 /**
  * Class BibleBrainsSettingsTest
  *

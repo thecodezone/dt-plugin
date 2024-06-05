@@ -4,8 +4,6 @@ namespace Tests;
 
 use function CodeZone\Bible\get_plugin_option;
 
-require "vendor-scoped/autoload.php";
-
 /**
  * Class BibleBrainsSettingsTest
  *

@@ -165,12 +165,7 @@ install_db() {
 	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA >/dev/null 2>&1 || true
 }
 
-install_plugin() {
-    ln -sf $PLUGIN_DIR $WP_PLUGINS_DIR/.
-}
-
 install_wp
 install_test_suite
-install_plugin
 install_db
 

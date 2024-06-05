@@ -6,8 +6,6 @@ use CodeZone\Bible\Services\Translations;
 use function CodeZone\Bible\container;
 use function CodeZone\Bible\set_plugin_option;
 
-require "vendor-scoped/autoload.php";
-
 /**
  * Class BibleBrainsSettingsTest
  *

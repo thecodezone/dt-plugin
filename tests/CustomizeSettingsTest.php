@@ -2,8 +2,6 @@
 
 namespace Tests;
 
-require "vendor-scoped/autoload.php";
-
 /**
  * Class BibleBrainsSettingsTest
  *
