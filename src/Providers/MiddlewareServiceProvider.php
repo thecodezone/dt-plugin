@@ -14,6 +14,7 @@ use CodeZone\Bible\CodeZone\Router\Middleware\UserHasCap;
 use CodeZone\Bible\CodeZone\Router\Middleware\SetHeaders;
 use CodeZone\Bible\Middleware\BibleBrains;
 use CodeZone\Bible\Middleware\BibleBrainsKeySet;
+use CodeZone\Bible\Middleware\DeprecationErrorsMiddleware;
 use CodeZone\Bible\Middleware\LoggedIn;
 use CodeZone\Bible\Middleware\LoggedOut;
 use CodeZone\Bible\Middleware\MagicLink;
@@ -29,6 +30,7 @@ use function CodeZone\Bible\namespace_string;
  */
 class MiddlewareServiceProvider extends ServiceProvider {
 	protected $middleware = [
+        DeprecationErrorsMiddleware::class,
 		Route::class,
 		DispatchController::class,
 		HandleErrors::class,

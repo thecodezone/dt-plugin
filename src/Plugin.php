@@ -140,9 +140,6 @@ class Plugin {
 			return;
 		}
 
-        //TODO: Remove this. We should probably move away from using Laravel request classes if we are going to support PHP 7.4 and PHP 8.3.
-        error_reporting(error_reporting() ^ E_DEPRECATED);
-
 		$response = apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
 			->run();
 
