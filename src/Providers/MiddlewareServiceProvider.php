@@ -80,7 +80,7 @@ class MiddlewareServiceProvider extends ServiceProvider {
 					$magic_link_name       = $signature;
 					$magic_link_class_name = $this->container->make( 'CodeZone\Bible\MagicLinks' )->get( $magic_link_name );
 					if ( ! $magic_link_class_name ) {
-						throw new Exception( "Magic link not found: $magic_link_name" );
+						throw new Exception( esc_html( "Magic link not found: $magic_link_name" ) );
 					}
 					$magic_link = $this->container->make( $magic_link_class_name );
 

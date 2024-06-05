@@ -13,10 +13,10 @@ use function CodeZone\Bible\route_url;
  */
 ?>
 <form method="post"
-      x-data="br_bible_brains_key_form(<?php echo esc_attr(
-	      wp_json_encode(
-		      array_merge(
-			      [
+    x-data="br_bible_brains_key_form(<?php echo esc_attr(
+        wp_json_encode(
+            array_merge(
+                [
 				      'fields'          => $fields,
 				      'success_message' => __( 'Bible Brains API Key verified.', 'bible-plugin' ),
 				      'redirect'        => esc_url( "/wp-admin/admin.php?page=bible-plugin" ),
@@ -24,9 +24,9 @@ use function CodeZone\Bible\route_url;
 				      'action'          => esc_url( route_url( 'api/bible-brains/key' ) ),
 				      'error'           => $error ?? '',
 			      ]
-		      )
-	      )
-      ); ?>)"
+            )
+        )
+    ); ?>)"
 >
 
     <fieldset>

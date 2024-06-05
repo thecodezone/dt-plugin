@@ -36,20 +36,20 @@ class PluginServiceProvider extends ServiceProvider
             return Request::capture();
         });
 
-        foreach ($this->providers as $provider) {
-            $provider = $this->container->make($provider);
+        foreach ( $this->providers as $provider ) {
+            $provider = $this->container->make( $provider );
             $provider->register();
         }
 
-        $this->container->bind(FileLoader::class, function ($container) {
-            return new FileLoader($container->make(Filesystem::class), 'lang');
+        $this->container->bind(FileLoader::class, function ( $container ) {
+            return new FileLoader( $container->make( Filesystem::class ), 'lang' );
         });
 
-        $this->container->bind(Factory::class, function ($container) {
-            $loader     = $container->make(FileLoader::class);
-            $translator = new Translator($loader, 'en');
+        $this->container->bind(Factory::class, function ( $container ) {
+            $loader     = $container->make( FileLoader::class );
+            $translator = new Translator( $loader, 'en' );
 
-            return new Factory($translator, $container);
+            return new Factory( $translator, $container );
         });
     }
 
@@ -59,8 +59,8 @@ class PluginServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        foreach ($this->providers as $provider) {
-            $provider = $this->container->make($provider);
+        foreach ( $this->providers as $provider ) {
+            $provider = $this->container->make( $provider );
             $provider->boot();
         }
     }

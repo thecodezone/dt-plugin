@@ -19,6 +19,7 @@ class BibleController {
 	 *
 	 * @param Request $request The request object.
 	 * @param Response $response The response object.
+     * @param string $id The ID of the bible to retrieve.
 	 * @param Bibles $bibles The Bibles instance.
 	 */
 	public function show( Request $request, Response $response, $id, Bibles $bibles ) {

@@ -22,7 +22,7 @@ $nav = apply_filters( namespace_string( 'settings_tabs' ), [] );
  *
  * @var bool $has_api_key
  */
-$has_api_key  = ! ! get_plugin_option( 'bible_brains_key', false );
+$has_api_key  = (bool) get_plugin_option( 'bible_brains_key', false );
 $color_scheme = get_plugin_option( 'color_scheme' );
 $colors       = get_plugin_option( 'colors' );
 $accent_steps = $colors['accent_steps'] ?? [];
@@ -96,7 +96,7 @@ $right        = $right ?? '';
                 <sp-tab label="<?php echo esc_html( $item['label'] ) ?>"
                         href='<?php echo esc_url( $link ) ?>'
                         value="<?php echo esc_attr( $item['tab'] ) ?>"
-                        onclick="<?php if ( $new_tab ): ?>window.open('<?php echo esc_url( $link ); ?>')<?php else: ?>window.location.href = '<?php echo esc_url( $link ); ?>'<?php endif; ?>;"
+                        onclick="<?php if ( $new_tab ): ?>window.open('<?php echo esc_url( $link ); ?>')<?php else : ?>window.location.href = '<?php echo esc_url( $link ); ?>'<?php endif; ?>;"
                 >
 					<?php if ( $new_tab ): ?>
                         <sp-icon-link-out-light slot="icon"></sp-icon-link-out-light>
@@ -117,7 +117,7 @@ $right        = $right ?? '';
             <div id="postbox-container-1" class="postbox-container">
 				<?php echo $this->section( 'right' ) ?>
             </div>
-		<?php else: ?>
+		<?php else : ?>
             <div id="poststuff">
                 <div id="post-body" class="metabox-holder columns-1">
                     <div id="post-body-content">

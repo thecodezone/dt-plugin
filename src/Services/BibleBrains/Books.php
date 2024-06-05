@@ -132,15 +132,14 @@ class Books {
 		return $this->pluck( $book, $books );
 	}
 
-	/**
-	 * Pluck a book from the given Bible.
-	 *
-	 * @param string $book The book to pluck.
-	 * @param array $bible The Bible to pluck from.
-	 *
-	 * @return array Returns an array representing the plucked book, or null if not found.
-	 * @throws BibleBrainsException
-	 */
+    /**
+     * Pluck a specific book from an array of books.
+     *
+     * @param string $book The book to pluck.
+     * @param array $books The array of books to search in.
+     *
+     * @return array Returns an array representing the plucked book.
+     */
 	public function pluck( string $book, array $books ): array {
 		return Arr::first( $books, function ( $b ) use ( $book ) {
 			return $b['book_id'] === Str::upper( $book )

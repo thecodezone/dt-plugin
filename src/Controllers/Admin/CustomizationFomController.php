@@ -23,7 +23,7 @@ class CustomizationFomController {
 	 *
 	 * @return String The view containing the customization settings page.
 	 */
-	public function show( Request $request, Response $response, Translations $translationsService ) {
+	public function show( Request $request, Response $response, Translations $translations_service ) {
 		$tab                  = "customization";
 		$nonce                = wp_create_nonce( 'bible-brains' );
 		$color_scheme_options = [
@@ -36,7 +36,7 @@ class CustomizationFomController {
 				'value'    => 'dark',
 			]
 		];
-		$translation_options  = $translationsService->options();
+		$translation_options  = $translations_service->options();
 		$translations         = get_plugin_option( 'translations', [], true );
 		//Make sure all translation keys are present and remove any keys that are not present in the translation options
 		foreach ( $translation_options as $option ) {

@@ -19,7 +19,7 @@ class Bible {
 	 * @var Assets
 	 */
 	protected $assets;
-	
+
 	/**
 	 * Constructs a new instance of the class.
 	 *

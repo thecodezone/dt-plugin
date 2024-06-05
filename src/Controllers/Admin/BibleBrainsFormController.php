@@ -102,8 +102,8 @@ class BibleBrainsFormController {
 			] );
 		}
 
-		$allValues = $request->request->all();
-		$languages = $allValues['languages'] ?? [];
+		$all_values = $request->request->all();
+		$languages = $all_values['languages'] ?? [];
 
 		$result = transaction( function () use ( $languages ) {
 			set_plugin_option( 'languages', $languages );
@@ -131,7 +131,7 @@ class BibleBrainsFormController {
 		$errors = validate( $request->post(), [
 			'bible_brains_key' => 'required',
 		] );
-		
+
 		if ( $errors ) {
 			return $response->setStatusCode( 400 )->setContent( [
 				'error'  => __( 'Please enter a key.', 'bible-plugin' ),

@@ -33,8 +33,8 @@ $this->insert( 'settings/partials/bible-brains-key', [
 			      'fields' => $fields,
 			      'action' => esc_url( route_url( "api/bible-brains" ) ),
 		      ]
-	      )
-      ); ?>)"
+        )
+    ); ?>)"
 >
 
     <sp-divider size="s"></sp-divider>

@@ -21,11 +21,12 @@ class LanguageController
      *
      * @param Request $request The request object.
      * @param Response $response The response object.
+     * @param string $id The ID of the language to retrieve.
      * @param Languages $languages The Languages instance.
      */
-    public function show(Request $request, Response $response, $id, Languages $languages)
+    public function show( Request $request, Response $response, $id, Languages $languages )
     {
-        return $response->setContent($languages->find($id));
+        return $response->setContent( $languages->find( $id ) );
     }
 
 
@@ -36,12 +37,12 @@ class LanguageController
      * @param Response $response The response object.
      * @param Languages $languages The Languages instance.
      */
-    public function options(Request $request, Response $response, Languages $languages)
+    public function options( Request $request, Response $response, Languages $languages )
     {
-        $result         = $this->index($request, $response, $languages);
-        $result['data'] = $languages->as_options($result['data'] ?? []);
+        $result         = $this->index( $request, $response, $languages );
+        $result['data'] = $languages->as_options( $result['data'] ?? [] );
 
-        return $response->setContent($result);
+        return $response->setContent( $result );
     }
 
     /**
@@ -58,14 +59,14 @@ class LanguageController
      *
      * @return array The array containing the search results or all languages
      */
-    public function index(Request $request, Response $response, Languages $languages)
+    public function index( Request $request, Response $response, Languages $languages )
     {
-        $search = $request->get('search', '');
-        $page   = $request->get('paged', 1);
-        $limit  = $request->get('limit', 50);
+        $search = $request->get( 'search', '' );
+        $page   = $request->get( 'paged', 1 );
+        $limit  = $request->get( 'limit', 50 );
 
-        if ($search) {
-            return $languages->search($search);
+        if ( $search ) {
+            return $languages->search( $search );
         }
 
         return $languages->all([

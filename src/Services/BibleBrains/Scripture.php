@@ -131,7 +131,8 @@ class Scripture {
 			'chapter'     => null,
 			'verse_start' => null,
 			'verse_end'   => null,
-		], $parameters );;
+		], $parameters );
+;
 
 		return array_merge( $parameters, $this->reference->parse( $parameters ) );
 	}
@@ -190,9 +191,11 @@ class Scripture {
 						]
 					);
 				}
+                // phpcs:disable
 			} catch ( \Exception $e ) {
 				//Skip invalid media types
 			}
+            // phpcs:enable
 		}
 
 		return array_merge(

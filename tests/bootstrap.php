@@ -8,6 +8,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../vendor-scoped/autoload.php';
 
+// phpcs:disable
 $_tests_dir   = $_ENV['WP_TESTS_DIR'] ?? false ?: rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
 $_core_dir    = $_ENV['WP_CORE_DIR'] ?? false ?: rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress';
 $_plugin_file = $_ENV['WP_PLUGIN_FILE'] ?? false ?: $_core_dir . '/wp-content/plugins/' . substr( getcwd(), strrpos( getcwd(), '/' ) + 1 ) . '/' . substr( getcwd(), strrpos( getcwd(), '/' ) + 1 ) . '.php';

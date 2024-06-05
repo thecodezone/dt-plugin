@@ -35,7 +35,7 @@ class HandleBibleBrainsExceptions implements Middleware {
 
 				return $response;
 			} else {
-				wp_die( $e->getMessage(), $e->getCode() );
+				wp_die( esc_html( $e->getMessage() ), esc_attr( $e->getCode() ) );
 			}
 		}
 	}

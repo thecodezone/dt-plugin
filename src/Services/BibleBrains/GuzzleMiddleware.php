@@ -34,20 +34,20 @@ class GuzzleMiddleware {
 	 */
 	public function __invoke( callable $handler ) {
 		return function ( RequestInterface $request, array $options ) use ( $handler ) {
-			$newUri = UriResolver::resolve( new Uri( $this->base_url ), $request->getUri() );
+			$new_uri = UriResolver::resolve( new Uri( $this->base_url ), $request->getUri() );
 
-			parse_str( $newUri->getQuery(), $query );
+			parse_str( $new_uri->getQuery(), $query );
 
 			// Add the 'key' query parameter
 			if ( empty( $query['key'] ) ) {
-				$newUri = Uri::withQueryValue( $newUri, 'key', $this->key );
+				$new_uri = Uri::withQueryValue( $new_uri, 'key', $this->key );
 			}
 			if ( empty( $query['v'] ) ) {
-				$newUri = Uri::withQueryValue( $newUri, 'v', '4' );
+				$new_uri = Uri::withQueryValue( $new_uri, 'v', '4' );
 			}
 
 			// Update the request with the modified URI
-			$request = $request->withUri( $newUri );
+			$request = $request->withUri( $new_uri );
 
 			// Call the next middleware handler
 			return $handler( $request, $options );

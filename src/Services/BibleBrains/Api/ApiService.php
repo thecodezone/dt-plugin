@@ -77,14 +77,15 @@ abstract class ApiService {
 	 */
 	public function as_options( iterable $records ): array {
 		$records = collect( $records );
-
+        // phpcs:disable
 		return array_values( $records->map( function ( $record ) {
-			return $this->map_option( $record );
-		} )->filter( function ( $option ) {
-			return ! empty( $option['value'] )
-			       && ! empty( $option['itemText'] );
-		} )->toArray() );
-	}
+            return $this->map_option( $record );
+        } )->filter( function ( $option ) {
+            return ! empty( $option['value'] )
+                && ! empty( $option['itemText'] );
+        } )->toArray() );
+        // phpcs:enable
+    }
 
 	/**
 	 * Maps an option record to an associative array.
@@ -137,7 +138,7 @@ abstract class ApiService {
 		$data        = collect( $response->collect()->get( 'data' ) );
 		$total_pages = $response->collect()->get( 'meta' )['pagination']['total_pages'] ?? 0;
 		while ( $total_pages > $page ) {
-			$page ++;
+			$page++;
 			$data->push( ...$this->all( array_merge( $params, [ 'page' => $page ] ) )->collect()->get( 'data' ) );
 		}
 

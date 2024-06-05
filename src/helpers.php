@@ -88,7 +88,7 @@ function plugin_path( string $path = '' ): string {
 	return '/' . implode( '/', [
 			trim( Str::remove( '/src', plugin_dir_path( __FILE__ ) ), '/' ),
 			trim( $path, '/' ),
-		] );
+    ] );
 }
 
 /**

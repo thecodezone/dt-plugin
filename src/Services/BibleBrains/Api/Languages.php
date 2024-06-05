@@ -34,7 +34,7 @@ class Languages extends ApiService {
 	/**
 	 * Retrieves languages as options for a dropdown select field.
 	 *
-	 * @param iterable $languages The languages to process.
+	 * @param iterable $records The languages to process.
 	 *
 	 * @return array The languages as options, with 'value' and 'label' keys.
 	 */

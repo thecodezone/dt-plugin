@@ -74,7 +74,7 @@ abstract class TestCase extends WP_UnitTestCase {
 		} );
 		$stack    = apply_filters( namespace_string( 'middleware' ), container()->make( Stack::class ) );
 		$response = $stack->run();
-		
+
 		container()->bind( Request::class, function () use ( $initial_request ) {
 			return $initial_request;
 		} );

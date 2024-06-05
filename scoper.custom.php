@@ -19,9 +19,9 @@ function customize_php_scoper_config( array $config ): array {
 	];
 
 	$config['patchers'] = array_merge( $config['patchers'] ?? [], [
-		function ( string $filePath, string $prefix, string $content ) use ( $replacements ): string {
+		function ( string $file_path, string $prefix, string $content ) use ( $replacements ): string {
 			foreach ( $replacements as $config ) {
-				if ( strpos( $filePath, $config['in'] ) !== false ) {
+				if ( strpos( $file_path, $config['in'] ) !== false ) {
 					$content = str_replace( $config['needle'], $config['replace'], $content );
 				}
 			}

@@ -17,20 +17,19 @@ class Bibles extends ApiService {
 		'limit' => 500,
 	];
 
-	/**
-	 * Retrieves data for a specified code or language code. If no data is found, the default data for the specified language code is returned.
-	 *
-	 * @param string|null $code The code to search for.
-	 * @param string|null $language_code The language code to search for.
-	 * @param array $query Additional query parameters to filter the search.
-	 *
-	 * @return array An array containing the retrieved data. If data is found for the specified code, it is returned.
-	 *               If no data is found, the default data for the specified language code is returned.
-	 *               The array is structured based on the result of the search.
-	 *               If the search is successful, the structure is ['data' => [...]] where 'data' contains the retrieved data.
-	 *               If the search is unsuccessful and default data
-	 * @throws BibleBrainsException
-	 */
+    /**
+     * Finds or returns the default audio or video types based on the provided code or language ID.
+     *
+     * @param string|null $code The code to search for.
+     * @param int|null $language_id The language ID to search for.
+     * @param array $query Additional query parameters.
+     *
+     * @return array An associative array containing the audio or video types for the provided code or language ID.
+     *               The array is structured as ['data' => [...]] where each element is the audio type if available,
+     *               otherwise it is the video type.
+     *
+     * @throws BibleBrainsException If neither a bible ID nor a language ID is provided.
+     */
 	public function find_or_default( $code = null, $language_id = null, array $query = [] ): array {
 		if ( empty( $code ) && empty( $language_id ) ) {
 			throw new BibleBrainsException( esc_html( 'Either a bible ID or a language ID must be provided.' ) );
@@ -61,12 +60,14 @@ class Bibles extends ApiService {
 	public function as_options( iterable $records ): array {
 		$records = collect( $records );
 
+        // phpcs:disable
 		return array_values( $records->map( function ( $record ) {
 			return $this->map_option( $record );
-		} )->filter( function ( $option ) {
-			return ! empty( $option['value'] )
-			       && ! empty( $option['itemText'] );
-		} )->toArray() );
+        } )->filter( function ( $option ) {
+            return ! empty( $option['value'] )
+            && ! empty( $option['itemText'] );
+        } )->toArray() );
+        // phpcs:enable
 	}
 
 	/**

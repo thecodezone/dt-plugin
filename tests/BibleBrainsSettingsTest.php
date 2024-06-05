@@ -28,19 +28,19 @@ class BibleBrainsSettingsTest extends TestCase
      */
     public function it_loads()
     {
-        set_current_screen('toplevel_page_bible-plugin');
+        set_current_screen( 'toplevel_page_bible-plugin' );
         $user = $this->factory()->user->create([
             'role' => 'administrator',
         ]);
-        wp_set_current_user($user);
+        wp_set_current_user( $user );
 
         $response = $this->get('/wp-admin/admin.php?page=bible-plugin&tab=bible', [
             'page' => 'bible-plugin',
             'tab'  => 'bible'
         ]);
 
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertStringContainsString('bible_brains_key', $response->getContent());
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertStringContainsString( 'bible_brains_key', $response->getContent() );
     }
 
 
@@ -53,7 +53,7 @@ class BibleBrainsSettingsTest extends TestCase
         $user = $this->factory()->user->create([
             'role' => 'administrator',
         ]);
-        wp_set_current_user($user);
+        wp_set_current_user( $user );
 
 		$response = $this->post( 'api/bible-brains', [
 			'languages' => [
@@ -79,18 +79,17 @@ class BibleBrainsSettingsTest extends TestCase
         $user = $this->factory()->user->create([
             'role' => 'administrator',
         ]);
-        wp_set_current_user($user);
+        wp_set_current_user( $user );
 
-		$response = $this->post( 'api/bible-brains', [
-		], [
+		$response = $this->post( 'api/bible-brains', [], [
 			'X-WP-Nonce' => wp_create_nonce( 'bible_plugin_nonce' ),
 		] );
 
-        $data = json_decode($response->getContent(), true);
-        $this->assertEquals(400, $response->getStatusCode());
-        $this->assertArrayHasKey('errors', $data);
-        $this->assertArrayHasKey('languages', $data['errors']);
-        $this->assertArrayNotHasKey('language', $data['errors']);
+        $data = json_decode( $response->getContent(), true );
+        $this->assertEquals( 400, $response->getStatusCode() );
+        $this->assertArrayHasKey( 'errors', $data );
+        $this->assertArrayHasKey( 'languages', $data['errors'] );
+        $this->assertArrayNotHasKey( 'language', $data['errors'] );
     }
 
     /**
@@ -103,7 +102,7 @@ class BibleBrainsSettingsTest extends TestCase
             'role' => 'administrator',
         ]);
 
-        wp_set_current_user($user);
+        wp_set_current_user( $user );
 
         $payload = [
             'languages' => [
@@ -121,11 +120,11 @@ class BibleBrainsSettingsTest extends TestCase
 			'X-WP-Nonce' => wp_create_nonce( 'bible_plugin_nonce' )
 		] );
 
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals( 200, $response->getStatusCode() );
 
-        $result = get_plugin_option('languages');
+        $result = get_plugin_option( 'languages' );
 
-        $this->assertEquals($payload['languages'], $result);
+        $this->assertEquals( $payload['languages'], $result );
     }
 
     /**
@@ -137,7 +136,7 @@ class BibleBrainsSettingsTest extends TestCase
             'role' => 'administrator',
         ]);
 
-        wp_set_current_user($user);
+        wp_set_current_user( $user );
 
         $payload = [
             'bible_brains_key' => 'fake_key'

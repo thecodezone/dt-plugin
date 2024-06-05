@@ -30,7 +30,7 @@ class ScriptureController
      *
      * @return Response The HTTP response.
      */
-    public function index(Request $request, Response $response, Scripture $scripture)
+    public function index( Request $request, Response $response, Scripture $scripture )
     {
 
 
@@ -39,15 +39,15 @@ class ScriptureController
                 'reference' => 'required|string'
             ]);
 
-            if ($errors) {
-                return $response->setStatusCode(400)->setContent($errors);
+            if ( $errors ) {
+                return $response->setStatusCode( 400 )->setContent( $errors );
             }
 
-            $result = $scripture->by_reference($request->get('reference'));
+            $result = $scripture->by_reference( $request->get( 'reference' ) );
 
-            return $response->setContent($result);
-        } catch (\Exception $e) {
-            return $response->setStatusCode(500)->setContent([
+            return $response->setContent( $result );
+        } catch ( \Exception $e ) {
+            return $response->setStatusCode( 500 )->setContent([
                 'error' => $e->getMessage()
             ]);
         }

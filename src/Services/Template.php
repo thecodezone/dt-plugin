@@ -9,7 +9,13 @@ use function CodeZone\Bible\plugin_path;
 use function CodeZone\Bible\view;
 
 class Template {
-	public function __construct( protected Assets $assets ) {
+    /**
+     * @var Assets
+     */
+    protected Assets $assets;
+
+	public function __construct( Assets $assets ) {
+        $this->assets = $assets;
 	}
 
 	/**
@@ -23,8 +29,8 @@ class Template {
 	/**
 	 * Render the template
 	 *
-	 * @param $template
-	 * @param $data
+	 * @param string $template
+	 * @param array $data
 	 *
 	 * @return mixed
 	 */
