@@ -57,7 +57,7 @@ class Plugin {
 	public function init() {
 		static::$instance = $this;
 		$this->provider->register();
-		
+
 		register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
 		register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
 		add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
@@ -139,6 +139,9 @@ class Plugin {
 		if ( ! get_query_var( self::QUERY_VAR ) ) {
 			return;
 		}
+
+        //TODO: Remove this. We should probably move away from using Laravel request classes if we are going to support PHP 7.4 and PHP 8.3.
+        error_reporting(error_reporting() ^ E_DEPRECATED);
 
 		$response = apply_filters( namespace_string( 'middleware' ), $this->container->make( Stack::class ) )
 			->run();

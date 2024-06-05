@@ -18,26 +18,26 @@ use CodeZone\Bible\Dotenv\Dotenv;
 use CodeZone\Bible\Illuminate\Container\Container;
 use CodeZone\Bible\Plugin;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (! defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-tgm-plugin-activation.php';
-require_once plugin_dir_path( __FILE__ ) . 'vendor-scoped/scoper-autoload.php';
-require_once plugin_dir_path( __FILE__ ) . 'vendor-scoped/autoload.php';
-require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-tgm-plugin-activation.php';
+require_once plugin_dir_path(__FILE__) . 'vendor-scoped/scoper-autoload.php';
+require_once plugin_dir_path(__FILE__) . 'vendor-scoped/autoload.php';
+require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
-if ( file_exists( plugin_dir_path( __FILE__ ) . '/.env' ) ) {
-	$dotenv = Dotenv::createImmutable( __DIR__ );
-	$dotenv->load();
+if (file_exists(plugin_dir_path(__FILE__) . '/.env')) {
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
 }
 
 $container = new Container();
-$container->singleton( Container::class, function ( $container ) {
-	return $container;
-} );
-$container->singleton( Plugin::class, function ( $container ) {
-	return new Plugin( $container );
-} );
-$plugin_instance = $container->make( Plugin::class );
+$container->singleton(Container::class, function ($container) {
+    return $container;
+});
+$container->singleton(Plugin::class, function ($container) {
+    return new Plugin($container);
+});
+$plugin_instance = $container->make(Plugin::class);
 $plugin_instance->init();
