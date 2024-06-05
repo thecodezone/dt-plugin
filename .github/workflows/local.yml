@@ -1,13 +1,5 @@
 name: CI
 
-on:
-  push:
-    branches:
-      - '*'
-  pull_request:
-    branches:
-      - '*'
-
 env:
   TBP_BIBLE_BRAINS_KEY: ${{ secrets.BIBLE_BRAINS_KEY }}
 
@@ -75,21 +67,9 @@ jobs:
           name: bible-plugin.zip
           path: bible-plugin.zip
 
-  tests:
+  local:
     needs: build
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: testdb
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: rootpassword
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     strategy:
       fail-fast: true
@@ -104,6 +84,11 @@ jobs:
         uses: shivammathur/setup-php@master
         with:
           php-version: ${{ matrix.php }}
+
+      - name: Install MySQL Client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mysql-client
 
       - name: Add Composer Global to PATH
         run: echo "$(composer global config bin-dir --absolute --quiet)" >> $GITHUB_PATH
