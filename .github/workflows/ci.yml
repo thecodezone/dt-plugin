@@ -80,22 +80,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
 
-    sservices:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: testdb
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-          MYSQL_ROOT_PASSWORD: rootpassword
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     strategy:
       fail-fast: true
       matrix:
-        php: [ '8.1', '8.3' ]
+        php: [ '7.4', '8.3' ]
 
     name: PHP ${{ matrix.php }}
     steps:

@@ -13,7 +13,11 @@
     "symfony/http-foundation": "^5",
     "symfony/error-handler": "^5",
     "symfony/var-dumper": "^5",
-    "symfony/event-dispatcher": "^5",
-    "symfony/deprecation-contracts": "^2.5"
+    "symfony/event-dispatcher": "5.*",
+    "symfony/event-dispatcher-contracts": "2.5.*",
+    "symfony/deprecation-contracts": "^2.5",
+    "symfony/translation": "^5",
+    "symfony/translation-contracts": "^2.5",
+    "carbonphp/carbon-doctrine-types": "^2.1"
   }
 }
