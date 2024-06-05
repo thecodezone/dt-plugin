@@ -18,6 +18,13 @@
     "symfony/deprecation-contracts": "^2.5",
     "symfony/translation": "^5",
     "symfony/translation-contracts": "^2.5",
-    "carbonphp/carbon-doctrine-types": "^2.1"
+    "carbonphp/carbon-doctrine-types": "^2.1",
+    "psr/log": "^1.1"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4.27"
+    },
+    "platform-check": false
   }
 }

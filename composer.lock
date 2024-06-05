@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76dbce8d7c8bf41d063e3836049ed437",
+    "content-hash": "fb9ae1625ed14c4e7cdb9c44c6e56667",
     "packages": [
         {
             "name": "whitecube/lingua",
@@ -2404,7 +2404,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4 <=8.3",
+        "php": "^7.4",
         "ext-json": "*",
         "ext-gettext": "*",
         "composer-plugin-api": "^1.0 || ^2.0"
