@@ -110,6 +110,10 @@ class Assets {
 	 * @return void
 	 */
 	public function wp_enqueue_scripts() {
+        if( wp_script_is('bible-plugin', 'enqueued')) {
+            return;
+        }
+
 		enqueue_asset(
 			plugin_path( '/dist' ),
 			'resources/js/plugin.js',

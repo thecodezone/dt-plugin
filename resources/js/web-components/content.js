@@ -27,7 +27,7 @@ export class Content extends withStores(TBPElement, [$selection, $selectionOpen]
                 padding: .5em 0;
               }
 
-              .verse:hover:not(.verse--selected) {
+              tbp-verse[selectable] .verse:hover:not(.verse--selected) {
                 background-color: var(--tbp-verse-hover-background-color, var(--spectrum-transparent-black-200));
               }
 

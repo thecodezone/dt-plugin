@@ -83,6 +83,9 @@ class Scripture {
 	 * @throws BibleBrainsException
 	 */
 	public function render( $attributes ) {
+        //Just in case we could not detect the shortcode
+        $this->assets->wp_enqueue_scripts();
+
 		if ( ! $attributes ) {
 			$attributes = [];
 		}

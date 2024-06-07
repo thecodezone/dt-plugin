@@ -84,6 +84,8 @@ class Scripture {
 		Language $language,
 		Options $options
 	) {
+        //TODO: Remove this. We should probably move away from using Laravel request classes if we are going to support PHP 7.4 and PHP 8.3.
+        error_reporting( error_reporting() ^ E_DEPRECATED );
 		$this->bibles      = $bibles;
 		$this->books       = $books;
 		$this->file_sets   = $file_sets;

@@ -55,6 +55,9 @@ class Bible {
 	 * @return string The rendered Bible shortcode view.
 	 */
 	public function render( $attributes ) {
+        //Just in case we could not detect the shortcode
+        $this->assets->wp_enqueue_scripts();
+
 		if ( ! $attributes ) {
 			$attributes = [];
 		}
