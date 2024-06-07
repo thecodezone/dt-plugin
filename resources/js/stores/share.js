@@ -2,6 +2,7 @@ import {computed, task} from "nanostores";
 import {reference_from_object} from "../helpers.js";
 import {$selection, $hasSelection, $selectables} from "./selection.js";
 import {$displayMessage} from "./message.js";
+import {$referenceLabel} from "./reference.js";
 
 export const $shareUrl = computed($selection, (selection) => {
   const pageUrl = new URL(window.location.href);
@@ -36,6 +37,7 @@ export const $canShare = computed([$shareUrl, $shareText], userId => task(async 
     return false;
   }
   return navigator.canShare({
+    title: $referenceLabel.get(),
     url: $shareUrl.get(),
     text: $shareText.get()
   })
@@ -51,6 +53,7 @@ export const $share = async () => {
 
   try {
     await navigator.share({
+      title: $referenceLabel.get(),
       url: $shareUrl.get(),
       text: $shareText.get()
     })

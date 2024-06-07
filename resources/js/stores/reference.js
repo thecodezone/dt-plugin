@@ -3,6 +3,7 @@ import {computed} from "nanostores"
 import {$chapter} from "./chapter.js";
 import {$verse_start, $verse_end} from "./verse.js";
 import {$book} from "./book.js";
+import {_} from "../helpers.js";
 
 export const $reference = queryParam('reference', "JHN 1");
 
@@ -20,6 +21,24 @@ export const $referenceData = computed([
         verse_end: verse_end
     }
 });
+
+export const $referenceLabel = computed([$referenceData, $book], (data, book) => {
+  console.log(data)
+    let label = null;
+    if (!data.book) {
+       return label;
+    }
+
+    label = data.book;
+
+    if (!data.chapter) {
+        return label;
+    }
+
+    label += ` ${data.chapter}`;
+
+    return label;
+})
 
 export const $visitReference = (reference) => {
     $reference.set(reference)
