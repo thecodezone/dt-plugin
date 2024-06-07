@@ -1,7 +1,7 @@
 name: CI
 
 env:
-  TBP_BIBLE_BRAINS_KEY: ${{ secrets.BIBLE_BRAINS_KEY }}
+  TBP_BIBLE_BRAINS_KEYS: ${{ secrets.BIBLE_BRAINS_KEYS }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

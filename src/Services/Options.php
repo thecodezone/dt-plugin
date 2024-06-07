@@ -11,7 +11,7 @@ use function CodeZone\Bible\set_plugin_option;
  * Class Options
  *
  * This class provides methods for retrieving options from the database.
- * Keys are scoped to the plugin to avoid conflicts with other plugins.
+ * ApiKeys are scoped to the plugin to avoid conflicts with other plugins.
  * Default values may be provided for each option to avoid duplication.
  */
 class Options {
@@ -24,7 +24,7 @@ class Options {
 	 */
 	private function defaults(): array {
 		return [
-			'bible_brains_key' => defined( 'TBP_BIBLE_BRAINS_KEY' ) ? TBP_BIBLE_BRAINS_KEY : '',
+			'bible_brains_key' => '',
 			'languages'        => [
 				[
 					'bibles'      => 'ENGESV',
@@ -115,4 +115,14 @@ class Options {
 
 		return set_option( $key, $value );
 	}
+
+    /**
+     * Delete the value of the specified option.
+     */
+    public function delete( string $key ): bool
+    {
+        $key = $this->scope_key($key);
+
+        return delete_option($key);
+    }
 }

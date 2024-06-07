@@ -45,6 +45,18 @@ class BibleController {
 		return $response->setContent( $result );
 	}
 
+    protected function filter( $bibles, $search ) {
+        if ( empty( $search ) ) {
+            return $bibles;
+        }
+
+        $bibles['data'] = array_filter( $bibles['data'], function ( $bible ) use ( $search ) {
+            return stripos( $bible['name'], $search ) !== false;
+        } );
+
+        return $bibles;
+    }
+
 	/**
 	 * Index method
 	 *
@@ -67,14 +79,14 @@ class BibleController {
 		if ( $language_code ) {
 			$language_codes = explode( ',', $language_code );
 
-			return $response->setContent( $bibles->for_languages( $language_codes, [
+			return $response->setContent( $this->filter( $bibles->for_languages( $language_codes, [
 				'limit' => 150
-			] ) );
+			] ), $request->get( 'search', '' ) ) );
 		}
 
-		return $response->setContent( $bibles->all( [
+		return $response->setContent( $this->filter( $bibles->all( [
 			'page'  => $page,
 			'limit' => $limit
-		] ) );
+		] ), $request->get( 'search', '' ) ) );
 	}
 }

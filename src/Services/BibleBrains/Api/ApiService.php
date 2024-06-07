@@ -19,6 +19,9 @@ abstract class ApiService {
 	 */
 	protected PendingRequest $http;
 
+    protected $default_options = [
+    ];
+
 	/**
 	 * @param Http $http
 	 */
@@ -42,7 +45,7 @@ abstract class ApiService {
 	 * @return array The JSON response from the GET request.
 	 * @throws BibleBrainsException If the GET request is unsuccessful and returns an error.
 	 */
-	public function get( $endpoint, $params = [] ) {
+	public function get( $endpoint = '', $params = [] ) {
 		$cache        = container()->make( Cache::class );
 		$cache_key    = $endpoint . '?' . http_build_query( $params );
 		$should_cache = $params['cache'] ?? true;
@@ -59,7 +62,7 @@ abstract class ApiService {
 		} else {
 			if ( ! isset( $result['error'] ) ) {
 				// phpcs:ignore
-				throw new BibleBrainsException( 'An error occurred while retrieving data from the BibleBrains API.' );
+				throw new BibleBrainsException( 'An error occurred while retrieving data.' );
 			}
 			// phpcs:ignore
 			throw new BibleBrainsException( $result['error']['message'] ?? $result['error'] );

@@ -340,6 +340,11 @@ function set_plugin_option( $option, $value ): bool {
 	return $options->set( $option, $value );
 }
 
+function delete_plugin_option( $option ): bool {
+    $options = container()->make( Options::class );
+
+    return $options->delete( $option );
+}
 /**
  * Cast an array of strings to boolean values
  *

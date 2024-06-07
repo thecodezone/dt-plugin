@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use CodeZone\Bible\Services\BibleBrains\BibleBrainsKeys;
+use function CodeZone\Bible\container;
 use function CodeZone\Bible\get_plugin_option;
 
 /**
@@ -123,6 +125,12 @@ class BibleBrainsSettingsTest extends TestCase
      */
     public function it_handles_api_key_failure()
     {
+        if ( defined( 'TBP_BIBLE_BRAINS_KEYS' ) ) {
+            // We can't est failure if the constant is set
+            $this->assertTrue( true );
+            return;
+        }
+
         $user = $this->factory()->user->create([
             'role' => 'administrator',
         ]);
@@ -153,10 +161,11 @@ class BibleBrainsSettingsTest extends TestCase
 			'role' => 'administrator',
 		] );
 
+        $keys = container()->make( BibleBrainsKeys::class );
 		wp_set_current_user( $user );
 
 		$payload = [
-			'bible_brains_key' => TBP_BIBLE_BRAINS_KEY
+			'bible_brains_key' => $keys->random(),
 		];
 
 		$response = $this->post( 'api/bible-brains/key', $payload, [

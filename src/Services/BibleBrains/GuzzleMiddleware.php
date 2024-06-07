@@ -5,6 +5,7 @@ namespace CodeZone\Bible\Services\BibleBrains;
 use CodeZone\Bible\GuzzleHttp\Psr7\Uri;
 use CodeZone\Bible\GuzzleHttp\Psr7\UriResolver;
 use CodeZone\Bible\Psr\Http\Message\RequestInterface;
+use CodeZone\Bible\Services\BibleBrains\Api\ApiKeys;
 use function CodeZone\Bible\get_plugin_option;
 
 /**
@@ -20,8 +21,8 @@ class GuzzleMiddleware {
 	/***
 	 * @return void
 	 */
-	public function __construct() {
-		$this->key = get_plugin_option( 'bible_brains_key', defined( 'TBP_BIBLE_BRAINS_KEY' ) ? TBP_BIBLE_BRAINS_KEY : '', true );
+	public function __construct(BibleBrainsKeys $keys) {
+		$this->key = $keys->random();
 	}
 
 

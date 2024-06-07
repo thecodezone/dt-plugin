@@ -17,7 +17,7 @@ require_once $_tests_dir . '/includes/functions.php';
  * Registers theme
  */
 $_register_plugin = function () use ( $_plugin_file ) {
-    define( 'TBP_BIBLE_BRAINS_KEY', $_ENV['TBP_BIBLE_BRAINS_KEY'] ?? '' );
+    define( 'TBP_BIBLE_BRAINS_KEYS', $_ENV['TBP_BIBLE_BRAINS_KEYS'] ?? '' );
 
     require $_plugin_file;
 };

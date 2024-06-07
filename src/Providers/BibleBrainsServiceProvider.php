@@ -3,6 +3,7 @@
 namespace CodeZone\Bible\Providers;
 
 use CodeZone\Bible\Illuminate\Http\Client\Factory;
+use CodeZone\Bible\Services\BibleBrains\BiblePluginSiteGuzzleMiddleware;
 use CodeZone\Bible\Services\BibleBrains\GuzzleMiddleware;
 use function CodeZone\Bible\container;
 
@@ -19,6 +20,13 @@ class BibleBrainsServiceProvider extends ServiceProvider {
 		Factory::macro( 'bibleBrains', function () {
 			return $this->withMiddleware( container()->make( GuzzleMiddleware::class ) );
 		} );
+
+        Factory::macro('biblePluginSite', function () {
+            return $this->withOptions([
+                    'verify' => false,
+                ])
+                ->withMiddleware(container()->make(BiblePluginSiteGuzzleMiddleware::class));
+        });
 	}
 
 	public function boot(): void {

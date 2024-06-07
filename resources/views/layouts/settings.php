@@ -1,5 +1,7 @@
 <?php
 
+use CodeZone\Bible\Services\BibleBrains\BibleBrainsKeys;
+use function CodeZone\Bible\container;
 use function CodeZone\Bible\namespace_string;
 use function CodeZone\Bible\plugin_url;
 use function CodeZone\Bible\rgb;
@@ -22,7 +24,7 @@ $nav = apply_filters( namespace_string( 'settings_tabs' ), [] );
  *
  * @var bool $has_api_key
  */
-$has_api_key  = (bool) get_plugin_option( 'bible_brains_key', false );
+$has_api_key  = (bool) container()->make( BibleBrainsKeys::class )->random();
 $color_scheme = get_plugin_option( 'color_scheme' );
 $colors       = get_plugin_option( 'colors' );
 $accent_steps = $colors['accent_steps'] ?? [];

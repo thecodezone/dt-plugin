@@ -10,7 +10,7 @@
 >
     <php>
         <env name="APP_ENV" value="testing"/>
-        <env name="TBP_BIBLE_BRAINS_KEY" value="$ENV{TBP_BIBLE_BRAINS_KEY}" />
+        <env name="TBP_BIBLE_BRAINS_KEYS" value="$ENV{TBP_BIBLE_BRAINS_KEYS}" />
     </php>
 
     <testsuites>

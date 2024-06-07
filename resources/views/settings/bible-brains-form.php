@@ -18,10 +18,6 @@
 use function CodeZone\Bible\route_url;
 
 $this->layout( 'layouts/settings', compact( 'tab' ) );
-
-$this->insert( 'settings/partials/bible-brains-key', [
-	'fields' => $fields
-] );
 ?>
 
 <form method="post"
@@ -59,3 +55,14 @@ $this->insert( 'settings/partials/bible-brains-key', [
         </sp-button>
     </sp-button-group>
 </form>
+
+<br /><br />
+<sp-divider size="s"></sp-divider>
+<br />
+<?php
+
+$this->insert( 'settings/partials/bible-brains-key', [
+    'fields' => $fields
+] );
+
+?>

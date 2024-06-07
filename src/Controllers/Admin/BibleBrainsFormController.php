@@ -8,8 +8,11 @@ use CodeZone\Bible\Illuminate\Http\Response;
 use CodeZone\Bible\Illuminate\Support\Arr;
 use CodeZone\Bible\Services\BibleBrains\Api\Bibles;
 use CodeZone\Bible\Services\BibleBrains\Api\Languages;
+use CodeZone\Bible\Services\BibleBrains\BibleBrainsKeys;
 use CodeZone\Bible\Services\BibleBrains\MediaTypes;
 use Exception;
+use function CodeZone\Bible\container;
+use function CodeZone\Bible\delete_plugin_option;
 use function CodeZone\Bible\transaction;
 use function CodeZone\Bible\validate;
 use function CodeZone\Bible\view;
@@ -28,17 +31,22 @@ class BibleBrainsFormController {
 	 * @param Request $request The request object.
 	 * @param Response $response The response object.
 	 */
-	public function show( Request $request, Response $response, Bibles $bible_service, MediaTypes $media_type_service ) {
+	public function show(Request $request, Response $response, Bibles $bible_service, MediaTypes $media_type_service, BibleBrainsKeys $keys ) {
 		$tab              = "bible";
-		$bible_brains_key = get_plugin_option( 'bible_brains_key' );
-		if ( ! $bible_brains_key ) {
-			return $this->validation_form( $request, $response );
+
+        delete_plugin_option( 'bible_brains_key' );
+        $bible_brains_key = $keys->field_value();
+        $bible_brains_key_instructions = $keys->field_instructions();
+        $bible_brains_key_readonly = $keys->has_override();
+
+        if ( ! $keys->random() ) {
+			return $this->validation_form( $request, $response, $keys );
 		}
 
 		try {
 			$bible_service->find( 'ENGESV' );
 		} catch ( BibleBrainsException $e ) {
-			return $this->validation_form( $request, $response, $e->getMessage() );
+			return $this->validation_form( $request, $response, $keys, $e->getMessage() );
 		}
 
 		//Languages
@@ -47,7 +55,7 @@ class BibleBrainsFormController {
 			$languages = [];
 		}
 
-		$fields             = compact( 'bible_brains_key', 'languages' );
+		$fields             = compact( 'bible_brains_key', 'bible_brains_key_instructions', 'bible_brains_key_readonly', 'languages' );
 		$media_type_options = $media_type_service->options();
 
 		return view( "settings/bible-brains-form", [
@@ -65,11 +73,13 @@ class BibleBrainsFormController {
 	 *
 	 * @return View A view containing the form data.
 	 */
-	public function validation_form( Request $request, Response $response, $error = "" ) {
+	public function validation_form(Request $request, Response $response, BibleBrainsKeys $keys, $error = "" ) {
 		$tab = "bible";
 
-		$bible_brains_key = get_plugin_option( 'bible_brains_key' );
-		$fields           = compact( 'bible_brains_key' );
+        $bible_brains_key = $keys->field_value();
+        $bible_brains_key_instructions = $keys->field_instructions();
+        $bible_brains_key_readonly = $keys->has_override();
+		$fields           = compact( 'bible_brains_key', 'bible_brains_key_instructions', 'bible_brains_key_readonly' );
 		$nonce            = wp_create_nonce( 'bible-plugin' );
 		$error            = $error ?? "";
 
@@ -90,7 +100,7 @@ class BibleBrainsFormController {
 	 * @return mixed Returns success with the key if random number is 1, otherwise returns error message.
 	 * @throws Exception
 	 */
-	public function submit( Request $request, Response $response, Bibles $bibles ) {
+	public function submit( Request $request, Response $response ) {
 		$errors = validate( $request->post(), [
 			'languages' => 'required',
 		] );
@@ -127,7 +137,7 @@ class BibleBrainsFormController {
 	 *
 	 * @return array|Response An array with 'success' key if the API key is valid, or a Response object with an error message if the API key is invalid.
 	 */
-	public function validate( Response $response, Request $request, Bibles $bibles ) {
+	public function validate(Response $response, Request $request, Bibles $bibles, BibleBrainsKeys $keys ) {
 		$errors = validate( $request->post(), [
 			'bible_brains_key' => 'required',
 		] );
@@ -139,8 +149,11 @@ class BibleBrainsFormController {
 			] );
 		}
 
-		$key = $request->input( 'bible_brains_key' );
 
+        $key = $request->input( 'bible_brains_key' );
+        if ( $keys->has_override() ) {
+            $key = $keys->get_override()[0];
+        }
 		try {
 			$bibles->find( 'ENGESV', [ 'key' => $key, 'cache' => false ] );
 		} catch ( BibleBrainsException $e ) {
@@ -152,15 +165,18 @@ class BibleBrainsFormController {
 			] );
 		}
 
-		$result = transaction( function () use ( $request ) {
-			set_plugin_option( 'bible_brains_key', $request->post( 'bible_brains_key' ) );
-		} );
+        if ( ! $keys->has_override() ) {
+            $result = transaction( function () use ( $request ) {
+                set_plugin_option( 'bible_brains_key', $request->post( 'bible_brains_key' ) );
+            } );
 
-		if ( ! $result === true ) {
-			return $response->setStatusCode( 400 )->setContent( [
-				'error' => __( 'Form could not be submitted.', 'bible-plugin' ),
-			] );
-		}
+            if ( ! $result === true ) {
+                return $response->setStatusCode( 400 )->setContent( [
+                    'error' => __( 'Form could not be submitted.', 'bible-plugin' ),
+                ] );
+            }
+        }
+
 
 		return $response->setContent( [
 			'success' => true,
