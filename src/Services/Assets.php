@@ -117,7 +117,8 @@ class Assets {
 				'handle'    => 'bible-plugin',
 				'css-media' => 'all', // Optional.
 				'css-only'  => false, // Optional.
-				'in-footer' => false, // Optional.
+				'in-footer' => true, // Optional.
+                'strategy'  => 'async'
 			]
 		);
 
