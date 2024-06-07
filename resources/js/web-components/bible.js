@@ -37,6 +37,12 @@ export class Bible extends withStores(TBPElement, [$query, $bookName, $chapter, 
                     height: 100%;
                 }
 
+                tbp-header {
+                  display: block;
+                  z-index: 1;
+                  position: relative;
+                }
+
                 #error {
                     --mod-toast-max-inline-size: 100%;
                 }
