@@ -20,12 +20,20 @@ class ExampleMagicLink extends MagicLink {
 	public $post_type = 'user';
 	public $show_bulk_send = false;
 	public $show_app_tile = false;
-    public $type_actions = [
-        '' => 'show',
-        'subpage' => 'subpage',
-    ];
+
+    /**
+     * Do any action before the magic link is bootstrapped
+     * @return void
+     */
+    public function init() {
+        $this->whitelist_current_route();
+    }
 
 
+    /**
+     * Do any action needed before the magic link is constructed.
+     * @return void
+     */
 	public function boot() {
         $this->render();
 	}

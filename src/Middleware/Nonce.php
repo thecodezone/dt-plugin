@@ -6,13 +6,14 @@ use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\Psr\Http\Server\MiddlewareInterface;
 use DT\Plugin\Psr\Http\Server\RequestHandlerInterface;
+use function DT\Plugin\config;
 use function DT\Plugin\response;
 
 class Nonce implements MiddlewareInterface {
 	protected $nonce_name;
 
-	public function __construct( $nonce_name ) {
-		$this->nonce_name = $nonce_name;
+	public function __construct( $nonce_name = '' ) {
+		$this->nonce_name = $nonce_name ?? config('plugin.nonce_name');
 	}
 
     public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface

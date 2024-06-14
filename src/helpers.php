@@ -11,7 +11,9 @@ use DT\Plugin\Nette\Schema\Expect;
 use DT\Plugin\Nette\Schema\Processor;
 use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\Services\Options;
+use DT\Plugin\Services\Rewrites;
 use DT\Plugin\Services\Template;
 use DT_Magic_URL;
 use DT_Posts;
@@ -87,13 +89,10 @@ function validate( $schema, $data )
  *
  */
 function has_route_rewrite(): bool {
-    global $wp_rewrite;
-
-    if ( ! is_array( $wp_rewrite->rules ) ) {
-        return false;
-    }
-
-    return array_key_exists( '^dt-home/(.+)/?', $wp_rewrite->rules );
+    $rewrites = container()->get( Rewrites::class );
+    return $rewrites->exists(
+        array_key_first(config()->get( 'routes.rewrites' ))
+    );
 }
 
 /**
@@ -107,8 +106,44 @@ function plugin_url( string $path = '' ): string {
 	return plugins_url( 'dt-plugin' ) . '/' . ltrim( $path, '/' );
 }
 
-function route_url( string $path = '' ): string {
-	return site_url( config()->get( 'plugin.home_route' ) . '/' . ltrim( $path, '/' ) );
+/**
+ * Returns the URL for a given route.
+ *
+ * @param string $path The path of the route. Defaults to an empty string.
+ * @param string $key The key of the route file in the configuration. Defaults to 'web'.
+ * @return string The URL for the given route.
+ */
+function route_url(string $path = '', $key = 'web' ): string {
+    $file = config()->get( 'routes.files' )[ $key ];
+
+    if ( ! has_route_rewrite() ) {
+        return site_url() . '?' . http_build_query( [ $file['query'] => $path ] );
+    } else {
+        return site_url( $file['path'] . '/' . ltrim( $path, '/' ) );
+    }
+}
+
+/**
+ * Returns the URL of an API endpoint based on the given path.
+ *
+ * @param string $path The path of the API endpoint.
+ *
+ * @return string The URL of the API endpoint.
+ *
+ * @see route_url()
+ */
+function api_url( string $path ) {
+    return route_url( $path, 'api' );
+}
+
+/**
+ * Returns the URL for a given web path.
+ *
+ * @param string $path The web path to generate the URL for.
+ * @return string The generated URL.
+ */
+function web_url( string $path ) {
+    return route_url( $path, 'web' );
 }
 
 /**
@@ -214,8 +249,8 @@ function template( string $template = "", array $args = [] ): mixed {
  * Returns the Request object.
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
-function request(): ServerRequest {
-	return container()->get( ServerRequest::class );
+function request(): ServerRequestInterface {
+	return container()->get( ServerRequestInterface::class );
 }
 
 /**

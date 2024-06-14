@@ -124,7 +124,7 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
         $file = array_merge( $defaults, $file );
         $file_path = routes_path( $file['file'] );
 
-        if ( !$file['file'] || ! file_exists( $file_path ) ) {
+        if ( ! file_exists( $file_path ) ) {
             if ( WP_DEBUG ) {
                 throw new \Exception( esc_html( "The file $file_path does not exist." ) );
             } else {
@@ -132,48 +132,13 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             }
         }
 
-        if ( $file['rewrite'] && ! $file['query'] ) {
-            throw new \Exception( esc_html( "The file rewrite " . $file['rewrite'] . " must have a query var." ) );
-        }
+        add_filter( 'query_vars', function ( $vars ) use ( $file ) {
+            return $this->file_query_vars( $file, $vars );
+        }, 9, 1 );
 
-        if ( $file['query'] ) {
-            add_filter( 'query_vars', function ( $vars ) use ( $file ) {
-                return $this->file_query_vars( $file, $vars );
-            }, 9, 1 );
-        }
-
-        if ( $file['rewrite'] ) {
-            add_action( 'init', function () use ( $file ) {
-                $this->file_rewrite_rules( $file );
-            }, 9 );
-            add_action( 'template_redirect', function () use ( $file ) {
-                $this->file_template_redirect( $file );
-            }, 1, 0 );
-        } else {
-            add_action( 'wp_loaded', function () use ( $file ) {
-                $this->dispatch_file( $file );
-            }, 20 );
-        }
-    }
-
-
-    /**
-     * Generate rewrite rules for a file.
-     *
-     * @param array $file The file configuration.
-     * @return void
-     */
-    protected function file_rewrite_rules( $file ): void
-    {
-        add_rewrite_rule(
-            '^' . $file['rewrite'] . '/?$',
-            'index.php?' . $file['query'] .  '=/', 'top'
-        );
-
-        add_rewrite_rule(
-            '^' . $file['rewrite'] . '/(.+)/?',
-            'index.php?' . $file['query'] .  '=$matches[1]', 'top'
-        );
+        add_action( 'template_redirect', function () use ( $file ) {
+            $this->file_template_redirect( $file );
+        }, 1, 0 );
     }
 
     /**
@@ -192,8 +157,9 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
 
 
     /**
-     * Perform template redirect based on query var 'dt_autolink'.
+     * Performs the template redirect for the specified file.
      *
+     * @param array $file The array containing file configuration.
      * @return void
      */
     public function file_template_redirect( $file ): void {
@@ -201,6 +167,13 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return;
         }
 
+        $this->render_file( $file );
+    }
+
+    /**
+     *
+     */
+    public function render_file($file ) {
         $uri = '/' . trim( get_query_var( $file['query'] ), '/' );
 
         $route = $this->getContainer()->get( Route::class );
@@ -218,6 +191,6 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             }
         }
 
-       $route->render();
+        $route->render();
     }
 }

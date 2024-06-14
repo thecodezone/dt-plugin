@@ -13,12 +13,8 @@
  */
 
 use DT\Plugin\Controllers\HelloController;
-use DT\Plugin\Controllers\StarterMagicLink\HomeController;
-use DT\Plugin\Controllers\StarterMagicLink\SubpageController;
 use DT\Plugin\Controllers\UserController;
-use DT\Plugin\Middleware\MagicLink;
 use DT\Plugin\League\Route\RouteGroup;
-use DT\Plugin\MagicLinks\ExampleMagicLink;
 use DT\Plugin\Middleware\LoggedIn;
 
 $r->group( '', function ( RouteGroup $r ) {

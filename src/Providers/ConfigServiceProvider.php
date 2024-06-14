@@ -35,7 +35,6 @@ class ConfigServiceProvider extends AbstractServiceProvider {
                 'plugin' => Expect::structure([
                     'nonce_name' => Expect::string(),
                     'dt_version' => Expect::float(),
-                    'home_route' => Expect::string(),
                 ]),
                 'services' => Expect::structure([
                     'providers' => Expect::listOf( Expect::string() ),
@@ -56,10 +55,11 @@ class ConfigServiceProvider extends AbstractServiceProvider {
                     'defaults' => Expect::listOf( Expect::string() ),
                 ]),
                 'routes' => Expect::structure([
-                    'files' => Expect::listOf( Expect::structure( [
+                    'rewrites' => Expect::array(),
+                    'files' => Expect::arrayOf( Expect::structure( [
                         "file" => Expect::string(),
-                        'rewrite' => Expect::string(),
                         'query' => Expect::string(),
+                        'path' => Expect::string(),
                     ] ) ),
                     'middleware' => Expect::listOf( Expect::string() ),
                 ]),

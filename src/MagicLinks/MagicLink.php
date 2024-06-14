@@ -2,10 +2,12 @@
 
 namespace DT\Plugin\MagicLinks;
 
+use DT\Plugin\League\Route\Http\Exception\NotFoundException;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Services\Route;
 use DT_Magic_Url_Base;
 use function DT\Plugin\container;
+use function DT\Plugin\request;
 
 abstract class MagicLink extends DT_Magic_Url_Base {
 	private static $_instance = null;
@@ -44,7 +46,10 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 			]
 		];
 
-		$this->meta_key = $this->root . '_' . $this->type . '_magic_key';
+		$this->meta_key  = $this->root . '_' . $this->type . '_magic_key';
+
+        $this->init();
+
 		parent::__construct();
 
 		/**
@@ -80,6 +85,18 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 		return self::$_instance;
 	}
 
+    public function whitelist_current_route() {
+        $this->type_actions[ $this->get_current_action() ] = 'Current Route';
+    }
+
+	public function get_current_action() {
+		$current_action = request()->getUri()->getPath();
+		$current_action = trim( $current_action, '/' );
+		$urlParts = explode( '/', $current_action );
+		$requiredParts = array_slice( $urlParts, 3, 1 );
+		return implode( '/', $requiredParts );
+	}
+
 	public function add_endpoints() {
 		// Extend this function to add custom endpoints
 	}
@@ -93,9 +110,19 @@ abstract class MagicLink extends DT_Magic_Url_Base {
         $route = container()->get( Route::class );
         $route->with_routes( function ( Router $r ) {
                 $this->routes( $r );
-            } )
-            ->dispatch()
-            ->render();
+            } );
+
+        if ( WP_DEBUG ) {
+            $route->dispatch();
+        } else {
+            try {
+                $route->dispatch();
+            } catch ( NotFoundException $e ) {
+                wp_die( esc_html( $e->getMessage() ), esc_attr( $e->getCode() ) );
+            }
+        }
+
+        $route->render();
     }
 
     public function print_scripts() {

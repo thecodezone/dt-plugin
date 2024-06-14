@@ -40,7 +40,6 @@ class ResponseRenderer {
             wp_die( esc_html( $response->getBody() ), esc_attr( $response->getStatusCode() ) );
         }
 
-
         if ( apply_filters( 'dt_blank_access', false ) ) {
             add_action( 'dt_blank_body', function () use ( $response ) {
                 // phpcs:ignore

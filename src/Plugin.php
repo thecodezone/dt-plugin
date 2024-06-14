@@ -4,6 +4,7 @@ namespace DT\Plugin;
 
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\Services\Rewrites;
 
 /**
  * This is the entry-object for the plugin.
@@ -29,9 +30,10 @@ class Plugin {
 	 *
 	 * @param Container $container
 	 */
-	public function __construct( Container $container ) {
+	public function __construct( Container $container, Rewrites $rewrites ) {
         static::$instance = $this;
         $this->container = $container;
+        $this->rewrites = $rewrites;
 	}
 
 	/**
@@ -40,9 +42,40 @@ class Plugin {
 	 */
 	public function init() {
         $this->config = $this->container->get( Configuration::class );
+
+        register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
+        register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
+        add_action( 'init', [ $this, 'wp_init' ]);
         add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
+        add_action( 'activated_plugin', [ $this, 'activation_hook' ] );
 	}
+
+    public function wp_init() {
+        $this->rewrites->sync();
+    }
+
+    /**
+     * Activate the plugin.
+     *
+     * This method is a hook that is triggered when the plugin is activated.
+     * It calls the `rewrite_rules()` method to add or modify rewrite rules
+     * and then flushes the rewrite rules to update them.
+     */
+    public function activation_hook() {
+        $this->rewrites->refresh();
+    }
+
+    /**
+     * Deactivate the plugin.
+     *
+     * This method is a hook that is triggered when the plugin is deactivated.
+     * It calls the `rewrite_rules()` method to add or modify rewrite rules
+     * and then flushes the rewrite rules to update them.
+     */
+    public function deactivation_hook() {
+        $this->rewrites->flush();
+    }
 
 	/**
 	 * Runs after wp_loaded

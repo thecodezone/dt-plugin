@@ -19,6 +19,13 @@ abstract class TestCase extends WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
+	protected Faker\Generator $faker;
+
+	public function __construct( ?string $name = null, array $data = [], $data_nme = '' ) {
+		$this->faker = \Faker\Factory::create();
+		parent::__construct( $name, $data, $data_nme );
+	}
+
 	public function setUp(): void {
 		global $wpdb;
 		$wpdb->query( 'START TRANSACTION' );
@@ -46,23 +53,23 @@ abstract class TestCase extends WP_UnitTestCase {
 	 *
 	 * @return mixed The response returned from the GET request.
 	 */
-	public function get( $uri, $parameters, array $headers = [] ) {
+	public function get( $uri, $parameters = [], array $headers = [] ) {
 		return $this->request( 'GET', $uri, $parameters, $headers );
 	}
 
 	/**
-	 * Performs a request using the given method and URI.
+	 * Makes a request to a given URI using the specified HTTP method.
 	 *
-	 * @param string $method The HTTP method to use for the request.
-	 * @param string $uri The URI to request.
-	 * @param array $parameters An array of parameters to send with the request (optional).
-	 * @param array $headers An array of headers to include in the request (optional).
-	 * @param array $cookies An array of cookies to send with the request (optional).
-	 * @param array $files An array of files to send with the request (optional).
-	 * @param array $server An array of server variables to include in the request (optional).
-	 * @param mixed $content The content to include in the request body (optional).
+	 * @param string $method The HTTP method to use for the request (e.g., GET, POST).
+	 * @param string $uri The URI to send the request to.
+	 * @param array $parameters An associative array of request parameters.
+	 * @param array $headers An associative array of request headers.
+	 * @param array $cookies An associative array of request cookies.
+	 * @param array $files An associative array of request files.
+	 * @param array $server An associative array of request server variables.
+	 * @param mixed $content The request content.
 	 *
-	 * @return mixed The response from the request.
+	 * @return mixed The response of the request.
 	 */
 	public function request( $method, $uri, array $parameters = [], $headers = [], array $cookies = [], array $files = [], array $server = [], $content = null ) {
 		$initial_request = container()->make( Request::class );

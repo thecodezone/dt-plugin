@@ -4,6 +4,7 @@ namespace DT\Plugin\Providers;
 
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\Services\Assets;
+use function DT\Plugin\config;
 use function DT\Plugin\namespace_string;
 use function DT\Plugin\route_url;
 
@@ -35,25 +36,15 @@ class AssetServiceProvider extends AbstractServiceProvider {
      */
     public function register(): void{
         add_filter( namespace_string( 'allowed_styles' ), function ( $allowed_css ) {
-            $allowed_css[] = 'dt-plugin';
-            return $allowed_css;
+            return array_merge( $allowed_css, config('assets.allowed_styles') );
         } );
 
         add_filter( namespace_string( 'allowed_scripts' ), function ( $allowed_js ) {
-            $allowed_js[] = 'dt-plugin';
-            return $allowed_js;
+            return array_merge( $allowed_js, config('assets.allowed_scripts') );
         } );
 
         add_filter( namespace_string( 'javascript_globals' ), function ( $data ) {
-            return array_merge($data, [
-                'nonce'        => wp_create_nonce( 'dt-plugin' ),
-                'urls'         => [
-                    'root'           => esc_url_raw( trailingslashit( route_url() ) ),
-                ],
-                'translations' => [
-                    'Disciple Tools' => __( 'Disciple Tools', 'dt-plugin' ),
-                ]
-            ]);
+            return array_merge($data, config('assets.javascript_globals') );
         });
 
         $this->getContainer()->add( 'assets', function () {
