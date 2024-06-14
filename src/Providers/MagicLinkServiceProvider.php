@@ -7,26 +7,28 @@ use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
 use DT\Plugin\MagicLinks\ExampleMagicLink;
 use DT\Plugin\Psr\Container\ContainerExceptionInterface;
 use DT\Plugin\Psr\Container\NotFoundExceptionInterface;
+use function DT\Plugin\config;
 use function DT\Plugin\namespace_string;
 
+/**
+ * MagicLinkServiceProvider class
+ *
+ * This class is responsible for providing and registering magic link services.
+ */
 class MagicLinkServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
 	protected $container;
 
     /**
-     * List of magic links to register
+     * Provide the services that this provider is responsible for.
+     *
+     * @param string $id The ID to check.
+     * @return bool Returns true if the given ID is provided, false otherwise.
      */
-	protected $magic_links = [
-		ExampleMagicLink::class,
-	];
-
-    /**
-     * Provide the magic links, plus the magic_links var
-     */
-    public function provides( string $alias ): bool
+    public function provides( string $id ): bool
     {
-        return \in_array($alias, [
+        return \in_array($id, [
             namespace_string( 'magic_links' ),
-            ...$this->magic_links
+            ...config( 'magic.links' )
         ], \true);
     }
 
@@ -57,7 +59,10 @@ class MagicLinkServiceProvider extends AbstractServiceProvider implements Bootab
     }
 
     /**
-     * {@inheritdoc}
+     * Register any services provided.
+     *
+     * This method is responsible for registering any services. It will be called
+     * when the service is requested from the container.
      */
 	public function register(): void {
         // The magic links are eager-loaded in the boot method

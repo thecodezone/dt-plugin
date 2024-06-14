@@ -2,17 +2,29 @@
 
 namespace DT\Plugin\Services;
 
+use function DT\Plugin\config;
 use function DT\Plugin\Kucrut\Vite\enqueue_asset;
-use function DT\Plugin\plugin_path;
 use function DT\Plugin\namespace_string;
 use const DT\Plugin\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
+/**
+ * Class Assets
+ *
+ * This class is responsible for registering necessary actions for enqueueing scripts and styles,
+ * whitelisting specific assets, and providing methods for enqueueing scripts and styles for the frontend and admin area.
+ *
+ * @see https://github.com/kucrut/vite-for-wp
+ *
+ */
 class Assets {
     private static $enqueued = false;
 
     /**
-     * Register method to add necessary actions for enqueueing scripts and adding cloaked styles
+     * Register method to add necessary actions for enqueueing scripts
      *
+     * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts/
+     * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
+     * @see https://developer.wordpress.org/reference/hooks/wp_print_styles/
      * @return void
      */
     public function enqueue() {
@@ -21,15 +33,20 @@ class Assets {
         }
         self::$enqueued = true;
 
-        if ( is_admin() ) {
-            add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 1000 );
-        } else {
-            add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 1000 );
+        if ( !is_admin() ) {
+            add_action( 'wp_print_styles', [ $this, 'filter_assets' ] );
+            add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
         }
+    }
+
+    public function filter_assets() {
+        $this->whitelist_vite();
+        $this->filter_asset_queue();
     }
 
     /**
      * Reset asset queue
+     *
      * @return void
      */
     private function filter_asset_queue() {
@@ -37,22 +54,28 @@ class Assets {
         global $wp_styles;
 
         $whitelist = apply_filters( namespace_string( 'allowed_scripts' ), [] );
-        foreach ( $wp_scripts->registered as $script ) {
-            if ( in_array( $script->handle, $whitelist ) ) {
+        foreach ( $wp_scripts->queue as $key => $handle ) {
+            if ( in_array( $handle, $whitelist ) ) {
                 continue;
             }
-            wp_dequeue_script( $script->handle );
+            unset( $wp_scripts->queue[$key] );
+        }
+        $whitelist = apply_filters( namespace_string( 'allowed_styles' ), [] );
+        foreach ( $wp_styles->queue as $key => $handle ) {
+            if ( in_array($handle, $whitelist ) ) {
+                continue;
+            }
+            unset( $wp_styles->queue[$key] );
         }
 
-        $whitelist = apply_filters( namespace_string( 'allowed_styles' ), [] );
-        foreach ( $wp_styles->registered as $style ) {
-            if ( in_array( $script->handle, $whitelist ) ) {
-                continue;
-            }
-            wp_dequeue_style( $style->handle );
-        }
     }
 
+    /**
+     * Whitelist Vite assets for enqueueing scripts and adding cloaked styles
+     *
+     * @see https://github.com/kucrut/vite-for-wp
+     * @return void
+     */
     private function whitelist_vite() {
         global $wp_scripts;
         global $wp_styles;
@@ -95,6 +118,7 @@ class Assets {
      * @param string $asset_handle The asset handle to check.
      *
      * @return bool True if the asset handle is allowed, false otherwise.
+     * @see https://github.com/kucrut/vite-for-wp
      */
     private function is_vite_asset( $asset_handle ) {
         if ( strpos( $asset_handle, 'dt-plugin' ) !== false
@@ -113,10 +137,11 @@ class Assets {
      * or CSS files. Optional parameters can be specified to customize the enqueue behavior.
      *
      * @return void
+     * @see https://github.com/kucrut/vite-for-wp
      */
     public function wp_enqueue_scripts() {
         enqueue_asset(
-            plugin_path( '/dist' ),
+            config( 'assets.manifest_dir' ),
             'resources/js/plugin.js',
             [
                 'handle'    => 'dt-plugin',
@@ -125,30 +150,6 @@ class Assets {
                 'in-footer' => true, // Optional. Defaults to false.
             ]
         );
-        $this->whitelist_vite();
-        $this->filter_asset_queue();
-        wp_localize_script( 'dt-plugin', '$autolink', apply_filters( namespace_string( 'javascript_globals' ), [] ) );
-    }
-
-    /**
-     * Enqueues the necessary assets for the admin area.
-     *
-     * This method is responsible for enqueuing the necessary JavaScript and CSS
-     * assets for the admin area. It should be called during the 'admin_enqueue_scripts'
-     * action hook.
-     *
-     * @return void
-     */
-    public function admin_enqueue_scripts() {
-        enqueue_asset(
-            plugin_path( '/dist' ),
-            'resources/js/admin.js',
-            [
-                'handle'    => 'dt-plugin',
-                'css-media' => 'all', // Optional.
-                'css-only'  => false, // Optional. Set to true to only load style assets in production mode.
-                'in-footer' => false, // Optional. Defaults to false.
-            ]
-        );
+        wp_localize_script( 'dt-plugin', config('assets.javascript_global_scope'), apply_filters( namespace_string( 'javascript_globals' ), [] ) );
     }
 }

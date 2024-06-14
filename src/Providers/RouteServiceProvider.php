@@ -14,56 +14,38 @@ use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Services\ResponseRenderer;
 use DT\Plugin\Services\Route;
-use function DT\Plugin\container;
+use function DT\Plugin\config;
 use function DT\Plugin\namespace_string;
 use function DT\Plugin\routes_path;
 
 /**
- * Request middleware to be used in the request lifecycle.
+ * Class RouteServiceProvider
  *
- * Class MiddlewareServiceProvider
- * @package DT\Plugin\Providers
+ * This class is responsible for providing routes and middleware for the application.
+ *
+ * @see https://route.thephpleague.com/4.x/usage/
+ * @see https://php-fig.org/psr/psr-7/
+ * @package Your\Namespace
  */
 class RouteServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
-    /**
-     * Add any custom middleware that you would like to apply to every route
-     * @var array
-     */
-    protected $middleware = [
-        // CustomMiddleware::class,
-	];
-
-    protected $files = [
-        [
-            "file" => "api.php",
-            'rewrite' => 'dt/plugin/api',
-            'query' => 'dt-plugin-api',
-        ],
-        [
-            "file" => "web.php",
-            'rewrite' => 'dt/plugin',
-            'query' => 'dt-plugin',
-        ]
-    ];
 
     /**
-     * Get the files configuration.
+     * Provide the services that this provider is responsible for.
      *
-     * This method retrieves the files configuration by applying the 'route_files'
-     * filter to the class property $files.
-     *
-     * @return array The files configuration.
+     * @param string $id The ID to check.
+     * @return bool Returns true if the given ID is provided, false otherwise.
      */
-    protected function get_files() {
-        return apply_filters( namespace_string( 'route_files' ), $this->files );
-    }
-
-    /**
-     * Lazy load any services
-     */
-    public function register(): void
+    public function provides( string $id ): bool
     {
-        // We're using the boot method to eager load the router and middleware
+        $services = [
+            ServerRequestInterface::class,
+            ResponseInterface::class,
+            StrategyInterface::class,
+            Router::class,
+            Route::class
+        ];
+
+        return in_array( $id, $services );
     }
 
     /**
@@ -75,7 +57,7 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return new ApplicationStrategy();
         } )->addMethodCall( 'setContainer', [ $this->getContainer() ] );
 
-        $this->getContainer()->add( \DT\Plugin\League\Route\Router::class, function () {
+        $this->getContainer()->add( Router::class, function () {
             return new Router();
         } )->addMethodCall( 'setStrategy', [ $this->getContainer()->get( StrategyInterface::class ) ] );
 
@@ -97,12 +79,33 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return new Route(
                 $this->getContainer()->get( Router::class ),
                 $this->getContainer()->get( ServerRequestInterface::class ),
-                $this->getContainer()->get( ResponseRenderer::class ) );
+                $this->getContainer()->get( ResponseRenderer::class )
+            );
         } );
 
         foreach ( $this->get_files() as $file ) {
             $this->process_file( $file );
         }
+    }
+
+    /**
+     * Lazy load any services
+     */
+    public function register(): void
+    {
+        // We're using the boot method to eager load the router and middleware
+    }
+
+    /**
+     * Get the file configuration.
+     *
+     * This method retrieves the files configuration by applying the 'route_files'
+     * filter to the class property $files.
+     *
+     * @return array The file configuration.
+     */
+    protected function get_files() {
+        return apply_filters( namespace_string( 'route_files' ), config()->get( 'routes.files' ) );
     }
 
     /**
@@ -198,10 +201,10 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return;
         }
 
-        $uri = '/' . trim( get_query_var( $file['query'] ) , '/' );
+        $uri = '/' . trim( get_query_var( $file['query'] ), '/' );
 
         $route = $this->getContainer()->get( Route::class );
-        $route->with_middleware( $this->middleware )
+        $route->with_middleware( config()->get( 'routes.middleware' ) )
             ->from_route_file( $file['file'] )
             ->as_uri( $uri );
 
@@ -216,21 +219,5 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
         }
 
        $route->render();
-    }
-
-    /**
-     * Check if the service provider provides a service.
-     */
-    public function provides( string $id ): bool
-    {
-        $services = [
-            ServerRequestInterface::class,
-            ResponseInterface::class,
-            StrategyInterface::class,
-            Router::class,
-            Route::class
-        ];
-
-        return in_array( $id, $services );
     }
 }

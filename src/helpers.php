@@ -4,8 +4,12 @@ namespace DT\Plugin;
 
 use DT\Plugin\Laminas\Diactoros\Response\RedirectResponse;
 use DT\Plugin\Laminas\Diactoros\ServerRequest;
+use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
+use DT\Plugin\Nette\Schema\Expect;
+use DT\Plugin\Nette\Schema\Processor;
+use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Services\Options;
 use DT\Plugin\Services\Template;
@@ -26,9 +30,70 @@ function plugin(): Plugin {
  * Return the container instance from the plugin.
  *
  * @return Container The container instance.
+ * @see https://container.thephpleague.com/4.x/
  */
 function container(): Container {
 	return plugin()->container;
+}
+
+/**
+ * Returns the Configuration object or the value of a specific configuration key.
+ * If a key is provided, the method will return the value of the specified key from the Configuration object.
+ * If no key is provided, the method will return the Configuration object itself.
+ *
+ * @param string|null $key (optional) The configuration key to retrieve the value for.
+ * @return mixed The Configuration object if no key is provided, or the value of the specified configuration key.
+ * @see https://config.thephpleague.com/
+ */
+function config($key = null ) {
+    $service = container()->get( Configuration::class );
+
+    if ( $key ) {
+        return $service->get( $key );
+    }
+
+    return $service;
+}
+
+/**
+ * Validates the given data against the provided schema.
+ *
+ * @param mixed $schema The schema to validate against.
+ * @param mixed $data The data to be validated.
+ *
+ * @return mixed True if the data is valid, or an error message if validation fails.
+ *
+ * @throws ValidationException If an error occurs during validation.
+ *
+ * @see https://doc.nette.org/en/schema for more information on validation and schemas.
+ */
+function validate( $schema, $data )
+{
+    $processor = container()->get( Processor::class );
+
+    try {
+        return $processor->process(  Expect::structure( $schema ), $data );
+    } catch ( ValidationException $e ) {
+        return $e->getMessage();
+    }
+
+    return true;
+}
+/**
+ * Checks if the route rewrite rule exists in the WordPress rewrite rules.
+ *
+ * @return bool Whether the route rewrite rule exists in the rewrite rules.
+ * @global WP_Rewrite $wp_rewrite The main WordPress rewrite rules object.
+ *
+ */
+function has_route_rewrite(): bool {
+    global $wp_rewrite;
+
+    if ( ! is_array( $wp_rewrite->rules ) ) {
+        return false;
+    }
+
+    return array_key_exists( '^dt-home/(.+)/?', $wp_rewrite->rules );
 }
 
 /**
@@ -43,7 +108,7 @@ function plugin_url( string $path = '' ): string {
 }
 
 function route_url( string $path = '' ): string {
-	return site_url( Plugin::HOME_ROUTE . '/' . ltrim( $path, '/' ) );
+	return site_url( config()->get( 'plugin.home_route' ) . '/' . ltrim( $path, '/' ) );
 }
 
 /**
@@ -52,6 +117,7 @@ function route_url( string $path = '' ): string {
  * @param string $path The path of the file or directory relative to the plugin directory. Defaults to an empty string.
  *
  * @return string The full path of the file or directory, relative to the plugin directory.
+ * @see https://developer.wordpress.org/reference/functions/plugin_dir_path/
  */
 function plugin_path( string $path = '' ): string {
 	return '/' . implode( '/', [
@@ -111,6 +177,7 @@ function views_path( string $path = '' ): string {
  * @param array $args Optional. An array of data to pass to the view. Defaults to an empty array.
  *
  * @return string|Engine The rendered view if a view name is provided, otherwise the view engine object.
+ * @see https://platesphp.com/v3/
  */
 function view( string $view = "", array $args = [] ) {
 	$engine = container()->get( Engine::class );
@@ -145,6 +212,7 @@ function template( string $template = "", array $args = [] ): mixed {
 
 /**
  * Returns the Request object.
+ * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function request(): ServerRequest {
 	return container()->get( ServerRequest::class );
@@ -157,11 +225,22 @@ function request(): ServerRequest {
  * @param int $status Optional. The status code for the redirect response. Default is 302.
  *
  * @return RedirectResponse A new RedirectResponse instance.
+ * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function redirect( string $url, int $status = 302 ): RedirectResponse {
 	return new RedirectResponse( $url, $status );
 }
 
+/**
+ * Returns a response object.
+ *
+ * @param mixed $content The content of the response. Can be an array or a string.
+ * @param int $status Optional. The HTTP status code of the response. Default is 200.
+ * @param array $headers Optional. Additional headers to include in the response. Default is an empty array.
+ *
+ * @return ResponseInterface The response object with the specified content, status, and headers.
+ * @see https://docs.laminas.dev/laminas-diactoros/
+ */
 function response( $content, $status = 200, $headers = [] ) {
     if ( is_array( $content ) ) {
         $content = json_encode( $content );
@@ -177,33 +256,16 @@ function response( $content, $status = 200, $headers = [] ) {
 }
 
 /**
- * Validate the given data using the provided rules and messages.
- *
- * @param array $data The data to be validated.
- * @param array $rules The validation rules to be applied.
- * @param array $messages The custom error messages to be displayed.
- *
- * @return array The array of validation error messages, if any.
- */
-function validate( array $data, array $rules, array $messages = [] ): array {
-	$validator = container()->make( Factory::class )->make( $data, $rules, $messages );
-	if ( $validator->fails() ) {
-		return $validator->errors()->toArray();
-	}
-
-	return [];
-}
-
-/**
  * Set the value of an option.
  *
- * This function first checks if the option already exists. If it doesn't, it adds a new option with the given name and value.
- * If the option already exists, it updates the existing option with the given value.
+ * This is a convenience function that checks if the option exists before setting it.
  *
  * @param string $option_name The name of the option.
  * @param mixed $value The value to set for the option.
  *
  * @return bool Returns true if the option was successfully set, false otherwise.
+ * @see https://developer.wordpress.org/reference/functions/add_option/
+ * @see https://developer.wordpress.org/reference/functions/update_option/
  */
 function set_option( string $option_name, mixed $value ): bool {
 	if ( get_option( $option_name ) === false ) {
@@ -214,7 +276,7 @@ function set_option( string $option_name, mixed $value ): bool {
 }
 
 /**
- * Retrieves the value of an option from the options container.
+ * Retrieves the value of an option taking the default value set in the options service provider.
  *
  * @param string $option The name of the option to retrieve.
  * @param mixed $default Optional. The default value to return if the option does not exist. Defaults to false.
@@ -231,12 +293,11 @@ function get_plugin_option( $option, $default = null, $required = false )
 /**
  * Sets the value of a plugin option.
  *
- * @param string $option The name of the option to set.
+ * @param mixed $option The option to set.
  * @param mixed $value The value to set for the option.
  *
- * @return bool true if the option was successfully set; otherwise, false.
+ * @return bool True if the option value was successfully set, false otherwise.
  */
-
 function set_plugin_option( $option, $value ): bool
 {
     $options = container()->get( Options::class );
@@ -271,22 +332,14 @@ function transaction( $callback ) {
 }
 
 /**
- * Retrieves the HTTPFactory instance.
- *
- * @return HTTPFactory The HTTPFactory instance.
- */
-function http(): HTTPFactory {
-	return container()->make( HTTPFactory::class );
-}
-
-/**
  * Concatenates the given string to the namespace of the Plugin class.
  *
  * @param string $string The string to be concatenated to the namespace.
  *
  * @return string The result of concatenating the given string to the namespace of the Router class.
  */
-function namespace_string( string $string ) {
+function namespace_string( string $string ): string
+{
 	return Plugin::class . '\\' . $string;
 }
 

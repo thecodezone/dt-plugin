@@ -6,8 +6,20 @@ use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\container;
 use function DT\Plugin\namespace_string;
 
+/**
+ * Class settings
+ *
+ * The Settings class is responsible for adding the
+ * settings page to the WordPress admin area.
+ * @see https://developer.wordpress.org/reference/functions/add_submenu_page/
+ */
 class Settings {
 
+    /**
+     * Register the admin menu.
+     *
+     * @return void
+     */
     public function __construct()
     {
         add_action( 'admin_menu', [ $this, 'register_menu' ], 99 );
@@ -17,6 +29,7 @@ class Settings {
      * Register the admin menu
      *
      * @return void
+     * @see https://developer.wordpress.org/reference/functions/add_submenu_page/
      */
     public function register_menu(): void {
         $menu = add_submenu_page( 'dt_extensions',

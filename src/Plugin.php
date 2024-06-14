@@ -3,25 +3,13 @@
 namespace DT\Plugin;
 
 use DT\Plugin\League\Container\Container;
-use DT\Plugin\Providers\PluginServiceProvider;
+use DT\Plugin\League\Config\Configuration;
 
 /**
  * This is the entry-object for the plugin.
  * Handle any setup and bootstrapping here.
  */
 class Plugin {
-	/**
-	 * The minimum required version of DT
-	 * @var string
-	 */
-	const REQUIRED_DT_VERSION = '1.19';
-
-	/**
-	 * The route for the plugin's home page
-	 * @var string
-	 */
-	const HOME_ROUTE = 'dt/plugin';
-
 	/**
 	 * The instance of the plugin
 	 * @var Plugin
@@ -34,6 +22,7 @@ class Plugin {
 	 * @var Container
 	 */
 	public Container $container;
+    public Configuration $config;
 
 	/**
 	 * Plugin constructor.
@@ -50,6 +39,7 @@ class Plugin {
 	 * @return void
 	 */
 	public function init() {
+        $this->config = $this->container->get( Configuration::class );
         add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
 	}
@@ -85,7 +75,11 @@ class Plugin {
 		}
 		$wp_theme = wp_get_theme();
 
-		return version_compare( $wp_theme->version, self::REQUIRED_DT_VERSION, '>=' );
+		return version_compare(
+            $wp_theme->version,
+            $this->config->get('plugin.dt_version')
+            , '>='
+        );
 	}
 
 	/**

@@ -97,4 +97,10 @@ abstract class MagicLink extends DT_Magic_Url_Base {
             ->dispatch()
             ->render();
     }
+
+    public function print_scripts() {
+    }
+
+    public function print_styles() {
+    }
 }

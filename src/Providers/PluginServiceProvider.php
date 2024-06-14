@@ -2,43 +2,42 @@
 
 namespace DT\Plugin\Providers;
 
+use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\League\Container\Exception\NotFoundException;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\Plugin;
+use DT\Plugin\Psr\Container\ContainerExceptionInterface;
+use function DT\Plugin\config;
 
+/**
+ * Class PluginServiceProvider
+ *
+ * This class is the main service provider for the plugin.
+ */
 class PluginServiceProvider extends AbstractServiceProvider {
     /**
-     * List of providers to register
+     * Provide the services that this provider is responsible for.
      *
-     * @var array
+     * @param string $id The ID to check.
+     * @return bool Returns true if the given ID is provided, false otherwise.
      */
-    protected $providers = [
-        PostTypeServiceProvider::class,
-        MagicLinkServiceProvider::class,
-        TemplateServiceProvider::class,
-        RouteServiceProvider::class,
-        AdminServiceProvider::class
-    ];
+    public function provides( string $id ): bool
+    {
+        return in_array( $id, [
+            Plugin::class
+        ]);
+    }
 
 
     /**
      * Register the plugin and its service providers.
      *
      * @return void
+     * @throws NotFoundException|ContainerExceptionInterface
      */
     public function register(): void {
         $this->getContainer()->addShared( Plugin::class, function () {
             return new Plugin( $this->getContainer() );
         } );
-
-        foreach ( $this->providers as $provider ) {
-			$this->getContainer()->addServiceProvider( $this->getContainer()->get( $provider ) );
-		}
-    }
-
-    public function provides( string $id ): bool
-    {
-        return in_array($id, [
-            Plugin::class
-        ]);
     }
 }

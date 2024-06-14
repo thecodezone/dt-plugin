@@ -9,10 +9,27 @@ use function DT\Plugin\namespace_string;
 use function DT\Plugin\views_path;
 
 /**
- * Register the plates view engine
+ * Class TemplateServiceProvider
+ *
+ * This class is a service provider responsible for registering the view engine singleton and any extensions.
+ *
  * @see https://platesphp.com/
  */
 class TemplateServiceProvider extends AbstractServiceProvider {
+
+    /**
+     * Provide the services that this provider is responsible for.
+     *
+     * @param string $id The ID to zcheck.
+     * @return bool Returns true if the given ID is provided, false otherwise.
+     */
+    public function provides( string $id ): bool
+    {
+        return in_array($id, [
+            Engine::class
+        ]);
+    }
+
 	/**
 	 * Register the view engine singleton and any extensions
 	 *
@@ -36,12 +53,4 @@ class TemplateServiceProvider extends AbstractServiceProvider {
         } );
         $this->getContainer()->get( Engine::class );
 	}
-
-
-    public function provides( string $id ): bool
-    {
-        return in_array($id, [
-            Engine::class
-        ]);
-    }
 }

@@ -12,15 +12,35 @@ use function DT\Plugin\set_option;
  * Default values may be provided for each option to avoid duplication.
  */
 class Options {
+
+    /**
+     * The default option values.
+     *
+     * @var array
+     */
+    protected $defaults;
+
+    /**
+     * The prefix to use for the option keys.
+     *
+     * @var string
+     */
+    protected $prefix;
+
+
+    public function __construct( $defaults, $prefix )
+    {
+        $this->defaults = $defaults;
+        $this->prefix = $prefix;
+    }
+
     /**
      * Returns an array of default option values.
      *
      * @return array An associative array of default option values.
      */
     private function defaults(): array {
-        return [
-            'example_option' => true,
-        ];
+        return $this->defaults;
     }
 
     /**
@@ -31,7 +51,7 @@ class Options {
      * @return string The scope key for the given key.
      */
     public function scope_key( string $key ): string {
-        return "dt_plugin_{$key}";
+        return "{$this->prefix}_{$key}";
     }
 
     /**

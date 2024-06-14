@@ -2,84 +2,69 @@
 
 namespace DT\Plugin\Providers;
 
+use DT\Plugin\League\Container\Exception\NotFoundException;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
+use DT\Plugin\Psr\Container\ContainerExceptionInterface;
 use DT\Plugin\Services\Settings;
+use function DT\Plugin\config;
 
+/**
+ * Class AdminServiceProvider
+ *
+ * This class is responsible for providing admin services and loading necessary plugins using the TGM Plugin Activation library.
+ */
 class AdminServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
+    /**
+     * Provide the services that this provider is responsible for.
+     *
+     * @param string $id The ID to check.
+     * @return bool Returns true if the given ID is provided, false otherwise.
+     */
+    public function provides( string $id ): bool
+    {
+        return in_array( $id, [
+            Settings::class
+        ] );
+    }
 
+    /**
+     * Eager load the admin service
+     *
+     * @return void
+     * @throws NotFoundException|ContainerExceptionInterface
+     */
     public function boot(): void
     {
         add_action( 'wp_loaded', [ $this, 'wp_loaded' ] );
 
-        $this->getContainer()->get(Settings::class);
+        $this->getContainer()->addShared( Settings::class, function () {
+            return new Settings();
+        } );
+        $this->getContainer()->get( Settings::class );
     }
 
-    public function wp_loaded(): void
-    {
-        /*
-       * Array of plugin arrays. Required keys are name and slug.
-       * If the source is NOT from the .org repo, then source is also required.
-       */
-        $plugins = [
-            [
-                'name'     => 'Disciple.Tools Dashboard',
-                'slug'     => 'disciple-tools-dashboard',
-                'source'   => 'https://github.com/DiscipleTools/disciple-tools-dashboard/releases/latest/download/disciple-tools-dashboard.zip',
-                'required' => false,
-            ],
-            [
-                'name'     => 'Disciple.Tools Genmapper',
-                'slug'     => 'disciple-tools-genmapper',
-                'source'   => 'https://github.com/DiscipleTools/disciple-tools-genmapper/releases/latest/download/disciple-tools-genmapper.zip',
-                'required' => true,
-            ],
-            [
-                'name'     => 'Disciple.Tools Autolink',
-                'slug'     => 'disciple-tools-autolink',
-                'source'   => 'https://github.com/DiscipleTools/disciple-tools-genmapper/releases/latest/download/disciple-tools-autolink.zip',
-                'required' => true,
-            ],
-        ];
-
-        /*
-         * Array of configuration settings. Amend each line as needed.
-         *
-         * Only uncomment the strings in the config array if you want to customize the strings.
-         */
-        $config = [
-            'id'           => 'disciple_tools',
-            // Unique ID for hashing notices for multiple instances of TGMPA.
-            'default_path' => '/partials/plugins/',
-            // Default absolute path to bundled plugins.
-            'menu'         => 'tgmpa-install-plugins',
-            // Menu slug.
-            'parent_slug'  => 'plugins.php',
-            // Parent menu slug.
-            'capability'   => 'manage_options',
-            // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
-            'has_notices'  => true,
-            // Show admin notices or not.
-            'dismissable'  => true,
-            // If false, a user cannot dismiss the nag message.
-            'dismiss_msg'  => 'These are recommended plugins to complement your Disciple.Tools system.',
-            // If 'dismissable' is false, this message will be output at top of nag.
-            'is_automatic' => true,
-            // Automatically activate plugins after installation or not.
-            'message'      => '',
-            // Message to output right before the plugins table.
-        ];
-
-        tgmpa( $plugins, $config );
-    }
-
-    public function provides(string $id): bool
-    {
-        return false;
-    }
-
+    /**
+     * Register any services provided.
+     *
+     * This method is responsible for registering any services. It will be called
+     * when the service is requested from the container.
+     */
     public function register(): void
     {
+        // The settings service is loaded eagerly in the boot method.
+    }
 
+    /**
+     * Loads the necessary plugins using the TGM Plugin Activation library.
+     *
+     * This function should be called on the `wp_loaded` action hook
+     * to ensure that all required plugins are properly loaded.
+     *
+     * @return void
+     */
+    public function wp_loaded(): void
+    {
+        tgmpa( config()->get( 'services.tgmpa.plugins' ), config()->get( 'services.tgmpa.config' ) );
     }
 }

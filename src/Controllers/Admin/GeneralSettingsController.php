@@ -2,9 +2,13 @@
 
 namespace DT\Plugin\Controllers\Admin;
 
+use DT\Plugin\Nette\Schema\Expect;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
+use function DT\Plugin\get_plugin_option;
+use function DT\Plugin\set_plugin_option;
 use function DT\Plugin\transaction;
 use function DT\Plugin\redirect;
+use function DT\Plugin\validate;
 use function DT\Plugin\view;
 use function DT\Plugin\set_option;
 
@@ -18,11 +22,17 @@ class GeneralSettingsController {
 		$link       = 'settings.php?page=dt_plugin&tab=';
 		$page_title = "DT Plugin Settings";
 
-		return view( "settings/general", compact( 'tab', 'link', 'page_title' ) );
+        $body = $request->getParsedBody();
+
+        $option = get_plugin_option( 'option' );
+        $another_option = get_plugin_option( 'another_option' );
+
+		return view( "settings/general", compact( 'tab', 'link', 'page_title', 'option', 'another_option' ) );
 	}
 
 	/**
 	 * Submit the general settings admin tab form
+     * @throws \Exception
 	 */
 	public function update( ServerRequestInterface $request ) {
 		$error = false;
@@ -30,23 +40,32 @@ class GeneralSettingsController {
 		// Add the settings update code here
         $body = $request->getParsedBody();
 
-        if ( ! isset( $body['option1'] ) || ! isset( $body['option2'] ) ) {
-            $error = __( 'Please complete the required fields.', 'dt-plugin' );
+        $validation_result = validate( [
+            'option' => Expect::string()->required(),
+            'another_option' => Expect::string()->required(),
+        ], $body );
+
+        if ( $validation_result !== true ) {
+            $error = $validation_result;
         }
 
-        $option_1 = sanitize_text_field( wp_unslash( $body['option1'] ) );
-        $option_2 = sanitize_text_field( wp_unslash( $body['option2'] ) );
-
 		if ( ! $error ) {
-			//Perform update in a MYSQL transaction
-			$result = transaction( function () use ( $option_1, $option_2 ) {
-				set_option( 'option1', $option_1 );
-				set_option( 'option2', $option_2 );
-			} );
 
-			if ( $result !== true ) {
-				$error = __( 'The form could not be submitted.', 'dt-plugin' );
-			}
+            $option = sanitize_text_field( wp_unslash( $body['option'] ) );
+            $another_option = sanitize_text_field( wp_unslash( $body['another_option'] ) );
+
+            try {
+                $result = transaction( function () use ( $option, $another_option ) {
+                    set_plugin_option( 'option', $option );
+                    set_plugin_option( 'another_option', $another_option );
+                } );
+
+                if ( $result !== true ) {
+                    $error = __( 'The form could not be submitted.', 'dt-plugin' );
+                }
+            } catch ( \Exception $e ) {
+                $error = $e->getMessage();
+            }
 		}
 
 
