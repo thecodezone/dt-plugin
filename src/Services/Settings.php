@@ -2,12 +2,9 @@
 
 namespace DT\Plugin\Services;
 
-use DT\Plugin\Laminas\Diactoros\ServerRequestFactory;
-use DT\Plugin\League\Route\Router;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\container;
 use function DT\Plugin\namespace_string;
-use function DT\Plugin\routes_path;
 
 class Settings {
 
@@ -65,11 +62,11 @@ class Settings {
         $query = $request->getQueryParams();
         $page = sanitize_text_field( wp_unslash( $query['page'] ?? '' ) );
         $tab = sanitize_text_field( wp_unslash( $query['tab'] ?? '' ) );
-        $uri = '/wp-admin/' . trim($page . '/' . $tab, '/');
+        $uri = '/wp-admin/' . trim( $page . '/' . $tab, '/' );
 
         $route = container()->get( Route::class );
         $route->as_uri( $uri )
-            ->from_route_file( 'settings.php')
+            ->from_route_file( 'settings.php' )
             ->dispatch()
             ->render();
     }
