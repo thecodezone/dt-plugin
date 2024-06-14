@@ -36,10 +36,13 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --no-interaction --ignore-platform-reqs
 
+      - name: Patch Scoper Bug
+        run: node patch-scoper-autoload.js
+
       - name: Package release
         run: |
           mkdir dt-plugin
-          cp -r dt-plugin.php dist languages resources routes src vendor vendor-scoped composer.json composer.lock composer.scoped.json composer.scoped.lock LICENSE package.json package-lock.json version-control.json SECURITY.md dt-plugin/
+          cp -r dt-plugin.php dist languages includes resources routes src vendor vendor-scoped composer.json composer.lock composer.scoped.json composer.scoped.lock LICENSE package.json package-lock.json dt-plugin/
           zip -r dt-plugin.zip dt-plugin
 
       - name: Create Release
@@ -52,6 +55,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1

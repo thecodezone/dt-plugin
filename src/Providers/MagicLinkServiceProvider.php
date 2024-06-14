@@ -2,35 +2,75 @@
 
 namespace DT\Plugin\Providers;
 
+use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
+use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
 use DT\Plugin\MagicLinks\ExampleMagicLink;
-use DT\Plugin\MagicLinks\StarterMagicApp;
-use function DT\Plugin\collect;
+use DT\Plugin\Psr\Container\ContainerExceptionInterface;
+use DT\Plugin\Psr\Container\NotFoundExceptionInterface;
+use function DT\Plugin\namespace_string;
 
-class MagicLinkServiceProvider extends ServiceProvider {
+class MagicLinkServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
 	protected $container;
 
+    /**
+     * List of magic links to register
+     */
 	protected $magic_links = [
-		'example/link' => ExampleMagicLink::class,
+		ExampleMagicLink::class,
 	];
 
-	/**
-	 * Do any setup needed before the theme is ready.
-	 * DT is not yet registered.
-	 */
+    /**
+     * Provide the magic links, plus the magic_links var
+     */
+    public function provides( string $alias ): bool
+    {
+        return \in_array($alias, [
+            namespace_string( 'magic_links' ),
+            ...$this->magic_links
+        ], \true);
+    }
+
+
+    /**
+     * Register the magic links array and the magic link classes.
+     *
+     * When WordPress is loaded, init the magic links.
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function boot(): void
+    {
+
+        add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
+
+
+        $this->getContainer()->add( namespace_string( 'magic_links' ), function () {
+            return apply_filters( namespace_string( 'magic_links' ), $this->magic_links );
+        } );
+
+        foreach ( $this->getContainer()->get( namespace_string( 'magic_links' ) ) as $magic_link ) {
+            $this->getContainer()->addShared( $magic_link, function () use ( $magic_link ) {
+                return new $magic_link();
+            } );
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
 	public function register(): void {
-		$this->container->bind( 'DT\Plugin\MagicLinks', function () {
-			return collect( $this->magic_links );
-		} );
+        // The magic links are eager-loaded in the boot method
 	}
 
-	/**
-	 * Do any setup after services have been registered and the theme is ready
-	 */
-	public function boot(): void {
-		$this->container->make( 'DT\Plugin\MagicLinks' )
-		                ->each( function ( $magic_link ) {
-			                $this->container->singleton( $magic_link );
-			                $this->container->make( $magic_link );
-		                } );
-	}
+    /**
+     * Initialize the magic links
+     */
+    public function wp_loaded() {
+        $magic_links = $this->container->get( namespace_string( 'magic_links' ) );
+
+        foreach ( $magic_links as $magic_link ) {
+            $this->container->get( $magic_link );
+        }
+    }
 }

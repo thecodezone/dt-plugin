@@ -6,7 +6,6 @@ use DT\Plugin\CodeZone\Router\Middleware\HandleErrors;
 use DT\Plugin\CodeZone\Router\Middleware\HandleRedirects;
 use DT\Plugin\CodeZone\Router\Middleware\Render;
 use DT\Plugin\CodeZone\Router\Middleware\Stack;
-use DT\Plugin\Illuminate\Http\Request;
 use WP_UnitTestCase;
 use function DT\Plugin\container;
 use function DT\Plugin\namespace_string;

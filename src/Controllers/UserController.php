@@ -2,35 +2,46 @@
 
 namespace DT\Plugin\Controllers;
 
-use DT\Plugin\Illuminate\Http\Request;
-use DT\Plugin\Illuminate\Http\Response;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\Services\Template;
+use function DT\Plugin\response;
 use function DT\Plugin\template;
 
 class UserController {
 
+    /**
+     * Fetches and returns the details of a user.
+     *
+     * @param ServerRequestInterface $request The request object.
+ */
+    public function data( ServerRequestInterface $request, $params ) {
+        $id = sanitize_text_field( wp_unslash( $params['id'] ) );
+        $user = get_user_by( 'id', $id );
+
+        return response([
+            'user' => $user
+        ]);
+    }
 	/**
 	 * You can also return a string or array from a controller method,
 	 * it will be automatically added to the response object.
 	 *
-	 * @param Request $request The request object.
-	 * @param Response $response The response object.
-	 * @param Template $template Controller method dependencies are automatically resolved from the container.
+	 * @param ServerRequestInterface $request The request object.
 	 */
-	public function current( Request $request, Response $response, Template $template ) {
-		return $template->render( 'user', [
-			'user' => wp_get_current_user()
-		] );
+    public function current( ServerRequestInterface $request ) {
+        return template( 'user', [
+            'user' => wp_get_current_user()
+        ] );
 	}
 
 	/**
 	 * Fetches and displays the details of a user.
 	 *
-	 * @param Request $request The request object.
-	 * @param Response $response The response object.
-	 * @param int $id Mapped from the ID route parameter.
+	 * @param ServerRequestInterface $request The request object.
+	 * @param arary $params The route parameters.
 	 */
-	public function show( Request $request, Response $response, $id ) {
+    public function show( ServerRequestInterface $request, $params ) {
+        $id  = sanitize_text_field( wp_unslash( $params['id'] ) );
 		$user = get_user_by( 'id', $id );
 
 		return template( 'user', [

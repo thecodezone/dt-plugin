@@ -18,8 +18,10 @@
  *          https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-use DT\Plugin\Illuminate\Container\Container;
+use DT\Plugin\League\Container\Container;
+use DT\Plugin\League\Container\ReflectionContainer;
 use DT\Plugin\Plugin;
+use DT\Plugin\Providers\PluginServiceProvider;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -30,11 +32,6 @@ require_once plugin_dir_path( __FILE__ ) . '/vendor-scoped/autoload.php';
 require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
 
 $container = new Container();
-$container->singleton( Container::class, function ( $container ) {
-	return $container;
-} );
-$container->singleton( Plugin::class, function ( $container ) {
-	return new Plugin( $container );
-} );
-$plugin_instance = $container->make( Plugin::class );
-$plugin_instance->init();
+$container->delegate( new ReflectionContainer() );
+$container->addServiceProvider( new PluginServiceProvider() );
+$container->get( Plugin::class );

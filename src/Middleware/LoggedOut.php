@@ -2,20 +2,22 @@
 
 namespace DT\Plugin\Middleware;
 
-use DT\Plugin\CodeZone\Router\Middleware\Middleware;
-use DT\Plugin\Illuminate\Http\RedirectResponse;
-use DT\Plugin\Illuminate\Http\Request;
 use DT\Plugin\Plugin;
-use DT\Plugin\Symfony\Component\HttpFoundation\Response;
+use DT\Plugin\Psr\Http\Message\ResponseInterface;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
+use DT\Plugin\Psr\Http\Server\MiddlewareInterface;
+use DT\Plugin\Psr\Http\Server\RequestHandlerInterface;
+use function DT\Plugin\redirect;
+use function DT\Plugin\route_url;
 
-class LoggedOut implements Middleware {
+class LoggedOut implements MiddlewareInterface {
 
-	public function handle( Request $request, Response $response, $next ) {
-		if ( is_user_logged_in() ) {
-			$response = new RedirectResponse( '/' . Plugin::HOME_ROUTE, 302 );
+    public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface
+    {
+        if ( is_user_logged_in() ) {
+            return redirect( route_url() );
+        }
 
-		}
-
-		return $next( $request, $response );
-	}
+        return $handler->handle( $request );
+    }
 }

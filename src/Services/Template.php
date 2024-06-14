@@ -2,9 +2,7 @@
 
 namespace DT\Plugin\Services;
 
-use DT\Plugin\CodeZone\Router;
-use DT\Plugin\Illuminate\Http\Response;
-use DT\Plugin\Illuminate\Support\Str;
+use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use function DT\Plugin\Kucrut\Vite\enqueue_asset;
 use function DT\Plugin\namespace_string;
 use function DT\Plugin\plugin_path;
@@ -13,22 +11,22 @@ use const DT\Plugin\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 class Template {
 
-	/**
+    /**
+     * @var Assets
+     */
+    protected $assets;
+
+    public function __construct(Assets $assets)
+    {
+        $this->assets = $assets;
+    }
+
+    /**
 	 * Allow access to blank template
 	 * @return bool
 	 */
 	public function blank_access(): bool {
 		return true;
-	}
-
-	/**
-	 * Start with a blank template
-	 * @return void
-	 */
-	public function template_redirect(): void {
-		$path = get_theme_file_path( 'template-blank.php' );
-		include $path;
-		die();
 	}
 
 	/**
@@ -93,12 +91,10 @@ class Template {
 	 * @return bool True if the asset handle is allowed, false otherwise.
 	 */
 	private function is_vite_asset( $asset_handle ) {
-		if ( Str::contains( $asset_handle, [
-			'dt-plugin',
-			VITE_CLIENT_SCRIPT_HANDLE
-		] ) ) {
-			return true;
-		}
+        if ( strpos( $asset_handle, 'dt-plugin' ) !== false
+            || strpos( $asset_handle, VITE_CLIENT_SCRIPT_HANDLE ) !== false ) {
+            return true;
+        }
 
 		return false;
 	}
@@ -145,24 +141,12 @@ class Template {
 	 * @return mixed
 	 */
 	public function render( $template, $data ) {
-		add_action( Router\namespace_string( 'render' ), [ $this, 'render_response' ], 10, 2 );
 		add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
 		add_action( 'dt_blank_head', [ $this, 'header' ] );
 		add_action( 'dt_blank_footer', [ $this, 'footer' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 1000 );
+        $this->assets->enqueue();
 
 		return view()->render( $template, $data );
-	}
-
-	public function render_response( Response $response ) {
-		if ( apply_filters( 'dt_blank_access', false ) ) {
-			add_action( 'dt_blank_body', function () use ( $response ) {
-				// phpcs:ignore
-				echo $response->getContent();
-			}, 11 );
-		} else {
-			$response->send();
-		}
 	}
 
 	/**

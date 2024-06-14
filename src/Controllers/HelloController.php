@@ -2,9 +2,9 @@
 
 namespace DT\Plugin\Controllers;
 
-use DT\Plugin\Illuminate\Http\Request;
-use DT\Plugin\Illuminate\Http\Response;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\template;
+use function DT\Plugin\response;
 
 /**
  * And example controller class.
@@ -18,26 +18,21 @@ class HelloController {
 	/**
 	 * Sets the content of the response to a success message and returns the response object.
 	 *
-	 * @param Request $request The request object.
-	 * @param Response $response The response object to be modified.
+	 * @param ServerRequestInterface $request The request object.
 	 */
-	public function data( Request $request, Response $response ) {
-		$response->setContent( [
-			'status'  => 'success',
-			'message' => 'Hello World!'
-		] );
-
-		return $response;
+	public function data( ServerRequestInterface $request ) {
+        return response( [
+            'message' => 'Hello, World!'
+        ] );
 	}
 
 	/**
 	 * You can also return a string or array from a controller method,
 	 * it will be automatically added to the response object.
 	 *
-	 * @param Request $request The request object.
-	 * @param Response $response The response object.
+	 * @param ServerRequestInterface $request The request object.
 	 */
-	public function show( Request $request, Response $response ) {
+	public function show( ServerRequestInterface $request ) {
 		return template( 'hello', [
 			'name' => 'Friend'
 		] );

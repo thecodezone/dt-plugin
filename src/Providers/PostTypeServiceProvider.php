@@ -2,9 +2,13 @@
 
 namespace DT\Plugin\Providers;
 
+use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
+use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
 use DT\Plugin\PostTypes\StarterPostType;
+use DT\Plugin\PostTypes\WidgetPostType;
+use function DT\Plugin\namespace_string;
 
-class PostTypeServiceProvider extends ServiceProvider {
+class PostTypeServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
 
 	/**
 	 * Do any setup needed before the theme is ready.
@@ -20,9 +24,20 @@ class PostTypeServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot(): void {
-		add_filter( 'dt_post_type_modules', [ $this, 'dt_post_type_modules' ], 1, 1 );
-		$this->container->make( StarterPostType::class );
+        add_filter( 'dt_post_type_modules', [ $this, 'dt_post_type_modules' ], 1, 1 );
+        add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
+
+        $this->getContainer()->addShared( WidgetPostType::class );
 	}
+
+    /**
+     * Register the post types.
+     *
+     * @return void
+     */
+    public function wp_loaded(): void {
+        $this->getContainer()->get( WidgetPostType::class );
+    }
 
 	/**
 	 * Retrieves an array of post type modules.
@@ -38,15 +53,22 @@ class PostTypeServiceProvider extends ServiceProvider {
 	 * @return array An array of post type modules.
 	 */
 	public function dt_post_type_modules(): array {
-		$modules['starter_base'] = [
-			'name'          => __( 'Starter', 'dt-plugin' ),
+		$modules[namespace_string('widget_base')] = [
+			'name'          => __( 'Widgets', 'dt-plugin' ),
 			'enabled'       => true,
 			'locked'        => true,
 			'prerequisites' => [ 'contacts_base' ],
-			'post_type'     => 'starter_post_type',
+			'post_type'     => namespace_string('widgets'),
 			'description'   => __( 'Default starter functionality', 'dt-plugin' )
 		];
 
 		return $modules;
 	}
+
+    public function provides( string $id ): bool
+    {
+        return in_array($id, [
+            WidgetPostType::class
+        ]);
+    }
 }

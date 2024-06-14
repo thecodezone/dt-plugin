@@ -2,6 +2,10 @@
 
 namespace DT\Plugin\MagicLinks;
 
+use DT\Plugin\Controllers\StarterMagicLink\HomeController;
+use DT\Plugin\Controllers\StarterMagicLink\SubpageController;
+use DT\Plugin\League\Route\RouteGroup;
+use DT\Plugin\League\Route\Router;
 
 /**
  * Class ExampleMagicLink
@@ -16,8 +20,20 @@ class ExampleMagicLink extends MagicLink {
 	public $post_type = 'user';
 	public $show_bulk_send = false;
 	public $show_app_tile = false;
+    public $type_actions = [
+        '' => 'show',
+        'subpage' => 'subpage',
+    ];
+
 
 	public function boot() {
-		// Do whatever you want to do when the magic link URL is visited.
+        $this->render();
 	}
+
+    public function routes( Router $r ) {
+        $r->group( 'example/link/{key}', function ( RouteGroup $r ) {
+            $r->get( '/', [ HomeController::class, 'show' ] );
+            $r->get( '/subpage', [ SubpageController::class, 'show' ] );
+        } );
+    }
 }

@@ -24,10 +24,11 @@
   ],
   "scripts": {
     "pre-install-cmd": [
-      "./setup-scoper.sh"
+      "./bin/setup-scoper.sh"
     ]
   },
   "require": {
+    "php": "^7.4",
     "ext-json": "*",
     "ext-zip": "*",
     "composer-plugin-api": "^1.0 || ^2.0"
@@ -41,6 +42,9 @@
     "phpunit/phpunit": "^9"
   },
   "extra": {
+    "composer-runtime-api": {
+      "platform_check": false
+    },
     "wpify-scoper": {
       "prefix": "DT\\Plugin",
       "folder": "vendor-scoped",
@@ -53,10 +57,15 @@
     }
   },
   "config": {
+    "autoloader-suffix": "dt_plugin",
+    "platform": {
+      "php": "7.4.27"
+    },
     "platform-check": false,
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "bamarni/composer-bin-plugin": true
+      "bamarni/composer-bin-plugin": true,
+      "wpify/scoper": true
     }
   }
 }

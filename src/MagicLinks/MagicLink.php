@@ -2,7 +2,11 @@
 
 namespace DT\Plugin\MagicLinks;
 
+use DT\Plugin\League\Route\Router;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
+use DT\Plugin\Services\Renderer;
 use DT_Magic_Url_Base;
+use function DT\Plugin\container;
 
 abstract class MagicLink extends DT_Magic_Url_Base {
 	private static $_instance = null;
@@ -17,7 +21,6 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 	private $meta_key = ''; // Allows for instance specific data.
 
 	public function __construct() {
-
 		/**
 		 * Specify metadata structure, specific to the processing of current
 		 * magic link type.
@@ -81,4 +84,19 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 	public function add_endpoints() {
 		// Extend this function to add custom endpoints
 	}
+
+    /**
+     * Renders the response for the current request using the router and renderer actions
+     *
+     * @return void
+     */
+    public function render() {
+        $router = container()->get( Router::class );
+        $request = container()->get( ServerRequestInterface::class );
+        $renderer = container()->get( Renderer::class );
+
+        $this->routes( $router );
+        $response = $router->dispatch( $request );
+        $renderer->render( $response );
+    }
 }

@@ -124,7 +124,7 @@ class ExampleServiceProvider extends ServiceProvider
         $this->container->bind( 'example', function () {
             return new Example();
         } );
-        
+
         add_filter( 'some/filter', function () {
            //some filter
         });
@@ -161,11 +161,6 @@ make use of automatic dependency injection.
 > **Tip:** Keep your controllers thin. Business logic should be moved to services. Controllers should only be
 > responsible for handling requests and returning responses. Anything more than basic logic should be moved to a
 > service.
-
-##### Validation
-
-The Illuminate validator can be used to validate requests.
-See [Laravel Rules](https://laravel.com/docs/master/validation#available-validation-rules).
 
 ##### Example Controller
 
@@ -251,7 +246,7 @@ Routes are mapped to controllers which load basic PHP templates from the `resour
 
 ```php
     use DT\Test\view;
-    
+
     template( 'hello', [
         'name' => 'World',
     ] );
@@ -261,7 +256,7 @@ Routes are mapped to controllers which load basic PHP templates from the `resour
 
 ```php
     use DT\Test\view;
-    
+
     view( 'hello', [
         'name' => 'World',
     ] );
@@ -331,7 +326,7 @@ Here is an example using ddev database credentials:
 1. Create an empty database for testing.
 
 ```bash
-ddev mysql; 
+ddev mysql;
 create database testing;
 exit;
 ```

@@ -2,16 +2,17 @@
 
 namespace DT\Plugin\Middleware;
 
-use DT\Plugin\CodeZone\Router\Middleware\Middleware;
-use DT\Plugin\Illuminate\Http\Request;
-use DT\Plugin\Symfony\Component\HttpFoundation\Response;
+use DT\Plugin\Psr\Http\Message\ResponseInterface;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
+use DT\Plugin\Psr\Http\Server\MiddlewareInterface;
+use DT\Plugin\Psr\Http\Server\RequestHandlerInterface;
 use DT_Magic_Url_Base;
 use function DT\Plugin\container;
 
 /**
  * Check if the current path is a magic link path.
  */
-class MagicLink implements Middleware {
+class MagicLink implements MiddlewareInterface {
 	protected DT_Magic_Url_Base $magic_link;
 
 	/**
@@ -23,7 +24,7 @@ class MagicLink implements Middleware {
 	 */
 	public function __construct( $magic_link ) {
 		if ( is_string( $magic_link ) ) {
-			$magic_link = container()->make( $magic_link );
+			$magic_link = container()->get( $magic_link );
 		}
 		$this->magic_link = $magic_link;
 	}
@@ -35,4 +36,9 @@ class MagicLink implements Middleware {
 
 		return $next( $request, $response );
 	}
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        // TODO: Implement process() method.
+    }
 }

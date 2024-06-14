@@ -2,6 +2,6 @@
 
 <div>
     <b>
-        Hello, <?php echo $this->e( $name ); ?>!
+        Hello, <?php echo esc_html( $name ); ?>!
     </b>
 </div>

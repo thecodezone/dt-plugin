@@ -7,39 +7,37 @@ use DT_Mapbox_API;
 use DT_Module_Base;
 use DT_Posts;
 use stdClass;
+use function DT\Plugin\namespace_string;
 
-/**
- * Define the StarterPostType class.
- */
-class StarterPostType extends DT_Module_Base {
+class WidgetPostType extends DT_Module_Base {
 
 	/**
 	 * The post type handle
 	 *
 	 * @var string
 	 */
-	public $post_type = 'starter_post_type';
+	public $post_type = 'widgets';
 
 	/**
 	 * The module name for the post type.
 	 *
 	 * @var string $module The module name.
 	 */
-	public $module = 'starter_base';
+	public $module = 'widget_base';
 
 	/**
 	 * The singular display name for the post type.
 	 *
 	 * @var string $single_name The singular name.
 	 */
-	public $single_name = 'Starter';
+	public $single_name = 'Widget';
 
 	/**
 	 * The plural display name for the post type.
 	 *
 	 * @var string $plural_name The plural name for the post type.
 	 */
-	public $plural_name = 'Starters';// scripts
+	public $plural_name = 'Widgets';// scripts
 
 
 	/**
@@ -48,11 +46,11 @@ class StarterPostType extends DT_Module_Base {
 	public function __construct() {
 		parent::__construct();
 
+        $this->module = namespace_string('widget_base');
+
 		if ( ! self::check_enabled_and_prerequisites() ) {
 			return;
 		}
-
-
 		//setup post type
 		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 100 );
 		add_filter( 'dt_set_roles_and_permissions', [ $this, 'dt_set_roles_and_permissions' ], 20, 1 ); //after contacts
@@ -189,7 +187,7 @@ class StarterPostType extends DT_Module_Base {
 	 * @return string
 	 */
 	public static function post_type(): string {
-		return 'starter_post_type';
+		return 'widgets';
 	}
 
 	/**
@@ -255,8 +253,8 @@ class StarterPostType extends DT_Module_Base {
 	 * @return void
 	 */
 	public function after_setup_theme() {
-		$this->single_name = __( 'Starter', 'cz-plugin' );
-		$this->plural_name = __( 'Starters', 'cz-plugin' );
+		$this->single_name = __( 'Widget', 'cz-plugin' );
+		$this->plural_name = __( 'Widgets', 'cz-plugin' );
 
 		if ( class_exists( 'Disciple_Tools_Post_Type_Template' ) ) {
 			new Disciple_Tools_Post_Type_Template( $this->post_type, $this->single_name, $this->plural_name );
@@ -271,8 +269,8 @@ class StarterPostType extends DT_Module_Base {
 	 */
 	public function dt_get_post_type_settings( $settings, $post_type ) {
 		if ( $post_type === $this->post_type ) {
-			$settings['label_singular'] = __( 'Starter', 'cz-plugin' );
-			$settings['label_plural']   = __( 'Starters', 'cz-plugin' );
+			$settings['label_singular'] = __( 'Widget', 'cz-plugin' );
+			$settings['label_plural']   = __( 'Widgets', 'cz-plugin' );
 		}
 
 		return $settings;
@@ -284,11 +282,11 @@ class StarterPostType extends DT_Module_Base {
 	 */
 	public function dt_set_roles_and_permissions( $expected_roles ) {
 
-		if ( ! isset( $expected_roles['my_starter_role'] ) ) {
-			$expected_roles['my_starter_role'] = [
+		if ( ! isset( $expected_roles['my_widget_role'] ) ) {
+			$expected_roles['widget_role'] = [
 
-				'label'       => __( 'My Starter Role', 'cz-plugin' ),
-				'description' => 'Does something Cool',
+				'label'       => __( 'Widget Manager', 'cz-plugin' ),
+				'description' => 'Can the user manage widgets?',
 				'permissions' => [
 					'access_contacts' => true,
 					// @todo more capabilities

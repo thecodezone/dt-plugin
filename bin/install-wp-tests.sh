@@ -173,10 +173,6 @@ install_theme() {
     rm disciple-tools-theme.zip
 }
 
-install_plugin() {
-    ln -sf $PLUGIN_DIR $WP_PLUGINS_DIR/.
-}
-
 install_wp
 install_test_suite
 install_theme

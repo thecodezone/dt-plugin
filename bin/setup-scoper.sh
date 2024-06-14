@@ -1,4 +1,8 @@
-source $HOME/.bashrc
+#!/bin/bash
+
+. $HOME/.bashrc
+
+cd "$(dirname "${BASH_SOURCE[0]}")/../"
 
 if ! command -v php-scoper > /dev/null 2>&1; then
   echo "PHP Scoper is not installed. Installing..."

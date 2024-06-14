@@ -2,21 +2,20 @@
 
 namespace DT\Plugin\Controllers\Admin;
 
-use DT\Plugin\Illuminate\Http\RedirectResponse;
-use DT\Plugin\Illuminate\Http\Request;
-use DT\Plugin\Illuminate\Http\Response;
+use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\transaction;
-use function DT\Plugin\validate;
+use function DT\Plugin\redirect;
 use function DT\Plugin\view;
+use function DT\Plugin\set_option;
 
 
 class GeneralSettingsController {
 	/**
 	 * Show the general settings admin tab
 	 */
-	public function show( Request $request, Response $response ) {
+	public function show( ServerRequestInterface $request ) {
 		$tab        = "general";
-		$link       = 'admin.php?page=dt_plugin&tab=';
+		$link       = 'settings.php?page=dt_plugin&tab=';
 		$page_title = "DT Plugin Settings";
 
 		return view( "settings/general", compact( 'tab', 'link', 'page_title' ) );
@@ -25,24 +24,24 @@ class GeneralSettingsController {
 	/**
 	 * Submit the general settings admin tab form
 	 */
-	public function update( Request $request, Response $response ) {
+	public function update( ServerRequestInterface $request ) {
 		$error = false;
 
 		// Add the settings update code here
-		$errors = validate( $request->all(), [
-			'option1' => 'required',
-			'option2' => 'required',
-		] );
+        $body = $request->getParsedBody();
 
-		if ( count( $errors ) > 0 ) {
-			$error = __( 'Please complete the required fields.', 'dt-plugin' );
-		}
+        if ( ! isset( $body['option1'] ) || ! isset( $body['option2'] ) ) {
+            $error = __( 'Please complete the required fields.', 'dt-plugin' );
+        }
+
+        $option_1 = sanitize_text_field( wp_unslash( $body['option1'] ) );
+        $option_2 = sanitize_text_field( wp_unslash( $body['option2'] ) );
 
 		if ( ! $error ) {
 			//Perform update in a MYSQL transaction
-			$result = transaction( function () use ( $request ) {
-				set_option( 'option1', $request->post( 'option1' ) );
-				set_option( 'option2', $request->post( 'option2' ) );
+			$result = transaction( function () use ( $option_1, $option_2 ) {
+				set_option( 'option1', $option_1 );
+				set_option( 'option2', $option_2 );
 			} );
 
 			if ( $result !== true ) {
@@ -52,15 +51,12 @@ class GeneralSettingsController {
 
 
 		if ( $error ) {
-			return new RedirectResponse( 302, admin_url(
-					'admin.php?page=dt_plugin&tab=general&' . http_build_query( [
-						'error'  => $error,
-						'fields' => $errors,
-					] )
-				)
-			);
+			return redirect( admin_url( 'settings.php?page=dt_plugin&tab=general&' . http_build_query( [
+                    'error'  => $error
+                ] )
+			) );
 		}
 
-		return new RedirectResponse( 302, admin_url( 'admin.php?page=dt_plugin&tab=general&updated=true' ) );
+		return redirect( admin_url( 'settings.php?page=dt_plugin&tab=general&updated=true' ) );
 	}
 }

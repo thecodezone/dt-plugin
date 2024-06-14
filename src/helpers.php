@@ -2,11 +2,12 @@
 
 namespace DT\Plugin;
 
-use CodeZone\Router;
-use DT\Plugin\Illuminate\Http\RedirectResponse;
-use DT\Plugin\Illuminate\Http\Request;
-use DT\Plugin\Illuminate\Support\Str;
+use DT\Plugin\Laminas\Diactoros\Response\RedirectResponse;
+use DT\Plugin\Laminas\Diactoros\ServerRequest;
+use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
+use DT\Plugin\Psr\Http\Message\ResponseInterface;
+use DT\Plugin\Services\Options;
 use DT\Plugin\Services\Template;
 use DT_Magic_URL;
 use DT_Posts;
@@ -22,11 +23,11 @@ function plugin(): Plugin {
 }
 
 /**
- * Returns the container object.
+ * Return the container instance from the plugin.
  *
- * @return Illuminate\Container\Container The container object.
+ * @return Container The container instance.
  */
-function container(): Illuminate\Container\Container {
+function container(): Container {
 	return plugin()->container;
 }
 
@@ -54,9 +55,9 @@ function route_url( string $path = '' ): string {
  */
 function plugin_path( string $path = '' ): string {
 	return '/' . implode( '/', [
-			trim( Str::remove( '/src', plugin_dir_path( __FILE__ ) ), '/' ),
+            trim( str_replace( '/src', '', plugin_dir_path( __FILE__ ) ), '/' ),
 			trim( $path, '/' ),
-		] );
+    ] );
 }
 
 /**
@@ -111,13 +112,15 @@ function views_path( string $path = '' ): string {
  *
  * @return string|Engine The rendered view if a view name is provided, otherwise the view engine object.
  */
-function view( string $view = "", array $args = [] ): string|Engine {
-	$engine = container()->make( Engine::class );
+function view( string $view = "", array $args = [] ) {
+	$engine = container()->get( Engine::class );
 	if ( ! $view ) {
 		return $engine;
 	}
 
-	return $engine->render( $view, $args );
+	return response(
+        $engine->render( $view, $args )
+    );
 }
 
 /**
@@ -130,21 +133,21 @@ function view( string $view = "", array $args = [] ): string|Engine {
  *               If $template is specified, the rendered template is returned.
  */
 function template( string $template = "", array $args = [] ): mixed {
-	$service = container()->make( Template::class );
+	$service = container()->get( Template::class );
 	if ( ! $template ) {
 		return $service;
 	}
 
-	return $service->render( $template, $args );
+	return response(
+        $service->render( $template, $args )
+    );
 }
 
 /**
  * Returns the Request object.
- *
- * @return Request The Request object.
  */
-function request(): Request {
-	return container()->make( Request::class );
+function request(): ServerRequest {
+	return container()->get( ServerRequest::class );
 }
 
 /**
@@ -156,10 +159,21 @@ function request(): Request {
  * @return RedirectResponse A new RedirectResponse instance.
  */
 function redirect( string $url, int $status = 302 ): RedirectResponse {
-	return container()->makeWith( RedirectResponse::class, [
-		'url'    => $url,
-		'status' => $status,
-	] );
+	return new RedirectResponse( $url, $status );
+}
+
+function response( $content, $status = 200, $headers = [] ) {
+    if ( is_array( $content ) ) {
+        $content = json_encode( $content );
+        $headers['Content-Type'] = 'application/json';
+    }
+    $response = container()->get( ResponseInterface::class );
+    $response->getBody()->write( $content );
+    $response = $response->withStatus( $status );
+    foreach ( $headers as $key => $value ) {
+        $response = $response->withHeader( $key, $value );
+    }
+    return $response;
 }
 
 /**
@@ -197,6 +211,37 @@ function set_option( string $option_name, mixed $value ): bool {
 	} else {
 		return update_option( $option_name, $value );
 	}
+}
+
+/**
+ * Retrieves the value of an option from the options container.
+ *
+ * @param string $option The name of the option to retrieve.
+ * @param mixed $default Optional. The default value to return if the option does not exist. Defaults to false.
+ *
+ * @return mixed The value of the option if it exists, or the default value if it doesn't.
+ */
+function get_plugin_option( $option, $default = null, $required = false )
+{
+    $options = container()->get( Options::class );
+
+    return $options->get( $option, $default, $required );
+}
+
+/**
+ * Sets the value of a plugin option.
+ *
+ * @param string $option The name of the option to set.
+ * @param mixed $value The value to set for the option.
+ *
+ * @return bool true if the option was successfully set; otherwise, false.
+ */
+
+function set_plugin_option( $option, $value ): bool
+{
+    $options = container()->get( Options::class );
+
+    return $options->set( $option, $value );
 }
 
 /**

@@ -8,6 +8,6 @@ $this->layout( 'layouts/plugin' );
     </b>
 </div>
 
-<a href="<?php echo $this->e( $home_url ); ?>">
-	<?php $this->esc_html_e( 'Visit home', 'dt-plugin' ); ?>
+<a href="<?php echo esc_attr( $home_url ); ?>">
+	<?php  esc_html_e( 'Visit home', 'dt-plugin' ); ?>
 </a>
