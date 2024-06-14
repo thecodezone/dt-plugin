@@ -4,7 +4,6 @@ namespace DT\Plugin\Providers;
 
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
-use DT\Plugin\MagicLinks\ExampleMagicLink;
 use DT\Plugin\Psr\Container\ContainerExceptionInterface;
 use DT\Plugin\Psr\Container\NotFoundExceptionInterface;
 use function DT\Plugin\config;
@@ -48,7 +47,7 @@ class MagicLinkServiceProvider extends AbstractServiceProvider implements Bootab
 
 
         $this->getContainer()->add( namespace_string( 'magic_links' ), function () {
-            return apply_filters( namespace_string( 'magic_links' ), $this->magic_links );
+            return apply_filters( namespace_string( 'magic_links' ), config( 'magic.links' ) );
         } );
 
         foreach ( $this->getContainer()->get( namespace_string( 'magic_links' ) ) as $magic_link ) {

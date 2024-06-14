@@ -7,7 +7,9 @@
 use DT\Plugin\MagicLinks\ExampleMagicLink;
 
 $config->merge( [
-    'links' => [
-        ExampleMagicLink::class
+    'magic' => [
+        'links' => [
+            ExampleMagicLink::class
+        ]
     ]
 ] );

@@ -70,9 +70,9 @@ class ConfigServiceProvider extends AbstractServiceProvider {
                     'javascript_globals' => Expect::array(),
                     'manifest_dir' => Expect::string()
                 ]),
-                "magic" => [
+                "magic" => Expect::structure([
                     'links' => Expect::listOf( Expect::string() ),
-                ]
+                ])
             ]);
         });
 
