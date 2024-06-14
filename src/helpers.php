@@ -253,7 +253,7 @@ function set_plugin_option( $option, $value ): bool
  *
  * @throws Exception If there is a database error before starting the transaction.
  */
-function transaction( $callback ): bool|string {
+function transaction( $callback ) {
 	global $wpdb;
 	if ( $wpdb->last_error ) {
 		return $wpdb->last_error;
@@ -299,7 +299,7 @@ function namespace_string( string $string ) {
  * @return array|bool The registered magic apps for the given root and type.
  *                  Returns an array if found, otherwise returns false.
  */
-function magic_app( $root, $type ): array|bool {
+function magic_app( $root, $type ) {
 	$magic_apps = apply_filters( 'dt_magic_url_register_types', [] );
 	$root_apps  = $magic_apps[ $root ] ?? [];
 

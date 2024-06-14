@@ -3,8 +3,7 @@
 namespace DT\Plugin\MagicLinks;
 
 use DT\Plugin\League\Route\Router;
-use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
-use DT\Plugin\Services\Renderer;
+use DT\Plugin\Services\Route;
 use DT_Magic_Url_Base;
 use function DT\Plugin\container;
 
@@ -91,12 +90,11 @@ abstract class MagicLink extends DT_Magic_Url_Base {
      * @return void
      */
     public function render() {
-        $router = container()->get( Router::class );
-        $request = container()->get( ServerRequestInterface::class );
-        $renderer = container()->get( Renderer::class );
-
-        $this->routes( $router );
-        $response = $router->dispatch( $request );
-        $renderer->render( $response );
+        $route = container()->get( Route::class );
+        $route->with_routes( function ( Router $r ) {
+                $this->routes( $r );
+            } )
+            ->dispatch()
+            ->render();
     }
 }

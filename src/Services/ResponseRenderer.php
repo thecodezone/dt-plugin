@@ -4,8 +4,9 @@ namespace DT\Plugin\Services;
 
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 
-class Renderer {
-    public function render( ResponseInterface $response ) {
+class ResponseRenderer {
+
+    public function render(ResponseInterface $response ) {
         $headers = $response->getHeaders();
 
         foreach ( $headers as $key => $value ) {

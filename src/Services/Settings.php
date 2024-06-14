@@ -27,7 +27,7 @@ class Settings {
             __( 'DT Plugin', 'dt_plugin' ),
             'manage_dt',
             'dt-plugin',
-            [ $this, 'register_router' ]
+            [ $this, 'route' ]
         );
 
         add_filter(namespace_string( 'settings_tabs' ), function ( $menu ) {
@@ -56,26 +56,22 @@ class Settings {
     }
 
     /**
-     * Register the admin router using the middleware stack via filter.
+     * Register the admin router.
      *
      * @return void
      */
-    public function register_router(): void {
+    public function route(): void {
         $request = container()->get( ServerRequestInterface::class );
         $query = $request->getQueryParams();
         $page = sanitize_text_field( wp_unslash( $query['page'] ?? '' ) );
         $tab = sanitize_text_field( wp_unslash( $query['tab'] ?? '' ) );
-        $router = container()->get( Router::class );
-        $renderer = container()->get( Renderer::class );
         $uri = '/wp-admin/' . trim($page . '/' . $tab, '/');
-        $r = $router;
-        require_once routes_path( 'settings.php' );
-        $request =  ServerRequestFactory::fromGlobals(
-            array_merge( [], $_SERVER, [ 'REQUEST_URI' => $uri ] ),
-            $_GET, $_POST, $_COOKIE, $_FILES // phpcs:ignore
-        );
-        $response = $router->dispatch( $request );
-        $renderer->render( $response );
+
+        $route = container()->get( Route::class );
+        $route->as_uri( $uri )
+            ->from_route_file( 'settings.php')
+            ->dispatch()
+            ->render();
     }
 
 

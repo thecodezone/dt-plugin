@@ -9,12 +9,11 @@ use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
 use DT\Plugin\League\Route\Http\Exception\NotFoundException;
 use DT\Plugin\League\Route\Strategy\ApplicationStrategy;
 use DT\Plugin\League\Route\Strategy\StrategyInterface;
-use DT\Plugin\Psr\Http\Message\RequestInterface;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\League\Route\Router;
-use DT\Plugin\Services\Renderer;
-use DT\Plugin\Services\Template;
+use DT\Plugin\Services\ResponseRenderer;
+use DT\Plugin\Services\Route;
 use function DT\Plugin\container;
 use function DT\Plugin\namespace_string;
 use function DT\Plugin\routes_path;
@@ -90,11 +89,16 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return $this->getContainer()->get( Response::class );
         } );
 
-        $router = $this->getContainer()->get( Router::class );
+        $this->getContainer()->add( Router::class, function () {
+            return $this->getContainer()->get( Router::class );
+        } );
 
-        foreach ( $this->middleware as $middleware ) {
-            $router->middleware( $this->getContainer()->get( $middleware ) );
-        }
+        $this->getContainer()->add( Route::class, function () {
+            return new Route(
+                $this->getContainer()->get( Router::class ),
+                $this->getContainer()->get( ServerRequestInterface::class ),
+                $this->getContainer()->get( ResponseRenderer::class ) );
+        } );
 
         foreach ( $this->get_files() as $file ) {
             $this->process_file( $file );
@@ -194,98 +198,25 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return;
         }
 
+        $uri = '/' . trim( get_query_var( $file['query'] ) , '/' );
+
+        $route = $this->getContainer()->get( Route::class );
+        $route->with_middleware( $this->middleware )
+            ->from_route_file( $file['file'] )
+            ->as_uri( $uri );
+
         if ( WP_DEBUG ) {
-            $response = $this->dispatch_file( $file );
+            $route->dispatch();
         } else {
             try {
-                $response = $this->dispatch_file( $file );
+                $route->dispatch();
             } catch ( NotFoundException $e ) {
                 return;
             }
         }
 
-        if ( !$response ) {
-            return;
-        }
-
-       $this->render_response( $response );
+       $route->render();
     }
-
-    /**
-     * Renders the HTTP response.
-     *
-     * @param ResponseInterface $response The response to be rendered.
-     * @return void
-     * @throws \Exception When the file does not exist or the file rewrite requires a query variable.
-     */
-    public function render_response( ResponseInterface $response ) {
-        $headers = $response->getHeaders();
-
-        foreach ( $headers as $key => $value ) {
-            header( $key . ': ' . $value[0] );
-        }
-
-        if ( $response->hasHeader( 'Content-Type' )
-            && $response->getHeader( 'Content-Type' )[0] ?? false === 'application/json' ) {
-            if ( $response->getStatusCode() !== 200 ) {
-                wp_send_json_error( json_decode( $response->getBody() ), $response->getStatusCode() );
-            }
-            wp_send_json( json_decode( $response->getBody() ) );
-            die();
-        }
-
-        if ( $response->getStatusCode() !== 200 ) {
-            wp_die( esc_html( $response->getBody() ), esc_attr( $response->getStatusCode() ) );
-        }
-
-        $renderer = $this->getContainer()->get( Renderer::class );
-        $renderer->render( $response );
-    }
-
-    /**
-     * Dispatches a server request using a router.
-     *
-     * @param ServerRequestInterface $server_request The server request to be dispatched.
-     * @return mixed The result of the router dispatch.
-     */
-    public function dispatch( ServerRequestInterface $server_request )
-    {
-        $router = container()->get( Router::class );
-        return $router->dispatch( $server_request );
-    }
-
-    /**
-     * Dispatches the file based on the given file configuration.
-     *
-     * @param array $file The array containing file configuration.
-     * @return void|mixed Returns the result of the file dispatch if a query variable is provided, otherwise void.
-     * @throws \Exception When the file does not exist or the file rewrite requires a query variable.
-     */
-    protected function dispatch_file( $file ) {
-        $router = container()->get( Router::class );
-        $r = $router;
-
-        require_once routes_path( $file['file'] );
-
-
-        if ( $file['query'] ) {
-            $route = get_query_var( $file['query'] );
-
-            if ( !$route ) {
-                return false;
-            }
-
-            $route = '/' . trim( $route, '/' );
-
-            return $router->dispatch( ServerRequestFactory::fromGlobals(
-                array_merge( [], $_SERVER, [ 'REQUEST_URI' => $route ] ),
-                $_GET, $_POST, $_COOKIE, $_FILES // phpcs:ignore
-            ) );
-        } else {
-            return $router->dispatch( container()->get( ServerRequestInterface::class ) );
-        }
-    }
-
 
     /**
      * Check if the service provider provides a service.
@@ -297,6 +228,7 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             ResponseInterface::class,
             StrategyInterface::class,
             Router::class,
+            Route::class
         ];
 
         return in_array( $id, $services );
