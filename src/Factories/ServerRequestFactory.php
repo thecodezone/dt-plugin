@@ -24,7 +24,7 @@ class ServerRequestFactory {
     public static function with_uri( $uri ): ServerRequestInterface {
         return self::make( array_merge( $_SERVER, [
             'REQUEST_URI' => $uri
-        ]), $_GET, $_POST, $_COOKIE, $_FILES );
+        ]), $_GET, $_POST, $_COOKIE, $_FILES ); // phpcs:ignore
     }
 
     /**
@@ -33,7 +33,7 @@ class ServerRequestFactory {
      * @return ServerRequestInterface The created ServerRequestInterface instance
      */
     public static function from_globals(): ServerRequestInterface {
-        return self::make( $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES );
+        return self::make( $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES ); // phpcs:ignore
     }
 
     /**
@@ -50,10 +50,10 @@ class ServerRequestFactory {
         $method = $server['REQUEST_METHOD'] ?? 'GET';
         $headers = \getallheaders();
         $uri = $server['REQUEST_URI'] ?? ServerRequest::getUriFromGlobals();
-        $body = new CachingStream( new LazyOpenStream('php://input', 'r+') );
-        $protocol = isset( $server['SERVER_PROTOCOL'] ) ? \str_replace('HTTP/', '', $server['SERVER_PROTOCOL']) : '1.1';
-        $serverRequest = new ServerRequest( $method, $uri, $headers, $body, $protocol, $server );
-        return $serverRequest->withCookieParams( $cookie )
+        $body = new CachingStream( new LazyOpenStream( 'php://input', 'r+' ) );
+        $protocol = isset( $server['SERVER_PROTOCOL'] ) ? \str_replace( 'HTTP/', '', $server['SERVER_PROTOCOL'] ) : '1.1';
+        $server_request = new ServerRequest( $method, $uri, $headers, $body, $protocol, $server );
+        return $server_request->withCookieParams( $cookie )
             ->withQueryParams( $get )
             ->withParsedBody( $post )
             ->withUploadedFiles( ServerRequest::normalizeFiles( $files ) );
