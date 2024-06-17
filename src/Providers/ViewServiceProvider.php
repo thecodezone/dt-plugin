@@ -5,17 +5,20 @@ namespace DT\Plugin\Providers;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Plates\Engine;
 use DT\Plugin\Services\Plates\Escape;
-use function DT\Plugin\namespace_string;
 use function DT\Plugin\views_path;
 
 /**
- * Class TemplateServiceProvider
+ * Class ViewServiceProvider
  *
  * This class is a service provider responsible for registering the view engine singleton and any extensions.
  *
  * @see https://platesphp.com/
  */
-class TemplateServiceProvider extends AbstractServiceProvider {
+class ViewServiceProvider extends AbstractServiceProvider {
+
+    public function views_path() {
+        return views_path();
+    }
 
     /**
      * Provide the services that this provider is responsible for.
@@ -36,20 +39,8 @@ class TemplateServiceProvider extends AbstractServiceProvider {
 	 * @return void
 	 */
 	public function register(): void {
-        add_filter( namespace_string( 'allowed_styles' ), function ( $allowed_css ) {
-            $allowed_css[] = 'dt-plugin';
-
-            return $allowed_css;
-        } );
-
-        add_filter( namespace_string( 'allowed_scripts' ), function ( $allowed_js ) {
-            $allowed_js[] = 'dt-plugin';
-
-            return $allowed_js;
-        } );
-
         $this->getContainer()->addShared( Engine::class, function () {
-            return new Engine( views_path() );
+            return new Engine( $this->views_path() );
         } );
         $this->getContainer()->get( Engine::class );
 	}

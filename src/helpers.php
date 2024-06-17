@@ -2,8 +2,8 @@
 
 namespace DT\Plugin;
 
+use DT\Plugin\Factories\ContainerFactory;
 use DT\Plugin\Laminas\Diactoros\Response\RedirectResponse;
-use DT\Plugin\Laminas\Diactoros\ServerRequest;
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
@@ -13,11 +13,18 @@ use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\Services\Options;
+use DT\Plugin\Services\OptionsInterface;
 use DT\Plugin\Services\Rewrites;
+use DT\Plugin\Services\RewritesInterface;
 use DT\Plugin\Services\Template;
+use DT\Plugin\Services\TemplateInterface;
 use DT_Magic_URL;
 use DT_Posts;
 use Exception;
+
+/**
+ * @var $container Container
+ */
 
 /**
  * Returns the singleton instance of the Plugin class.
@@ -25,7 +32,7 @@ use Exception;
  * @return Plugin The singleton instance of the Plugin class.
  */
 function plugin(): Plugin {
-	return Plugin::$instance;
+    return container()->get( Plugin::class );
 }
 
 /**
@@ -35,7 +42,7 @@ function plugin(): Plugin {
  * @see https://container.thephpleague.com/4.x/
  */
 function container(): Container {
-	return plugin()->container;
+    return ContainerFactory::singleton();
 }
 
 /**
@@ -89,7 +96,7 @@ function validate( $schema, $data )
  *
  */
 function has_route_rewrite(): bool {
-    $rewrites = container()->get( Rewrites::class );
+    $rewrites = container()->get( RewritesInterface::class );
     return $rewrites->exists(
         array_key_first(config()->get( 'routes.rewrites' ))
     );
@@ -155,10 +162,7 @@ function web_url( string $path ) {
  * @see https://developer.wordpress.org/reference/functions/plugin_dir_path/
  */
 function plugin_path( string $path = '' ): string {
-	return '/' . implode( '/', [
-            trim( str_replace( '/src', '', plugin_dir_path( __FILE__ ) ), '/' ),
-			trim( $path, '/' ),
-    ] );
+	return Plugin::dir_path() . '/' . trim( $path, '/' );
 }
 
 /**
@@ -169,7 +173,7 @@ function plugin_path( string $path = '' ): string {
  * @return string The complete source path.
  */
 function src_path( string $path = '' ): string {
-	return plugin_path( 'src/' . $path );
+	return plugin_path( config( 'plugin.paths.src' ) . '/' . $path );
 }
 
 /**
@@ -180,7 +184,7 @@ function src_path( string $path = '' ): string {
  * @return string The path to the resources directory, with optional subdirectory appended.
  */
 function resources_path( string $path = '' ): string {
-	return plugin_path( 'resources/' . $path );
+	return plugin_path( config( 'plugin.paths.resources' ) . '/' . $path );
 }
 
 /**
@@ -191,7 +195,7 @@ function resources_path( string $path = '' ): string {
  * @return string The path to the routes directory, with optional subdirectory appended.
  */
 function routes_path( string $path = '' ): string {
-	return plugin_path( 'routes/' . $path );
+	return plugin_path( config( 'plugin.paths.routes' ) . '/' . $path );
 }
 
 /**
@@ -202,7 +206,7 @@ function routes_path( string $path = '' ): string {
  * @return string The path to the views directory, with optional subdirectory appended.
  */
 function views_path( string $path = '' ): string {
-	return plugin_path( 'resources/views/' . $path );
+	return plugin_path( config( 'plugin.paths.views' ) . '/' . $path );
 }
 
 /**
@@ -234,7 +238,7 @@ function view( string $view = "", array $args = [] ) {
  * @return mixed If $template is not specified, an instance of the Template service is returned.
  *               If $template is specified, the rendered template is returned.
  */
-function template( string $template = "", array $args = [] ): mixed {
+function template( string $template = "", array $args = [] ) {
 	$service = container()->get( Template::class );
 	if ( ! $template ) {
 		return $service;
@@ -320,7 +324,7 @@ function set_option( string $option_name, mixed $value ): bool {
  */
 function get_plugin_option( $option, $default = null, $required = false )
 {
-    $options = container()->get( Options::class );
+    $options = container()->get( OptionsInterface::class );
 
     return $options->get( $option, $default, $required );
 }
@@ -335,7 +339,7 @@ function get_plugin_option( $option, $default = null, $required = false )
  */
 function set_plugin_option( $option, $value ): bool
 {
-    $options = container()->get( Options::class );
+    $options = container()->get( OptionsInterface::class );
 
     return $options->set( $option, $value );
 }

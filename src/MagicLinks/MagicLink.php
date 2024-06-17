@@ -5,6 +5,7 @@ namespace DT\Plugin\MagicLinks;
 use DT\Plugin\League\Route\Http\Exception\NotFoundException;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Services\Route;
+use DT\Plugin\Services\RouteInterface;
 use DT_Magic_Url_Base;
 use function DT\Plugin\container;
 use function DT\Plugin\request;
@@ -107,7 +108,7 @@ abstract class MagicLink extends DT_Magic_Url_Base {
      * @return void
      */
     public function render() {
-        $route = container()->get( Route::class );
+        $route = container()->get( RouteInterface::class );
         $route->with_routes( function ( Router $r ) {
                 $this->routes( $r );
             } );

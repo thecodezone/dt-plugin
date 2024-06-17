@@ -9,14 +9,16 @@ use DT\Plugin\Providers\ConfigServiceProvider;
 use DT\Plugin\Providers\MagicLinkServiceProvider;
 use DT\Plugin\Providers\OptionsServiceProvider;
 use DT\Plugin\Providers\RouteServiceProvider;
-use DT\Plugin\Providers\TemplateServiceProvider;
+use DT\Plugin\Providers\ViewServiceProvider;
+use DT\Plugin\Providers\AssetServiceProvider;
 
 $config->merge( [
         'services' => [
             'providers' => [
                 ConfigServiceProvider::class,
                 OptionsServiceProvider::class,
-                TemplateServiceProvider::class,
+                AssetServiceProvider::class,
+                ViewServiceProvider::class,
                 RouteServiceProvider::class,
                 MagicLinkServiceProvider::class,
                 AdminServiceProvider::class

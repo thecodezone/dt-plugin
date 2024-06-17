@@ -10,6 +10,7 @@ use DT\Plugin\Psr\Container\ContainerExceptionInterface;
 use function DT\Plugin\plugin_path;
 
 class ConfigServiceProvider extends AbstractServiceProvider {
+
     /**
      * Provide the services that this provider is responsible for.
      *
@@ -33,8 +34,15 @@ class ConfigServiceProvider extends AbstractServiceProvider {
         $this->getContainer()->addShared(Configuration::class, function () {
             return new Configuration([
                 'plugin' => Expect::structure([
+                    'text_domain' => Expect::string(),
                     'nonce_name' => Expect::string(),
                     'dt_version' => Expect::float(),
+                    'paths' => Expect::structure([
+                        'src' => Expect::string(),
+                        'resources' => Expect::string(),
+                        'routes' => Expect::string(),
+                        'views' => Expect::string(),
+                    ])
                 ]),
                 'services' => Expect::structure([
                     'providers' => Expect::listOf( Expect::string() ),
@@ -75,7 +83,6 @@ class ConfigServiceProvider extends AbstractServiceProvider {
                 ])
             ]);
         });
-
 
         $config = $this->getContainer()->get(Configuration::class);
         foreach (glob(plugin_path('config/*.php')) as $filename)

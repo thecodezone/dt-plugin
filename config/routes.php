@@ -4,7 +4,10 @@
  * @var $config DT\Plugin\League\Config\Configuration
  */
 
+use function DT\Plugin\routes_path;
+
 $config->merge( [
+    'dir' => routes_path(),
     'routes' => [
         'rewrites' => [
             '^dt/plugin/api/?$' => 'index.php?dt-plugin-api=/',

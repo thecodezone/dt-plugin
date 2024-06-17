@@ -16,8 +16,26 @@ use const DT\Plugin\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
  * @see https://github.com/kucrut/vite-for-wp
  *
  */
-class Assets {
-    private static $enqueued = false;
+class Assets
+{
+    /**
+     * AssetQueue Service.
+     *
+     * @var AssetQueue $asset_queue The AssetQueue instance.
+     */
+    private AssetQueueInterface $asset_queue;
+
+    /**
+     * Flag indicating whether a resource has been enqueued.
+     *
+     * @var bool $enqueued False if the resource has not been enqueued, true otherwise.
+     */
+    private static bool $enqueued = false;
+
+    public function __construct( AssetQueueInterface $asset_queue )
+    {
+        $this->asset_queue = $asset_queue;
+    }
 
     /**
      * Register method to add necessary actions for enqueueing scripts
@@ -34,100 +52,22 @@ class Assets {
         self::$enqueued = true;
 
         if ( !is_admin() ) {
-            add_action( 'wp_print_styles', [ $this, 'filter_assets' ] );
+            add_action( 'wp_print_styles', [ $this, 'wp_print_styles' ] );
             add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
         }
     }
-
-    public function filter_assets() {
-        $this->whitelist_vite();
-        $this->filter_asset_queue();
-    }
-
     /**
      * Reset asset queue
      *
      * @return void
      */
-    private function filter_asset_queue() {
-        global $wp_scripts;
-        global $wp_styles;
-
-        $whitelist = apply_filters( namespace_string( 'allowed_scripts' ), [] );
-        foreach ( $wp_scripts->queue as $key => $handle ) {
-            if ( in_array( $handle, $whitelist ) ) {
-                continue;
-            }
-            unset( $wp_scripts->queue[$key] );
-        }
-        $whitelist = apply_filters( namespace_string( 'allowed_styles' ), [] );
-        foreach ( $wp_styles->queue as $key => $handle ) {
-            if ( in_array($handle, $whitelist ) ) {
-                continue;
-            }
-            unset( $wp_styles->queue[$key] );
-        }
-
-    }
-
-    /**
-     * Whitelist Vite assets for enqueueing scripts and adding cloaked styles
-     *
-     * @see https://github.com/kucrut/vite-for-wp
-     * @return void
-     */
-    private function whitelist_vite() {
-        global $wp_scripts;
-        global $wp_styles;
-
-        $scripts = [];
-        $styles = [];
-
-        foreach ( $wp_scripts->registered as $script ) {
-            if ( $this->is_vite_asset( $script->handle ) ) {
-                $scripts[] = $script->handle;
-            }
-        }
-
-        // phpcs:ignore
-        add_filter( namespace_string( 'allowed_scripts' ),
-            function ( $allowed ) use ( $scripts ) {
-                return array_merge( $allowed, $scripts );
-            }
-        );
-
-        foreach ( $wp_styles->registered as $style ) {
-            if ( $this->is_vite_asset( $style->handle ) ) {
-                $styles[] = $style->handle;
-            }
-        }
-
-        add_filter( namespace_string( 'allowed_styles' ),
-            function ( $allowed ) use ( $styles ) {
-                return array_merge( $allowed, $styles );
-            }
+    public function wp_print_styles() {
+        $this->asset_queue->filter(
+            apply_filters( namespace_string( 'allowed_scripts' ), [] ),
+            apply_filters( namespace_string( 'allowed_styles' ), [] )
         );
     }
 
-    /**
-     * Determines if the given asset handle is allowed.
-     *
-     * This method checks if the provided asset handle is contained in the list of allowed handles.
-     * Allows the Template script file and the Vite client script file for dev use.
-     *
-     * @param string $asset_handle The asset handle to check.
-     *
-     * @return bool True if the asset handle is allowed, false otherwise.
-     * @see https://github.com/kucrut/vite-for-wp
-     */
-    private function is_vite_asset( $asset_handle ) {
-        if ( strpos( $asset_handle, 'dt-plugin' ) !== false
-            || strpos( $asset_handle, VITE_CLIENT_SCRIPT_HANDLE ) !== false ) {
-            return true;
-        }
-
-        return false;
-    }
 
     /**
      * Enqueues scripts and styles for the frontend.

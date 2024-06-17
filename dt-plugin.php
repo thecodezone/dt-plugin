@@ -19,11 +19,11 @@
  */
 
 use DT\Plugin\League\Config\Configuration;
-use DT\Plugin\League\Container\Container;
-use DT\Plugin\League\Container\ReflectionContainer;
 use DT\Plugin\Plugin;
 use DT\Plugin\Providers\ConfigServiceProvider;
 use DT\Plugin\Providers\PluginServiceProvider;
+use DT\Plugin\Providers\RewritesServiceProvider;
+use DT\Plugin\Factories\ContainerFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -36,12 +36,20 @@ require_once plugin_dir_path( __FILE__ ) . '/vendor-scoped/autoload.php';
 require_once plugin_dir_path( __FILE__ ) . '/vendor/autoload.php';
 
 // Create the IOC container
-$container = new Container();
-$container->delegate( new ReflectionContainer() );
+$container = ContainerFactory::singleton();
+
+require_once plugin_dir_path( __FILE__ ) . '/src/helpers.php';
 
 // Add any services providers required to init the plugin
-$container->addServiceProvider( new ConfigServiceProvider() );
-$container->addServiceProvider( new PluginServiceProvider() );
+$boot_providers = [
+    ConfigServiceProvider::class,
+    RewritesServiceProvider::class,
+    PluginServiceProvider::class
+];
+
+foreach ($boot_providers as $provider ) {
+    $container->addServiceProvider(  $container->get( $provider ) );
+}
 
 // Init the plugin
 $plugin = $container->get( Plugin::class );

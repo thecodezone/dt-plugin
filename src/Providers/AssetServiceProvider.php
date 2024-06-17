@@ -3,10 +3,11 @@
 namespace DT\Plugin\Providers;
 
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
+use DT\Plugin\Services\AssetQueue;
+use DT\Plugin\Services\AssetQueueInterface;
 use DT\Plugin\Services\Assets;
 use function DT\Plugin\config;
 use function DT\Plugin\namespace_string;
-use function DT\Plugin\route_url;
 
 /**
  * Class AssetServiceProvider
@@ -23,6 +24,7 @@ class AssetServiceProvider extends AbstractServiceProvider {
     public function provides( string $id ): bool
     {
         return in_array($id, [
+            AssetQueue::class,
             Assets::class
         ]);
     }
@@ -47,8 +49,14 @@ class AssetServiceProvider extends AbstractServiceProvider {
             return array_merge($data, config('assets.javascript_globals') );
         });
 
-        $this->getContainer()->add( 'assets', function () {
-            return new Assets();
+        $this->getContainer()->add( AssetQueueInterface::class, function () {
+            return new AssetQueue();
+        } );
+
+        $this->getContainer()->add( Assets::class, function () {
+            return new Assets(
+                $this->getContainer()->get( AssetQueueInterface::class )
+            );
         } );
     }
 }

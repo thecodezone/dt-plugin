@@ -7,31 +7,22 @@ use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\Services\Rewrites;
 
 /**
- * This is the entry-object for the plugin.
- * Handle any setup and bootstrapping here.
+ * Class Plugin
+ *
+ * The Plugin class represents a WordPress plugin. It manages the initialization of the plugin, its activation and deactivation hooks, and other related functionality.
  */
 class Plugin {
-	/**
-	 * The instance of the plugin
-	 * @var Plugin
-	 */
-	public static Plugin $instance;
-
-	/**
-	 * The container
-	 * @see https://laravel.com/docs/10.x/container
-	 * @var Container
-	 */
 	public Container $container;
     public Configuration $config;
+    public Rewrites $rewrites;
 
 	/**
 	 * Plugin constructor.
 	 *
 	 * @param Container $container
 	 */
-	public function __construct( Container $container, Rewrites $rewrites ) {
-        static::$instance = $this;
+	public function __construct( Container $container, Rewrites $rewrites, Configuration $config ) {
+        $this->config = $config;
         $this->container = $container;
         $this->rewrites = $rewrites;
 	}
@@ -41,16 +32,40 @@ class Plugin {
 	 * @return void
 	 */
 	public function init() {
-        $this->config = $this->container->get( Configuration::class );
-
         register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
         register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
         add_action( 'init', [ $this, 'wp_init' ]);
         add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
         add_action( 'activated_plugin', [ $this, 'activation_hook' ] );
+
+        foreach ($this->config->get('services.providers') as $provider ) {
+            $this->container->addServiceProvider(  $this->container->get( $provider ) );
+        }
 	}
 
+
+    /**
+     * Get the directory path of the plugin.
+     *
+     * This method returns the absolute directory path of the plugin, excluding the "/src" directory
+     *
+     * @return string The directory path of the plugin.
+     */
+    static function dir_path() {
+        return '/' . trim( str_replace( '/src', '', plugin_dir_path( __FILE__ ) ), '/' );
+    }
+
+    /**
+     * Initialize the WordPress plugin.
+     *
+     * This method is a hook that is triggered when WordPress is initialized.
+     * It calls the `sync()` method to synchronize any necessary changes
+     * or updates with the plugin's rewrites. This can include adding, modifying
+     * or removing rewrite rules.
+     *
+     * @return void
+     */
     public function wp_init() {
         $this->rewrites->sync();
     }
@@ -106,13 +121,10 @@ class Plugin {
 		if ( ! $this->is_dt_theme() ) {
 			return false;
 		}
+
 		$wp_theme = wp_get_theme();
 
-		return version_compare(
-            $wp_theme->version,
-            $this->config->get('plugin.dt_version')
-            , '>='
-        );
+		return version_compare(  $wp_theme->version, $this->config->get('plugin.dt_version'), '>=' );
 	}
 
 	/**

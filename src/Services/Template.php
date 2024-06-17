@@ -2,18 +2,15 @@
 
 namespace DT\Plugin\Services;
 
-use function DT\Plugin\Kucrut\Vite\enqueue_asset;
-use function DT\Plugin\namespace_string;
-use function DT\Plugin\plugin_path;
 use function DT\Plugin\view;
-use const DT\Plugin\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 /**
  * Class Template
  *
  * This class represents a template in a web application. It is responsible for rendering the template and managing assets.
  */
-class Template {
+class Template
+{
 
     /**
      * @var Assets

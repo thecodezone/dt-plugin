@@ -2,14 +2,20 @@
 
 namespace DT\Plugin\Services;
 
-use function DT\Plugin\config;
-
 /**
  * Class Rewrites
  *
  * This class provides methods for managing rewrite rules in WordPress.
  */
-class Rewrites {
+class Rewrites implements RewritesInterface
+{
+    protected $rules;
+
+    public function __construct( array $rules )
+    {
+        $this->rules = $rules;
+    }
+
     /**
      * Flushes the rewrite rules for the current WordPress site.
      *
@@ -33,7 +39,7 @@ class Rewrites {
      */
     public function has_latest()
     {
-        foreach( config('routes.rewrites') as $regex => $query) {
+        foreach( $this->rules as $regex => $query) {
             if( ! $this->exists( $regex, $query ) ) {
                 return false;
             }
@@ -95,7 +101,7 @@ class Rewrites {
      * @return void
      */
     public function apply() {
-        foreach (config('routes.rewrites') as $regex => $query) {
+        foreach ($this->rules as $regex => $query) {
             $this->add($regex, $query);
         }
     }

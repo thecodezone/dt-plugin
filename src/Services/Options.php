@@ -11,7 +11,8 @@ use function DT\Plugin\set_option;
  * Keys are scoped to the plugin to avoid conflicts with other plugins.
  * Default values may be provided for each option to avoid duplication.
  */
-class Options {
+class Options implements OptionsInterface
+{
 
     /**
      * The default option values.
@@ -39,7 +40,7 @@ class Options {
      *
      * @return array An associative array of default option values.
      */
-    private function defaults(): array {
+    protected function defaults(): array {
         return $this->defaults;
     }
 
@@ -50,7 +51,7 @@ class Options {
      *
      * @return string The scope key for the given key.
      */
-    public function scope_key( string $key ): string {
+    protected function scope_key( string $key ): string {
         return "{$this->prefix}_{$key}";
     }
 
@@ -62,7 +63,7 @@ class Options {
      *
      * @return mixed The value of the option if found, otherwise returns the default value.
      */
-    public function get( string $key, mixed $default = null, $required = false ) {
+    public function get( string $key, $default = null, $required = false ) {
         $defaults = $this->defaults();
 
         if ( $default !== null ) {
@@ -92,7 +93,7 @@ class Options {
      *
      * @return bool Returns true if the option was set successfully, otherwise returns false.
      */
-    public function set( string $key, mixed $value ): bool {
+    public function set( string $key, $value ): bool {
         $key = $this->scope_key( $key );
 
         return set_option( $key, $value );

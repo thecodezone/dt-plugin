@@ -8,6 +8,7 @@ use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\Plugin;
 use DT\Plugin\Psr\Container\ContainerExceptionInterface;
 use DT\Plugin\Services\Rewrites;
+use DT\Plugin\Services\RewritesInterface;
 use function DT\Plugin\config;
 
 /**
@@ -38,7 +39,11 @@ class PluginServiceProvider extends AbstractServiceProvider {
      */
     public function register(): void {
         $this->getContainer()->addShared( Plugin::class, function () {
-            return new Plugin( $this->getContainer(), $this->getContainer()->get( Rewrites::class ) );
+            return new Plugin(
+                $this->getContainer(),
+                $this->getContainer()->get( RewritesInterface::class ),
+                $this->getContainer()->get( Configuration::class )
+            );
         } );
     }
 }

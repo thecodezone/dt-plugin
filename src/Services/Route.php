@@ -15,7 +15,8 @@ use function DT\Plugin\routes_path;
  * Represents a route in the application.
  * @see https://route.thephpleague.com/4.x/usage/
  */
-class Route {
+class Route implements RouteInterface
+{
     /**
      * @var Router $router
      * The Router Instance.
@@ -53,7 +54,7 @@ class Route {
      * @param ServerRequest $request The server request instance.
      * @param ResponseRenderer $renderer The response renderer instance.
      */
-    public function __construct( Router $router, ServerRequest $request, ResponseRenderer $renderer ) {
+    public function __construct( Router $router, ServerRequestInterface $request, ResponseRenderer $renderer ) {
         $this->router = $router;
         $this->request = $request;
         $this->renderer = $renderer;
@@ -150,6 +151,12 @@ class Route {
         return $this;
     }
 
+    /**
+     * Renders the response using the renderer if it exists.
+     * If the response is not set, it dispatches the request to the router first.
+     *
+     * @return self Returns an instance of the current class.
+     */
     public function render(): self {
         if ( !$this->response ) {
           $this->dispatch();

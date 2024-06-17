@@ -4,6 +4,7 @@ namespace DT\Plugin\Providers;
 
 use DT\Plugin\Laminas\Diactoros\Response;
 use DT\Plugin\Laminas\Diactoros\ServerRequestFactory;
+use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
 use DT\Plugin\League\Route\Http\Exception\NotFoundException;
@@ -13,9 +14,9 @@ use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Services\ResponseRenderer;
+use DT\Plugin\Services\ResponseRendererInterface;
 use DT\Plugin\Services\Route;
-use function DT\Plugin\config;
-use function DT\Plugin\namespace_string;
+use DT\Plugin\Services\RouteInterface;
 use function DT\Plugin\routes_path;
 
 /**
@@ -30,6 +31,41 @@ use function DT\Plugin\routes_path;
 class RouteServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
 
     /**
+     * Represents the configuration settings for the application.
+     *
+     * @var array $config An associative array containing the configuration settings
+     */
+    protected $config;
+
+    /**
+     * The configuration instance.
+     *
+     * @var Configuration
+     */
+    public function __construct( Configuration $config )
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * Retrieves the files configuration from the config object.
+     *
+     * @return array The array containing file configuration.
+     */
+    protected function files() {
+        return $this->config->get( 'routes.files' );
+    }
+
+    /**
+     * Retrieves the middleware configuration for the routes.
+     *
+     * @return array The array containing the middleware configuration.
+     */
+    protected function middleware() {
+        return $this->config->get( 'routes.middleware' );
+    }
+
+    /**
      * Provide the services that this provider is responsible for.
      *
      * @param string $id The ID to check.
@@ -41,8 +77,9 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             ServerRequestInterface::class,
             ResponseInterface::class,
             StrategyInterface::class,
-            Router::class,
-            Route::class
+            RouteInterface::class,
+            ResponseRendererInterface::class,
+            Router::class
         ];
 
         return in_array( $id, $services );
@@ -75,11 +112,15 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             return $this->getContainer()->get( Router::class );
         } );
 
-        $this->getContainer()->add( Route::class, function () {
+        $this->getContainer()->add( ResponseRendererInterface::class, function () {
+            return new ResponseRenderer();
+        } );
+
+        $this->getContainer()->add( RouteInterface::class, function () {
             return new Route(
                 $this->getContainer()->get( Router::class ),
                 $this->getContainer()->get( ServerRequestInterface::class ),
-                $this->getContainer()->get( ResponseRenderer::class )
+                $this->getContainer()->get( ResponseRendererInterface::class )
             );
         } );
 
@@ -105,7 +146,7 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
      * @return array The file configuration.
      */
     protected function get_files() {
-        return apply_filters( namespace_string( 'route_files' ), config()->get( 'routes.files' ) );
+        return $this->files();
     }
 
     /**
@@ -176,8 +217,8 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
     public function render_file($file ) {
         $uri = '/' . trim( get_query_var( $file['query'] ), '/' );
 
-        $route = $this->getContainer()->get( Route::class );
-        $route->with_middleware( config()->get( 'routes.middleware' ) )
+        $route = $this->getContainer()->get( RouteInterface::class );
+        $route->with_middleware( $this->middleware() )
             ->from_route_file( $file['file'] )
             ->as_uri( $uri );
 

@@ -5,6 +5,7 @@ namespace DT\Plugin\Providers;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
 use DT\Plugin\Services\Options;
+use DT\Plugin\Services\OptionsInterface;
 use function DT\Plugin\config;
 
 /**
@@ -25,7 +26,7 @@ class OptionsServiceProvider extends AbstractServiceProvider implements Bootable
     public function provides( string $id ): bool
     {
         return in_array( $id, [
-            Options::class,
+            OptionsInterface::class,
         ] );
     }
 
@@ -37,7 +38,7 @@ class OptionsServiceProvider extends AbstractServiceProvider implements Bootable
      */
     public function register(): void
     {
-        $this->container->add( Options::class, function () {
+        $this->container->add( OptionsInterface::class, function () {
             return new Options(
                 config()->get( 'options.defaults' ),
                 config()->get( 'options.prefix' )
