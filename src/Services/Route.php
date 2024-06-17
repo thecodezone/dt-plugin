@@ -2,11 +2,12 @@
 
 namespace DT\Plugin\Services;
 
-use DT\Plugin\Laminas\Diactoros\ServerRequest;
-use DT\Plugin\Laminas\Diactoros\ServerRequestFactory;
+use DT\Plugin\Factories\ServerRequestFactory;
+use DT\Plugin\GuzzleHttp\Psr7\ServerRequest;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
+use MongoDB\Driver\Server;
 use function DT\Plugin\routes_path;
 
 /**
@@ -69,10 +70,9 @@ class Route implements RouteInterface
      * @eee https://docs.laminas.dev/laminas-diactoros/
      */
     public function as_uri( $uri ): self {
-        return $this->with_request(ServerRequestFactory::fromGlobals(
-            array_merge( [], $_SERVER, [ 'REQUEST_URI' => $uri ] ),
-            $_GET, $_POST, $_COOKIE, $_FILES // phpcs:ignore
-        ));
+        return $this->with_request(
+            ServerRequestFactory::with_uri( $uri )
+        );
     }
 
     /**

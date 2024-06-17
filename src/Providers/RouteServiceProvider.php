@@ -2,8 +2,8 @@
 
 namespace DT\Plugin\Providers;
 
-use DT\Plugin\Laminas\Diactoros\Response;
-use DT\Plugin\Laminas\Diactoros\ServerRequestFactory;
+use DT\Plugin\Factories\ServerRequestFactory;
+use DT\Plugin\GuzzleHttp\Psr7\Response;
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
@@ -99,9 +99,7 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
         } )->addMethodCall( 'setStrategy', [ $this->getContainer()->get( StrategyInterface::class ) ] );
 
         $this->getContainer()->add( ServerRequestInterface::class, function () {
-            return ServerRequestFactory::fromGlobals(
-                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES // phpcs:ignore
-            );
+            return ServerRequestFactory::from_globals();
         } );
 
         $this->getContainer()->add( ResponseInterface::class, function () {
