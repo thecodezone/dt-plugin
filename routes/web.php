@@ -8,17 +8,19 @@
  *
  * Routes are used to bind a URL to a controller.
  *
- * @var \DT\Plugin\League\Route\Router $r
+ * @var Router $r
  * @see https://github.com/thecodezone/wp-router
  */
 
 use DT\Plugin\Controllers\HelloController;
 use DT\Plugin\Controllers\UserController;
 use DT\Plugin\League\Route\RouteGroup;
+use DT\Plugin\League\Route\Router;
 use DT\Plugin\Middleware\LoggedIn;
+use DT\Plugin\Middleware\HasCap;
 
 $r->group( '', function ( RouteGroup $r ) {
     $r->get( '/hello', [ HelloController::class, 'show' ] );
-    $r->get( '/users/{id}', [ UserController::class, 'show' ] );
-        //->middleware( new Can( 'list-users') );
+    $r->get( '/users/{id}', [ UserController::class, 'show' ] )
+        ->middleware( new HasCap( 'dt_list_users' ) );
 } )->middleware( new LoggedIn() );

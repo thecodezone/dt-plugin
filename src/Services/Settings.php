@@ -73,12 +73,9 @@ class Settings {
     public function route(): void {
         $request = container()->get( ServerRequestInterface::class );
         $query = $request->getQueryParams();
-        $page = sanitize_text_field( wp_unslash( $query['page'] ?? '' ) );
-        $tab = sanitize_text_field( wp_unslash( $query['tab'] ?? '' ) );
-        $uri = '/wp-admin/' . trim( $page . '/' . $tab, '/' );
-
+        $tab = $query['tab'] ?? 'general';
         $route = container()->get( RouteInterface::class );
-        $route->as_uri( $uri )
+        $route->as_uri( "/" . $tab )
             ->from_route_file( 'settings.php' )
             ->dispatch()
             ->render();

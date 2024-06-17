@@ -3,11 +3,9 @@
 namespace DT\Plugin\Services;
 
 use DT\Plugin\Factories\ServerRequestFactory;
-use DT\Plugin\GuzzleHttp\Psr7\ServerRequest;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
-use MongoDB\Driver\Server;
 use function DT\Plugin\routes_path;
 
 /**
@@ -52,7 +50,7 @@ class Route implements RouteInterface
      * Class constructor.
      *
      * @param Router $router The router instance.
-     * @param ServerRequest $request The server request instance.
+     * @param ServerRequestInterface $request The server request instance.
      * @param ResponseRenderer $renderer The response renderer instance.
      */
     public function __construct( Router $router, ServerRequestInterface $request, ResponseRenderer $renderer ) {

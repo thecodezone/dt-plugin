@@ -2,6 +2,7 @@
 
 namespace DT\Plugin\Providers;
 
+use DT\Plugin\Factories\ResponseFactory;
 use DT\Plugin\Factories\ServerRequestFactory;
 use DT\Plugin\GuzzleHttp\Psr7\Response;
 use DT\Plugin\League\Config\Configuration;
@@ -103,7 +104,7 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
         } );
 
         $this->getContainer()->add( ResponseInterface::class, function () {
-            return $this->getContainer()->get( Response::class );
+            return new Response();
         } );
 
         $this->getContainer()->add( Router::class, function () {

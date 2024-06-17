@@ -3,6 +3,7 @@
 namespace DT\Plugin;
 
 use DT\Plugin\Factories\ContainerFactory;
+use DT\Plugin\Factories\ResponseFactory;
 use DT\Plugin\Laminas\Diactoros\Response\RedirectResponse;
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\Container;
@@ -263,11 +264,11 @@ function request(): ServerRequestInterface {
  * @param string $url The URL to redirect to.
  * @param int $status Optional. The status code for the redirect response. Default is 302.
  *
- * @return RedirectResponse A new RedirectResponse instance.
+ * @return ResponseInterface A new RedirectResponse instance.
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
-function redirect( string $url, int $status = 302 ): RedirectResponse {
-	return new RedirectResponse( $url, $status );
+function redirect( string $url, int $status = 302, $headers = [] ): ResponseInterface {
+	return ResponseFactory::redirect( $url, $status, $headers );
 }
 
 /**
@@ -281,17 +282,7 @@ function redirect( string $url, int $status = 302 ): RedirectResponse {
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function response( $content, $status = 200, $headers = [] ) {
-    if ( is_array( $content ) ) {
-        $content = json_encode( $content );
-        $headers['Content-Type'] = 'application/json';
-    }
-    $response = container()->get( ResponseInterface::class );
-    $response->getBody()->write( $content );
-    $response = $response->withStatus( $status );
-    foreach ( $headers as $key => $value ) {
-        $response = $response->withHeader( $key, $value );
-    }
-    return $response;
+    return ResponseFactory::make( $content, $status, $headers );
 }
 
 /**
