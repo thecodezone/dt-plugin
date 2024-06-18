@@ -7,9 +7,7 @@ use DT\Plugin\League\Container\Exception\NotFoundException;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\Plugin;
 use DT\Plugin\Psr\Container\ContainerExceptionInterface;
-use DT\Plugin\Services\Rewrites;
 use DT\Plugin\Services\RewritesInterface;
-use function DT\Plugin\config;
 
 /**
  * Class PluginServiceProvider

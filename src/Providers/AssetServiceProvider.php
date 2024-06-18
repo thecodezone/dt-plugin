@@ -38,15 +38,15 @@ class AssetServiceProvider extends AbstractServiceProvider {
      */
     public function register(): void{
         add_filter( namespace_string( 'allowed_styles' ), function ( $allowed_css ) {
-            return array_merge( $allowed_css, config('assets.allowed_styles') );
+            return array_merge( $allowed_css, config( 'assets.allowed_styles' ) );
         } );
 
         add_filter( namespace_string( 'allowed_scripts' ), function ( $allowed_js ) {
-            return array_merge( $allowed_js, config('assets.allowed_scripts') );
+            return array_merge( $allowed_js, config( 'assets.allowed_scripts' ) );
         } );
 
         add_filter( namespace_string( 'javascript_globals' ), function ( $data ) {
-            return array_merge($data, config('assets.javascript_globals') );
+            return array_merge( $data, config( 'assets.javascript_globals' ) );
         });
 
         $this->getContainer()->add( AssetQueueInterface::class, function () {

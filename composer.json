@@ -2,7 +2,7 @@
   "name": "dt/plugin",
   "description": "A modern disciple.tools plugin starter template.",
   "type": "project",
-  "license": "GNU",
+  "license": "GPL-2.0-only",
   "autoload": {
     "psr-4": {
       "DT\\Plugin\\": "src/"

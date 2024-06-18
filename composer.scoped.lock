@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9fe2d8fa30d98dd2116488a3969aa11",
+    "content-hash": "24774addb61e37d3cb91a58a043a2e00",
     "packages": [
+        {
+            "name": "codezone/wp-support",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thecodezone/wp-support.git",
+                "reference": "fe1a6d4a881d8a040cba5e68d8e42e649ddc086a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/fe1a6d4a881d8a040cba5e68d8e42e649ddc086a",
+                "reference": "fe1a6d4a881d8a040cba5e68d8e42e649ddc086a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/psr7": "^2.6",
+                "kucrut/vite-for-wp": "^0.8.0",
+                "league/config": "^1.2",
+                "league/container": "4.*",
+                "league/plates": "^3.5",
+                "league/route": "^5.1",
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "brain/monkey": "2.*",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3.1",
+                "phpcompatibility/php-compatibility": "^9.0",
+                "phpunit/phpunit": "^9",
+                "wp-coding-standards/wpcs": "^3.0",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeZone\\WPSupport\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Craig Wann",
+                    "email": "craig@codezone.io"
+                }
+            ],
+            "description": "Support utilities for building WordPress plugins.",
+            "support": {
+                "issues": "https://github.com/thecodezone/wp-support/issues",
+                "source": "https://github.com/thecodezone/wp-support/tree/main"
+            },
+            "time": "2024-06-18T15:21:49+00:00"
+        },
         {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
@@ -1189,7 +1245,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "codezone/wp-support": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

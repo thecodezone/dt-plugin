@@ -4,7 +4,6 @@ namespace DT\Plugin\MagicLinks;
 
 use DT\Plugin\League\Route\Http\Exception\NotFoundException;
 use DT\Plugin\League\Route\Router;
-use DT\Plugin\Services\Route;
 use DT\Plugin\Services\RouteInterface;
 use DT_Magic_Url_Base;
 use function DT\Plugin\container;

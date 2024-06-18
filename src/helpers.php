@@ -2,9 +2,8 @@
 
 namespace DT\Plugin;
 
-use DT\Plugin\Factories\ContainerFactory;
-use DT\Plugin\Factories\ResponseFactory;
-use DT\Plugin\Laminas\Diactoros\Response\RedirectResponse;
+use DT\Plugin\CodeZone\DT\Factories\ContainerFactory;
+use DT\Plugin\CodeZone\DT\Factories\ResponseFactory;
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
@@ -13,12 +12,9 @@ use DT\Plugin\Nette\Schema\Processor;
 use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
-use DT\Plugin\Services\Options;
 use DT\Plugin\Services\OptionsInterface;
-use DT\Plugin\Services\Rewrites;
 use DT\Plugin\Services\RewritesInterface;
 use DT\Plugin\Services\Template;
-use DT\Plugin\Services\TemplateInterface;
 use DT_Magic_URL;
 use DT_Posts;
 use Exception;

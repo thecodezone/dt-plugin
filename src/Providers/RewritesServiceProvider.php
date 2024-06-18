@@ -23,7 +23,7 @@ class RewritesServiceProvider extends AbstractServiceProvider {
      *
      * @return void
      */
-    public function __construct(Configuration $config)
+    public function __construct( Configuration $config )
     {
         $this->config = $config;
     }
@@ -34,7 +34,7 @@ class RewritesServiceProvider extends AbstractServiceProvider {
      * @param string $id The ID to check.
      * @return bool Returns true if the given ID is provided, false otherwise.
      */
-    public function provides(string $id): bool
+    public function provides( string $id ): bool
     {
         return in_array($id, [
             RewritesInterface::class
@@ -47,7 +47,7 @@ class RewritesServiceProvider extends AbstractServiceProvider {
      * @return array The array of rewrite rules configured in the application.
      */
     public function rewrites(): array {
-        return $this->config->get('routes.rewrites');
+        return $this->config->get( 'routes.rewrites' );
     }
 
     /**

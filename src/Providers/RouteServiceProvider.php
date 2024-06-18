@@ -2,8 +2,7 @@
 
 namespace DT\Plugin\Providers;
 
-use DT\Plugin\Factories\ResponseFactory;
-use DT\Plugin\Factories\ServerRequestFactory;
+use DT\Plugin\CodeZone\DT\Factories\ServerRequestFactory;
 use DT\Plugin\GuzzleHttp\Psr7\Response;
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
@@ -211,9 +210,12 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
     }
 
     /**
+     * Renders the specified file.
      *
+     * @param array $file The array containing file configuration.
+     * @return void
      */
-    public function render_file($file ) {
+    public function render_file( $file ) {
         $uri = '/' . trim( get_query_var( $file['query'] ), '/' );
 
         $route = $this->getContainer()->get( RouteInterface::class );

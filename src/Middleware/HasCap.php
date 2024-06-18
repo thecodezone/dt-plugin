@@ -7,7 +7,6 @@ use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\Psr\Http\Server\MiddlewareInterface;
 use DT\Plugin\Psr\Http\Server\RequestHandlerInterface;
-use GuzzleHttp\Psr7\Response;
 use function DT\Plugin\redirect;
 
 /**

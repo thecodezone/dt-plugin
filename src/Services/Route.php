@@ -2,7 +2,7 @@
 
 namespace DT\Plugin\Services;
 
-use DT\Plugin\Factories\ServerRequestFactory;
+use DT\Plugin\CodeZone\DT\Factories\ServerRequestFactory;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
@@ -146,6 +146,11 @@ class Route implements RouteInterface
      */
     public function dispatch(): self {
         $this->response = $this->router->dispatch( $this->request );
+        return $this;
+    }
+
+    public function at_template() {
+        $this->renderer->at_template();
         return $this;
     }
 

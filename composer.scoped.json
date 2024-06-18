@@ -5,9 +5,11 @@
     "guzzlehttp/psr7": "^2.6",
     "kucrut/vite-for-wp": "^0.8.0",
     "league/plates": "^3.5",
-    "league/config": "^1.2"
+    "league/config": "^1.2",
+    "codezone/wp-support": "dev-main"
   },
   "config": {
-    "autoloader-suffix": "dt_plugin_scoped"
+    "autoloader-suffix": "dt_plugin_scoped",
+    "minimum-stability": "dev"
   }
 }
