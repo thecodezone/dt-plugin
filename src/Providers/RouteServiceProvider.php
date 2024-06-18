@@ -2,21 +2,12 @@
 
 namespace DT\Plugin\Providers;
 
-use DT\Plugin\CodeZone\DT\Factories\ServerRequestFactory;
-use DT\Plugin\GuzzleHttp\Psr7\Response;
-use DT\Plugin\League\Config\Configuration;
-use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
+use DT\Plugin\CodeZone\WPSupport\Router\RouteInterface;
+use \DT\Plugin\CodeZone\WPSupport\Router\RouteServiceProvider as RouteProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
-use DT\Plugin\League\Route\Http\Exception\NotFoundException;
-use DT\Plugin\League\Route\Strategy\ApplicationStrategy;
-use DT\Plugin\League\Route\Strategy\StrategyInterface;
-use DT\Plugin\Psr\Http\Message\ResponseInterface;
-use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
-use DT\Plugin\League\Route\Router;
-use DT\Plugin\Services\ResponseRenderer;
-use DT\Plugin\Services\ResponseRendererInterface;
-use DT\Plugin\Services\Route;
-use DT\Plugin\Services\RouteInterface;
+use \DT\Plugin\League\Container\Exception\NotFoundException;
+use function DT\Plugin\config;
+use function DT\Plugin\namespace_string;
 use function DT\Plugin\routes_path;
 
 /**
@@ -28,7 +19,7 @@ use function DT\Plugin\routes_path;
  * @see https://php-fig.org/psr/psr-7/
  * @package Your\Namespace
  */
-class RouteServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface {
+class RouteServiceProvider extends RouteProvider implements BootableServiceProviderInterface {
 
     /**
      * Represents the configuration settings for the application.
@@ -38,22 +29,13 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
     protected $config;
 
     /**
-     * The configuration instance.
-     *
-     * @var Configuration
-     */
-    public function __construct( Configuration $config )
-    {
-        $this->config = $config;
-    }
-
-    /**
      * Retrieves the files configuration from the config object.
      *
      * @return array The array containing file configuration.
      */
-    protected function files() {
-        return $this->config->get( 'routes.files' );
+    protected function files(): array
+    {
+        return config()->get( 'routes.files' );
     }
 
     /**
@@ -61,167 +43,35 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
      *
      * @return array The array containing the middleware configuration.
      */
-    protected function middleware() {
-        return $this->config->get( 'routes.middleware' );
-    }
-
-    /**
-     * Provide the services that this provider is responsible for.
-     *
-     * @param string $id The ID to check.
-     * @return bool Returns true if the given ID is provided, false otherwise.
-     */
-    public function provides( string $id ): bool
+    protected function middleware(): array
     {
-        $services = [
-            ServerRequestInterface::class,
-            ResponseInterface::class,
-            StrategyInterface::class,
-            RouteInterface::class,
-            ResponseRendererInterface::class,
-            Router::class
-        ];
-
-        return in_array( $id, $services );
+        return config()->get( 'routes.middleware' );
     }
 
     /**
-     * Eager load the router and load any routes
-     */
-    public function boot(): void
-    {
-        $this->getContainer()->add( StrategyInterface::class, function () {
-            return new ApplicationStrategy();
-        } )->addMethodCall( 'setContainer', [ $this->getContainer() ] );
-
-        $this->getContainer()->add( Router::class, function () {
-            return new Router();
-        } )->addMethodCall( 'setStrategy', [ $this->getContainer()->get( StrategyInterface::class ) ] );
-
-        $this->getContainer()->add( ServerRequestInterface::class, function () {
-            return ServerRequestFactory::from_globals();
-        } );
-
-        $this->getContainer()->add( ResponseInterface::class, function () {
-            return new Response();
-        } );
-
-        $this->getContainer()->add( Router::class, function () {
-            return $this->getContainer()->get( Router::class );
-        } );
-
-        $this->getContainer()->add( ResponseRendererInterface::class, function () {
-            return new ResponseRenderer();
-        } );
-
-        $this->getContainer()->add( RouteInterface::class, function () {
-            return new Route(
-                $this->getContainer()->get( Router::class ),
-                $this->getContainer()->get( ServerRequestInterface::class ),
-                $this->getContainer()->get( ResponseRendererInterface::class )
-            );
-        } );
-
-        foreach ( $this->get_files() as $file ) {
-            $this->process_file( $file );
-        }
-    }
-
-    /**
-     * Lazy load any services
-     */
-    public function register(): void
-    {
-        // We're using the boot method to eager load the router and middleware
-    }
-
-    /**
-     * Get the file configuration.
+     * Retrieves the renderer for the response.
      *
-     * This method retrieves the files configuration by applying the 'route_files'
-     * filter to the class property $files.
+     * This method applies the 'response_renderer' filter to the namespace string and returns the result.
+     * If no renderer is found, it returns false.
      *
-     * @return array The file configuration.
+     * @return mixed The renderer for the response. Returns false if no renderer is found.
      */
-    protected function get_files() {
-        return $this->files();
+    public function get_renderer() {
+        return apply_filters( namespace_string( 'response_renderer' ), false );
     }
 
     /**
-     * Extracts and processes file information.
+     * Routes a file with the given file configuration.
      *
-     * @param array $file The array containing file configuration.
-     * @return void
-     * @throws \Exception When the file does not exist or the file rewrite requires a query variable.
-     */
-    public function process_file( $file ) {
-        $defaults = [
-            'file' => '',
-            'rewrite' => '',
-            'query' => '',
-        ];
-        $file = array_merge( $defaults, $file );
-        $file_path = routes_path( $file['file'] );
-
-        if ( ! file_exists( $file_path ) ) {
-            if ( WP_DEBUG ) {
-                throw new \Exception( esc_html( "The file $file_path does not exist." ) );
-            } else {
-                return;
-            }
-        }
-
-        add_filter( 'query_vars', function ( $vars ) use ( $file ) {
-            return $this->file_query_vars( $file, $vars );
-        }, 9, 1 );
-
-        add_action( 'template_redirect', function () use ( $file ) {
-            $this->file_template_redirect( $file );
-        }, 1, 0 );
-    }
-
-    /**
-     * Add file query variable to the list of query variables.
-     *
-     * @param array $file The file configuration.
-     * @param array $vars The list of query variables.
-     * @return array The updated list of query variables.
-     */
-    public function file_query_vars( $file, $vars )
-    {
-        $vars[] = $file['query'];
-
-        return $vars;
-    }
-
-
-    /**
-     * Performs the template redirect for the specified file.
-     *
+     * @param RouteInterface $route The route to be used for routing the file.
      * @param array $file The array containing file configuration.
      * @return void
      */
-    public function file_template_redirect( $file ): void {
-        if ( ! get_query_var( $file['query'] ) ) {
-            return;
-        }
+    protected function route_file(RouteInterface $route, $file ) {
 
-        $this->render_file( $file );
-    }
-
-    /**
-     * Renders the specified file.
-     *
-     * @param array $file The array containing file configuration.
-     * @return void
-     */
-    public function render_file( $file ) {
-        $uri = '/' . trim( get_query_var( $file['query'] ), '/' );
-
-        $route = $this->getContainer()->get( RouteInterface::class );
-        $route->with_middleware( $this->middleware() )
-            ->from_route_file( $file['file'] )
-            ->as_uri( $uri );
+        $route->middleware( $this->middleware() )
+            ->file( routes_path( $file['file'] ) )
+            ->uri( $this->file_uri( $file ) );
 
         if ( WP_DEBUG ) {
             $route->dispatch();
@@ -233,6 +83,10 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
             }
         }
 
-        $route->render();
+        if ( $renderer = $this->get_renderer() ) {
+            $route->render_with( $renderer );
+        }
+
+        $route->resolve();
     }
 }

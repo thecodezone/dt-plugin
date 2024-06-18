@@ -2,6 +2,7 @@
 
 namespace DT\Plugin\Services;
 
+use DT\Plugin\CodeZone\WPSupport\Router\RouteInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\container;
 use function DT\Plugin\namespace_string;

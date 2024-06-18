@@ -2,8 +2,8 @@
 
 namespace DT\Plugin;
 
-use DT\Plugin\CodeZone\DT\Factories\ContainerFactory;
-use DT\Plugin\CodeZone\DT\Factories\ResponseFactory;
+use DT\Plugin\CodeZone\WPSupport\Container\ContainerFactory;
+use DT\Plugin\CodeZone\WPSupport\Router\ResponseFactory;
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
@@ -12,8 +12,8 @@ use DT\Plugin\Nette\Schema\Processor;
 use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
-use DT\Plugin\Services\OptionsInterface;
-use DT\Plugin\Services\RewritesInterface;
+use DT\Plugin\CodeZone\WPSupport\Options\OptionsInterface;
+use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
 use DT\Plugin\Services\Template;
 use DT_Magic_URL;
 use DT_Posts;
@@ -100,7 +100,7 @@ function has_route_rewrite(): bool {
 }
 
 /**
- * Retrieves the URL of a file or directory within the Bible Plugin directory.
+ * Retrieves the URL of a file or directory within the plugin directory.
  *
  * @param string $path Optional. The path of the file or directory within the Bible Plugin directory. Defaults to empty string.
  *
@@ -212,7 +212,7 @@ function views_path( string $path = '' ): string {
  * @param string $view Optional. The name of the view to render. Defaults to an empty string.
  * @param array $args Optional. An array of data to pass to the view. Defaults to an empty array.
  *
- * @return string|Engine The rendered view if a view name is provided, otherwise the view engine object.
+ * @return ResponseInterface The rendered view if a view name is provided, otherwise the view engine object.
  * @see https://platesphp.com/v3/
  */
 function view( string $view = "", array $args = [] ) {
@@ -241,9 +241,9 @@ function template( string $template = "", array $args = [] ) {
 		return $service;
 	}
 
-	return response(
-        $service->render( $template, $args )
-    );
+    $service->register();
+
+	return view( $template, $args );
 }
 
 /**
@@ -366,7 +366,7 @@ function transaction( $callback ) {
  */
 function namespace_string( string $string ): string
 {
-	return Plugin::class . '\\' . $string;
+	return config('plugin.text_domain') . '.' .  $string;
 }
 
 /**

@@ -2,14 +2,16 @@
 
 namespace DT\Plugin\Services;
 
-use function DT\Plugin\view;
+use DT\Plugin\CodeZone\WPSupport\Router\ResponseRendererInterface;
+use DT\Plugin\Psr\Http\Message\ResponseInterface;
+use function DT\Plugin\namespace_string;
 
 /**
  * Class Template
  *
  * This class represents a template in a web application. It is responsible for rendering the template and managing assets.
  */
-class Template
+class Template implements ResponseRendererInterface
 {
 
     /**
@@ -20,6 +22,24 @@ class Template
     public function __construct( Assets $assets )
     {
         $this->assets = $assets;
+    }
+
+    /**
+     * Render the template
+     *
+     * @param $template
+     * @param $data
+     *
+     * @return mixed
+     */
+    public function register() {
+        add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
+        add_action( 'dt_blank_head', [ $this, 'header' ] );
+        add_action( 'dt_blank_footer', [ $this, 'footer' ] );
+        add_filter( namespace_string('response_renderer'), function() {
+            return $this;
+        } );
+        $this->assets->enqueue();
     }
 
     /**
@@ -37,22 +57,24 @@ class Template
 		wp_head();
 	}
 
-	/**
-	 * Render the template
-	 *
-	 * @param $template
-	 * @param $data
-	 *
-	 * @return mixed
-	 */
-	public function render( $template, $data ) {
-		add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
-		add_action( 'dt_blank_head', [ $this, 'header' ] );
-		add_action( 'dt_blank_footer', [ $this, 'footer' ] );
-        $this->assets->enqueue();
+    /**
+     * Renders a template and stops the script execution.
+     *
+     * @param ResponseInterface $response The response object to render.
+     *
+     * @return void
+     */
+    public function render( ResponseInterface $response ) {
+        add_action( 'dt_blank_body', function () use ( $response ) {
+            // phpcs:ignore
+            echo $response->getBody();
+        }, 11 );
 
-		return view()->render( $template, $data );
-	}
+        $path = get_theme_file_path( 'template-blank.php' );
+        include $path;
+
+        die();
+    }
 
 	/**
 	 * Render the footer

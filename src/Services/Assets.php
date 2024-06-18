@@ -1,11 +1,11 @@
 <?php
 
 namespace DT\Plugin\Services;
-
+use DT\Plugin\CodeZone\WPSupport\Assets\AssetQueue;
+use DT\Plugin\CodeZone\WPSupport\Assets\AssetQueueInterface;
 use function DT\Plugin\config;
 use function DT\Plugin\Kucrut\Vite\enqueue_asset;
 use function DT\Plugin\namespace_string;
-use const DT\Plugin\Kucrut\Vite\VITE_CLIENT_SCRIPT_HANDLE;
 
 /**
  * Class Assets
@@ -40,9 +40,6 @@ class Assets
     /**
      * Register method to add necessary actions for enqueueing scripts
      *
-     * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts/
-     * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts/
-     * @see https://developer.wordpress.org/reference/hooks/wp_print_styles/
      * @return void
      */
     public function enqueue() {

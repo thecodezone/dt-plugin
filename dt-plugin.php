@@ -23,7 +23,7 @@ use DT\Plugin\Plugin;
 use DT\Plugin\Providers\ConfigServiceProvider;
 use DT\Plugin\Providers\PluginServiceProvider;
 use DT\Plugin\Providers\RewritesServiceProvider;
-use DT\Plugin\Factories\ContainerFactory;
+use DT\Plugin\CodeZone\WPSupport\Container\ContainerFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

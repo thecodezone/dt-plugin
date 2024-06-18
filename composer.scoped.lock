@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thecodezone/wp-support.git",
-                "reference": "fe1a6d4a881d8a040cba5e68d8e42e649ddc086a"
+                "reference": "7e0ff93eb6d455b81cb09cee60326b00b71d1680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/fe1a6d4a881d8a040cba5e68d8e42e649ddc086a",
-                "reference": "fe1a6d4a881d8a040cba5e68d8e42e649ddc086a",
+                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/7e0ff93eb6d455b81cb09cee60326b00b71d1680",
+                "reference": "7e0ff93eb6d455b81cb09cee60326b00b71d1680",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 "issues": "https://github.com/thecodezone/wp-support/issues",
                 "source": "https://github.com/thecodezone/wp-support/tree/main"
             },
-            "time": "2024-06-18T15:21:49+00:00"
+            "time": "2024-06-18T18:07:35+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

@@ -17,7 +17,7 @@ use DT\Plugin\Controllers\UserController;
 use DT\Plugin\League\Route\RouteGroup;
 use DT\Plugin\League\Route\Router;
 use DT\Plugin\Middleware\LoggedIn;
-use DT\Plugin\Middleware\HasCap;
+use DT\Plugin\CodeZone\WPSupport\Middleware\HasCap;
 
 $r->group( '', function ( RouteGroup $r ) {
     $r->get( '/hello', [ HelloController::class, 'show' ] );

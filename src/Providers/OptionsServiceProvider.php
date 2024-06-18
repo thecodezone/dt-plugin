@@ -4,8 +4,8 @@ namespace DT\Plugin\Providers;
 
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
-use DT\Plugin\Services\Options;
-use DT\Plugin\Services\OptionsInterface;
+use DT\Plugin\CodeZone\WPSupport\Options\Options;
+use DT\Plugin\CodeZone\WPSupport\Options\OptionsInterface;
 use function DT\Plugin\config;
 
 /**

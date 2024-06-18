@@ -4,8 +4,8 @@ namespace DT\Plugin\Providers;
 
 use DT\Plugin\League\Config\Configuration;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
-use DT\Plugin\Services\Rewrites;
-use DT\Plugin\Services\RewritesInterface;
+use DT\Plugin\CodeZone\WPSupport\Rewrites\Rewrites;
+use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
 
 /**
  * Class RewritesServiceProvider

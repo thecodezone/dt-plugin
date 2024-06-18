@@ -4,7 +4,7 @@ namespace DT\Plugin;
 
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Config\Configuration;
-use DT\Plugin\Services\Rewrites;
+use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
 
 /**
  * Class Plugin
@@ -14,14 +14,14 @@ use DT\Plugin\Services\Rewrites;
 class Plugin {
 	public Container $container;
     public Configuration $config;
-    public Rewrites $rewrites;
+    public RewritesInterface $rewrites;
 
 	/**
 	 * Plugin constructor.
 	 *
 	 * @param Container $container
 	 */
-	public function __construct( Container $container, Rewrites $rewrites, Configuration $config ) {
+	public function __construct( Container $container, RewritesInterface $rewrites, Configuration $config ) {
         $this->config = $config;
         $this->container = $container;
         $this->rewrites = $rewrites;

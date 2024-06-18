@@ -3,8 +3,8 @@
 namespace DT\Plugin\Providers;
 
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
-use DT\Plugin\Services\AssetQueue;
-use DT\Plugin\Services\AssetQueueInterface;
+use DT\Plugin\CodeZone\WPSupport\Assets\AssetQueue;
+use DT\Plugin\CodeZone\WPSupport\Assets\AssetQueueInterface;
 use DT\Plugin\Services\Assets;
 use function DT\Plugin\config;
 use function DT\Plugin\namespace_string;
