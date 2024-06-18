@@ -2,14 +2,12 @@
 
 namespace DT\Plugin;
 
-use DT\Plugin\CodeZone\WPSupport\Config\DotArray;
+use DT\Plugin\DevCoder\Validator\Validation;
 use DT\Plugin\CodeZone\WPSupport\Container\ContainerFactory;
 use DT\Plugin\CodeZone\WPSupport\Router\ResponseFactory;
 use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
-use DT\Plugin\Nette\Schema\Expect;
-use DT\Plugin\Nette\Schema\Processor;
 use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
@@ -72,19 +70,24 @@ function config($key = null ) {
  *
  * @throws ValidationException If an error occurs during validation.
  *
- * @see https://doc.nette.org/en/schema for more information on validation and schemas.
+ * @see https://github.com/devcoder-xyz/php-validator for more information on validation and schemas.
  */
 function validate( $schema, $data )
 {
-    $processor = container()->get( Processor::class );
+    $validator = new Validation( $schema );
 
-    try {
-        return $processor->process(  Expect::structure( $schema ), $data );
-    } catch ( ValidationException $e ) {
-        return $e->getMessage();
+    $result = false;
+    if ( is_array( $schema ) ) {
+        $result = $validator->validateArray( $data );
+    } elseif ( $schema instanceof ServerRequestInterface ) {
+        $result = $validator->validate( $data );
     }
 
-    return true;
+    if ( ! $result ) {
+        return $validator->getErrors();
+    }
+
+    return $result;
 }
 /**
  * Checks if the route rewrite rule exists in the WordPress rewrite rules.

@@ -2,7 +2,7 @@
 
 namespace DT\Plugin\Controllers\Admin;
 
-use DT\Plugin\Nette\Schema\Expect;
+use DevCoder\Validator\Assert\NotNull;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\get_plugin_option;
 use function DT\Plugin\set_plugin_option;
@@ -10,7 +10,6 @@ use function DT\Plugin\transaction;
 use function DT\Plugin\redirect;
 use function DT\Plugin\validate;
 use function DT\Plugin\view;
-use function DT\Plugin\set_option;
 
 
 class GeneralSettingsController {
@@ -41,12 +40,12 @@ class GeneralSettingsController {
         $body = $request->getParsedBody();
 
         $validation_result = validate( [
-            'option' => Expect::string()->required(),
-            'another_option' => Expect::string()->required(),
+            'option' => [NotNull::class],
+            'another_option' => [NotNull::class],
         ], $body );
 
         if ( $validation_result !== true ) {
-            $error = $validation_result;
+            $error = "Validation errors: " . implode(", ", $validation_result);
         }
 
 		if ( ! $error ) {
