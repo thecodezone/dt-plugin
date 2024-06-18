@@ -1,13 +1,12 @@
 <?php
 
 /**
- * @var $config DT\Plugin\League\Config\Configuration
+ * @var $config DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface
  */
 
 use function DT\Plugin\routes_path;
 
 $config->merge( [
-    'dir' => routes_path(),
     'routes' => [
         'rewrites' => [
             '^dt/plugin/api/?$' => 'index.php?dt-plugin-api=/',
@@ -26,9 +25,9 @@ $config->merge( [
                 'query' => 'dt-plugin',
                 'path' => 'dt/plugin',
             ]
-        ]
-    ],
-    'middleware' => [
-        // CustomMiddleware::class,
+        ],
+        'middleware' => [
+            // CustomMiddleware::class,
+        ],
     ],
 ] );

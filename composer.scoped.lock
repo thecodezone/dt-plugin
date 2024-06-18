@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24774addb61e37d3cb91a58a043a2e00",
+    "content-hash": "8ed9c4e7bf21890da8ac0222a959e9d9",
     "packages": [
         {
             "name": "codezone/wp-support",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thecodezone/wp-support.git",
-                "reference": "08aaf77f4ce220e1a782e46132c73f7a85c04414"
+                "reference": "5c80947f5f87dd393ec67d27f5675a359973039c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/08aaf77f4ce220e1a782e46132c73f7a85c04414",
-                "reference": "08aaf77f4ce220e1a782e46132c73f7a85c04414",
+                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/5c80947f5f87dd393ec67d27f5675a359973039c",
+                "reference": "5c80947f5f87dd393ec67d27f5675a359973039c",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,7 @@
                 "issues": "https://github.com/thecodezone/wp-support/issues",
                 "source": "https://github.com/thecodezone/wp-support/tree/main"
             },
-            "time": "2024-06-18T18:40:11+00:00"
+            "time": "2024-06-18T20:52:07+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1250,7 +1250,12 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "7.4.27"
+    },
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "7.4.27"
+    },
     "plugin-api-version": "2.2.0"
 }

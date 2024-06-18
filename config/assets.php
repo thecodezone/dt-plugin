@@ -1,10 +1,9 @@
 <?php
 
 /**
- * @var $config DT\Plugin\League\Config\Configuration
+ * @var $config DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface
  */
 
-use DT\Plugin\Nette\Schema\Expect;
 use function DT\Plugin\config;
 use function DT\Plugin\plugin_path;
 use function DT\Plugin\route_url;

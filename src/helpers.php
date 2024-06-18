@@ -2,9 +2,10 @@
 
 namespace DT\Plugin;
 
+use DT\Plugin\CodeZone\WPSupport\Config\DotArray;
 use DT\Plugin\CodeZone\WPSupport\Container\ContainerFactory;
 use DT\Plugin\CodeZone\WPSupport\Router\ResponseFactory;
-use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
 use DT\Plugin\Nette\Schema\Expect;
@@ -43,16 +44,16 @@ function container(): Container {
 }
 
 /**
- * Returns the Configuration object or the value of a specific configuration key.
- * If a key is provided, the method will return the value of the specified key from the Configuration object.
- * If no key is provided, the method will return the Configuration object itself.
+ * Returns the ConfigInterface object or the value of a specific configuration key.
+ * If a key is provided, the method will return the value of the specified key from the ConfigInterface object.
+ * If no key is provided, the method will return the ConfigInterface object itself.
  *
  * @param string|null $key (optional) The configuration key to retrieve the value for.
- * @return mixed The Configuration object if no key is provided, or the value of the specified configuration key.
+ * @return mixed The ConfigInterface object if no key is provided, or the value of the specified configuration key.
  * @see https://config.thephpleague.com/
  */
 function config($key = null ) {
-    $service = container()->get( Configuration::class );
+    $service = container()->get( ConfigInterface::class );
 
     if ( $key ) {
         return $service->get( $key );

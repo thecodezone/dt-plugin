@@ -2,7 +2,7 @@
 
 namespace DT\Plugin\Providers;
 
-use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\League\Container\Exception\NotFoundException;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\Plugin;
@@ -40,7 +40,7 @@ class PluginServiceProvider extends AbstractServiceProvider {
             return new Plugin(
                 $this->getContainer(),
                 $this->getContainer()->get( RewritesInterface::class ),
-                $this->getContainer()->get( Configuration::class )
+                $this->getContainer()->get( ConfigInterface::class )
             );
         } );
     }

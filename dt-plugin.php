@@ -18,7 +18,7 @@
  *          https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\Plugin;
 use DT\Plugin\Providers\ConfigServiceProvider;
 use DT\Plugin\Providers\PluginServiceProvider;
@@ -56,7 +56,7 @@ $plugin = $container->get( Plugin::class );
 $plugin->init();
 
 // Add the rest of the service providers
-$config = $container->get(Configuration::class);
+$config = $container->get(ConfigInterface::class);
 foreach ($config->get('services.providers') as $provider ) {
     $container->addServiceProvider(  $container->get( $provider ) );
 }

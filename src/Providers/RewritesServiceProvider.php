@@ -2,7 +2,7 @@
 
 namespace DT\Plugin\Providers;
 
-use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\League\Container\ServiceProvider\AbstractServiceProvider;
 use DT\Plugin\CodeZone\WPSupport\Rewrites\Rewrites;
 use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
@@ -23,7 +23,7 @@ class RewritesServiceProvider extends AbstractServiceProvider {
      *
      * @return void
      */
-    public function __construct( Configuration $config )
+    public function __construct( ConfigInterface $config )
     {
         $this->config = $config;
     }

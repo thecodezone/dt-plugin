@@ -1,15 +1,19 @@
 {
   "require": {
+    "php": "7.4.27",
     "league/route": "^5.1",
     "league/container": "4.*",
     "guzzlehttp/psr7": "^2.6",
     "kucrut/vite-for-wp": "^0.8.0",
     "league/plates": "^3.5",
-    "league/config": "^1.2",
     "codezone/wp-support": "dev-main"
   },
   "config": {
     "autoloader-suffix": "dt_plugin_scoped",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "platform": {
+      "php": "7.4.27"
+    },
+    "platform-check": false
   }
 }

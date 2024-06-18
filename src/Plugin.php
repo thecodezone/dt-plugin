@@ -3,7 +3,7 @@
 namespace DT\Plugin;
 
 use DT\Plugin\League\Container\Container;
-use DT\Plugin\League\Config\Configuration;
+use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
 
 /**
@@ -13,7 +13,7 @@ use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
  */
 class Plugin {
 	public Container $container;
-    public Configuration $config;
+    public ConfigInterface $config;
     public RewritesInterface $rewrites;
 
 	/**
@@ -21,7 +21,7 @@ class Plugin {
 	 *
 	 * @param Container $container
 	 */
-	public function __construct( Container $container, RewritesInterface $rewrites, Configuration $config ) {
+	public function __construct( Container $container, RewritesInterface $rewrites, ConfigInterface $config ) {
         $this->config = $config;
         $this->container = $container;
         $this->rewrites = $rewrites;
