@@ -6,6 +6,7 @@ use DT\Plugin\CodeZone\WPSupport\Router\RouteInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\container;
 use function DT\Plugin\namespace_string;
+use function DT\Plugin\routes_path;
 
 /**
  * Class settings
@@ -76,9 +77,8 @@ class Settings {
         $query = $request->getQueryParams();
         $tab = $query['tab'] ?? 'general';
         $route = container()->get( RouteInterface::class );
-        $route->as_uri( "/" . $tab )
-            ->from_route_file( 'settings.php' )
-            ->dispatch()
-            ->render();
+        $route->uri( "/" . $tab )
+            ->file( routes_path( 'settings.php' ) )
+            ->resolve();
     }
 }
