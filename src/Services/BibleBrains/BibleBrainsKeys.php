@@ -138,7 +138,7 @@ class BibleBrainsKeys {
      * @return string The instructions for the field.
      */
     public function field_instructions() {
-        return $this->is_field_readonly() ? __( 'This field is read-only because the key is via the TBP_BIBLE_BRAINS_KEYS constant.', 'tbp' ) : '';
+        return $this->is_field_readonly() ? __( 'This field is read-only because the key is set via the TBP_BIBLE_BRAINS_KEYS constant in your wp-config.php file.', 'tbp' ) : '';
     }
 
     /**
