@@ -9,7 +9,7 @@ on:
       - '*'
 
 env:
-  TBP_BIBLE_BRAINS_KEYS: ${{ secrets.BIBLE_BRAINS_KEYS }}
+  TBP_BIBLE_BRAINS_KEYS: ${{ secrets.BIBLE_BRAINS_KEY }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
