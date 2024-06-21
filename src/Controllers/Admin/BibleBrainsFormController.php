@@ -34,7 +34,6 @@ class BibleBrainsFormController {
 	public function show(Request $request, Response $response, Bibles $bible_service, MediaTypes $media_type_service, BibleBrainsKeys $keys ) {
 		$tab              = "bible";
 
-        delete_plugin_option( 'bible_brains_key' );
         $bible_brains_key = $keys->field_value();
         $bible_brains_key_instructions = $keys->field_instructions();
         $bible_brains_key_readonly = $keys->has_override();
