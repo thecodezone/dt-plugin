@@ -20,7 +20,7 @@ use CodeZone\Bible\Controllers\ScriptureController;
 use CodeZone\Bible\Controllers\LanguageController;
 use CodeZone\Bible\Controllers\BibleMediaTypesController;
 use CodeZone\Bible\Controllers\BibleController;
-use CodeZone\Bible\Plugin;
+use function CodeZone\Bible\admin_path;
 
 $r->group('api', function ( Routes $r ) {
     $r->get( '/languages', [ LanguageController::class, 'index' ] );
@@ -44,7 +44,7 @@ $r->group('api', function ( Routes $r ) {
 
 $r->condition('backend', function ( Routes $r ) {
     $r->middleware('can:manage_options', function ( Routes $r ) {
-        $r->group('wp-admin/admin.php', function ( Routes $r ) {
+        $r->group( admin_path('admin.php'), function ( Routes $r ) {
             $r->get('?page=bible-plugin', [
                 BibleBrainsFormController::class,
                 'show',
