@@ -130,7 +130,7 @@ class Plugin {
 	}
 
 	/**
-	 * Perform template redirect based on query var 'dt_autolink'.
+	 * Perform template redirect
 	 *
 	 * @return void
 	 * @throws \Exception

@@ -6,19 +6,18 @@ use CodeZone\Bible\CodeZone\Router;
 use CodeZone\Bible\CodeZone\Router\Middleware\DispatchController;
 use CodeZone\Bible\CodeZone\Router\Middleware\HandleErrors;
 use CodeZone\Bible\CodeZone\Router\Middleware\HandleRedirects;
-use CodeZone\Bible\CodeZone\Router\Middleware\Middleware;
 use CodeZone\Bible\CodeZone\Router\Middleware\Render;
 use CodeZone\Bible\CodeZone\Router\Middleware\Route;
 use CodeZone\Bible\CodeZone\Router\Middleware\Stack;
 use CodeZone\Bible\CodeZone\Router\Middleware\UserHasCap;
 use CodeZone\Bible\CodeZone\Router\Middleware\SetHeaders;
-use CodeZone\Bible\Middleware\BibleBrains;
-use CodeZone\Bible\Middleware\BibleBrainsKeySet;
+use CodeZone\Bible\Middleware\CacheControl;
 use CodeZone\Bible\Middleware\DeprecationErrorsMiddleware;
 use CodeZone\Bible\Middleware\LoggedIn;
 use CodeZone\Bible\Middleware\LoggedOut;
 use CodeZone\Bible\Middleware\MagicLink;
 use CodeZone\Bible\Middleware\Nonce;
+use CodeZone\Bible\Middleware\SetBypassCookie;
 use Exception;
 use function CodeZone\Bible\namespace_string;
 
@@ -35,6 +34,8 @@ class MiddlewareServiceProvider extends ServiceProvider {
 		DispatchController::class,
 		HandleErrors::class,
 		HandleRedirects::class,
+        SetBypassCookie::class,
+        CacheControl::class,
 		SetHeaders::class,
 		Render::class,
 	];
