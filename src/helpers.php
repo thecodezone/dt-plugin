@@ -71,7 +71,7 @@ function has_route_rewrite(): bool {
  */
 function route_url( string $path ): string {
 	if ( ! has_route_rewrite() ) {
-		return site_url() . '?' . http_build_query( [ 'bible-plugin' => $path ] );
+		return rtrim(site_url(), '/') . '/?' . http_build_query( [ 'bible-plugin' => $path ] );
 	} else {
 		return '/' . plugin()::$home_route . '/' . ltrim( $path, '/' );
 	}
