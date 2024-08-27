@@ -77,8 +77,7 @@ class Settings {
         $query = $request->getQueryParams();
         $tab = $query['tab'] ?? 'general';
         $route = container()->get( RouteInterface::class );
-        $route->uri( "/" . $tab )
-            ->file( routes_path( 'settings.php' ) )
+        $route->file( routes_path( 'settings.php' ) )
             ->resolve();
     }
 }

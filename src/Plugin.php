@@ -16,11 +16,13 @@ class Plugin {
     public ConfigInterface $config;
     public RewritesInterface $rewrites;
 
-	/**
-	 * Plugin constructor.
-	 *
-	 * @param Container $container
-	 */
+    /**
+     * Plugin constructor.
+     *
+     * @param Container $container
+     * @param RewritesInterface $rewrites
+     * @param ConfigInterface $config
+     */
 	public function __construct( Container $container, RewritesInterface $rewrites, ConfigInterface $config ) {
         $this->config = $config;
         $this->container = $container;
@@ -34,13 +36,13 @@ class Plugin {
 	public function init() {
         register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
         register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
-        add_action( 'init', [ $this, 'wp_init' ]);
+        add_action( 'init', [ $this, 'wp_init' ] );
         add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
         add_action( 'activated_plugin', [ $this, 'activation_hook' ] );
 
-        foreach ($this->config->get('services.providers') as $provider ) {
-            $this->container->addServiceProvider(  $this->container->get( $provider ) );
+        foreach ( $this->config->get( 'services.providers' ) as $provider ) {
+            $this->container->addServiceProvider( $this->container->get( $provider ) );
         }
 	}
 
@@ -52,7 +54,7 @@ class Plugin {
      *
      * @return string The directory path of the plugin.
      */
-    static function dir_path() {
+    public static function dir_path() {
         return '/' . trim( str_replace( '/src', '', plugin_dir_path( __FILE__ ) ), '/' );
     }
 
@@ -124,7 +126,7 @@ class Plugin {
 
 		$wp_theme = wp_get_theme();
 
-		return version_compare(  $wp_theme->version, $this->config->get('plugin.dt_version'), '>=' );
+		return version_compare( $wp_theme->version, $this->config->get( 'plugin.dt_version' ), '>=' );
 	}
 
 	/**

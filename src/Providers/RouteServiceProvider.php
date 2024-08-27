@@ -3,9 +3,9 @@
 namespace DT\Plugin\Providers;
 
 use DT\Plugin\CodeZone\WPSupport\Router\RouteInterface;
-use \DT\Plugin\CodeZone\WPSupport\Router\RouteServiceProvider as RouteProvider;
+use DT\Plugin\CodeZone\WPSupport\Router\RouteServiceProvider as RouteProvider;
 use DT\Plugin\League\Container\ServiceProvider\BootableServiceProviderInterface;
-use \DT\Plugin\League\Container\Exception\NotFoundException;
+use DT\Plugin\League\Container\Exception\NotFoundException;
 use function DT\Plugin\config;
 use function DT\Plugin\namespace_string;
 use function DT\Plugin\routes_path;
@@ -67,11 +67,11 @@ class RouteServiceProvider extends RouteProvider implements BootableServiceProvi
      * @param array $file The array containing file configuration.
      * @return void
      */
-    protected function route_file(RouteInterface $route, $file ) {
+    protected function route_file( RouteInterface $route, $file ) {
 
         $route->middleware( $this->middleware() )
             ->file( routes_path( $file['file'] ) )
-            ->uri( $this->file_uri( $file ) );
+            ->rewrite( $file['query'] );
 
         if ( WP_DEBUG ) {
             $route->dispatch();
@@ -83,7 +83,9 @@ class RouteServiceProvider extends RouteProvider implements BootableServiceProvi
             }
         }
 
-        if ( $renderer = $this->get_renderer() ) {
+        $renderer = $this->get_renderer();
+
+        if ( $renderer ) {
             $route->render_with( $renderer );
         }
 

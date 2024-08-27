@@ -21,6 +21,7 @@ use DT\Plugin\CodeZone\WPSupport\Middleware\HasCap;
 
 $r->group( '', function ( RouteGroup $r ) {
     $r->get( '/hello', [ HelloController::class, 'show' ] );
+    $r->get( '/users/me', [ UserController::class, 'current' ] );
     $r->get( '/users/{id}', [ UserController::class, 'show' ] )
         ->middleware( new HasCap( 'dt_list_users' ) );
 } )->middleware( new LoggedIn() );

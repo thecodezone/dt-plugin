@@ -47,16 +47,16 @@ $boot_providers = [
     PluginServiceProvider::class
 ];
 
-foreach ($boot_providers as $provider ) {
-    $container->addServiceProvider(  $container->get( $provider ) );
+foreach ( $boot_providers as $provider ) {
+    $container->addServiceProvider( $container->get( $provider ) );
 }
 
 // Init the plugin
-$plugin = $container->get( Plugin::class );
-$plugin->init();
+$dt_plugin = $container->get( Plugin::class );
+$dt_plugin->init();
 
 // Add the rest of the service providers
-$config = $container->get(ConfigInterface::class);
-foreach ($config->get('services.providers') as $provider ) {
-    $container->addServiceProvider(  $container->get( $provider ) );
+$config = $container->get( ConfigInterface::class );
+foreach ( $config->get( 'services.providers' ) as $provider ) {
+    $container->addServiceProvider( $container->get( $provider ) );
 }

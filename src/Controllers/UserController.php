@@ -18,6 +18,10 @@ class UserController {
         $id = sanitize_text_field( wp_unslash( $params['id'] ) );
         $user = get_user_by( 'id', $id );
 
+        if ( ! $user ) {
+            return response( 'User not found', 404 );
+        }
+
         return response([
             'user' => $user
         ]);
@@ -29,6 +33,11 @@ class UserController {
 	 * @param ServerRequestInterface $request The request object.
 	 */
     public function current( ServerRequestInterface $request ) {
+
+        if ( ! is_user_logged_in() ) {
+            return response( 'User not logged in', 401 );
+        }
+
         return template( 'user', [
             'user' => wp_get_current_user()
         ] );
@@ -43,6 +52,10 @@ class UserController {
     public function show( ServerRequestInterface $request, $params ) {
         $id  = sanitize_text_field( wp_unslash( $params['id'] ) );
 		$user = get_user_by( 'id', $id );
+
+        if ( ! $user ) {
+            return response( 'User not found', 404 );
+        }
 
 		return template( 'user', [
 			'user' => $user
