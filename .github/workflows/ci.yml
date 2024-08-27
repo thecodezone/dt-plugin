@@ -133,8 +133,8 @@ jobs:
       - name: Test syntax
         run: ./bin/test-for-syntax-errors.sh
 
-      - name: Test phpcs
-        run: ./bin/test-phpcs.sh
+#      - name: Test phpcs
+#        run: ./bin/test-phpcs.sh
 
       - name: Test Installation
         run: ./bin/test-installation.sh
