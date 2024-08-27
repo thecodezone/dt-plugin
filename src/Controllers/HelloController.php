@@ -21,9 +21,9 @@ class HelloController {
 	 * @param ServerRequestInterface $request The request object.
 	 */
 	public function data( ServerRequestInterface $request ) {
-        return response( [
-            'message' => 'Hello, World!'
-        ] );
+		return response( [
+			'message' => 'Hello, World!'
+		] );
 	}
 
 	/**

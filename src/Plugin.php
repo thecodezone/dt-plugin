@@ -13,20 +13,20 @@ use DT\Plugin\CodeZone\WPSupport\Rewrites\RewritesInterface;
  */
 class Plugin {
 	public Container $container;
-    public ConfigInterface $config;
-    public RewritesInterface $rewrites;
+	public ConfigInterface $config;
+	public RewritesInterface $rewrites;
 
-    /**
-     * Plugin constructor.
-     *
-     * @param Container $container
-     * @param RewritesInterface $rewrites
-     * @param ConfigInterface $config
-     */
+	/**
+	 * Plugin constructor.
+	 *
+	 * @param Container $container
+	 * @param RewritesInterface $rewrites
+	 * @param ConfigInterface $config
+	 */
 	public function __construct( Container $container, RewritesInterface $rewrites, ConfigInterface $config ) {
-        $this->config = $config;
-        $this->container = $container;
-        $this->rewrites = $rewrites;
+		$this->config = $config;
+		$this->container = $container;
+		$this->rewrites = $rewrites;
 	}
 
 	/**
@@ -34,65 +34,65 @@ class Plugin {
 	 * @return void
 	 */
 	public function init() {
-        register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
-        register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
-        add_action( 'init', [ $this, 'wp_init' ] );
-        add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
+		register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
+		register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
+		add_action( 'init', [ $this, 'wp_init' ] );
+		add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
 		add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
-        add_action( 'activated_plugin', [ $this, 'activation_hook' ] );
+		add_action( 'activated_plugin', [ $this, 'activation_hook' ] );
 
-        foreach ( $this->config->get( 'services.providers' ) as $provider ) {
-            $this->container->addServiceProvider( $this->container->get( $provider ) );
-        }
+		foreach ( $this->config->get( 'services.providers' ) as $provider ) {
+			$this->container->addServiceProvider( $this->container->get( $provider ) );
+		}
 	}
 
 
-    /**
-     * Get the directory path of the plugin.
-     *
-     * This method returns the absolute directory path of the plugin, excluding the "/src" directory
-     *
-     * @return string The directory path of the plugin.
-     */
-    public static function dir_path() {
-        return '/' . trim( str_replace( '/src', '', plugin_dir_path( __FILE__ ) ), '/' );
-    }
+	/**
+	 * Get the directory path of the plugin.
+	 *
+	 * This method returns the absolute directory path of the plugin, excluding the "/src" directory
+	 *
+	 * @return string The directory path of the plugin.
+	 */
+	public static function dir_path() {
+		return '/' . trim( str_replace( '/src', '', plugin_dir_path( __FILE__ ) ), '/' );
+	}
 
-    /**
-     * Initialize the WordPress plugin.
-     *
-     * This method is a hook that is triggered when WordPress is initialized.
-     * It calls the `sync()` method to synchronize any necessary changes
-     * or updates with the plugin's rewrites. This can include adding, modifying
-     * or removing rewrite rules.
-     *
-     * @return void
-     */
-    public function wp_init() {
-        $this->rewrites->sync();
-    }
+	/**
+	 * Initialize the WordPress plugin.
+	 *
+	 * This method is a hook that is triggered when WordPress is initialized.
+	 * It calls the `sync()` method to synchronize any necessary changes
+	 * or updates with the plugin's rewrites. This can include adding, modifying
+	 * or removing rewrite rules.
+	 *
+	 * @return void
+	 */
+	public function wp_init() {
+		$this->rewrites->sync();
+	}
 
-    /**
-     * Activate the plugin.
-     *
-     * This method is a hook that is triggered when the plugin is activated.
-     * It calls the `rewrite_rules()` method to add or modify rewrite rules
-     * and then flushes the rewrite rules to update them.
-     */
-    public function activation_hook() {
-        $this->rewrites->refresh();
-    }
+	/**
+	 * Activate the plugin.
+	 *
+	 * This method is a hook that is triggered when the plugin is activated.
+	 * It calls the `rewrite_rules()` method to add or modify rewrite rules
+	 * and then flushes the rewrite rules to update them.
+	 */
+	public function activation_hook() {
+		$this->rewrites->refresh();
+	}
 
-    /**
-     * Deactivate the plugin.
-     *
-     * This method is a hook that is triggered when the plugin is deactivated.
-     * It calls the `rewrite_rules()` method to add or modify rewrite rules
-     * and then flushes the rewrite rules to update them.
-     */
-    public function deactivation_hook() {
-        $this->rewrites->flush();
-    }
+	/**
+	 * Deactivate the plugin.
+	 *
+	 * This method is a hook that is triggered when the plugin is deactivated.
+	 * It calls the `rewrite_rules()` method to add or modify rewrite rules
+	 * and then flushes the rewrite rules to update them.
+	 */
+	public function deactivation_hook() {
+		$this->rewrites->flush();
+	}
 
 	/**
 	 * Runs after wp_loaded

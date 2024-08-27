@@ -49,7 +49,7 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 
 		$this->meta_key  = $this->root . '_' . $this->type . '_magic_key';
 
-        $this->init();
+		$this->init();
 
 		parent::__construct();
 
@@ -86,9 +86,9 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 		return self::$_instance;
 	}
 
-    public function whitelist_current_route() {
-        $this->type_actions[ $this->get_current_action() ] = 'Current Route';
-    }
+	public function whitelist_current_route() {
+		$this->type_actions[ $this->get_current_action() ] = 'Current Route';
+	}
 
 	public function get_current_action() {
 		$current_action = request()->getUri()->getPath();
@@ -102,39 +102,39 @@ abstract class MagicLink extends DT_Magic_Url_Base {
 		// Extend this function to add custom endpoints
 	}
 
-    /**
-     * Renders the response for the current request using the router and renderer actions
-     *
-     * @return void
-     */
-    public function render() {
-        $route = container()->get( RouteInterface::class );
-        $route->routes( function ( Router $r ) {
-                $this->routes( $r );
-            } );
+	/**
+	 * Renders the response for the current request using the router and renderer actions
+	 *
+	 * @return void
+	 */
+	public function render() {
+		$route = container()->get( RouteInterface::class );
+		$route->routes( function ( Router $r ) {
+				$this->routes( $r );
+		} );
 
-        if ( WP_DEBUG ) {
-            $route->dispatch();
-        } else {
-            try {
-                $route->dispatch();
-            } catch ( NotFoundException $e ) {
-                wp_die( esc_html( $e->getMessage() ), esc_attr( $e->getCode() ) );
-            }
-        }
+		if ( WP_DEBUG ) {
+			$route->dispatch();
+		} else {
+			try {
+				$route->dispatch();
+			} catch ( NotFoundException $e ) {
+				wp_die( esc_html( $e->getMessage() ), esc_attr( $e->getCode() ) );
+			}
+		}
 
-        $renderer =  apply_filters( namespace_string( 'response_renderer' ), false );
+		$renderer = apply_filters( namespace_string( 'response_renderer' ), false );
 
-        if ( $renderer ) {
-            $route->render_with( $renderer );
-        }
+		if ( $renderer ) {
+			$route->render_with( $renderer );
+		}
 
-        $route->resolve();
-    }
+		$route->resolve();
+	}
 
-    public function print_scripts() {
-    }
+	public function print_scripts() {
+	}
 
-    public function print_styles() {
-    }
+	public function print_styles() {
+	}
 }

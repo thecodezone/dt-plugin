@@ -12,12 +12,12 @@ use function DT\Plugin\route_url;
 
 class LoggedOut implements MiddlewareInterface {
 
-    public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface
-    {
-        if ( is_user_logged_in() ) {
-            return redirect( route_url() );
-        }
+	public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface
+	{
+		if ( is_user_logged_in() ) {
+			return redirect( route_url() );
+		}
 
-        return $handler->handle( $request );
-    }
+		return $handler->handle( $request );
+	}
 }

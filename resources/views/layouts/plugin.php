@@ -1,5 +1,5 @@
 <header>
-    <h1><?php esc_html_e( 'Plugin', 'dt_plugin' ); ?></h1>
+	<h1><?php esc_html_e( 'Plugin', 'dt_plugin' ); ?></h1>
 </header>
 
 <div>
@@ -7,9 +7,9 @@
 </div>
 
 <footer>
-    <p>
+	<p>
 		<?php esc_html_e( 'Copyright ', 'dt_plugin' ); ?>
 
 		<?php echo $this->e( gmdate( 'Y' ) ); ?>
-    </p>
+	</p>
 </footer>

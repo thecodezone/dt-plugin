@@ -21,27 +21,27 @@ class ExampleMagicLink extends MagicLink {
 	public $show_bulk_send = false;
 	public $show_app_tile = false;
 
-    /**
-     * Do any action before the magic link is bootstrapped
-     * @return void
-     */
-    public function init() {
-        $this->whitelist_current_route();
-    }
-
-
-    /**
-     * Do any action needed before the magic link is constructed.
-     * @return void
-     */
-	public function boot() {
-        $this->render();
+	/**
+	 * Do any action before the magic link is bootstrapped
+	 * @return void
+	 */
+	public function init() {
+		$this->whitelist_current_route();
 	}
 
-    public function routes( Router $r ) {
-        $r->group( 'example/link/{key}', function ( RouteGroup $r ) {
-            $r->get( '/', [ HomeController::class, 'show' ] );
-            $r->get( '/subpage', [ SubpageController::class, 'show' ] );
-        } );
-    }
+
+	/**
+	 * Do any action needed before the magic link is constructed.
+	 * @return void
+	 */
+	public function boot() {
+		$this->render();
+	}
+
+	public function routes( Router $r ) {
+		$r->group( 'example/link/{key}', function ( RouteGroup $r ) {
+			$r->get( '/', [ HomeController::class, 'show' ] );
+			$r->get( '/subpage', [ SubpageController::class, 'show' ] );
+		} );
+	}
 }

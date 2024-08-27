@@ -28,7 +28,7 @@ use Exception;
  * @return Plugin The singleton instance of the Plugin class.
  */
 function plugin(): Plugin {
-    return container()->get( Plugin::class );
+	return container()->get( Plugin::class );
 }
 
 /**
@@ -38,7 +38,7 @@ function plugin(): Plugin {
  * @see https://container.thephpleague.com/4.x/
  */
 function container(): Container {
-    return ContainerFactory::singleton();
+	return ContainerFactory::singleton();
 }
 
 /**
@@ -50,14 +50,14 @@ function container(): Container {
  * @return mixed The ConfigInterface object if no key is provided, or the value of the specified configuration key.
  * @see https://config.thephpleague.com/
  */
-function config($key = null ) {
-    $service = container()->get( ConfigInterface::class );
+function config( $key = null ) {
+	$service = container()->get( ConfigInterface::class );
 
-    if ( $key ) {
-        return $service->get( $key );
-    }
+	if ( $key ) {
+		return $service->get( $key );
+	}
 
-    return $service;
+	return $service;
 }
 
 /**
@@ -74,20 +74,20 @@ function config($key = null ) {
  */
 function validate( $schema, $data )
 {
-    $validator = new Validation( $schema );
+	$validator = new Validation( $schema );
 
-    $result = false;
-    if ( is_array( $schema ) ) {
-        $result = $validator->validateArray( $data );
-    } elseif ( $schema instanceof ServerRequestInterface ) {
-        $result = $validator->validate( $data );
-    }
+	$result = false;
+	if ( is_array( $schema ) ) {
+		$result = $validator->validateArray( $data );
+	} elseif ( $schema instanceof ServerRequestInterface ) {
+		$result = $validator->validate( $data );
+	}
 
-    if ( ! $result ) {
-        return $validator->getErrors();
-    }
+	if ( ! $result ) {
+		return $validator->getErrors();
+	}
 
-    return $result;
+	return $result;
 }
 /**
  * Checks if the route rewrite rule exists in the WordPress rewrite rules.
@@ -97,10 +97,10 @@ function validate( $schema, $data )
  *
  */
 function has_route_rewrite(): bool {
-    $rewrites = container()->get( RewritesInterface::class );
-    return $rewrites->exists(
-        array_key_first(config()->get( 'routes.rewrites' ))
-    );
+	$rewrites = container()->get( RewritesInterface::class );
+	return $rewrites->exists(
+		array_key_first( config()->get( 'routes.rewrites' ) )
+	);
 }
 
 /**
@@ -121,14 +121,14 @@ function plugin_url( string $path = '' ): string {
  * @param string $key The key of the route file in the configuration. Defaults to 'web'.
  * @return string The URL for the given route.
  */
-function route_url(string $path = '', $key = 'web' ): string {
-    $file = config()->get( 'routes.files' )[ $key ];
+function route_url( string $path = '', $key = 'web' ): string {
+	$file = config()->get( 'routes.files' )[ $key ];
 
-    if ( ! has_route_rewrite() ) {
-        return site_url() . '?' . http_build_query( [ $file['query'] => $path ] );
-    } else {
-        return site_url( $file['path'] . '/' . ltrim( $path, '/' ) );
-    }
+	if ( ! has_route_rewrite() ) {
+		return site_url() . '?' . http_build_query( [ $file['query'] => $path ] );
+	} else {
+		return site_url( $file['path'] . '/' . ltrim( $path, '/' ) );
+	}
 }
 
 /**
@@ -141,7 +141,7 @@ function route_url(string $path = '', $key = 'web' ): string {
  * @see route_url()
  */
 function api_url( string $path ) {
-    return route_url( $path, 'api' );
+	return route_url( $path, 'api' );
 }
 
 /**
@@ -151,7 +151,7 @@ function api_url( string $path ) {
  * @return string The generated URL.
  */
 function web_url( string $path ) {
-    return route_url( $path, 'web' );
+	return route_url( $path, 'web' );
 }
 
 /**
@@ -226,8 +226,8 @@ function view( string $view = "", array $args = [] ) {
 	}
 
 	return response(
-        $engine->render( $view, $args )
-    );
+		$engine->render( $view, $args )
+	);
 }
 
 /**
@@ -245,7 +245,7 @@ function template( string $template = "", array $args = [] ) {
 		return $service;
 	}
 
-    $service->register();
+	$service->register();
 
 	return view( $template, $args );
 }
@@ -282,7 +282,7 @@ function redirect( string $url, int $status = 302, $headers = [] ): ResponseInte
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function response( $content, $status = 200, $headers = [] ) {
-    return ResponseFactory::make( $content, $status, $headers );
+	return ResponseFactory::make( $content, $status, $headers );
 }
 
 /**
@@ -315,9 +315,9 @@ function set_option( string $option_name, mixed $value ): bool {
  */
 function get_plugin_option( $option, $default = null, $required = false )
 {
-    $options = container()->get( OptionsInterface::class );
+	$options = container()->get( OptionsInterface::class );
 
-    return $options->get( $option, $default, $required );
+	return $options->get( $option, $default, $required );
 }
 
 /**
@@ -330,9 +330,9 @@ function get_plugin_option( $option, $default = null, $required = false )
  */
 function set_plugin_option( $option, $value ): bool
 {
-    $options = container()->get( OptionsInterface::class );
+	$options = container()->get( OptionsInterface::class );
 
-    return $options->set( $option, $value );
+	return $options->set( $option, $value );
 }
 
 /**
@@ -370,7 +370,7 @@ function transaction( $callback ) {
  */
 function namespace_string( string $string ): string
 {
-	return config('plugin.text_domain') . '.' .  $string;
+	return config( 'plugin.text_domain' ) . '.' .  $string;
 }
 
 /**

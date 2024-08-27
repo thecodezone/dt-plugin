@@ -14,35 +14,35 @@ use function DT\Plugin\namespace_string;
 class Template implements ResponseRendererInterface
 {
 
-    /**
-     * @var Assets
-     */
-    protected $assets;
+	/**
+	 * @var Assets
+	 */
+	protected $assets;
 
-    public function __construct( Assets $assets )
-    {
-        $this->assets = $assets;
-    }
+	public function __construct( Assets $assets )
+	{
+		$this->assets = $assets;
+	}
 
-    /**
-     * Render the template
-     *
-     * @param $template
-     * @param $data
-     *
-     * @return mixed
-     */
-    public function register() {
-        add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
-        add_action( 'dt_blank_head', [ $this, 'header' ] );
-        add_action( 'dt_blank_footer', [ $this, 'footer' ] );
-        add_filter( namespace_string('response_renderer'), function() {
-            return $this;
-        } );
-        $this->assets->enqueue();
-    }
+	/**
+	 * Render the template
+	 *
+	 * @param $template
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
+	public function register() {
+		add_filter( 'dt_blank_access', [ $this, 'blank_access' ] );
+		add_action( 'dt_blank_head', [ $this, 'header' ] );
+		add_action( 'dt_blank_footer', [ $this, 'footer' ] );
+		add_filter( namespace_string( 'response_renderer' ), function () {
+			return $this;
+		} );
+		$this->assets->enqueue();
+	}
 
-    /**
+	/**
 	 * Allow access to blank template
 	 * @return bool
 	 */
@@ -50,31 +50,31 @@ class Template implements ResponseRendererInterface
 		return true;
 	}
 
-    /**
-     * Render the header
-     */
+	/**
+	 * Render the header
+	 */
 	public function header() {
 		wp_head();
 	}
 
-    /**
-     * Renders a template and stops the script execution.
-     *
-     * @param ResponseInterface $response The response object to render.
-     *
-     * @return void
-     */
-    public function render( ResponseInterface $response ) {
-        add_action( 'dt_blank_body', function () use ( $response ) {
+	/**
+	 * Renders a template and stops the script execution.
+	 *
+	 * @param ResponseInterface $response The response object to render.
+	 *
+	 * @return void
+	 */
+	public function render( ResponseInterface $response ) {
+		add_action( 'dt_blank_body', function () use ( $response ) {
             // phpcs:ignore
             echo $response->getBody();
-        }, 11 );
+		}, 11 );
 
-        $path = get_theme_file_path( 'template-blank.php' );
-        include $path;
+		$path = get_theme_file_path( 'template-blank.php' );
+		include $path;
 
-        die();
-    }
+		die();
+	}
 
 	/**
 	 * Render the footer

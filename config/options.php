@@ -5,10 +5,10 @@
  */
 
 $config->merge( [
-    'options' => [
-        'prefix' => 'dt_plugin',
-        'defaults' => [
-            //'widget_name' => 'Widget,
-        ],
-    ]
+	'options' => [
+		'prefix' => 'dt_plugin',
+		'defaults' => [
+			//'widget_name' => 'Widget,
+		],
+	]
 ] );

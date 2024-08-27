@@ -65,7 +65,6 @@
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.ContentAfterBrace"/>
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.SpaceBeforeBrace"/>
         <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative"/>
-        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.BodyOnNextLineCASE"/>
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent"/>
         <exclude name="PSR2.ControlStructures.SwitchDeclaration.SpaceBeforeColonCASE"/>
