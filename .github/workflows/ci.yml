@@ -72,6 +72,14 @@ jobs:
           name: dt-plugin.zip
           path: dt-plugin.zip
 
+      - name: Google Chat Notification
+        uses: Co-qn/google-chat-notification@releases/v1
+        with:
+          name: CI Build
+          url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+          status: ${{ job.status }}
+        if: failure()
+
   tests:
     needs: build
     runs-on: ubuntu-latest
@@ -150,7 +158,7 @@ jobs:
       - name: Google Chat Notification
         uses: Co-qn/google-chat-notification@releases/v1
         with:
-          name: Release
+          name: CI
           url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
           status: ${{ job.status }}
         if: always()
