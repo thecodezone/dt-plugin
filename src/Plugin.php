@@ -34,8 +34,8 @@ class Plugin {
      * @return void
      */
     public function init() {
-        register_activation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'activation_hook' ] );
-        register_deactivation_hook( plugin_path( 'bible-plugin.php' ), [ $this, 'deactivation_hook' ] );
+        register_activation_hook( plugin_path( 'dt-plugin.php' ), [ $this, 'activation_hook' ] );
+        register_deactivation_hook( plugin_path( 'dt-plugin.php' ), [ $this, 'deactivation_hook' ] );
         add_action( 'init', [ $this, 'wp_init' ] );
         add_action( 'wp_loaded', [ $this, 'wp_loaded' ], 20 );
         add_filter( 'dt_plugins', [ $this, 'dt_plugins' ] );
