@@ -221,7 +221,7 @@ function template( string $template = "", array $args = [] ) {
 
 /**
  * Returns the Request object.
- * @see https://docs.laminas.dev/laminas-diactoros/
+ * @see https://github.com/guzzle/psr7
  */
 function request(): ServerRequestInterface {
     return container()->get( ServerRequestInterface::class );
@@ -234,7 +234,7 @@ function request(): ServerRequestInterface {
  * @param int $status Optional. The status code for the redirect response. Default is 302.
  *
  * @return ResponseInterface A new RedirectResponse instance.
- * @see https://docs.laminas.dev/laminas-diactoros/
+ * @see https://github.com/guzzle/psr7
  */
 function redirect( string $url, int $status = 302, $headers = [] ): ResponseInterface {
     return ResponseFactory::redirect( $url, $status, $headers );
@@ -248,7 +248,7 @@ function redirect( string $url, int $status = 302, $headers = [] ): ResponseInte
  * @param array $headers Optional. Additional headers to include in the response. Default is an empty array.
  *
  * @return ResponseInterface The response object with the specified content, status, and headers.
- * @see https://docs.laminas.dev/laminas-diactoros/
+ * @see https://github.com/guzzle/psr7
  */
 function response( $content, $status = 200, $headers = [] ) {
     return ResponseFactory::make( $content, $status, $headers );
