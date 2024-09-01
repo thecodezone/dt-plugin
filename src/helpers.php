@@ -266,7 +266,7 @@ function response( $content, $status = 200, $headers = [] ) {
  * @see https://developer.wordpress.org/reference/functions/add_option/
  * @see https://developer.wordpress.org/reference/functions/update_option/
  */
-function set_option( string $option_name, mixed $value ): bool {
+function set_option( string $option_name, $value ): bool {
     if ( get_option( $option_name ) === false ) {
         return add_option( $option_name, $value );
     } else {

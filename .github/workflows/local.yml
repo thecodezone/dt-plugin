@@ -35,9 +35,6 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --ignore-platform-reqs
 
-      - name: Test phpcs
-        run: ./bin/test-phpcs.sh
-
       - name: Zip vendor directories
         run: |
           tar -czf vendor.tar.gz vendor
@@ -120,6 +117,9 @@ jobs:
 
       - name: Test syntax
         run: ./bin/test-for-syntax-errors.sh
+
+      - name: Test phpcs
+        run: ./bin/test-phpcs.sh
 
       - name: Test Installation
         run: ./bin/test-installation.sh
