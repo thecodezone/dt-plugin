@@ -176,6 +176,5 @@ install_theme() {
 install_wp
 install_test_suite
 install_theme
-install_plugin
 install_db
 
