@@ -26,7 +26,7 @@ use DT\Plugin\Providers\RewritesServiceProvider;
 use DT\Plugin\CodeZone\WPSupport\Container\ContainerFactory;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 
 //Load dependencies
@@ -42,13 +42,13 @@ require_once plugin_dir_path( __FILE__ ) . 'src/helpers.php';
 
 // Add any services providers required to init the plugin
 $boot_providers = [
-	ConfigServiceProvider::class,
-	RewritesServiceProvider::class,
-	PluginServiceProvider::class
+    ConfigServiceProvider::class,
+    RewritesServiceProvider::class,
+    PluginServiceProvider::class
 ];
 
 foreach ( $boot_providers as $provider ) {
-	$container->addServiceProvider( $container->get( $provider ) );
+    $container->addServiceProvider( $container->get( $provider ) );
 }
 
 // Init the plugin
@@ -58,5 +58,5 @@ $dt_plugin->init();
 // Add the rest of the service providers
 $config = $container->get( ConfigInterface::class );
 foreach ( $config->get( 'services.providers' ) as $provider ) {
-	$container->addServiceProvider( $container->get( $provider ) );
+    $container->addServiceProvider( $container->get( $provider ) );
 }

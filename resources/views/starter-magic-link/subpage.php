@@ -1,13 +1,17 @@
 <?php
-$this->layout( 'layouts/plugin' );
+/**
+ * @var string $home_url
+ */
 ?>
 
+<?php $this->layout( 'layouts/plugin' ); ?>
+
 <div>
-	<b>
-		Subpage
-	</b>
+    <b>
+        Subpage
+    </b>
 </div>
 
 <a href="<?php echo esc_attr( $home_url ); ?>">
-	<?php esc_html_e( 'Visit home', 'dt-plugin' ); ?>
+    <?php esc_html_e( 'Visit home', 'dt-plugin' ); ?>
 </a>

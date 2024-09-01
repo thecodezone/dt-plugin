@@ -2,79 +2,61 @@
 
 namespace DT\Plugin\Controllers\Admin;
 
-use DevCoder\Validator\Assert\NotNull;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use function DT\Plugin\get_plugin_option;
 use function DT\Plugin\set_plugin_option;
 use function DT\Plugin\transaction;
 use function DT\Plugin\redirect;
-use function DT\Plugin\validate;
 use function DT\Plugin\view;
-
-
 class GeneralSettingsController {
-	/**
-	 * Show the general settings admin tab
-	 */
-	public function show( ServerRequestInterface $request ) {
-		$tab        = "general";
-		$link       = 'settings.php?page=dt_plugin&tab=';
-		$page_title = "DT Plugin Settings";
 
-        $body = $request->getParsedBody();
+    /**
+    * Show the general settings admin tab
+    */
+    public function show( ServerRequestInterface $request ) {
+        $tab        = "general";
+        $link       = 'settings.php?page=dt_plugin&tab=';
+        $page_title = "DT Plugin Settings";
 
-        $option = get_plugin_option( 'option' );
-        $another_option = get_plugin_option( 'another_option' );
+		$body = $request->getParsedBody();
 
-		return view( "settings/general", compact( 'tab', 'link', 'page_title', 'option', 'another_option' ) );
-	}
+		$option = get_plugin_option( 'option' );
+		$another_option = get_plugin_option( 'another_option' );
 
-	/**
-	 * Submit the general settings admin tab form
-     * @throws \Exception
-	 */
-	public function update( ServerRequestInterface $request ) {
-		$error = false;
+        return view( "settings/general", compact( 'tab', 'link', 'page_title', 'option', 'another_option' ) );
+    }
 
-		// Add the settings update code here
-        $body = $request->getParsedBody();
+    /**
+     * Submit the general settings admin tab form
+	 * @throws \Exception
+     */
+    public function update( ServerRequestInterface $request ) {
+        $error = false;
 
-        $validation_result = validate( [
-            'option' => [NotNull::class],
-            'another_option' => [NotNull::class],
-        ], $body );
+        // Add the settings update code here
+		$body = $request->getParsedBody();
 
-        if ( $validation_result !== true ) {
-            $error = "Validation errors: " . implode(", ", $validation_result);
+        $option = sanitize_text_field( wp_unslash( $body['option'] ) );
+        $another_option = sanitize_text_field( wp_unslash( $body['another_option'] ) );
+
+        try {
+            $result = transaction( function () use ( $option, $another_option ) {
+                set_plugin_option( 'option', $option );
+                set_plugin_option( 'another_option', $another_option );
+            } );
+
+            if ( $result !== true ) {
+                $error = __( 'The form could not be submitted.', 'dt-plugin' );
+            }
+        } catch ( \Exception $e ) {
+            $error = $e->getMessage();
         }
 
-		if ( ! $error ) {
 
-            $option = sanitize_text_field( wp_unslash( $body['option'] ) );
-            $another_option = sanitize_text_field( wp_unslash( $body['another_option'] ) );
+        if ( $error ) {
+            return redirect( admin_url( 'settings.php?page=dt_plugin&tab=general&' . http_build_query( [ 'error'  => $error ] ) ) );
+        }
 
-            try {
-                $result = transaction( function () use ( $option, $another_option ) {
-                    set_plugin_option( 'option', $option );
-                    set_plugin_option( 'another_option', $another_option );
-                } );
-
-                if ( $result !== true ) {
-                    $error = __( 'The form could not be submitted.', 'dt-plugin' );
-                }
-            } catch ( \Exception $e ) {
-                $error = $e->getMessage();
-            }
-		}
-
-
-		if ( $error ) {
-			return redirect( admin_url( 'settings.php?page=dt_plugin&tab=general&' . http_build_query( [
-                    'error'  => $error
-                ] )
-			) );
-		}
-
-		return redirect( admin_url( 'settings.php?page=dt_plugin&tab=general&updated=true' ) );
-	}
+        return redirect( admin_url( 'settings.php?page=dt_plugin&tab=general&updated=true' ) );
+    }
 }

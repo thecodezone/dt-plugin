@@ -9,12 +9,12 @@ use DT\Plugin\Psr\Http\Server\RequestHandlerInterface;
 use function DT\Plugin\redirect;
 
 class LoggedIn implements MiddlewareInterface {
-	public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface
-	{
-		if ( ! is_user_logged_in() ) {
-			return redirect( wp_login_url( $request->getUri() ) );
-		}
+    public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface
+    {
+        if ( ! is_user_logged_in() ) {
+            return redirect( wp_login_url( $request->getUri() ) );
+        }
 
-		return $handler->handle( $request );
-	}
+        return $handler->handle( $request );
+    }
 }

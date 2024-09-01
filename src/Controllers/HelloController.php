@@ -15,26 +15,26 @@ use function DT\Plugin\response;
  * @package Controllers
  */
 class HelloController {
-	/**
-	 * Sets the content of the response to a success message and returns the response object.
-	 *
-	 * @param ServerRequestInterface $request The request object.
-	 */
-	public function data( ServerRequestInterface $request ) {
-		return response( [
-			'message' => 'Hello, World!'
-		] );
-	}
+    /**
+     * Sets the content of the response to a success message and returns the response object.
+     *
+     * @param ServerRequestInterface $request The request object.
+     */
+    public function data( ServerRequestInterface $request ) {
+        return response( [
+            'message' => 'Hello, World!'
+        ] );
+    }
 
-	/**
-	 * You can also return a string or array from a controller method,
-	 * it will be automatically added to the response object.
-	 *
-	 * @param ServerRequestInterface $request The request object.
-	 */
-	public function show( ServerRequestInterface $request ) {
-		return template( 'hello', [
-			'name' => 'Friend'
-		] );
-	}
+    /**
+     * You can also return a string or array from a controller method,
+     * it will be automatically added to the response object.
+     *
+     * @param ServerRequestInterface $request The request object.
+     */
+    public function show( ServerRequestInterface $request ) {
+        return template( 'hello', [
+            'name' => 'Friend'
+        ] );
+    }
 }

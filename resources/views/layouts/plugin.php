@@ -1,15 +1,17 @@
 <header>
-	<h1><?php esc_html_e( 'Plugin', 'dt_plugin' ); ?></h1>
+    <h1><?php esc_html_e( 'Plugin', 'dt_plugin' ); ?></h1>
 </header>
 
 <div>
-	<?php echo $this->section( 'content' ) ?>
+    <?php //@phpcs:ignore
+    echo $this->section( 'content' )
+    ?>
 </div>
 
 <footer>
-	<p>
-		<?php esc_html_e( 'Copyright ', 'dt_plugin' ); ?>
+    <p>
+        <?php esc_html_e( 'Copyright ', 'dt_plugin' ); ?>
 
-		<?php echo $this->e( gmdate( 'Y' ) ); ?>
-	</p>
+        <?php echo esc_html( gmdate( 'Y' ) ); ?>
+    </p>
 </footer>

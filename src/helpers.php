@@ -2,13 +2,11 @@
 
 namespace DT\Plugin;
 
-use DT\Plugin\DevCoder\Validator\Validation;
 use DT\Plugin\CodeZone\WPSupport\Container\ContainerFactory;
 use DT\Plugin\CodeZone\WPSupport\Router\ResponseFactory;
 use DT\Plugin\CodeZone\WPSupport\Config\ConfigInterface;
 use DT\Plugin\League\Container\Container;
 use DT\Plugin\League\Plates\Engine;
-use DT\Plugin\Nette\Schema\ValidationException;
 use DT\Plugin\Psr\Http\Message\ResponseInterface;
 use DT\Plugin\Psr\Http\Message\ServerRequestInterface;
 use DT\Plugin\CodeZone\WPSupport\Options\OptionsInterface;
@@ -28,7 +26,7 @@ use Exception;
  * @return Plugin The singleton instance of the Plugin class.
  */
 function plugin(): Plugin {
-	return container()->get( Plugin::class );
+    return container()->get( Plugin::class );
 }
 
 /**
@@ -38,7 +36,7 @@ function plugin(): Plugin {
  * @see https://container.thephpleague.com/4.x/
  */
 function container(): Container {
-	return ContainerFactory::singleton();
+    return ContainerFactory::singleton();
 }
 
 /**
@@ -51,44 +49,15 @@ function container(): Container {
  * @see https://config.thephpleague.com/
  */
 function config( $key = null ) {
-	$service = container()->get( ConfigInterface::class );
+    $service = container()->get( ConfigInterface::class );
 
-	if ( $key ) {
-		return $service->get( $key );
-	}
+    if ( $key ) {
+        return $service->get( $key );
+    }
 
-	return $service;
+    return $service;
 }
 
-/**
- * Validates the given data against the provided schema.
- *
- * @param mixed $schema The schema to validate against.
- * @param mixed $data The data to be validated.
- *
- * @return mixed True if the data is valid, or an error message if validation fails.
- *
- * @throws ValidationException If an error occurs during validation.
- *
- * @see https://github.com/devcoder-xyz/php-validator for more information on validation and schemas.
- */
-function validate( $schema, $data )
-{
-	$validator = new Validation( $schema );
-
-	$result = false;
-	if ( is_array( $schema ) ) {
-		$result = $validator->validateArray( $data );
-	} elseif ( $schema instanceof ServerRequestInterface ) {
-		$result = $validator->validate( $data );
-	}
-
-	if ( ! $result ) {
-		return $validator->getErrors();
-	}
-
-	return $result;
-}
 /**
  * Checks if the route rewrite rule exists in the WordPress rewrite rules.
  *
@@ -97,10 +66,10 @@ function validate( $schema, $data )
  *
  */
 function has_route_rewrite(): bool {
-	$rewrites = container()->get( RewritesInterface::class );
-	return $rewrites->exists(
-		array_key_first( config()->get( 'routes.rewrites' ) )
-	);
+    $rewrites = container()->get( RewritesInterface::class );
+    return $rewrites->exists(
+        array_key_first( config()->get( 'routes.rewrites' ) )
+    );
 }
 
 /**
@@ -111,7 +80,7 @@ function has_route_rewrite(): bool {
  * @return string The URL of the specified file or directory within the Bible Plugin directory.
  */
 function plugin_url( string $path = '' ): string {
-	return plugins_url( 'dt-plugin' ) . '/' . ltrim( $path, '/' );
+    return plugins_url( 'dt-plugin' ) . '/' . ltrim( $path, '/' );
 }
 
 /**
@@ -122,13 +91,13 @@ function plugin_url( string $path = '' ): string {
  * @return string The URL for the given route.
  */
 function route_url( string $path = '', $key = 'web' ): string {
-	$file = config()->get( 'routes.files' )[ $key ];
+    $file = config()->get( 'routes.files' )[ $key ];
 
-	if ( ! has_route_rewrite() ) {
-		return site_url() . '?' . http_build_query( [ $file['query'] => $path ] );
-	} else {
-		return site_url( $file['path'] . '/' . ltrim( $path, '/' ) );
-	}
+    if ( ! has_route_rewrite() ) {
+        return site_url() . '?' . http_build_query( [ $file['query'] => $path ] );
+    } else {
+        return site_url( $file['path'] . '/' . ltrim( $path, '/' ) );
+    }
 }
 
 /**
@@ -141,7 +110,7 @@ function route_url( string $path = '', $key = 'web' ): string {
  * @see route_url()
  */
 function api_url( string $path ) {
-	return route_url( $path, 'api' );
+    return route_url( $path, 'api' );
 }
 
 /**
@@ -151,7 +120,7 @@ function api_url( string $path ) {
  * @return string The generated URL.
  */
 function web_url( string $path ) {
-	return route_url( $path, 'web' );
+    return route_url( $path, 'web' );
 }
 
 /**
@@ -163,7 +132,7 @@ function web_url( string $path ) {
  * @see https://developer.wordpress.org/reference/functions/plugin_dir_path/
  */
 function plugin_path( string $path = '' ): string {
-	return Plugin::dir_path() . '/' . trim( $path, '/' );
+    return Plugin::dir_path() . '/' . trim( $path, '/' );
 }
 
 /**
@@ -174,7 +143,7 @@ function plugin_path( string $path = '' ): string {
  * @return string The complete source path.
  */
 function src_path( string $path = '' ): string {
-	return plugin_path( config( 'plugin.paths.src' ) . '/' . $path );
+    return plugin_path( config( 'plugin.paths.src' ) . '/' . $path );
 }
 
 /**
@@ -185,7 +154,7 @@ function src_path( string $path = '' ): string {
  * @return string The path to the resources directory, with optional subdirectory appended.
  */
 function resources_path( string $path = '' ): string {
-	return plugin_path( config( 'plugin.paths.resources' ) . '/' . $path );
+    return plugin_path( config( 'plugin.paths.resources' ) . '/' . $path );
 }
 
 /**
@@ -196,7 +165,7 @@ function resources_path( string $path = '' ): string {
  * @return string The path to the routes directory, with optional subdirectory appended.
  */
 function routes_path( string $path = '' ): string {
-	return plugin_path( config( 'plugin.paths.routes' ) . '/' . $path );
+    return plugin_path( config( 'plugin.paths.routes' ) . '/' . $path );
 }
 
 /**
@@ -207,7 +176,7 @@ function routes_path( string $path = '' ): string {
  * @return string The path to the views directory, with optional subdirectory appended.
  */
 function views_path( string $path = '' ): string {
-	return plugin_path( config( 'plugin.paths.views' ) . '/' . $path );
+    return plugin_path( config( 'plugin.paths.views' ) . '/' . $path );
 }
 
 /**
@@ -220,14 +189,14 @@ function views_path( string $path = '' ): string {
  * @see https://platesphp.com/v3/
  */
 function view( string $view = "", array $args = [] ) {
-	$engine = container()->get( Engine::class );
-	if ( ! $view ) {
-		return $engine;
-	}
+    $engine = container()->get( Engine::class );
+    if ( ! $view ) {
+        return $engine;
+    }
 
-	return response(
-		$engine->render( $view, $args )
-	);
+    return response(
+        $engine->render( $view, $args )
+    );
 }
 
 /**
@@ -240,14 +209,14 @@ function view( string $view = "", array $args = [] ) {
  *               If $template is specified, the rendered template is returned.
  */
 function template( string $template = "", array $args = [] ) {
-	$service = container()->get( Template::class );
-	if ( ! $template ) {
-		return $service;
-	}
+    $service = container()->get( Template::class );
+    if ( ! $template ) {
+        return $service;
+    }
 
-	$service->register();
+    $service->register();
 
-	return view( $template, $args );
+    return view( $template, $args );
 }
 
 /**
@@ -255,7 +224,7 @@ function template( string $template = "", array $args = [] ) {
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function request(): ServerRequestInterface {
-	return container()->get( ServerRequestInterface::class );
+    return container()->get( ServerRequestInterface::class );
 }
 
 /**
@@ -268,7 +237,7 @@ function request(): ServerRequestInterface {
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function redirect( string $url, int $status = 302, $headers = [] ): ResponseInterface {
-	return ResponseFactory::redirect( $url, $status, $headers );
+    return ResponseFactory::redirect( $url, $status, $headers );
 }
 
 /**
@@ -282,7 +251,7 @@ function redirect( string $url, int $status = 302, $headers = [] ): ResponseInte
  * @see https://docs.laminas.dev/laminas-diactoros/
  */
 function response( $content, $status = 200, $headers = [] ) {
-	return ResponseFactory::make( $content, $status, $headers );
+    return ResponseFactory::make( $content, $status, $headers );
 }
 
 /**
@@ -298,11 +267,11 @@ function response( $content, $status = 200, $headers = [] ) {
  * @see https://developer.wordpress.org/reference/functions/update_option/
  */
 function set_option( string $option_name, mixed $value ): bool {
-	if ( get_option( $option_name ) === false ) {
-		return add_option( $option_name, $value );
-	} else {
-		return update_option( $option_name, $value );
-	}
+    if ( get_option( $option_name ) === false ) {
+        return add_option( $option_name, $value );
+    } else {
+        return update_option( $option_name, $value );
+    }
 }
 
 /**
@@ -315,9 +284,9 @@ function set_option( string $option_name, mixed $value ): bool {
  */
 function get_plugin_option( $option, $default = null, $required = false )
 {
-	$options = container()->get( OptionsInterface::class );
+    $options = container()->get( OptionsInterface::class );
 
-	return $options->get( $option, $default, $required );
+    return $options->get( $option, $default, $required );
 }
 
 /**
@@ -330,9 +299,9 @@ function get_plugin_option( $option, $default = null, $required = false )
  */
 function set_plugin_option( $option, $value ): bool
 {
-	$options = container()->get( OptionsInterface::class );
+    $options = container()->get( OptionsInterface::class );
 
-	return $options->set( $option, $value );
+    return $options->set( $option, $value );
 }
 
 /**
@@ -345,20 +314,20 @@ function set_plugin_option( $option, $value ): bool
  * @throws Exception If there is a database error before starting the transaction.
  */
 function transaction( $callback ) {
-	global $wpdb;
-	if ( $wpdb->last_error ) {
-		return $wpdb->last_error;
-	}
-	$wpdb->query( 'START TRANSACTION' );
-	$callback();
-	if ( $wpdb->last_error ) {
-		$wpdb->query( 'ROLLBACK' );
+    global $wpdb;
+    if ( $wpdb->last_error ) {
+        return $wpdb->last_error;
+    }
+    $wpdb->query( 'START TRANSACTION' );
+    $callback();
+    if ( $wpdb->last_error ) {
+        $wpdb->query( 'ROLLBACK' );
 
-		return $wpdb->last_error;
-	}
-	$wpdb->query( 'COMMIT' );
+        return $wpdb->last_error;
+    }
+    $wpdb->query( 'COMMIT' );
 
-	return true;
+    return true;
 }
 
 /**
@@ -370,7 +339,7 @@ function transaction( $callback ) {
  */
 function namespace_string( string $string ): string
 {
-	return config( 'plugin.text_domain' ) . '.' .  $string;
+    return config( 'plugin.text_domain' ) . '.' .  $string;
 }
 
 /**
@@ -383,10 +352,10 @@ function namespace_string( string $string ): string
  *                  Returns an array if found, otherwise returns false.
  */
 function magic_app( $root, $type ) {
-	$magic_apps = apply_filters( 'dt_magic_url_register_types', [] );
-	$root_apps  = $magic_apps[ $root ] ?? [];
+    $magic_apps = apply_filters( 'dt_magic_url_register_types', [] );
+    $root_apps  = $magic_apps[ $root ] ?? [];
 
-	return $root_apps[ $type ] ?? false;
+    return $root_apps[ $type ] ?? false;
 }
 
 /**
@@ -399,20 +368,20 @@ function magic_app( $root, $type ) {
  * @return string The generated magic URL.
  */
 function magic_url( $root, $type, $id ): string {
-	$app = magic_app( $root, $type );
-	if ( ! $app ) {
-		return "";
-	}
-	$record = DT_Posts::get_post( $app["post_type"], $id, true, false );
-	if ( ! isset( $record[ $app["meta_key"] ] ) ) {
-		$key = dt_create_unique_key();
-		update_post_meta( get_the_ID(), $app["meta_key"], $key );
-	}
+    $app = magic_app( $root, $type );
+    if ( ! $app ) {
+        return "";
+    }
+    $record = DT_Posts::get_post( $app["post_type"], $id, true, false );
+    if ( ! isset( $record[ $app["meta_key"] ] ) ) {
+        $key = dt_create_unique_key();
+        update_post_meta( get_the_ID(), $app["meta_key"], $key );
+    }
 
-	return DT_Magic_URL::get_link_url_for_post(
-		$app["post_type"],
-		$id,
-		$app["root"],
-		$app["type"]
-	);
+    return DT_Magic_URL::get_link_url_for_post(
+        $app["post_type"],
+        $id,
+        $app["root"],
+        $app["type"]
+    );
 }

@@ -11,5 +11,5 @@
  */
 function customize_php_scoper_config( array $config ): array {
 
-	return $config;
+    return $config;
 }
