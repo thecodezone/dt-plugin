@@ -369,19 +369,19 @@ function magic_app( $root, $type ) {
  */
 function magic_url( $root, $type, $id ): string {
     $app = magic_app( $root, $type );
-    if ( ! $app ) {
+    if ( !$app ) {
         return "";
     }
-    $record = DT_Posts::get_post( $app["post_type"], $id, true, false );
-    if ( ! isset( $record[ $app["meta_key"] ] ) ) {
-        $key = dt_create_unique_key();
-        update_post_meta( get_the_ID(), $app["meta_key"], $key );
+    if ( $app['post_type'] === 'user' ) {
+        $app_user_key = get_user_option( $app['meta_key'] );
+        $app_url_base = trailingslashit( trailingslashit( site_url() ) . $app['url_base'] );
+        return $app_url_base . $app_user_key;
+    } else {
+        return DT_Magic_URL::get_link_url_for_post(
+            $app["post_type"],
+            $id,
+            $app["root"],
+            $app["type"]
+        );
     }
-
-    return DT_Magic_URL::get_link_url_for_post(
-        $app["post_type"],
-        $id,
-        $app["root"],
-        $app["type"]
-    );
 }
