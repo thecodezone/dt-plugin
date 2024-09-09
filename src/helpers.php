@@ -30,7 +30,7 @@ function plugin(): Plugin {
 }
 
 /**
- * Return the container instance from the plugin.
+ * Return the container instance.
  *
  * @return Container The container instance.
  * @see https://container.thephpleague.com/4.x/
@@ -48,14 +48,19 @@ function container(): Container {
  * @return mixed The ConfigInterface object if no key is provided, or the value of the specified configuration key.
  * @see https://config.thephpleague.com/
  */
-function config( $key = null ) {
+function config( $key = null, $default = null ) {
     $service = container()->get( ConfigInterface::class );
 
     if ( $key ) {
-        return $service->get( $key );
+        return $service->get( $key, $default );
     }
 
     return $service;
+}
+
+function set_config( $key, $value ) {
+    $service = container()->get( ConfigInterface::class );
+    return $service->set( $key, $value );
 }
 
 /**
@@ -180,7 +185,7 @@ function views_path( string $path = '' ): string {
 }
 
 /**
- * Renders a view using the provided view engine.
+ * Renders a view and returns a response.
  *
  * @param string $view Optional. The name of the view to render. Defaults to an empty string.
  * @param array $args Optional. An array of data to pass to the view. Defaults to an empty array.
@@ -200,7 +205,7 @@ function view( string $view = "", array $args = [] ) {
 }
 
 /**
- * Renders a template using the Template service.
+ * Renders a template using the Template service and returns a response
  *
  * @param string $template Optional. The template to render. If not specified, the Template service instance is returned.
  * @param array $args Optional. An array of arguments to be passed to the template.
@@ -228,7 +233,7 @@ function request(): ServerRequestInterface {
 }
 
 /**
- * Creates a new RedirectResponse instance for the given URL.
+ * Creates a new ResponseInterface instance for the given URL.
  *
  * @param string $url The URL to redirect to.
  * @param int $status Optional. The status code for the redirect response. Default is 302.
