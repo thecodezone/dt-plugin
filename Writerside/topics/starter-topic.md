@@ -5,8 +5,8 @@
 by [CodeZone](http://codezone.io)
 
 ## About the project
-This plugin is a modern, opinionated plugin Framework for Disciple.Tools. It makes minimal use of third-party libraries and supports PHP 7.4 thought 8.3, 
-and all while providing a modern  developer experience that will make Laravel and Symphony developers feel at-home.
+A modern, opinionated plugin Framework for Disciple.Tools. The DT Plugin Framework makes minimal use of third-party libraries and supports PHP 7.4 though 8.3,
+while providing a modern developer experience that will make Laravel and Symphony developers feel at-home.
 
 ### Purpose
 At CodeZone, we recognize a developer or team might love Disciple.Tools, but miss the modern tooling found in PHP Application frameworks.
