@@ -2,13 +2,7 @@
 
 namespace Tests;
 
-use DT\Plugin\CodeZone\Router\Middleware\HandleErrors;
-use DT\Plugin\CodeZone\Router\Middleware\HandleRedirects;
-use DT\Plugin\CodeZone\Router\Middleware\Render;
-use DT\Plugin\CodeZone\Router\Middleware\Stack;
 use WP_UnitTestCase;
-use function DT\Plugin\container;
-use function DT\Plugin\namespace_string;
 
 abstract class TestCase extends WP_UnitTestCase {
     /**
@@ -45,73 +39,29 @@ abstract class TestCase extends WP_UnitTestCase {
     }
 
     /**
-     * Sends a GET request to the specified URI with optional parameters and headers.
+     * Logs in as a new user and returns the user object.
      *
-     * @param string $uri The URI to send the GET request to.
-     * @param mixed $parameters The optional parameters to include in the GET request.
-     * @param array $headers The optional headers to include in the GET request.
+     * This method creates a new user using the given username, password, and email using the `wp_create_user` function.
+     * It then logs in as the newly created user using the `acting_as` method.
+     * Finally, it returns the user object of the newly created user.
      *
-     * @return mixed The response returned from the GET request.
+     * @return WP_User The user object of the newly created user.
      */
-    public function get( $uri, $parameters = [], array $headers = [] ) {
-        return $this->request( 'GET', $uri, $parameters, $headers );
+    public function as_user( $username = null, $password = null, $email = null ) {
+        $user = wp_create_user( $username ?? $this->faker->userName, $password ?? $this->faker->password, $email ?? $this->faker->email );
+        $this->acting_as( $user );
+        return $user;
     }
 
     /**
-     * Makes a request to a given URI using the specified HTTP method.
+     * Sets the current user and authenticates the user session as the specified user.
      *
-     * @param string $method The HTTP method to use for the request (e.g., GET, POST).
-     * @param string $uri The URI to send the request to.
-     * @param array $parameters An associative array of request parameters.
-     * @param array $headers An associative array of request headers.
-     * @param array $cookies An associative array of request cookies.
-     * @param array $files An associative array of request files.
-     * @param array $server An associative array of request server variables.
-     * @param mixed $content The request content.
+     * @param int $user_id The ID of the user to act as.
      *
-     * @return mixed The response of the request.
+     * @return void
      */
-    public function request( $method, $uri, array $parameters = [], $headers = [], array $cookies = [], array $files = [], array $server = [], $content = null ) {
-        $initial_request = container()->make( Request::class );
-        $request         = Request::create( $uri, $method, $parameters, $cookies, $files, $server, $content );
-        foreach ( $headers as $key => $value ) {
-            $request->headers->set( $key, $value );
-        }
-        $blacklisted_middleware = [
-            HandleErrors::class,
-            HandleRedirects::class,
-            Render::class
-        ];
-
-        container()->bind( Request::class, function () use ( $request ) {
-            return $request;
-        } );
-
-        add_filter( namespace_string( 'middleware' ), function ( $stack ) use ( $blacklisted_middleware ) {
-            return $stack->filter( function ( $middleware ) use ( $blacklisted_middleware ) {
-                return ! in_array( $middleware, $blacklisted_middleware );
-            } );
-        } );
-        $stack    = apply_filters( namespace_string( 'middleware' ), container()->make( Stack::class ) );
-        $response = $stack->run();
-
-        container()->bind( Request::class, function () use ( $initial_request ) {
-            return $initial_request;
-        } );
-
-        return $response;
-    }
-
-    /**
-     * Send a POST request to the specified URI with the given data and headers.
-     *
-     * @param string $uri The URI to send the request to.
-     * @param array $data An array of data to include in the request body.
-     * @param array $headers An array of headers to include in the request.
-     *
-     * @return mixed The response from the request.
-     */
-    public function post( $uri, array $data = [], array $headers = [] ) {
-        return $this->request( 'POST', $uri, $data, $headers );
+    public function acting_as( $user_id ) {
+        wp_set_current_user( $user_id );
+        wp_set_auth_cookie( $user_id );
     }
 }
