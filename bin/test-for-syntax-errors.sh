@@ -1,4 +1,4 @@
-cd "$(dirname "${BASH_SOURCE[0]}")/../"
+cd ..
 
 if [ "$(php -r 'echo version_compare( phpversion(), "7.0", ">=" ) ? 1 : 0;')" != 1 ] ; then
     php -l ../dt-plugin.php
