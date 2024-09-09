@@ -19,5 +19,4 @@ $r->group( '/wp-admin', function ( RouteCollectionInterface $r ) {
 		GeneralSettingsController::class,
 		'update'
 	] )->middleware( new Nonce( 'dt_admin_form_nonce' ) );
-
 } )->middleware( new HasCap( 'manage_dt' ) );

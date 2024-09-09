@@ -9,8 +9,8 @@
 DT Plugin Framework
 -------------------
 
-This plugin is a modern, opinionated plugin Framework for Disciple.Tools. It makes minimal use of third-party libraries and supports PHP 7.4 though 8.3,
-and all while providing a modern developer experience that will make Laravel and Symphony developers feel at-home.
+A modern, opinionated plugin Framework for Disciple.Tools. The DT Plugin Framework makes minimal use of third-party libraries and supports PHP 7.4 though 8.3,
+while providing a modern developer experience that will make Laravel and Symphony developers feel at-home.
 
 ## Documentation
 

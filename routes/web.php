@@ -26,5 +26,4 @@ $r->group( '', function ( RouteCollectionInterface $r ) {
 
     $r->get( '/users/{id}', [ UserController::class, 'show' ] )
 	  ->middleware( new HasCap( 'dt_list_users' ) );
-
 } )->middleware( new LoggedIn() );
