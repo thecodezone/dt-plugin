@@ -51,7 +51,7 @@ $config->merge( [
                 'parent_slug'  => 'plugins.php',
                 'capability'   => 'manage_options',
                 'has_notices'  => true,
-                'dismissable'  => true,
+                'dismissible'  => true,
                 'dismiss_msg'  => 'These are recommended plugins to complement your Disciple.Tools system.',
                 'is_automatic' => true,
                 'message'      => '',
