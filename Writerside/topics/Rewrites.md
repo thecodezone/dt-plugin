@@ -4,6 +4,10 @@
     See <a href="https://route.thephpleague.com/">League Router</a> for full documentation on the routing system including controllers, service providers and middleware.
 </tip>
 
+<tip>
+    See <a href="https://thecodezone.github.io/wp-support/route.html">thecodezone/wp-support</a> for documentation on working with the Route service. 
+</tip>
+
 ## Registering routes
 
 Route files are stored in the `routes` folder. 
