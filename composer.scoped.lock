@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ba818fe609117ba7b8bf2c566c936f1",
+    "content-hash": "ad09bfb779fba32f28a2547c8f89ad25",
     "packages": [
         {
             "name": "codezone/wp-support",
-            "version": "dev-main",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thecodezone/wp-support.git",
-                "reference": "35c8f728df6c9b91cfbe256d7c7f036d328f9a98"
+                "reference": "9bad70cb7fb41caa31aca98919976985990365c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/35c8f728df6c9b91cfbe256d7c7f036d328f9a98",
-                "reference": "35c8f728df6c9b91cfbe256d7c7f036d328f9a98",
+                "url": "https://api.github.com/repos/thecodezone/wp-support/zipball/9bad70cb7fb41caa31aca98919976985990365c4",
+                "reference": "9bad70cb7fb41caa31aca98919976985990365c4",
                 "shasum": ""
             },
             "require": {
@@ -37,7 +37,6 @@
                 "wp-coding-standards/wpcs": "^3.0",
                 "yoast/phpunit-polyfills": "^1.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -57,9 +56,9 @@
             "description": "Support utilities for building WordPress plugins.",
             "support": {
                 "issues": "https://github.com/thecodezone/wp-support/issues",
-                "source": "https://github.com/thecodezone/wp-support/tree/main"
+                "source": "https://github.com/thecodezone/wp-support/tree/1.0.0"
             },
-            "time": "2024-08-27T22:23:21+00:00"
+            "time": "2024-09-06T20:39:37+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -939,9 +938,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "codezone/wp-support": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
