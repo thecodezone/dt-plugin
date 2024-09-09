@@ -1,4 +1,8 @@
-# Introduction
+# Disciple.Tools Plugin Framework
+
+![CZ](cz-lines-orange-dark.svg){ width=100 }
+
+by [CodeZone](http://codezone.io)
 
 ## About the project
 This plugin is a modern, opinionated plugin Framework for Disciple.Tools. It makes minimal use of third-party libraries and supports PHP 7.4 thought 8.3, 
