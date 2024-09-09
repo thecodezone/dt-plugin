@@ -12,7 +12,7 @@ There growing community of Laravel and Symfony developers who bring exceptional 
 Our purpose is to bridge the gap between these seasoned developers and the dynamic environment of Disciple.Tools. We strive to make Disciple.Tools plugin development not only accessible but also a delightful experience for those already well-versed in Laravel and Symfony frameworks.
 
 <note title="Are you a WordPress Developer" id="wp-dev">
-You may feel more at home using the [Disciple Tools Starter Template](https://github.com/thecodezone/dt-plugin/).
+You may feel more at home using the <a href="https://github.com/thecodezone/dt-plugin/">Disciple Tools Starter Template</a>.
 </note>
 
 ## Included 
