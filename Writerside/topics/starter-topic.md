@@ -1,8 +1,5 @@
 # Introduction
 
-<!--Writerside adds this topic when you create a new documentation project.
-You can use it as a sandbox to play with Writerside features, and remove it from the TOC when you don't need it anymore.-->
-
 ## About the project
 This plugin is a modern, opinionated plugin Framework for Disciple.Tools. It makes minimal use of third-party libraries and supports PHP 7.4 thought 8.3, 
 and all while providing a modern  developer experience that will make Laravel and Symphony developers feel at-home.
