@@ -1,6 +1,6 @@
 set -e
 
-cd ..
+cd "$(dirname "${BASH_SOURCE[0]}")/../"
 
 composer config allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
 composer require --dev wp-coding-standards/wpcs:"^3.0"

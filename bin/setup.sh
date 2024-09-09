@@ -1,4 +1,4 @@
-cd ..
+cd "$(dirname "${BASH_SOURCE[0]}")/../"
 
 NAME="DT Plugin"
 NAMESPACE="DT\\Plugin"
