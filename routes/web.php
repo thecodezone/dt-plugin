@@ -19,8 +19,12 @@ use DT\Plugin\League\Route\RouteCollectionInterface;
 use DT\Plugin\Middleware\LoggedIn;
 
 $r->group( '', function ( RouteCollectionInterface $r ) {
-	$r->get( '/hello', [ HelloController::class, 'show' ] );
-	$r->get( '/users/me', [ UserController::class, 'current' ] );
-	$r->get( '/users/{id}', [ UserController::class, 'show' ] )
+
+    $r->get( '/hello', [ HelloController::class, 'show' ] );
+
+    $r->get( '/users/me', [ UserController::class, 'current' ] );
+
+    $r->get( '/users/{id}', [ UserController::class, 'show' ] )
 	  ->middleware( new HasCap( 'dt_list_users' ) );
+
 } )->middleware( new LoggedIn() );

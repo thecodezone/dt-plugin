@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 if [ $# -lt 3 ]; then
 	echo "usage: $0 <db-name> <db-user> <db-pass>, [db-host] --wp-version=<version> --skip-database-creation"
 	exit 1
@@ -162,7 +160,7 @@ install_db() {
 	fi
 
 	# create database
-	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
+	mysqladmin create "$DB_NAME" --user="$DB_USER" --password="$DB_PASS" $EXTRA >/dev/null 2>&1 || true
 }
 
 install_theme() {

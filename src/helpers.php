@@ -30,7 +30,7 @@ function plugin(): Plugin {
 }
 
 /**
- * Return the container instance from the plugin.
+ * Return the container instance.
  *
  * @return Container The container instance.
  * @see https://container.thephpleague.com/4.x/
@@ -48,14 +48,19 @@ function container(): Container {
  * @return mixed The ConfigInterface object if no key is provided, or the value of the specified configuration key.
  * @see https://config.thephpleague.com/
  */
-function config( $key = null ) {
+function config( $key = null, $default = null ) {
     $service = container()->get( ConfigInterface::class );
 
     if ( $key ) {
-        return $service->get( $key );
+        return $service->get( $key, $default );
     }
 
     return $service;
+}
+
+function set_config( $key, $value ) {
+    $service = container()->get( ConfigInterface::class );
+    return $service->set( $key, $value );
 }
 
 /**
@@ -180,7 +185,7 @@ function views_path( string $path = '' ): string {
 }
 
 /**
- * Renders a view using the provided view engine.
+ * Renders a view and returns a response.
  *
  * @param string $view Optional. The name of the view to render. Defaults to an empty string.
  * @param array $args Optional. An array of data to pass to the view. Defaults to an empty array.
@@ -200,7 +205,7 @@ function view( string $view = "", array $args = [] ) {
 }
 
 /**
- * Renders a template using the Template service.
+ * Renders a template using the Template service and returns a response
  *
  * @param string $template Optional. The template to render. If not specified, the Template service instance is returned.
  * @param array $args Optional. An array of arguments to be passed to the template.
@@ -221,20 +226,20 @@ function template( string $template = "", array $args = [] ) {
 
 /**
  * Returns the Request object.
- * @see https://docs.laminas.dev/laminas-diactoros/
+ * @see https://github.com/guzzle/psr7
  */
 function request(): ServerRequestInterface {
     return container()->get( ServerRequestInterface::class );
 }
 
 /**
- * Creates a new RedirectResponse instance for the given URL.
+ * Creates a new ResponseInterface instance for the given URL.
  *
  * @param string $url The URL to redirect to.
  * @param int $status Optional. The status code for the redirect response. Default is 302.
  *
  * @return ResponseInterface A new RedirectResponse instance.
- * @see https://docs.laminas.dev/laminas-diactoros/
+ * @see https://github.com/guzzle/psr7
  */
 function redirect( string $url, int $status = 302, $headers = [] ): ResponseInterface {
     return ResponseFactory::redirect( $url, $status, $headers );
@@ -248,7 +253,7 @@ function redirect( string $url, int $status = 302, $headers = [] ): ResponseInte
  * @param array $headers Optional. Additional headers to include in the response. Default is an empty array.
  *
  * @return ResponseInterface The response object with the specified content, status, and headers.
- * @see https://docs.laminas.dev/laminas-diactoros/
+ * @see https://github.com/guzzle/psr7
  */
 function response( $content, $status = 200, $headers = [] ) {
     return ResponseFactory::make( $content, $status, $headers );
@@ -369,19 +374,19 @@ function magic_app( $root, $type ) {
  */
 function magic_url( $root, $type, $id ): string {
     $app = magic_app( $root, $type );
-    if ( ! $app ) {
+    if ( !$app ) {
         return "";
     }
-    $record = DT_Posts::get_post( $app["post_type"], $id, true, false );
-    if ( ! isset( $record[ $app["meta_key"] ] ) ) {
-        $key = dt_create_unique_key();
-        update_post_meta( get_the_ID(), $app["meta_key"], $key );
+    if ( $app['post_type'] === 'user' ) {
+        $app_user_key = get_user_option( $app['meta_key'] );
+        $app_url_base = trailingslashit( trailingslashit( site_url() ) . $app['url_base'] );
+        return $app_url_base . $app_user_key;
+    } else {
+        return DT_Magic_URL::get_link_url_for_post(
+            $app["post_type"],
+            $id,
+            $app["root"],
+            $app["type"]
+        );
     }
-
-    return DT_Magic_URL::get_link_url_for_post(
-        $app["post_type"],
-        $id,
-        $app["root"],
-        $app["type"]
-    );
 }

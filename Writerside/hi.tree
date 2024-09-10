@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="hi"
+                 name="Disciple.Tools Plugin Framework"
+                 start-page="starter-topic.md">
+
+    <toc-element topic="starter-topic.md"/>
+    <toc-element topic="Installation.md"/>
+    <toc-element topic="Assets.md"/>
+    <toc-element topic="Container.md"/>
+    <toc-element topic="Rewrites.md"/>
+    <toc-element topic="Config.md"/>
+    <toc-element topic="Controllers.md"/>
+    <toc-element topic="helpers.md"/>
+    <toc-element topic="Views.md"/>
+    <toc-element topic="Options.md"/>
+    <toc-element topic="Magic-Links.md"/>
+</instance-profile>

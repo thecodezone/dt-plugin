@@ -1,3 +1,5 @@
+cd "$(dirname "${BASH_SOURCE[0]}")/../"
+
 NAME="DT Plugin"
 NAMESPACE="DT\\Plugin"
 NAMESPACE_ESCAPED="DT\\\\Plugin"
@@ -24,4 +26,8 @@ find ./ \( $EXCLUDE_DIRS \) -prune -o -type f -print0 | xargs -0 perl -pi -e "s/
 find ./ \( $EXCLUDE_DIRS \) -prune -o -type f -print0 | xargs -0 perl -pi -e "s/dt-plugin/$KEBAB_CASE/g"
 
 mv dt-plugin.php $FILENAME
-rm .rename.sh
+rm .github/local.yml
+rm Writerside
+rm bin/setup.sh
+
+
