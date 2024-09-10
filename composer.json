@@ -37,7 +37,8 @@
     "phpcompatibility/php-compatibility": "^9.0",
     "yoast/phpunit-polyfills": "^1.0",
     "wp-coding-standards/wpcs": "^3.0",
-    "phpunit/phpunit": "^9"
+    "phpunit/phpunit": "^9",
+    "fakerphp/faker": "^1.14"
   },
   "extra": {
     "composer-runtime-api": {
