@@ -402,28 +402,19 @@ function magic_url( $root, $type, $id ): string {
  * @param RequestInterface $request The request object from which to
  */
 function extract_request_input( RequestInterface $request ): array {
-	$content_type = $request->getHeaderLine( 'Content-Type' );
+    $content_type = $request->getHeaderLine( 'Content-Type' );
 
-	if ( strpos( $content_type, 'application/json' ) !== false ) {
-		// Handle JSON content type.
-		$body = (string) $request->getBody();
+    if ( strpos( $content_type, 'application/json' ) !== false ) {
+        // Handle JSON content type.
+        $body = $request->getBody()->getContents();
 
-		return json_decode( $body, true );
-	}
+        return json_decode( $body, true );
+    }
 
-	// Handle other content types.
-	if ( strpos( $content_type, 'application/x-www-form-urlencoded' ) !== false ) {
-		$body = (string) $request->getBody();
-		$data = [];
-		parse_str( $body, $data );
-
-		return $data;
-	}
-
-	switch ( strtoupper( $request->getMethod() ) ) {
-		case 'GET':
-			return $request->getQueryParams();
-		default:
-			return $request->getParsedBody();
-	}
+    switch ( strtoupper( $request->getMethod() ) ) {
+        case 'GET':
+            return $request->getQueryParams();
+        default:
+            return $request->getParsedBody();
+    }
 }

@@ -29,25 +29,43 @@ class ExtractRequestInputHelperTest extends TestCase {
 		$this->assertEquals( [ 'foo' => 'bar' ], $params );
 	}
 
-	/**
-	 * @test
-	 */
-	public function it_handles_json_requests() {
-		$request = ServerRequestFactory::request( 'POST', '/?foo=bar', [
-			'foo' => 'bar'
-		] );
-		$params  = extract_request_input( $request );
-		$this->assertEquals( [ 'foo' => 'bar' ], $params );
-	}
+    /**
+     * @test
+     */
+    public function it_handles_json_requests() {
+        $request = ServerRequestFactory::request( 'POST', '/?foo=bar', [
+            'foo' => 'bar'
+        ], [
+            'Content-Type' => 'application/json'
+        ]);
+        $params  = extract_request_input($request);
+        $this->assertEquals( [ 'foo' => 'bar' ], $params );
+    }
 
-	/**
-	 * @test
-	 */
-	public function it_handles_form_encoded_requests() {
-		$request = ServerRequestFactory::request( 'POST', '/?foo=bar', [
-			'foo' => 'bar'
-		] );
-		$params  = extract_request_input( $request );
-		$this->assertEquals( [ 'foo' => 'bar' ], $params );
-	}
+    /**
+     * @test
+     */
+    public function it_handles_form_encoded_requests() {
+        $request = ServerRequestFactory::request( 'POST', '/?foo=bar', [
+            'foo' => 'bar'
+        ], [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ]  );
+        $params  = extract_request_input( $request );
+        $this->assertEquals( [ 'foo' => 'bar' ], $params );
+    }
+
+    /**
+     * @test
+     */
+    public function it_handles_form_encoded_get_requests() {
+        $request = ServerRequestFactory::request( 'GET', '/?foo=bar', [
+            'foo' => 'bar'
+        ], [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ] );
+        $params  = extract_request_input( $request );
+        $this->assertEquals( [ 'foo' => 'bar' ], $params );
+        $this->assertEquals( 'bar', $request->getQueryParams()['foo'] );
+    }
 }
