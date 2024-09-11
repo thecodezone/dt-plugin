@@ -35,10 +35,10 @@ class ExtractRequestInputHelperTest extends TestCase {
     public function it_handles_json_requests() {
         $request = ServerRequestFactory::request( 'POST', '/?foo=bar', [
             'foo' => 'bar'
-        ], [
+            ], [
             'Content-Type' => 'application/json'
         ]);
-        $params  = extract_request_input($request);
+        $params  = extract_request_input( $request );
         $this->assertEquals( [ 'foo' => 'bar' ], $params );
     }
 
@@ -48,7 +48,7 @@ class ExtractRequestInputHelperTest extends TestCase {
     public function it_handles_form_encoded_requests() {
         $request = ServerRequestFactory::request( 'POST', '/?foo=bar', [
             'foo' => 'bar'
-        ], [
+            ], [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ]  );
         $params  = extract_request_input( $request );
@@ -61,7 +61,7 @@ class ExtractRequestInputHelperTest extends TestCase {
     public function it_handles_form_encoded_get_requests() {
         $request = ServerRequestFactory::request( 'GET', '/?foo=bar', [
             'foo' => 'bar'
-        ], [
+            ], [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ] );
         $params  = extract_request_input( $request );
