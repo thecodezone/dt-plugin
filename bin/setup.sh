@@ -14,6 +14,11 @@ EXCLUDE_DIRS="-path ./vendor -o -path ./vendor-scoped -o -path ./node_modules -o
 
 PLACEHOLDER="tmp-plugin-name-matcher"
 
+# Copy ../.env.example as .env unless it exists
+if [ ! -f "../.env" ]; then
+  cp ../.env.example ../.env
+fi
+
 # Replace strings in files excluding specified directories
 find ./ \( $EXCLUDE_DIRS \) -prune -o -type f -print0 | xargs -0 perl -pi -e "s/DT Plugin/$NAME/g"
 find ./ \( $EXCLUDE_DIRS \) -prune -o -type f -print0 | xargs -0 perl -pi -e "s/dt\/plugin/$PACKAGE/g"
