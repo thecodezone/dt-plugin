@@ -3,7 +3,7 @@ import 'dotenv/config'
 
 export default defineConfig({
     e2e: {
-        setupNodeEvents(on, config) {
+        setupNodeEvents() {
             // implement node event listeners here
         },
         baseUrl: process.env.S3_BUCKET,

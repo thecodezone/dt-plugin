@@ -31,10 +31,10 @@ Cypress.Commands.add('npmHomeScreenInit', () => {
     cy.exec('npm install')
     cy.exec('npm run build')
     cy.exec(
-        'cp -R ./node_modules/@disciple.tools/web-components/dist/generated ./dist/assets/'
+        'cp -R ./node_modules/@disciple.tools/web-components/dist/generated ./dist/assets/',
     )
     cy.exec(
-        'cp -R ./node_modules/@disciple.tools/web-components/dist/lit-localize-*.js ./dist/assets/'
+        'cp -R ./node_modules/@disciple.tools/web-components/dist/lit-localize-*.js ./dist/assets/',
     )
 })
 
@@ -73,13 +73,13 @@ Cypress.Commands.add('adminGeneralSettingsInit', () => {
      *  - Resolve any identified exceptions.
      */
 
-    cy.on('uncaught:exception', (err, runnable) => {
+    cy.on('uncaught:exception', () => {
         // Returning false here prevents Cypress from failing the test
         return false
     })
 
     // Capture admin credentials.
-    const dt_config = cy.config('dt')
+    const dt_config = Object.assign({}, cy.config('dt'))
     const username = dt_config.credentials.admin.username
     const password = dt_config.credentials.admin.password
 

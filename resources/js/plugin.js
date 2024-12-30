@@ -1,3 +1,3 @@
-import "../css/plugin.css";
+import '../css/plugin.css'
 
 console.log('plugin.js')

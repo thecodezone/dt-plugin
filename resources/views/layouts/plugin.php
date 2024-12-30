@@ -3,9 +3,7 @@
 </header>
 
 <div>
-    <?php //@phpcs:ignore
-    echo $this->section( 'content' )
-    ?>
+    <?php echo $this->section( 'content' ); //@phpcs:ignore; ?>
 </div>
 
 <footer>
